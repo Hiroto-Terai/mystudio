@@ -1,0 +1,152 @@
+
+{%- style -%}
+  .faq-section-{{ section.id }} {
+    padding-block-start: {{ section.settings['padding-block-start'] }}px;
+    padding-block-end: {{ section.settings['padding-block-end'] }}px;
+  }
+{%- endstyle -%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="faq-section faq-section-{{ section.id }} section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+>
+  {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+    <div class="faq-section__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="faq-section__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="faq-section__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="faq-section__list">
+    {%- content_for 'blocks' -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .faq-section__header {
+    margin-block-end: var(--margin-xl);
+    text-align: center;
+  }
+
+  .faq-section__heading {
+    margin-block-end: var(--margin-sm);
+  }
+
+  .faq-section__subheading {
+    opacity: 0.75;
+  }
+
+  .faq-section__list {
+    max-width: 48rem;
+    margin-inline: auto;
+    border-block-start: 1px solid var(--color-border);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "class": "faq-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_faq-item"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "t:categories.basic",
+      "blocks": {
+        "item-1": {
+          "type": "_faq-item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy on all items. Items must be in their original condition. Contact our support team to initiate a return.</p>"
+          }
+        },
+        "item-2": {
+          "type": "_faq-item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping takes 3–5 business days. Express shipping is available at checkout for 1–2 business day delivery.</p>"
+          }
+        },
+        "item-3": {
+          "type": "_faq-item",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "<p>Yes, we ship to most countries worldwide. International shipping times vary by destination.</p>"
+          }
+        }
+      },
+      "block_order": ["item-1", "item-2", "item-3"]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}
