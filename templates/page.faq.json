@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "section",
+      "blocks": {
+        "text_heading": {
+          "type": "text",
+          "name": "Page heading",
+          "settings": {
+            "text": "<h1>Frequently asked questions</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_subheading": {
+          "type": "text",
+          "name": "Subheading",
+          "settings": {
+            "text": "<p>Everything you need to know about our products and practices.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_heading",
+        "text_subheading"
+      ],
+      "name": "Page header",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 48
+      }
+    },
+    "faq_products": {
+      "type": "faq",
+      "blocks": {
+        "q_ingredients": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "What are your products made from?",
+            "answer": "<p>All Botanica formulations are built around certified organic and wild-harvested botanicals. We source each ingredient for a specific purpose — there are no fillers. Every product is free from parabens, synthetic fragrance, sulfates, and artificial dyes.</p>",
+            "open_by_default": true
+          }
+        },
+        "q_skin_types": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "Which skin types are your products suitable for?",
+            "answer": "<p>Each product is formulated with a specific skin concern in mind — our toner and emulsion suit most skin types including sensitive, while the clarifying face wash is better suited to normal or oily skin. Detailed guidance is available on each product page.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_results": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "How long before I notice a difference?",
+            "answer": "<p>Most customers notice improved hydration and texture within two to four weeks of consistent use. For treatments addressing cell renewal — such as our Restorative Face Cream — allow six to eight weeks for the full effect to become apparent.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_cruelty_free": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "Are your products cruelty-free and vegan?",
+            "answer": "<p>Yes. No Botanica product is tested on animals at any stage of development or production. All formulations are 100% vegan — we use no animal-derived ingredients of any kind.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_fragrance": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "Do your products contain artificial fragrance?",
+            "answer": "<p>No. All fragrance in our products comes exclusively from pure essential oils and botanical extracts. We do not use synthetic fragrance, which is a common source of irritation for sensitive skin.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "q_ingredients",
+        "q_skin_types",
+        "q_results",
+        "q_cruelty_free",
+        "q_fragrance"
+      ],
+      "name": "Products",
+      "settings": {
+        "heading": "Products",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 48
+      }
+    },
+    "faq_orders": {
+      "type": "faq",
+      "blocks": {
+        "q_shipping": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard domestic shipping takes three to five business days. Express shipping (one to two business days) is available at checkout. International orders typically arrive within seven to fourteen business days depending on destination.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_free_shipping": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "<p>Free standard shipping is available on domestic orders over ¥8,000. Orders below this threshold incur a flat shipping fee, shown at checkout.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_returns": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day satisfaction guarantee. If you are not completely satisfied with your purchase, contact us within 30 days of delivery and we will arrange a return or exchange — no questions asked. Products must be in their original condition.</p>",
+            "open_by_default": false
+          }
+        },
+        "q_international": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes, we ship to most countries worldwide. International shipping rates and estimated delivery times are calculated at checkout based on your location.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "q_shipping",
+        "q_free_shipping",
+        "q_returns",
+        "q_international"
+      ],
+      "name": "Orders & Shipping",
+      "settings": {
+        "heading": "Orders & Shipping",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 64
+      }
+    },
+    "newsletter_section": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "heading": "Join the ritual",
+        "subheading": "Subscribe for skincare tips, exclusive offers, and 10% off your first order.",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "success_message": "Thank you for subscribing!",
+        "disclaimer": "By subscribing you agree to our Privacy Policy.",
+        "color_scheme": "scheme-2",
+        "section_width": "page-width",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": [
+    "header",
+    "faq_products",
+    "faq_orders",
+    "newsletter_section"
+  ]
+}
