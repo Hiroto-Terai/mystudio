@@ -4,7 +4,10 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% render 'section', section: section, children: children %}
+{%- capture schedule_state %}{% render 'schedule-display', settings: section.settings %}{% endcapture -%}
+{%- unless schedule_state contains 'hidden' -%}
+  {% render 'section', section: section, children: children %}
+{%- endunless -%}
 
 {% schema %}
 {
@@ -418,6 +421,30 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.schedule"
+    },
+    {
+      "type": "checkbox",
+      "id": "schedule_enabled",
+      "label": "t:settings.schedule_enabled",
+      "info": "t:info.schedule_enabled",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "schedule_start",
+      "label": "t:settings.schedule_start",
+      "info": "t:info.schedule_datetime",
+      "visible_if": "{{ section.settings.schedule_enabled }}"
+    },
+    {
+      "type": "text",
+      "id": "schedule_end",
+      "label": "t:settings.schedule_end",
+      "visible_if": "{{ section.settings.schedule_enabled }}"
     }
   ],
   "presets": [

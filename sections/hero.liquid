@@ -158,6 +158,8 @@
   {% endif %}
 {% endcapture %}
 
+{%- capture schedule_state %}{% render 'schedule-display', settings: section.settings %}{% endcapture -%}
+{%- unless schedule_state contains 'hidden' -%}
 <div
   id="Hero-{{ section.id }}"
   class="hero color-{{ section.settings.color_scheme }}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}"
@@ -236,6 +238,7 @@
     </div>
   </div>
 </div>
+{%- endunless -%}
 
 {% stylesheet %}
   .hero-wrapper {
@@ -825,6 +828,30 @@
       "step": 4,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.schedule"
+    },
+    {
+      "type": "checkbox",
+      "id": "schedule_enabled",
+      "label": "t:settings.schedule_enabled",
+      "info": "t:info.schedule_enabled",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "schedule_start",
+      "label": "t:settings.schedule_start",
+      "info": "t:info.schedule_datetime",
+      "visible_if": "{{ section.settings.schedule_enabled }}"
+    },
+    {
+      "type": "text",
+      "id": "schedule_end",
+      "label": "t:settings.schedule_end",
+      "visible_if": "{{ section.settings.schedule_enabled }}"
     }
   ],
   "presets": [
