@@ -152,6 +152,7 @@
   },
   "names": {
     "delivery_datetime": "Delivery date & time",
+    "product_reviews": "Product reviews",
     "product_title": "Product title",
     "custom_liquid": "Custom liquid",
     "404": "404",
@@ -351,6 +352,7 @@
     "delivery_datetime_enabled": "Enable delivery date & time on cart",
     "delivery_lead_days": "Earliest delivery (days from today)",
     "delivery_time_slots": "Time slots",
+    "max_reviews": "Maximum reviews to show",
     "bottom_left": "Bottom left",
     "bottom_right": "Bottom right",
     "box": "Box",

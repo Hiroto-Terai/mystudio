@@ -482,6 +482,17 @@
         "padding-block-end": 0
       }
     },
+    "product_reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "heading": "Reviews",
+        "max_reviews": 10,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -688,6 +699,7 @@
   },
   "order": [
     "main",
+    "product_reviews",
     "product_recommendations_qggXJq"
   ]
 }

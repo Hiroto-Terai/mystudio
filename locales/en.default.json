@@ -249,6 +249,13 @@
     "delivery_saved": "Saved",
     "delivery_date_attribute": "Requested delivery date",
     "delivery_time_attribute": "Requested delivery time",
+    "reviews_title": "Reviews",
+    "reviews_empty": "No reviews yet.",
+    "reviews_count": {
+      "one": "{{ count }} review",
+      "other": "{{ count }} reviews"
+    },
+    "rating_aria": "Rated {{ rating }} out of {{ scale }}",
     "product_card_placeholder": "Product title",
     "placeholder_image": "Placeholder image",
     "quantity": "Quantity",

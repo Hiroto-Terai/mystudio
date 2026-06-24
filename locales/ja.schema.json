@@ -11,6 +11,7 @@
   "names": {
     "wishlist": "お気に入り",
     "delivery_datetime": "配送日時の指定",
+    "product_reviews": "商品レビュー",
     "borders": "罫線",
     "collapsible_row": "折りたたみ可能な行",
     "colors": "色",
@@ -185,6 +186,7 @@
     "delivery_datetime_enabled": "カートで配送日時の指定を有効にする",
     "delivery_lead_days": "最短お届け日（今日からの日数）",
     "delivery_time_slots": "時間帯",
+    "max_reviews": "表示する最大レビュー数",
     "autoplay": "自動再生",
     "background": "背景",
     "border_radius": "角の半径",

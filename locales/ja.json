@@ -196,6 +196,13 @@
     "delivery_saved": "保存しました",
     "delivery_date_attribute": "お届け希望日",
     "delivery_time_attribute": "お届け希望時間帯",
+    "reviews_title": "レビュー",
+    "reviews_empty": "まだレビューはありません。",
+    "reviews_count": {
+      "one": "{{ count }}件のレビュー",
+      "other": "{{ count }}件のレビュー"
+    },
+    "rating_aria": "5段階中{{ rating }}",
     "search_input_label": "検索",
     "search_input_placeholder": "検索",
     "search_results": "検索結果",
