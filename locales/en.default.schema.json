@@ -142,6 +142,7 @@
 
   },
   "names": {
+    "product_reviews": "Product reviews",
     "product_title": "Product title",
     "custom_liquid": "Custom liquid",
     "404": "404",
@@ -331,6 +332,7 @@
     "bold": "Bold",
     "bottle": "Bottle",
     "bottom": "Bottom",
+    "max_reviews": "Maximum reviews to show",
     "bottom_left": "Bottom left",
     "bottom_right": "Bottom right",
     "box": "Box",

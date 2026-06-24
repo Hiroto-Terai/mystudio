@@ -9,6 +9,7 @@
  */
 {
   "names": {
+    "product_reviews": "商品レビュー",
     "borders": "罫線",
     "collapsible_row": "折りたたみ可能な行",
     "colors": "色",
@@ -174,6 +175,7 @@
   },
   "settings": {
     "alignment": "配置",
+    "max_reviews": "表示する最大レビュー数",
     "autoplay": "自動再生",
     "background": "背景",
     "border_radius": "角の半径",

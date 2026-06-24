@@ -182,6 +182,13 @@
     "taxes_included": "税込。",
     "product_badge_sold_out": "売り切れ",
     "product_badge_sale": "セール",
+    "reviews_title": "レビュー",
+    "reviews_empty": "まだレビューはありません。",
+    "reviews_count": {
+      "one": "{{ count }}件のレビュー",
+      "other": "{{ count }}件のレビュー"
+    },
+    "rating_aria": "5段階中{{ rating }}",
     "search_input_label": "検索",
     "search_input_placeholder": "検索",
     "search_results": "検索結果",
