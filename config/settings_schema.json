@@ -1446,6 +1446,43 @@
         "default": "scheme-5"
       },
       {
+        "type": "color_scheme",
+        "id": "badge_new_color_scheme",
+        "label": "t:settings.badge_new_color_scheme",
+        "default": "scheme-3"
+      },
+      {
+        "type": "color_scheme",
+        "id": "badge_low_stock_color_scheme",
+        "label": "t:settings.badge_low_stock_color_scheme",
+        "default": "scheme-5"
+      },
+      {
+        "type": "header",
+        "content": "t:settings.badge_conditions"
+      },
+      {
+        "type": "range",
+        "id": "badge_new_days",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "unit": "day",
+        "label": "t:settings.badge_new_days",
+        "info": "t:info.badge_new_days",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "badge_low_stock_threshold",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "label": "t:settings.badge_low_stock_threshold",
+        "info": "t:info.badge_low_stock_threshold",
+        "default": 0
+      },
+      {
         "type": "header",
         "content": "t:names.typography"
       },
