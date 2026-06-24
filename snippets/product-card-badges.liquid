@@ -1,5 +1,37 @@
 
 
+{%- liquid
+  assign is_on_sale = false
+  if product.compare_at_price > product.price and product.available
+    assign is_on_sale = true
+  endif
+
+  assign is_new = false
+  if settings.badge_new_days > 0 and product.available
+    assign new_window_seconds = settings.badge_new_days | times: 86400
+    assign now_seconds = 'now' | date: '%s' | plus: 0
+    assign published_seconds = product.published_at | date: '%s' | plus: 0
+    if now_seconds | minus: published_seconds <= new_window_seconds
+      assign is_new = true
+    endif
+  endif
+
+  assign is_low_stock = false
+  if settings.badge_low_stock_threshold > 0 and product.available
+    assign tracked_inventory = 0
+    assign has_tracked_variant = false
+    for variant in product.variants
+      if variant.inventory_management
+        assign has_tracked_variant = true
+        assign tracked_inventory = tracked_inventory | plus: variant.inventory_quantity
+      endif
+    endfor
+    if has_tracked_variant and tracked_inventory > 0 and tracked_inventory <= settings.badge_low_stock_threshold
+      assign is_low_stock = true
+    endif
+  endif
+-%}
+
 <div
   class="product-badges product-badges--{{ settings.badge_position }}"
   style="
@@ -7,19 +39,26 @@
     --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
   "
 >
-  {%- if product.available == false or product.compare_at_price > product.price and product.available -%}
-    <div
-      class="
-        product-badges__badge product-badges__badge--rectangle
-        {% if product.available == false %} color-{{ settings.badge_sold_out_color_scheme }}{% elsif product.compare_at_price > product.price %} color-{{ settings.badge_sale_color_scheme }}{% endif %}
-      "
-    >
-      {%- if product.available == false -%}
-        {{ 'content.product_badge_sold_out' | t }}
-      {%- elsif product.compare_at_price > product.price -%}
-        {{ 'content.product_badge_sale' | t }}
-      {%- endif -%}
+  {%- if product.available == false -%}
+    <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sold_out_color_scheme }}">
+      {{ 'content.product_badge_sold_out' | t }}
     </div>
+  {%- else -%}
+    {%- if is_on_sale -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+        {{ 'content.product_badge_sale' | t }}
+      </div>
+    {%- endif -%}
+    {%- if is_new -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_new_color_scheme }}">
+        {{ 'content.product_badge_new' | t }}
+      </div>
+    {%- endif -%}
+    {%- if is_low_stock -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_low_stock_color_scheme }}">
+        {{ 'content.product_badge_low_stock' | t }}
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </div>
 
@@ -27,7 +66,15 @@
   .product-badges {
     position: absolute;
     z-index: var(--layer-flat);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-2xs, 0.3rem);
     --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+  }
+
+  .product-badges--top-right {
+    align-items: flex-end;
   }
 
   .product-badges--bottom-left {
