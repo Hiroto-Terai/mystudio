@@ -9,6 +9,7 @@
  */
 {
   "names": {
+    "delivery_datetime": "配送日時の指定",
     "borders": "罫線",
     "collapsible_row": "折りたたみ可能な行",
     "colors": "色",
@@ -174,6 +175,9 @@
   },
   "settings": {
     "alignment": "配置",
+    "delivery_datetime_enabled": "カートで配送日時の指定を有効にする",
+    "delivery_lead_days": "最短お届け日（今日からの日数）",
+    "delivery_time_slots": "時間帯",
     "autoplay": "自動再生",
     "background": "背景",
     "border_radius": "角の半径",
@@ -887,6 +891,9 @@
     "manage_languages": "[言語を管理](/admin/settings/languages)",
     "transparent_background": "読みやすいように透明な背景が適用された各テンプレートを確認します",
     "aspect_ratio_adjusted": "一部レイアウトを調整しました",
+    "delivery_datetime_enabled": "カートページに配送日時の選択を表示します。注文の属性として保存されます。",
+    "delivery_lead_days": "選択できる最短お届け日までの猶予日数。",
+    "delivery_time_slots": "1行に1つの時間帯。空欄にすると時間帯の選択を非表示にします。",
     "auto_open_cart_drawer": "有効にすると、商品がカートに追加されたときにカートドロワーが自動的に開きます。",
     "custom_liquid": "アプリのスニペットやその他のコードを追加して、高度なカスタマイズを作成します。[詳しくはこちら](https://shopify.dev/docs/api/liquid)",
     "applies_on_image_only": "画像にのみ適用する",

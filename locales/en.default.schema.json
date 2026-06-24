@@ -120,6 +120,9 @@
   "info": {
     "applies_on_image_only": "Applies to images only",
     "aspect_ratio_adjusted": "Adjusted in some layouts",
+    "delivery_datetime_enabled": "Shows a delivery date and time-slot picker on the cart page. Saved as order attributes.",
+    "delivery_lead_days": "Minimum lead time before the earliest selectable delivery date.",
+    "delivery_time_slots": "One time slot per line. Leave blank to hide the time selector.",
     "auto_open_cart_drawer": "When enabled, the cart drawer will automatically open when a product is added to cart.",
     "carousel_hover_behavior_not_supported": "\"Carousel\" hover is not supported when \"Carousel\" type is selected at the section level",
     "carousel_layout_on_mobile": "Carousel is used on mobile",
@@ -142,6 +145,7 @@
 
   },
   "names": {
+    "delivery_datetime": "Delivery date & time",
     "product_title": "Product title",
     "custom_liquid": "Custom liquid",
     "404": "404",
@@ -331,6 +335,9 @@
     "bold": "Bold",
     "bottle": "Bottle",
     "bottom": "Bottom",
+    "delivery_datetime_enabled": "Enable delivery date & time on cart",
+    "delivery_lead_days": "Earliest delivery (days from today)",
+    "delivery_time_slots": "Time slots",
     "bottom_left": "Bottom left",
     "bottom_right": "Bottom right",
     "box": "Box",

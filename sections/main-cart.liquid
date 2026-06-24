@@ -23,6 +23,9 @@
       {%- unless cart.empty? -%}
         <div class="cart-page__summary">
           {%- content_for 'block', id: 'cart-page-summary', type: '_cart-summary' -%}
+          {%- if settings.delivery_datetime_enabled -%}
+            {%- render 'delivery-datetime' -%}
+          {%- endif -%}
         </div>
       {%- endunless -%}
 
