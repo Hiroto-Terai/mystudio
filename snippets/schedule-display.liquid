@@ -1,0 +1,31 @@
+{% doc %}
+  Outputs "visible" or "hidden" based on a section's scheduled display window.
+  Used to show/hide promotional banners and product sections during a date range.
+  The theme editor (design mode) always reports "visible" so merchants can keep editing.
+
+  @param {object} settings - The section settings holding schedule_enabled / schedule_start / schedule_end
+{% enddoc %}
+
+{%- liquid
+  assign schedule_state = 'visible'
+
+  if settings.schedule_enabled and request.design_mode == false
+    assign now_ts = 'now' | date: '%s' | plus: 0
+
+    if settings.schedule_start != blank
+      assign start_ts = settings.schedule_start | date: '%s' | plus: 0
+      if start_ts > now_ts
+        assign schedule_state = 'hidden'
+      endif
+    endif
+
+    if settings.schedule_end != blank
+      assign end_ts = settings.schedule_end | date: '%s' | plus: 0
+      if end_ts < now_ts
+        assign schedule_state = 'hidden'
+      endif
+    endif
+  endif
+
+  echo schedule_state
+-%}
