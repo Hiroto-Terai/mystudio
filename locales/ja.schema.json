@@ -9,6 +9,7 @@
  */
 {
   "names": {
+    "wishlist": "お気に入り",
     "borders": "罫線",
     "collapsible_row": "折りたたみ可能な行",
     "colors": "色",
@@ -174,6 +175,9 @@
   },
   "settings": {
     "alignment": "配置",
+    "wishlist_enabled": "お気に入りを有効にする",
+    "wishlist_empty_link": "空状態ボタンのリンク",
+    "wishlist_empty_link_label": "空状態ボタンのラベル",
     "autoplay": "自動再生",
     "background": "背景",
     "border_radius": "角の半径",
@@ -887,6 +891,7 @@
     "manage_languages": "[言語を管理](/admin/settings/languages)",
     "transparent_background": "読みやすいように透明な背景が適用された各テンプレートを確認します",
     "aspect_ratio_adjusted": "一部レイアウトを調整しました",
+    "wishlist_enabled": "商品カードにハートボタンを表示し、お気に入りページを有効にします。閲覧者のブラウザに保存されます（ログイン不要）。",
     "auto_open_cart_drawer": "有効にすると、商品がカートに追加されたときにカートドロワーが自動的に開きます。",
     "custom_liquid": "アプリのスニペットやその他のコードを追加して、高度なカスタマイズを作成します。[詳しくはこちら](https://shopify.dev/docs/api/liquid)",
     "applies_on_image_only": "画像にのみ適用する",

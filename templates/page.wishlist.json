@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "wishlist",
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
