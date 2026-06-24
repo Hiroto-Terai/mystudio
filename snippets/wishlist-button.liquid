@@ -1,0 +1,80 @@
+{% doc %}
+  Renders a wishlist toggle button for a product.
+  State is stored client-side in localStorage by assets/wishlist.js.
+
+  @param {object} product - The product object
+{% enddoc %}
+
+{%- unless product == blank -%}
+  <wishlist-button
+    class="wishlist-button"
+    data-product-handle="{{ product.handle }}"
+    data-label-add="{{ 'content.wishlist_add' | t | escape }}"
+    data-label-remove="{{ 'content.wishlist_remove' | t | escape }}"
+  >
+    <button
+      type="button"
+      class="wishlist-button__toggle"
+      aria-pressed="false"
+      aria-label="{{ 'content.wishlist_add' | t | escape }}"
+    >
+      <span class="wishlist-button__icon wishlist-button__icon--outline">
+        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" aria-hidden="true">
+          {%- render 'icon', icon: 'heart' -%}
+        </svg>
+      </span>
+      <span class="wishlist-button__icon wishlist-button__icon--fill">
+        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" aria-hidden="true">
+          {%- render 'icon', icon: 'heart-fill' -%}
+        </svg>
+      </span>
+    </button>
+  </wishlist-button>
+{%- endunless -%}
+
+{% stylesheet %}
+  .wishlist-button {
+    position: absolute;
+    top: var(--padding-sm, 0.7rem);
+    right: var(--padding-sm, 0.7rem);
+    z-index: var(--layer-raised);
+  }
+
+  .wishlist-button__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    transition: transform var(--animation-speed, 0.125s) var(--ease-out-cubic, ease);
+  }
+
+  .wishlist-button__toggle:hover {
+    transform: scale(1.08);
+  }
+
+  .wishlist-button__icon--fill {
+    display: none;
+    color: var(--color-error);
+  }
+
+  .wishlist-button.is-active .wishlist-button__icon--outline {
+    display: none;
+  }
+
+  .wishlist-button.is-active .wishlist-button__icon--fill {
+    display: flex;
+  }
+
+  .wishlist-button__icon {
+    display: flex;
+    line-height: 0;
+  }
+{% endstylesheet %}

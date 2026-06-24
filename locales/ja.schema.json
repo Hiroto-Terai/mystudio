@@ -9,6 +9,7 @@
  */
 {
   "names": {
+    "wishlist": "お気に入り",
     "borders": "罫線",
     "collapsible_row": "折りたたみ可能な行",
     "colors": "色",
@@ -177,6 +178,9 @@
     "schedule_enabled": "表示予約を有効にする",
     "schedule_start": "開始日時",
     "schedule_end": "終了日時",
+    "wishlist_enabled": "お気に入りを有効にする",
+    "wishlist_empty_link": "空状態ボタンのリンク",
+    "wishlist_empty_link_label": "空状態ボタンのラベル",
     "autoplay": "自動再生",
     "background": "背景",
     "border_radius": "角の半径",
@@ -900,6 +904,7 @@
     "badge_low_stock_threshold": "0で無効。追跡中の在庫がこの数以下のときに表示します。",
     "schedule_enabled": "下で指定した期間のみこのセクションを表示します。ストアのタイムゾーンを使用します。",
     "schedule_datetime": "形式: YYYY-MM-DD HH:MM（例: 2026-07-01 09:00）。空欄で制限なし。",
+    "wishlist_enabled": "商品カードにハートボタンを表示し、お気に入りページを有効にします。閲覧者のブラウザに保存されます（ログイン不要）。",
     "auto_open_cart_drawer": "有効にすると、商品がカートに追加されたときにカートドロワーが自動的に開きます。",
     "custom_liquid": "アプリのスニペットやその他のコードを追加して、高度なカスタマイズを作成します。[詳しくはこちら](https://shopify.dev/docs/api/liquid)",
     "applies_on_image_only": "画像にのみ適用する",
