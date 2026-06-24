@@ -2289,5 +2289,35 @@
         "default": false
       }
     ]
+  },
+  {
+    "name": "t:names.delivery_datetime",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "delivery_datetime_enabled",
+        "label": "t:settings.delivery_datetime_enabled",
+        "info": "t:info.delivery_datetime_enabled",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "delivery_lead_days",
+        "label": "t:settings.delivery_lead_days",
+        "info": "t:info.delivery_lead_days",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "day",
+        "default": 2
+      },
+      {
+        "type": "textarea",
+        "id": "delivery_time_slots",
+        "label": "t:settings.delivery_time_slots",
+        "info": "t:info.delivery_time_slots",
+        "default": "9:00-12:00\n12:00-15:00\n15:00-18:00\n18:00-21:00"
+      }
+    ]
   }
 ]

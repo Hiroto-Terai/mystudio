@@ -126,6 +126,9 @@
     "schedule_enabled": "Show this section only within the date range below. Uses the store's timezone.",
     "schedule_datetime": "Format: YYYY-MM-DD HH:MM (e.g. 2026-07-01 09:00). Leave blank for no limit.",
     "wishlist_enabled": "Shows a heart button on product cards and enables the wishlist page. Saved in the visitor's browser (no login required).",
+    "delivery_datetime_enabled": "Shows a delivery date and time-slot picker on the cart page. Saved as order attributes.",
+    "delivery_lead_days": "Minimum lead time before the earliest selectable delivery date.",
+    "delivery_time_slots": "One time slot per line. Leave blank to hide the time selector.",
     "auto_open_cart_drawer": "When enabled, the cart drawer will automatically open when a product is added to cart.",
     "carousel_hover_behavior_not_supported": "\"Carousel\" hover is not supported when \"Carousel\" type is selected at the section level",
     "carousel_layout_on_mobile": "Carousel is used on mobile",
@@ -148,6 +151,7 @@
 
   },
   "names": {
+    "delivery_datetime": "Delivery date & time",
     "product_title": "Product title",
     "custom_liquid": "Custom liquid",
     "404": "404",
@@ -344,6 +348,9 @@
     "wishlist_enabled": "Enable wishlist",
     "wishlist_empty_link": "Empty state button link",
     "wishlist_empty_link_label": "Empty state button label",
+    "delivery_datetime_enabled": "Enable delivery date & time on cart",
+    "delivery_lead_days": "Earliest delivery (days from today)",
+    "delivery_time_slots": "Time slots",
     "bottom_left": "Bottom left",
     "bottom_right": "Bottom right",
     "box": "Box",
