@@ -92,7 +92,7 @@
       this.toggleEmpty(false);
 
       const products = await Promise.all(handles.map(this.fetchProduct));
-      this.listEl.innerHTML = products.filter(Boolean).map(this.cardMarkup).join('');
+      this.listEl.replaceChildren(...products.filter(Boolean).map(this.cardElement));
     };
 
     fetchProduct = async (handle) => {
@@ -105,31 +105,41 @@
       }
     };
 
-    cardMarkup = (product) => {
-      const image = product.featured_image
-        ? `<img src="${product.featured_image}&width=400" alt="${escapeHtml(product.title)}" loading="lazy">`
-        : '';
-      const price = formatMoney(product.price);
-      const url = `${window.Shopify.routes.root}products/${product.handle}`;
-      return `
-        <li class="wishlist__item">
-          <a class="wishlist__card" href="${url}">
-            <div class="wishlist__media">${image}</div>
-            <div class="wishlist__info">
-              <span class="wishlist__title">${escapeHtml(product.title)}</span>
-              <span class="wishlist__price">${price}</span>
-            </div>
-          </a>
-          <wishlist-button
-            class="wishlist__remove is-active"
-            data-product-handle="${product.handle}"
-          >
-            <button type="button" aria-pressed="true" aria-label="${escapeHtml(this.dataset.labelRemove || '')}">
-              ${this.dataset.removeIcon || '&times;'}
-            </button>
-          </wishlist-button>
-        </li>
-      `;
+    // Build nodes with the DOM API so product data never has to be HTML-escaped.
+    cardElement = (product) => {
+      const item = el('li', 'wishlist__item');
+
+      const card = el('a', 'wishlist__card');
+      card.href = `${window.Shopify.routes.root}products/${product.handle}`;
+
+      const media = el('div', 'wishlist__media');
+      if (product.featured_image) {
+        const img = document.createElement('img');
+        img.src = `${product.featured_image}&width=400`;
+        img.alt = product.title || '';
+        img.loading = 'lazy';
+        media.appendChild(img);
+      }
+
+      const info = el('div', 'wishlist__info');
+      info.append(
+        el('span', 'wishlist__title', product.title || ''),
+        el('span', 'wishlist__price', formatMoney(product.price))
+      );
+
+      card.append(media, info);
+
+      const remove = document.createElement('wishlist-button');
+      remove.className = 'wishlist__remove is-active';
+      remove.dataset.productHandle = product.handle;
+      const button = el('button', null, this.dataset.removeIcon || '×');
+      button.type = 'button';
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('aria-label', this.dataset.labelRemove || '');
+      remove.appendChild(button);
+
+      item.append(card, remove);
+      return item;
     };
 
     toggleEmpty(isEmpty) {
@@ -138,17 +148,18 @@
     }
   }
 
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
   function formatMoney(cents) {
     if (window.Shopify && typeof window.Shopify.formatMoney === 'function') {
       return window.Shopify.formatMoney(cents);
     }
     return (cents / 100).toLocaleString(undefined, { minimumFractionDigits: 0 });
-  }
-
-  function escapeHtml(value) {
-    const div = document.createElement('div');
-    div.textContent = value == null ? '' : String(value);
-    return div.innerHTML;
   }
 
   if (!customElements.get('wishlist-button')) {
