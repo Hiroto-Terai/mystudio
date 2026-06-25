@@ -1,5 +1,13 @@
 {%- liquid
-  assign heading = section.settings.heading | default: 'content.wishlist_title' | t
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'content.wishlist_title' | t
+  endif
+
+  assign empty_link_label = section.settings.empty_link_label
+  if empty_link_label == blank
+    assign empty_link_label = 'content.wishlist_empty_link' | t
+  endif
 -%}
 
 <div
@@ -18,7 +26,7 @@
         {{ 'content.wishlist_empty' | t }}
         {%- if section.settings.empty_link != blank -%}
           <a class="wishlist__empty-link" href="{{ section.settings.empty_link }}">
-            {{ section.settings.empty_link_label | default: 'content.wishlist_empty_link' | t }}
+            {{ empty_link_label }}
           </a>
         {%- endif -%}
       </p>

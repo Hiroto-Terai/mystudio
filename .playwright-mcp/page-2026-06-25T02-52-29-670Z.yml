@@ -1,0 +1,324 @@
+- generic [active] [ref=e1]:
+  - alertdialog "Cookie同意" [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Cookie同意" [level=2] [ref=e5]
+        - paragraph [ref=e6]:
+          - text: 当社およびShopifyを含むパートナーは、お客様の体験をパーソナライズし、広告を表示し、分析を行うためにクッキーおよびその他の技術を使用します。お客様が同意しない限り、これらの目的でクッキーやその他の技術を使用することはありません。詳しくは、当社の
+          - link "プライバシーポリシー" [ref=e7] [cursor=pointer]:
+            - /url: https://xn-0nsp96djkas7be59f.myshopify.com/policies/privacy-policy
+      - generic [ref=e8]:
+        - button "設定を管理" [ref=e9]
+        - button "受け入れ" [ref=e10]
+        - button "拒否" [ref=e11]
+  - link "コンテンツにスキップ" [ref=e12] [cursor=pointer]:
+    - /url: "#MainContent"
+  - banner [ref=e14]:
+    - generic [ref=e17]:
+      - navigation [ref=e21]:
+        - list [ref=e24]:
+          - generic:
+            - menuitem "Home" [ref=e25] [cursor=pointer]:
+              - generic [ref=e26]: Home
+            - menuitem "Catalog" [ref=e27] [cursor=pointer]:
+              - generic [ref=e28]: Catalog
+            - menuitem "Contact" [ref=e29] [cursor=pointer]:
+              - generic [ref=e30]: Contact
+      - link "mystudio" [ref=e32] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e33]: mystudio
+      - generic [ref=e34]:
+        - button "検索モーダルを開く" [ref=e36] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e37]: 検索モーダルを開く
+        - generic [ref=e38]:
+          - group [ref=e39]:
+            - generic "アカウントのドロップダウンを開く" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]:
+                - generic [ref=e42]: アカウントのドロップダウンを開く
+                - img [ref=e44]
+          - 'button "カートドロワーを開く カート内の合計アイテム数: 0" [ref=e48] [cursor=pointer]':
+            - generic [ref=e49]:
+              - generic:
+                - img
+              - status [ref=e52]:
+                - generic [ref=e53]: "カート内の合計アイテム数: 0"
+                - generic [ref=e54]: "0"
+  - main [ref=e55]:
+    - paragraph [ref=e62]: 商品
+    - generic [ref=e65]:
+      - link "結果リストにスキップ" [ref=e66] [cursor=pointer]:
+        - /url: "#ResultsList"
+      - generic [ref=e67]:
+        - generic "絞り込み" [ref=e69]:
+          - generic [ref=e71]:
+            - list [ref=e74]:
+              - generic:
+                - group [ref=e76]:
+                  - generic "Availability" [ref=e77] [cursor=pointer]:
+                    - generic [ref=e78]: Availability
+                    - generic [ref=e79]:
+                      - generic:
+                        - img
+                - group [ref=e81]:
+                  - generic "Price" [ref=e82] [cursor=pointer]:
+                    - generic [ref=e83]: Price
+                    - generic:
+                      - img
+            - generic "商品数" [ref=e85]: 13個のアイテム
+            - group [ref=e88]:
+              - generic "並び替え" [ref=e89] [cursor=pointer]:
+                - generic [ref=e90]: 並び替え
+                - generic:
+                  - img
+            - group "列グリッド" [ref=e92]:
+              - generic [ref=e93]: 列グリッド
+              - generic [ref=e94]:
+                - radio "デフォルト" [checked] [ref=e95] [cursor=pointer]
+                - img [ref=e97]
+              - generic [ref=e102]:
+                - radio "ズームアウト" [ref=e103] [cursor=pointer]
+                - img [ref=e105]
+        - list [ref=e117]:
+          - listitem [ref=e118]:
+            - 'link "Gift card that shows text: Generated data gift card お気に入りに追加 Gift Card ¥10" [ref=e121] [cursor=pointer]':
+              - /url: /products/gift-card?variant=40588241010752
+              - generic [ref=e122]:
+                - 'img "Gift card that shows text: Generated data gift card" [ref=e128]'
+                - button "お気に入りに追加" [ref=e130]:
+                  - img [ref=e132]
+                  - img [ref=e135]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e138]:
+                - paragraph [ref=e140]: Gift Card
+                - generic [ref=e142]: ¥10
+          - listitem [ref=e143]:
+            - link "前のスライド 次のスライド A bar of golden yellow wax お気に入りに追加 Selling Plans Ski Wax ¥28" [ref=e146] [cursor=pointer]:
+              - /url: /products/selling-plans-ski-wax?variant=40588241535040
+              - generic [ref=e147]:
+                - generic [ref=e149]:
+                  - generic:
+                    - button "前のスライド" [ref=e150]:
+                      - generic:
+                        - img
+                    - button "次のスライド" [ref=e151]:
+                      - generic:
+                        - img
+                  - generic [ref=e152]:
+                    - img "A bar of golden yellow wax" [ref=e155]
+                    - img [ref=e158]
+                    - img [ref=e161]
+                - button "お気に入りに追加" [ref=e163]:
+                  - img [ref=e165]
+                  - img [ref=e168]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e171]:
+                - paragraph [ref=e173]: Selling Plans Ski Wax
+                - generic [ref=e175]: ¥28
+          - listitem [ref=e176]:
+            - link "Top and bottom view of a snowboard. The top view shows 7 stacked hexagons and the bottom view shows a small, centred hexagonal logo for Hydrogen. 売り切れ お気に入りに追加 The 3p Fulfilled Snowboard ¥2,893" [ref=e179] [cursor=pointer]:
+              - /url: /products/the-3p-fulfilled-snowboard?variant=40588241731648
+              - generic [ref=e180]:
+                - img "Top and bottom view of a snowboard. The top view shows 7 stacked hexagons and the bottom view shows a small, centred hexagonal logo for Hydrogen." [ref=e186]
+                - generic [ref=e188]: 売り切れ
+                - button "お気に入りに追加" [ref=e190]:
+                  - img [ref=e192]
+                  - img [ref=e195]
+              - generic [ref=e198]:
+                - paragraph [ref=e200]: The 3p Fulfilled Snowboard
+                - generic [ref=e202]: ¥2,893
+          - listitem [ref=e203]:
+            - 'link "Top and bottom view of a snowboard. The top view shows stylized hydrogen bonds and the bottom view shows “H2” in a brush script typeface. お気に入りに追加 The Collection Snowboard: Hydrogen ¥660" [ref=e206] [cursor=pointer]':
+              - /url: /products/the-collection-snowboard-hydrogen?variant=40588241272896
+              - generic [ref=e207]:
+                - img "Top and bottom view of a snowboard. The top view shows stylized hydrogen bonds and the bottom view shows “H2” in a brush script typeface." [ref=e213]
+                - button "お気に入りに追加" [ref=e215]:
+                  - img [ref=e217]
+                  - img [ref=e220]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e223]:
+                - paragraph [ref=e225]: "The Collection Snowboard: Hydrogen"
+                - generic [ref=e227]: ¥660
+          - listitem [ref=e228]:
+            - 'link "Top and bottom view of a snowboard. The top view shows a stylized scene of water, trees, mountains, sky and a moon in blue colours. The bottom view has a blue liquid, drippy background with the text “liquid” in a stylized script typeface. お気に入りに追加 The Collection Snowboard: Liquid ¥825" [ref=e231] [cursor=pointer]':
+              - /url: /products/the-collection-snowboard-liquid?variant=40588241797184
+              - generic [ref=e232]:
+                - img "Top and bottom view of a snowboard. The top view shows a stylized scene of water, trees, mountains, sky and a moon in blue colours. The bottom view has a blue liquid, drippy background with the text “liquid” in a stylized script typeface." [ref=e238]
+                - button "お気に入りに追加" [ref=e240]:
+                  - img [ref=e242]
+                  - img [ref=e245]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e248]:
+                - paragraph [ref=e250]: "The Collection Snowboard: Liquid"
+                - generic [ref=e252]: ¥825
+          - listitem [ref=e253]:
+            - 'link "Top and bottom view of a snowboard. The top view shows a stylized scene of trees, mountains, sky and a sun in red colours. The bottom view has blue wavy lines in the background with the text “Oxygen” in a stylized script typeface. お気に入りに追加 The Collection Snowboard: Oxygen ¥1,128" [ref=e256] [cursor=pointer]':
+              - /url: /products/the-collection-snowboard-oxygen?variant=40588241666112
+              - generic [ref=e257]:
+                - img "Top and bottom view of a snowboard. The top view shows a stylized scene of trees, mountains, sky and a sun in red colours. The bottom view has blue wavy lines in the background with the text “Oxygen” in a stylized script typeface." [ref=e263]
+                - button "お気に入りに追加" [ref=e265]:
+                  - img [ref=e267]
+                  - img [ref=e270]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e273]:
+                - paragraph [ref=e275]: "The Collection Snowboard: Oxygen"
+                - generic [ref=e277]: ¥1,128
+          - listitem [ref=e278]:
+            - link "Top and bottom view of a snowboard. The top view shows pixelated clouds, with the top-most one being the shape of the Shopify bag logo. The bottom view has a pixelated cloudy sky with blue, pink and purple colours. セール お気に入りに追加 The Compare at Price Snowboard ¥865 ¥975" [ref=e281] [cursor=pointer]:
+              - /url: /products/the-compare-at-price-snowboard?variant=40588241207360
+              - generic [ref=e282]:
+                - img "Top and bottom view of a snowboard. The top view shows pixelated clouds, with the top-most one being the shape of the Shopify bag logo. The bottom view has a pixelated cloudy sky with blue, pink and purple colours." [ref=e288]
+                - generic [ref=e290]: セール
+                - button "お気に入りに追加" [ref=e292]:
+                  - img [ref=e294]
+                  - img [ref=e297]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e300]:
+                - paragraph [ref=e302]: The Compare at Price Snowboard
+                - generic [ref=e304]: ¥865 ¥975
+          - listitem [ref=e305]:
+            - link "Top and bottom view of a snowboard. The top view shows abstract circles and lines in shades of teal. The bottom view shows abstract circles and lines in shades of purple and blue with the text “SHOPIFY” in a sans serif typeface on top. お気に入りに追加 The Complete Snowboard ¥770" [ref=e308] [cursor=pointer]:
+              - /url: /products/the-complete-snowboard?variant=40588241338432
+              - generic [ref=e309]:
+                - img "Top and bottom view of a snowboard. The top view shows abstract circles and lines in shades of teal. The bottom view shows abstract circles and lines in shades of purple and blue with the text “SHOPIFY” in a sans serif typeface on top." [ref=e315]
+                - button "お気に入りに追加" [ref=e317]:
+                  - img [ref=e319]
+                  - img [ref=e322]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e325]:
+                - paragraph [ref=e327]: The Complete Snowboard
+                - generic [ref=e329]: ¥770
+          - listitem [ref=e330]:
+            - link "Top and bottom view of a snowboard. The top view shows a centred hexagonal logo for Hydrogen that appears to radiate outwards, as well as some overlapping hexagons at the bottom. The bottom view shows an abstract angular grid in purples. お気に入りに追加 The Inventory Not Tracked Snowboard ¥1,045" [ref=e333] [cursor=pointer]:
+              - /url: /products/the-inventory-not-tracked-snowboard?variant=40588240977984
+              - generic [ref=e334]:
+                - img "Top and bottom view of a snowboard. The top view shows a centred hexagonal logo for Hydrogen that appears to radiate outwards, as well as some overlapping hexagons at the bottom. The bottom view shows an abstract angular grid in purples." [ref=e340]
+                - button "お気に入りに追加" [ref=e342]:
+                  - img [ref=e344]
+                  - img [ref=e347]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e350]:
+                - paragraph [ref=e352]: The Inventory Not Tracked Snowboard
+                - generic [ref=e354]: ¥1,045
+          - listitem [ref=e355]:
+            - link "Top and bottom view of a snowboard. The top view shows a pixelated Shopify bag logo and a pixelated character reviewing a clipboard with a questioning expression with a bright green-blue background. The bottom view is a pattern of many pixel characters with a bright green-blue background. お気に入りに追加 The Multi-location Snowboard ¥803" [ref=e358] [cursor=pointer]:
+              - /url: /products/the-multi-location-snowboard?variant=40588241698880
+              - generic [ref=e359]:
+                - img "Top and bottom view of a snowboard. The top view shows a pixelated Shopify bag logo and a pixelated character reviewing a clipboard with a questioning expression with a bright green-blue background. The bottom view is a pattern of many pixel characters with a bright green-blue background." [ref=e365]
+                - button "お気に入りに追加" [ref=e367]:
+                  - img [ref=e369]
+                  - img [ref=e372]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e375]:
+                - paragraph [ref=e377]: The Multi-location Snowboard
+                - generic [ref=e379]: ¥803
+          - listitem [ref=e380]:
+            - link "Top and bottom view of a snowboard. The top view shows an illustration with varied outlined shapes in black. The bottom view shows a black box character with an H pointing, and surrounded by black outlined illustrative elements. お気に入りに追加 The Multi-managed Snowboard ¥693" [ref=e383] [cursor=pointer]:
+              - /url: /products/the-multi-managed-snowboard?variant=40588241764416
+              - generic [ref=e384]:
+                - img "Top and bottom view of a snowboard. The top view shows an illustration with varied outlined shapes in black. The bottom view shows a black box character with an H pointing, and surrounded by black outlined illustrative elements." [ref=e390]
+                - button "お気に入りに追加" [ref=e392]:
+                  - img [ref=e394]
+                  - img [ref=e397]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e400]:
+                - paragraph [ref=e402]: The Multi-managed Snowboard
+                - generic [ref=e404]: ¥693
+          - listitem [ref=e405]:
+            - link "Top and bottom view of a snowboard. The top view shows a toggle at the top in shades of blue and yellow. The bottom view shows an abstract illustration of toggles in blues and yellows. 売り切れ お気に入りに追加 The Out of Stock Snowboard ¥975" [ref=e408] [cursor=pointer]:
+              - /url: /products/the-out-of-stock-snowboard?variant=40588241174592
+              - generic [ref=e409]:
+                - img "Top and bottom view of a snowboard. The top view shows a toggle at the top in shades of blue and yellow. The bottom view shows an abstract illustration of toggles in blues and yellows." [ref=e415]
+                - generic [ref=e417]: 売り切れ
+                - button "お気に入りに追加" [ref=e419]:
+                  - img [ref=e421]
+                  - img [ref=e424]
+              - generic [ref=e427]:
+                - paragraph [ref=e429]: The Out of Stock Snowboard
+                - generic [ref=e431]: ¥975
+          - listitem [ref=e432]:
+            - link "The top and bottom view of a snowboard. The top has view is turquoise and black with graphics of trees. The bottom view is turquoise with the word hydrogen written in cursive. お気に入りに追加 The Videographer Snowboard ¥975" [ref=e435] [cursor=pointer]:
+              - /url: /products/the-videographer-snowboard?variant=40588241305664
+              - generic [ref=e436]:
+                - generic [ref=e439]:
+                  - img "The top and bottom view of a snowboard. The top has view is turquoise and black with graphics of trees. The bottom view is turquoise with the word hydrogen written in cursive." [ref=e442]
+                  - img [ref=e445]
+                - button "お気に入りに追加" [ref=e447]:
+                  - img [ref=e449]
+                  - img [ref=e452]
+                - generic:
+                  - generic:
+                    - status
+              - generic [ref=e455]:
+                - paragraph [ref=e457]: The Videographer Snowboard
+                - generic [ref=e459]: ¥975
+  - contentinfo [ref=e460]:
+    - generic [ref=e463]:
+      - generic [ref=e467]:
+        - generic [ref=e469]:
+          - heading "Join the club" [level=2] [ref=e471]
+          - paragraph [ref=e473]: Get exclusive deals and early access to new products.
+        - generic [ref=e476]:
+          - generic [ref=e477]: メール
+          - textbox "メール" [ref=e478]:
+            - /placeholder: メールアドレス
+          - button "サインアップする" [ref=e479]:
+            - img [ref=e480]
+      - generic [ref=e483]:
+        - generic [ref=e485]:
+          - text: © 2026
+          - link "mystudio" [ref=e486] [cursor=pointer]:
+            - /url: /
+          - text: ", Powered by Shopify"
+        - list [ref=e487]:
+          - listitem [ref=e488]:
+            - link "プライバシーポリシー" [ref=e489] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+  - iframe [ref=e491]:
+    - generic [ref=f11e4]:
+      - button [ref=f11e7] [cursor=pointer]:
+        - img [ref=f11e9]
+        - img [ref=f11e12]
+      - generic [ref=f11e15]:
+        - generic [ref=f11e18]:
+          - link "Logo" [ref=f11e19] [cursor=pointer]:
+            - /url: https://admin.shopify.com/store/xn-0nsp96djkas7be59f
+            - img "Logo" [ref=f11e20]
+          - generic [ref=f11e21]:
+            - generic [ref=f11e22]:
+              - generic [ref=f11e23]: claude-preview
+              - generic [ref=f11e24]: Draft
+            - generic [ref=f11e25]:
+              - link "Password protected" [ref=f11e26] [cursor=pointer]:
+                - /url: https://admin.shopify.com/store/xn-0nsp96djkas7be59f/online_store/preferences?tutorial=unlock
+                - generic [ref=f11e27]: Password protected
+              - img [ref=f11e31]
+        - generic [ref=f11e35]:
+          - button "Hide bar" [ref=f11e37] [cursor=pointer]:
+            - generic [ref=f11e38]: Hide bar
+          - button "Exit preview" [ref=f11e40] [cursor=pointer]:
+            - generic [ref=f11e41]: Exit preview
+          - button "Copy link" [ref=f11e44] [cursor=pointer]:
+            - img [ref=f11e48]
+            - generic [ref=f11e50]: Copy link

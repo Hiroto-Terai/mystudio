@@ -1,0 +1,258 @@
+- generic [active] [ref=e1]:
+  - alertdialog "Cookie同意" [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Cookie同意" [level=2] [ref=e5]
+        - paragraph [ref=e6]:
+          - text: 当社およびShopifyを含むパートナーは、お客様の体験をパーソナライズし、広告を表示し、分析を行うためにクッキーおよびその他の技術を使用します。お客様が同意しない限り、これらの目的でクッキーやその他の技術を使用することはありません。詳しくは、当社の
+          - link "プライバシーポリシー" [ref=e7] [cursor=pointer]:
+            - /url: https://xn-0nsp96djkas7be59f.myshopify.com/policies/privacy-policy
+      - generic [ref=e8]:
+        - button "設定を管理" [ref=e9]
+        - button "受け入れ" [ref=e10]
+        - button "拒否" [ref=e11]
+  - link "コンテンツにスキップ" [ref=e12] [cursor=pointer]:
+    - /url: "#MainContent"
+  - generic:
+    - banner:
+      - generic [ref=e15]:
+        - navigation [ref=e19]:
+          - list [ref=e22]:
+            - generic:
+              - menuitem "Home" [ref=e23] [cursor=pointer]:
+                - generic [ref=e24]: Home
+              - menuitem "Catalog" [ref=e25] [cursor=pointer]:
+                - generic [ref=e26]: Catalog
+              - menuitem "Contact" [ref=e27] [cursor=pointer]:
+                - generic [ref=e28]: Contact
+        - generic [ref=e29]:
+          - button "検索モーダルを開く" [ref=e31] [cursor=pointer]:
+            - generic:
+              - img
+            - generic [ref=e32]: 検索モーダルを開く
+          - generic [ref=e33]:
+            - group [ref=e34]:
+              - generic "アカウントのドロップダウンを開く" [ref=e35] [cursor=pointer]:
+                - generic [ref=e36]:
+                  - generic [ref=e37]: アカウントのドロップダウンを開く
+                  - img [ref=e39]
+            - 'button "カートドロワーを開く カート内の合計アイテム数: 0" [ref=e43] [cursor=pointer]':
+              - generic [ref=e44]:
+                - generic:
+                  - img
+                - status [ref=e47]:
+                  - generic [ref=e48]: "カート内の合計アイテム数: 0"
+                  - generic [ref=e49]: "0"
+  - main [ref=e50]:
+    - generic [ref=e53]:
+      - generic:
+        - img
+      - generic:
+        - generic:
+          - generic:
+            - generic: mystudio
+        - generic:
+          - heading "Pure skin, naturally." [level=1]
+        - generic:
+          - paragraph: Skincare rooted in nature, backed by science.
+        - link "Shop Now" [ref=e54] [cursor=pointer]:
+          - /url: /collections/all
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - paragraph [ref=e62]: NATURAL INGREDIENTS
+          - paragraph [ref=e64]: CRUELTY FREE
+          - paragraph [ref=e66]: VEGAN
+          - paragraph [ref=e68]: DERMATOLOGIST TESTED
+          - paragraph [ref=e70]: SUSTAINABLE PACKAGING
+        - generic [ref=e71]:
+          - paragraph [ref=e73]: NATURAL INGREDIENTS
+          - paragraph [ref=e75]: CRUELTY FREE
+          - paragraph [ref=e77]: VEGAN
+          - paragraph [ref=e79]: DERMATOLOGIST TESTED
+          - paragraph [ref=e81]: SUSTAINABLE PACKAGING
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - paragraph [ref=e85]: NATURAL INGREDIENTS
+          - paragraph [ref=e87]: CRUELTY FREE
+          - paragraph [ref=e89]: VEGAN
+          - paragraph [ref=e91]: DERMATOLOGIST TESTED
+          - paragraph [ref=e93]: SUSTAINABLE PACKAGING
+        - generic [ref=e94]:
+          - paragraph [ref=e96]: NATURAL INGREDIENTS
+          - paragraph [ref=e98]: CRUELTY FREE
+          - paragraph [ref=e100]: VEGAN
+          - paragraph [ref=e102]: DERMATOLOGIST TESTED
+          - paragraph [ref=e104]: SUSTAINABLE PACKAGING
+    - generic [ref=e108]:
+      - 'link "Gift card that shows text: Generated data gift card お気に入りに追加 Gift Card ¥10" [ref=e112] [cursor=pointer]':
+        - /url: /products/gift-card?variant=40588241010752
+        - generic [ref=e113]:
+          - 'img "Gift card that shows text: Generated data gift card" [ref=e119]'
+          - button "お気に入りに追加" [ref=e121]:
+            - img [ref=e123]
+            - img [ref=e126]
+          - generic:
+            - generic:
+              - status
+        - generic [ref=e129]:
+          - paragraph [ref=e131]: Gift Card
+          - generic [ref=e133]: ¥10
+      - link "前のスライド 次のスライド A bar of golden yellow wax お気に入りに追加 Selling Plans Ski Wax ¥28" [ref=e137] [cursor=pointer]:
+        - /url: /products/selling-plans-ski-wax?variant=40588241535040
+        - generic [ref=e138]:
+          - generic [ref=e140]:
+            - generic:
+              - button "前のスライド" [ref=e141]:
+                - generic:
+                  - img
+              - button "次のスライド" [ref=e142]:
+                - generic:
+                  - img
+            - generic [ref=e143]:
+              - img "A bar of golden yellow wax" [ref=e146]
+              - img [ref=e149]
+              - img [ref=e152]
+          - button "お気に入りに追加" [ref=e154]:
+            - img [ref=e156]
+            - img [ref=e159]
+          - generic:
+            - generic:
+              - status
+        - generic [ref=e162]:
+          - paragraph [ref=e164]: Selling Plans Ski Wax
+          - generic [ref=e166]: ¥28
+      - link "Top and bottom view of a snowboard. The top view shows 7 stacked hexagons and the bottom view shows a small, centred hexagonal logo for Hydrogen. 売り切れ お気に入りに追加 The 3p Fulfilled Snowboard ¥2,893" [ref=e170] [cursor=pointer]:
+        - /url: /products/the-3p-fulfilled-snowboard?variant=40588241731648
+        - generic [ref=e171]:
+          - img "Top and bottom view of a snowboard. The top view shows 7 stacked hexagons and the bottom view shows a small, centred hexagonal logo for Hydrogen." [ref=e177]
+          - generic [ref=e179]: 売り切れ
+          - button "お気に入りに追加" [ref=e181]:
+            - img [ref=e183]
+            - img [ref=e186]
+        - generic [ref=e189]:
+          - paragraph [ref=e191]: The 3p Fulfilled Snowboard
+          - generic [ref=e193]: ¥2,893
+      - 'link "Top and bottom view of a snowboard. The top view shows stylized hydrogen bonds and the bottom view shows “H2” in a brush script typeface. お気に入りに追加 The Collection Snowboard: Hydrogen ¥660" [ref=e197] [cursor=pointer]':
+        - /url: /products/the-collection-snowboard-hydrogen?variant=40588241272896
+        - generic [ref=e198]:
+          - img "Top and bottom view of a snowboard. The top view shows stylized hydrogen bonds and the bottom view shows “H2” in a brush script typeface." [ref=e204]
+          - button "お気に入りに追加" [ref=e206]:
+            - img [ref=e208]
+            - img [ref=e211]
+          - generic:
+            - generic:
+              - status
+        - generic [ref=e214]:
+          - paragraph [ref=e216]: "The Collection Snowboard: Hydrogen"
+          - generic [ref=e218]: ¥660
+    - img "プレースホルダーの画像" [ref=e225]
+    - generic [ref=e229]:
+      - heading "What our customers say" [level=2] [ref=e231]
+      - list [ref=e232]:
+        - listitem [ref=e233]:
+          - generic "5 out of 5 stars" [ref=e234]: ★★★★★
+          - blockquote [ref=e235]:
+            - paragraph [ref=e236]: This moisturizer is absolutely incredible. My skin has never felt so soft and hydrated. I've tried so many products but this one is a game changer.
+          - generic [ref=e238]:
+            - generic [ref=e239]: Sarah M.
+            - generic [ref=e240]: Verified customer
+        - listitem [ref=e241]:
+          - generic "5 out of 5 stars" [ref=e242]: ★★★★★
+          - blockquote [ref=e243]:
+            - paragraph [ref=e244]: I have sensitive skin and this is the first serum that hasn't caused any irritation. My skin tone is visibly more even after just two weeks.
+          - generic [ref=e246]:
+            - generic [ref=e247]: Emily T.
+            - generic [ref=e248]: Verified customer
+        - listitem [ref=e249]:
+          - generic "5 out of 5 stars" [ref=e250]: ★★★★★
+          - blockquote [ref=e251]:
+            - paragraph [ref=e252]: Love that everything is natural and cruelty-free. You can really feel the difference with clean ingredients. My skin glows every morning.
+          - generic [ref=e254]:
+            - generic [ref=e255]: Mia K.
+            - generic [ref=e256]: Verified customer
+    - generic [ref=e259]:
+      - heading "Frequently asked questions" [level=2] [ref=e261]
+      - generic [ref=e262]:
+        - generic [ref=e263]:
+          - button "What skin types are your products suitable for?" [expanded] [ref=e264] [cursor=pointer]:
+            - generic [ref=e265]: What skin types are your products suitable for?
+          - region "What skin types are your products suitable for?" [ref=e268]:
+            - paragraph [ref=e270]: Our products are formulated for all skin types, including sensitive and dry skin. Each product page includes specific skin type recommendations to help you choose the right fit.
+        - generic [ref=e271]:
+          - button "Are your products free from harmful chemicals?" [ref=e272] [cursor=pointer]:
+            - generic [ref=e273]: Are your products free from harmful chemicals?
+          - region "Are your products free from harmful chemicals?":
+            - paragraph [ref=e277]: Yes. All our formulas are free from parabens, sulfates, synthetic fragrances, and artificial dyes. We use only clean, rigorously tested ingredients.
+        - generic [ref=e278]:
+          - button "How long before I see results?" [ref=e279] [cursor=pointer]:
+            - generic [ref=e280]: How long before I see results?
+          - region "How long before I see results?":
+            - paragraph [ref=e284]: Most customers notice a difference within 2–4 weeks of consistent use. For best results, we recommend using our products as part of your morning and evening routine.
+        - generic [ref=e285]:
+          - button "Do you offer a satisfaction guarantee?" [ref=e286] [cursor=pointer]:
+            - generic [ref=e287]: Do you offer a satisfaction guarantee?
+          - region "Do you offer a satisfaction guarantee?":
+            - paragraph [ref=e291]: Absolutely. If you're not completely satisfied within 30 days of purchase, contact us and we'll make it right — no questions asked.
+    - generic [ref=e293]:
+      - generic [ref=e294]:
+        - heading "スタッフ紹介" [level=2] [ref=e295]
+        - paragraph [ref=e296]: 私たちのチームをご紹介します。
+      - list
+    - generic [ref=e299]:
+      - heading "Join the ritual" [level=2] [ref=e300]
+      - paragraph [ref=e301]: Subscribe for skincare tips, exclusive offers, and 10% off your first order.
+      - generic [ref=e303]:
+        - generic [ref=e304]: Your email address
+        - textbox "Your email address" [ref=e305]
+        - button "Subscribe" [ref=e306] [cursor=pointer]
+      - paragraph [ref=e307]: By subscribing you agree to our Privacy Policy.
+  - contentinfo [ref=e308]:
+    - generic [ref=e311]:
+      - generic [ref=e315]:
+        - generic [ref=e317]:
+          - heading "Join the club" [level=2] [ref=e319]
+          - paragraph [ref=e321]: Get exclusive deals and early access to new products.
+        - generic [ref=e324]:
+          - generic [ref=e325]: メール
+          - textbox "メール" [ref=e326]:
+            - /placeholder: メールアドレス
+          - button "サインアップする" [ref=e327]:
+            - img [ref=e328]
+      - generic [ref=e331]:
+        - generic [ref=e333]:
+          - text: © 2026
+          - link "mystudio" [ref=e334] [cursor=pointer]:
+            - /url: /
+          - text: ", Powered by Shopify"
+        - list [ref=e335]:
+          - listitem [ref=e336]:
+            - link "プライバシーポリシー" [ref=e337] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+  - iframe [ref=e339]:
+    - generic [ref=f15e4]:
+      - button [ref=f15e7] [cursor=pointer]:
+        - img [ref=f15e9]
+        - img [ref=f15e12]
+      - generic [ref=f15e15]:
+        - generic [ref=f15e18]:
+          - link "Logo" [ref=f15e19] [cursor=pointer]:
+            - /url: https://admin.shopify.com/store/xn-0nsp96djkas7be59f
+            - img "Logo" [ref=f15e20]
+          - generic [ref=f15e21]:
+            - generic [ref=f15e22]:
+              - generic [ref=f15e23]: claude-preview
+              - generic [ref=f15e24]: Draft
+            - generic [ref=f15e25]:
+              - link "Password protected" [ref=f15e26] [cursor=pointer]:
+                - /url: https://admin.shopify.com/store/xn-0nsp96djkas7be59f/online_store/preferences?tutorial=unlock
+                - generic [ref=f15e27]: Password protected
+              - img [ref=f15e31]
+        - generic [ref=f15e35]:
+          - button "Hide bar" [ref=f15e37] [cursor=pointer]:
+            - generic [ref=f15e38]: Hide bar
+          - button "Exit preview" [ref=f15e40] [cursor=pointer]:
+            - generic [ref=f15e41]: Exit preview
+          - button "Copy link" [ref=f15e44] [cursor=pointer]:
+            - img [ref=f15e48]
+            - generic [ref=f15e50]: Copy link

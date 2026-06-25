@@ -28,6 +28,10 @@
   endif
 
   assign max_shown = section.settings.max_reviews
+  assign reviews_heading = section.settings.heading
+  if reviews_heading == blank
+    assign reviews_heading = 'content.reviews_title' | t
+  endif
 -%}
 
 {%- if product != blank -%}
@@ -38,7 +42,7 @@
     <div class="product-reviews page-width">
       <div class="product-reviews__header">
         <h2 class="product-reviews__heading">
-          {{ section.settings.heading | default: 'content.reviews_title' | t }}
+          {{ reviews_heading }}
         </h2>
 
         {%- if review_count > 0 -%}

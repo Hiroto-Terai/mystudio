@@ -21,7 +21,7 @@
     </div>
   {%- endif -%}
 
-  {%- assign staff_members = shop.metaobjects.staff_member -%}
+  {%- assign staff_members = shop.metaobjects.staff_member.values -%}
   {%- if staff_members != blank -%}
     <ul
       class="staff-introduction__grid"
