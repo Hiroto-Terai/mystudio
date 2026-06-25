@@ -1,3 +1,0 @@
-[     520ms] [INFO] [HotReload] CLI hot reload disabled - No hot reload port specified. @ https://xn-0nsp96djkas7be59f.myshopify.com/cdn/shopifycloud/theme-hot-reload/theme-hot-reload.js:316
-[    1351ms] [ERROR] Framing 'https://shop.app/' violates the following Content Security Policy directive: "frame-ancestors 'none'". The request has been blocked.
- @ :0
