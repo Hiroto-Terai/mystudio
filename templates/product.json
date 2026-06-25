@@ -485,7 +485,7 @@
     "product_reviews": {
       "type": "product-reviews",
       "settings": {
-        "heading": "Reviews",
+        "heading": "レビュー",
         "max_reviews": 10,
         "section_width": "page-width",
         "color_scheme": "scheme-1",

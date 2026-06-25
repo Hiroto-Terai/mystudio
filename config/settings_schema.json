@@ -1470,7 +1470,7 @@
         "unit": "day",
         "label": "t:settings.badge_new_days",
         "info": "t:info.badge_new_days",
-        "default": 0
+        "default": 30
       },
       {
         "type": "range",
@@ -1480,7 +1480,7 @@
         "step": 1,
         "label": "t:settings.badge_low_stock_threshold",
         "info": "t:info.badge_low_stock_threshold",
-        "default": 0
+        "default": 5
       },
       {
         "type": "header",
@@ -2286,7 +2286,7 @@
         "id": "wishlist_enabled",
         "label": "t:settings.wishlist_enabled",
         "info": "t:info.wishlist_enabled",
-        "default": false
+        "default": true
       }
     ]
   },
@@ -2298,7 +2298,7 @@
         "id": "delivery_datetime_enabled",
         "label": "t:settings.delivery_datetime_enabled",
         "info": "t:info.delivery_datetime_enabled",
-        "default": false
+        "default": true
       },
       {
         "type": "range",

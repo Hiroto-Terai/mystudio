@@ -843,6 +843,19 @@
         "padding-block-end": 64
       }
     },
+    "staff_section": {
+      "type": "staff-introduction",
+      "name": "スタッフ紹介",
+      "settings": {
+        "heading": "スタッフ紹介",
+        "subheading": "私たちのチームをご紹介します。",
+        "columns": 3,
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
     "newsletter_section": {
       "type": "newsletter",
       "name": "Newsletter",
@@ -869,6 +882,7 @@
     "media_with_content_story",
     "testimonials_section",
     "faq_section",
+    "staff_section",
     "newsletter_section"
   ]
 }
