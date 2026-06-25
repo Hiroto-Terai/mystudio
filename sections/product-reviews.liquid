@@ -1,7 +1,7 @@
 {% doc %}
-  Displays customer reviews for the current product from `product_review` metaobjects.
+  Displays customer reviews for the current product from `customer_review` metaobjects.
 
-  Expected metaobject definition (type: product_review):
+  Expected metaobject definition (type: customer_review):
     - product (product reference)
     - rating  (integer, 1-5)
     - author  (single line text)
@@ -11,7 +11,7 @@
 {% enddoc %}
 
 {%- liquid
-  assign reviews = shop.metaobjects.product_review.values
+  assign reviews = shop.metaobjects.customer_review.values
   assign review_count = 0
   assign rating_sum = 0
 
