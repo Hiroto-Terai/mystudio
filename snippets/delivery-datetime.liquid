@@ -10,8 +10,7 @@
   assign lead_seconds = settings.delivery_lead_days | times: 86400
   assign min_date = 'now' | date: '%s' | plus: lead_seconds | date: '%Y-%m-%d'
 
-  assign time_slots = settings.delivery_time_slots | strip | split: '
-'
+  assign time_slots = settings.delivery_time_slots | strip | newline_to_br | split: '<br />'
 
   assign current_date = cart.attributes[date_key]
   assign current_time = cart.attributes[time_key]
@@ -54,9 +53,11 @@
         <option value="">{{ 'content.delivery_time_placeholder' | t }}</option>
         {%- for slot in time_slots -%}
           {%- assign slot_value = slot | strip -%}
-          <option value="{{ slot_value | escape }}" {% if slot_value == current_time %}selected{% endif %}>
-            {{ slot_value }}
-          </option>
+          {%- unless slot_value == blank -%}
+            <option value="{{ slot_value | escape }}" {% if slot_value == current_time %}selected{% endif %}>
+              {{ slot_value }}
+            </option>
+          {%- endunless -%}
         {%- endfor -%}
       </select>
     </div>
