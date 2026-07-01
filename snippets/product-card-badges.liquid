@@ -11,7 +11,8 @@
     assign new_window_seconds = settings.badge_new_days | times: 86400
     assign now_seconds = 'now' | date: '%s' | plus: 0
     assign published_seconds = product.published_at | date: '%s' | plus: 0
-    if now_seconds | minus: published_seconds <= new_window_seconds
+    assign time_diff = now_seconds | minus: published_seconds
+    if time_diff <= new_window_seconds
       assign is_new = true
     endif
   endif
