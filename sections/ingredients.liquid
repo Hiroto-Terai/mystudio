@@ -1,0 +1,366 @@
+
+{%- style -%}
+  .ingredients-{{ section.id }} {
+    padding-block-start: {{ section.settings['padding-block-start'] }}px;
+    padding-block-end: {{ section.settings['padding-block-end'] }}px;
+  }
+{%- endstyle -%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section ingredients ingredients-{{ section.id }} section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+>
+  {%- if section.settings.label != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+    <div class="ingredients__header reveal">
+      {%- if section.settings.label != blank -%}
+        <p class="ingredients__label">{{ section.settings.label | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ingredients__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="ingredients__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <ul class="ingredients__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li
+          class="ingredient-card reveal"
+          style="--dot-color: {{ block.settings.color }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="ingredient-card__dot" aria-hidden="true"></div>
+          <p class="ingredient-card__name">{{ block.settings.name | escape }}</p>
+          <p class="ingredient-card__name-en">{{ block.settings.name_en | escape }}</p>
+          <div class="ingredient-card__divider" role="separator"></div>
+          <p class="ingredient-card__desc">{{ block.settings.description | escape }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .ingredients__header {
+    text-align: center;
+    margin-block-end: var(--margin-xl);
+  }
+
+  .ingredients__label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-block-end: 0.75rem;
+    margin-block-start: 0;
+  }
+
+  .ingredients__heading {
+    font-weight: 300;
+    font-size: var(--font-h2--size, 2.5rem);
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  .ingredients__subheading {
+    font-size: 0.9375rem;
+    opacity: 0.65;
+    margin-block-start: 0.75rem;
+    margin-block-end: 0;
+    max-width: 36rem;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  .ingredients__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media screen and (width < 750px) {
+    .ingredients__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (750px <= width < 990px) {
+    .ingredients__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .ingredient-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 1.75rem;
+  }
+
+  .ingredient-card__dot {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--dot-color, #e5d5c8);
+    margin-block-end: 1.75rem;
+  }
+
+  .ingredient-card__name {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin-block-end: 0.35rem;
+    margin-block-start: 0;
+  }
+
+  .ingredient-card__name-en {
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-block-end: 1.25rem;
+    margin-block-start: 0;
+  }
+
+  .ingredient-card__divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-block-end: 1.25rem;
+  }
+
+  .ingredient-card__desc {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  /* Reveal animation */
+  .ingredients .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.65s ease var(--reveal-delay, 0s),
+      transform 0.65s ease var(--reveal-delay, 0s);
+  }
+
+  .ingredients .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ingredients .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ingredients .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    if (!window._revealObserver) {
+      window._revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              window._revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+    }
+
+    document
+      .querySelectorAll('.ingredients-{{ section.id }} .reveal')
+      .forEach(function (el, i) {
+        el.style.setProperty('--reveal-delay', i * 0.08 + 's');
+        window._revealObserver.observe(el);
+      });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ingredients",
+  "class": "ingredients-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "INGREDIENTS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "厳選された植物成分"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "自然の力を科学で証明する。すべての成分に、選ばれた理由があります。"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name (Japanese)",
+          "default": "成分名"
+        },
+        {
+          "type": "text",
+          "id": "name_en",
+          "label": "Name (English)",
+          "default": "INGREDIENT NAME"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Dot color",
+          "default": "#d4c4b8"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "成分の説明をここに入力します。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients",
+      "category": "t:categories.basic",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "ローズヒップオイル",
+            "name_en": "ROSEHIP OIL",
+            "color": "#e8c8c0",
+            "description": "ビタミンCとトランスレチノイン酸を豊富に含む天然オイル。肌の再生を促し、シミやくすみを改善します。"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "ヒアルロン酸",
+            "name_en": "HYALURONIC ACID",
+            "color": "#c8d8e8",
+            "description": "自重の1000倍以上の水分を保持する保湿成分。肌の奥から潤いを与え、ふっくらとしたハリをもたらします。"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "グリーンティー",
+            "name_en": "GREEN TEA EXTRACT",
+            "color": "#c8d8c8",
+            "description": "カテキンをはじめとする強力な抗酸化物質を含む緑茶エキス。紫外線ダメージから肌を守り、炎症を鎮静します。"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "シアバター",
+            "name_en": "SHEA BUTTER",
+            "color": "#e8e0c8",
+            "description": "脂肪酸とビタミンEが豊富な植物性バター。深く浸透して乾燥を防ぎ、肌のバリア機能を強化します。"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "ナイアシンアミド",
+            "name_en": "NIACINAMIDE",
+            "color": "#e0d0e8",
+            "description": "ビタミンB3の一種。毛穴を引き締め、肌トーンを均一にし、皮脂バランスを整えるマルチな美容成分です。"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "セラミド",
+            "name_en": "CERAMIDE",
+            "color": "#d8e8e0",
+            "description": "肌のバリア機能を担う細胞間脂質。外部刺激から肌を守り、水分蒸発を防いで潤いを長時間キープします。"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

@@ -114,84 +114,181 @@
         "padding-block-end": 64
       }
     },
-    "featured_product_main": {
-      "type": "featured-product",
+    "marquee_keywords": {
+      "type": "marquee",
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
+        "text_natural": {
+          "type": "text",
+          "name": "t:names.text",
           "settings": {
-            "media_type": "image",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
+            "text": "<p>NATURAL INGREDIENTS</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         },
-        "featured-product": {
-          "type": "_featured-product",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "featured-product-title": {
-              "type": "product-title",
-              "static": true,
-              "settings": {
-                "product": "",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "featured-product-price": {
-              "type": "_featured-product-price",
-              "static": true,
-              "settings": {
-                "product": "",
-                "show_sale_price_first": true,
-                "type_preset": ""
-              },
-              "blocks": {}
-            },
-            "featured-product-gallery": {
-              "type": "_featured-product-gallery",
-              "static": true,
-              "settings": {
-                "product": "",
-                "image_ratio": "adapt",
-                "constrain_to_viewport": "contain"
-              },
-              "blocks": {}
-            }
+        "text_botanical": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>BOTANICAL</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "block_order": []
+          "blocks": {}
+        },
+        "text_vegan": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>VEGAN</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_cruelty": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>CRUELTY FREE</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_derma": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>DERMATOLOGIST TESTED</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_sustainable": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>SUSTAINABLE PACKAGING</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "0.1em",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
-      "name": "t:names.featured_product",
+      "block_order": [
+        "text_natural",
+        "text_botanical",
+        "text_vegan",
+        "text_cruelty",
+        "text_derma",
+        "text_sustainable"
+      ],
+      "name": "t:names.marquee",
       "settings": {
-        "product": "",
-        "layout": "media-left",
-        "color_scheme": "scheme-1",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "movement_direction": "normal",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 20,
+        "padding-block-end": 20,
+        "gap_between_elements": 48
       }
     },
     "product_list_qU3bEB": {
@@ -451,6 +548,67 @@
         "padding-block-end": 0
       }
     },
+    "collection_list_shop": {
+      "type": "collection-list",
+      "blocks": {
+        "static-collection-card": {
+          "type": "collection-card",
+          "static": true,
+          "settings": {
+            "collection": "",
+            "placement": "on_image",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "collection_card_gap": 8,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0
+          },
+          "blocks": {
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "static": true,
+              "settings": {
+                "collection": "",
+                "image_ratio": "portrait",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "name": "t:names.collection_list",
+      "settings": {
+        "collection_list": [],
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "columns": 3,
+        "mobile_columns": "1",
+        "columns_gap": 12,
+        "bento_gap": 8,
+        "rows_gap": 12,
+        "max_collections": 4,
+        "icons_style": "none",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 40,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
     "how_to_section": {
       "type": "how-to",
       "blocks": {
@@ -482,13 +640,123 @@
           }
         }
       },
-      "block_order": ["step_1", "step_2", "step_3"],
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
       "name": "使い方",
       "settings": {
         "label": "HOW TO USE",
         "heading": "3ステップで、輝く素肌へ。",
         "subheading": "毎日のルーティンに取り入れるだけで、肌の変化を実感できます。",
         "color_scheme": "scheme-3",
+        "section_width": "page-width",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
+    "media_with_content_story": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {}
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
+        "color_scheme": "scheme-3",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "ingredients_section": {
+      "type": "ingredients",
+      "blocks": {
+        "ingredient_1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ローズヒップオイル",
+            "name_en": "ROSEHIP OIL",
+            "color": "#e8c8c0",
+            "description": "ビタミンCとトランスレチノイン酸を豊富に含む天然オイル。肌の再生を促し、シミやくすみを改善します。"
+          }
+        },
+        "ingredient_2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ヒアルロン酸",
+            "name_en": "HYALURONIC ACID",
+            "color": "#c8d8e8",
+            "description": "自重の1000倍以上の水分を保持する保湿成分。肌の奥から潤いを与え、ふっくらとしたハリをもたらします。"
+          }
+        },
+        "ingredient_3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "グリーンティー",
+            "name_en": "GREEN TEA EXTRACT",
+            "color": "#c8d8c8",
+            "description": "カテキンをはじめとする強力な抗酸化物質を含む緑茶エキス。紫外線ダメージから肌を守り、炎症を鎮静します。"
+          }
+        },
+        "ingredient_4": {
+          "type": "ingredient",
+          "settings": {
+            "name": "シアバター",
+            "name_en": "SHEA BUTTER",
+            "color": "#e8e0c8",
+            "description": "脂肪酸とビタミンEが豊富な植物性バター。深く浸透して乾燥を防ぎ、肌のバリア機能を強化します。"
+          }
+        },
+        "ingredient_5": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ナイアシンアミド",
+            "name_en": "NIACINAMIDE",
+            "color": "#e0d0e8",
+            "description": "毛穴の目立ちを改善し、肌のトーンを均一に整えるビタミンB3誘導体。皮脂コントロールにも効果的です。"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_1",
+        "ingredient_2",
+        "ingredient_3",
+        "ingredient_4",
+        "ingredient_5"
+      ],
+      "name": "こだわり成分",
+      "settings": {
+        "label": "INGREDIENTS",
+        "heading": "厳選された植物成分",
+        "subheading": "自然の力を科学で証明する。すべての成分に、選ばれた理由があります。",
+        "color_scheme": "scheme-1",
         "section_width": "page-width",
         "padding-block-start": 96,
         "padding-block-end": 96
@@ -543,6 +811,72 @@
         "padding-block-end": 96
       }
     },
+    "faq_section": {
+      "type": "faq",
+      "blocks": {
+        "faq_q1": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "どんな肌タイプに対応していますか？",
+            "answer": "<p>敏感肌・乾燥肌を含むすべての肌タイプに対応しています。各商品ページにお肌タイプ別の使用目安を記載しています。</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_q2": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "有害な化学物質は含まれていますか？",
+            "answer": "<p>すべての製品はパラベン・硫酸塩・合成香料・人工着色料不使用です。厳選されたクリーン成分のみを使用しています。</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_q3": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "効果はいつ頃から実感できますか？",
+            "answer": "<p>多くのお客様が2〜4週間の継続使用で変化を実感されています。朝晩のルーティンとして毎日お使いいただくことをおすすめします。</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_q4": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "返品・返金保証はありますか？",
+            "answer": "<p>はい。ご購入から30日以内にご満足いただけない場合は、お問い合わせください。理由を問わず対応いたします。</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_q5": {
+          "type": "faq_item",
+          "name": "FAQ item",
+          "settings": {
+            "question": "定期購入・サブスクリプションはありますか？",
+            "answer": "<p>現在、定期購入プランを準備中です。メルマガにご登録いただいたお客様に優先してご案内いたします。</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_q1",
+        "faq_q2",
+        "faq_q3",
+        "faq_q4",
+        "faq_q5"
+      ],
+      "name": "よくある質問",
+      "settings": {
+        "heading": "よくある質問",
+        "subheading": "",
+        "color_scheme": "scheme-3",
+        "section_width": "page-width",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
     "staff_section": {
       "type": "staff-introduction",
       "blocks": {
@@ -574,7 +908,11 @@
           }
         }
       },
-      "block_order": ["member_1", "member_2", "member_3"],
+      "block_order": [
+        "member_1",
+        "member_2",
+        "member_3"
+      ],
       "name": "スタッフ紹介",
       "settings": {
         "label": "OUR TEAM",
@@ -605,11 +943,15 @@
   },
   "order": [
     "hero_jVaWmY",
-    "featured_product_main",
+    "marquee_keywords",
     "product_list_qU3bEB",
     "brand_story_section",
+    "collection_list_shop",
     "how_to_section",
+    "media_with_content_story",
+    "ingredients_section",
     "testimonials_section",
+    "faq_section",
     "staff_section",
     "newsletter_section"
   ]
