@@ -11,8 +11,7 @@
     assign new_window_seconds = settings.badge_new_days | times: 86400
     assign now_seconds = 'now' | date: '%s' | plus: 0
     assign published_seconds = product.published_at | date: '%s' | plus: 0
-    assign elapsed_seconds = now_seconds | minus: published_seconds
-    if elapsed_seconds <= new_window_seconds
+    if now_seconds | minus: published_seconds <= new_window_seconds
       assign is_new = true
     endif
   endif
@@ -33,32 +32,26 @@
   endif
 -%}
 
-<div
-  class="product-badges product-badges--{{ settings.badge_position }}"
-  style="
-    --badge-border-radius: {{ settings.badge_corner_radius }}px;
-    --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
-  "
->
+<div class="product-badges product-badges--{{ settings.badge_position }}">
   {%- if product.available == false -%}
-    <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sold_out_color_scheme }}">
+    <span class="product-badges__badge product-badges__badge--sold-out">
       {{ 'content.product_badge_sold_out' | t }}
-    </div>
+    </span>
   {%- else -%}
     {%- if is_on_sale -%}
-      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+      <span class="product-badges__badge product-badges__badge--sale">
         {{ 'content.product_badge_sale' | t }}
-      </div>
+      </span>
     {%- endif -%}
     {%- if is_new -%}
-      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_new_color_scheme }}">
+      <span class="product-badges__badge product-badges__badge--new">
         {{ 'content.product_badge_new' | t }}
-      </div>
+      </span>
     {%- endif -%}
     {%- if is_low_stock -%}
-      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_low_stock_color_scheme }}">
+      <span class="product-badges__badge product-badges__badge--low-stock">
         {{ 'content.product_badge_low_stock' | t }}
-      </div>
+      </span>
     {%- endif -%}
   {%- endif -%}
 </div>
@@ -70,47 +63,51 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--gap-2xs, 0.3rem);
-    --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+    gap: 0.25rem;
+  }
+
+  .product-badges--top-left {
+    top: 0.75rem;
+    left: 0.75rem;
   }
 
   .product-badges--top-right {
+    top: 0.75rem;
+    right: 0.75rem;
     align-items: flex-end;
   }
 
   .product-badges--bottom-left {
-    bottom: calc(var(--badge-inset) + var(--padding-block-start));
-    left: calc(var(--badge-inset) + var(--padding-inline-start));
-  }
-
-  .product-badges--top-left {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    left: calc(var(--badge-inset) + var(--padding-inline-start));
-  }
-
-  .product-badges--top-right {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    right: calc(var(--badge-inset) + var(--padding-inline-start));
+    bottom: 0.75rem;
+    left: 0.75rem;
   }
 
   .product-badges__badge {
-    --badge-font-size: var(--font-size--xs);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--color-foreground);
-    background: var(--color-background);
-    font-size: var(--badge-font-size);
-    font-family: var(--badge-font-family);
-    font-weight: var(--badge-font-weight);
-    text-transform: var(--badge-text-transform);
-    border-radius: var(--badge-border-radius);
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
   }
 
-  .product-badges__badge--rectangle {
-    padding-block: var(--badge-rectangle-padding-block);
-    padding-inline: var(--badge-rectangle-padding-inline);
+  .product-badges__badge--sold-out {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .product-badges__badge--sale {
+    color: #b05a50;
+  }
+
+  .product-badges__badge--new {
+    color: #4d7a62;
+  }
+
+  .product-badges__badge--low-stock {
+    color: #a07030;
   }
 {% endstylesheet %}
