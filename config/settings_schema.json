@@ -2279,18 +2279,6 @@
     ]
   },
   {
-    "name": "t:names.wishlist",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "wishlist_enabled",
-        "label": "t:settings.wishlist_enabled",
-        "info": "t:info.wishlist_enabled",
-        "default": true
-      }
-    ]
-  },
-  {
     "name": "t:names.delivery_datetime",
     "settings": [
       {
