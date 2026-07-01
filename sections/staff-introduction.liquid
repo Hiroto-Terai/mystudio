@@ -1,239 +1,260 @@
-
 {%- style -%}
-  .staff-introduction-{{ section.id }} {
+  .staff-{{ section.id }} {
     padding-block-start: {{ section.settings['padding-block-start'] }}px;
     padding-block-end: {{ section.settings['padding-block-end'] }}px;
   }
 {%- endstyle -%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<div
-  class="section staff-introduction staff-introduction-{{ section.id }} section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
->
+<div class="section staff staff-{{ section.id }} section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}">
   {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
-    <div class="staff-introduction__header">
+    <div class="staff__header reveal">
+      {%- if section.settings.label != blank -%}
+        <p class="staff__label">{{ section.settings.label | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="staff-introduction__heading">{{ section.settings.heading | escape }}</h2>
+        <h2 class="staff__heading">{{ section.settings.heading | escape }}</h2>
       {%- endif -%}
       {%- if section.settings.subheading != blank -%}
-        <p class="staff-introduction__subheading">{{ section.settings.subheading | escape }}</p>
+        <p class="staff__subheading">{{ section.settings.subheading | escape }}</p>
       {%- endif -%}
     </div>
   {%- endif -%}
 
-  {%- assign staff_members = shop.metaobjects.staff_member.values -%}
-  {%- if staff_members != blank -%}
-    <ul
-      class="staff-introduction__grid"
-      role="list"
-      style="--staff-columns: {{ section.settings.columns }}"
-    >
-      {%- for member in staff_members -%}
-        <li class="staff-card">
-          {%- if member.photo.value != blank -%}
-            <div class="staff-card__photo">
-              {{-
-                member.photo.value
-                | image_url: width: 480
+  {%- if section.blocks.size > 0 -%}
+    <ul class="staff__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="staff__member reveal" style="--reveal-delay: {{ forloop.index0 | times: 100 }}ms" {{ block.shopify_attributes }}>
+          <div class="staff__photo-wrap">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 400
                 | image_tag:
                   loading: 'lazy',
-                  alt: member.name.value,
-                  class: 'staff-card__image'
-              -}}
-            </div>
-          {%- else -%}
-            <div class="staff-card__photo staff-card__photo--placeholder">
-              {{ 'image' | placeholder_svg_tag: 'staff-card__image staff-card__image--placeholder' }}
-            </div>
-          {%- endif -%}
-
-          <div class="staff-card__info">
-            {%- if member.name.value != blank -%}
-              <p class="staff-card__name">{{ member.name.value | escape }}</p>
-            {%- endif -%}
-            {%- if member.role.value != blank -%}
-              <p class="staff-card__role">{{ member.role.value | escape }}</p>
-            {%- endif -%}
-            {%- if member.bio.value != blank -%}
-              <p class="staff-card__bio">{{ member.bio.value | escape }}</p>
-            {%- endif -%}
-            {%- if member.social_url.value != blank -%}
-              <a
-                class="staff-card__social"
-                href="{{ member.social_url.value }}"
-                target="_blank"
-                rel="noopener noreferrer"
+                  class: 'staff__photo',
+                  alt: block.settings.name
+              }}
+            {%- elsif block.settings.image_url != blank -%}
+              <img
+                src="{{ block.settings.image_url | escape }}"
+                alt="{{ block.settings.name | escape }}"
+                class="staff__photo"
+                loading="lazy"
+                width="400"
+                height="400"
               >
-                Follow
-              </a>
+            {%- else -%}
+              <div class="staff__photo-placeholder">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="40" cy="30" r="16" fill="currentColor" opacity="0.25"/>
+                  <path d="M8 72c0-17.7 14.3-32 32-32s32 14.3 32 32" stroke="currentColor" stroke-width="2" opacity="0.25"/>
+                </svg>
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="staff__info">
+            {%- if block.settings.name != blank -%}
+              <p class="staff__name">{{ block.settings.name | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.role != blank -%}
+              <p class="staff__role">{{ block.settings.role | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="staff__description">{{ block.settings.description | escape }}</p>
             {%- endif -%}
           </div>
         </li>
       {%- endfor -%}
     </ul>
-  {%- else -%}
-    <p class="staff-introduction__empty">
-      No staff members found. Add entries to the "Staff member" metaobject in your Shopify admin.
-    </p>
   {%- endif -%}
 </div>
 
-<style>
-  .staff-introduction__header {
+{% stylesheet %}
+  .staff__header {
     text-align: center;
     margin-block-end: var(--margin-xl);
   }
 
-  .staff-introduction__heading {
+  .staff__label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-block-end: 0.75rem;
+  }
+
+  .staff__heading {
+    font-size: var(--font-h2--size);
     margin-block-end: var(--margin-sm);
   }
 
-  .staff-introduction__subheading {
-    opacity: 0.75;
+  .staff__subheading {
+    opacity: 0.65;
+    max-width: 36rem;
+    margin-inline: auto;
+    line-height: 1.7;
   }
 
-  .staff-introduction__grid {
+  .staff__grid {
     display: grid;
-    grid-template-columns: repeat(var(--staff-columns, 3), 1fr);
-    gap: var(--gap-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-xl);
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
   @media screen and (width < 750px) {
-    .staff-introduction__grid {
+    .staff__grid {
       grid-template-columns: 1fr;
+      gap: var(--gap-lg);
     }
   }
 
-  @media screen and (750px <= width < 1024px) {
-    .staff-introduction__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .staff-introduction__empty {
-    text-align: center;
-    opacity: 0.6;
-  }
-
-  .staff-card {
+  .staff__member {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: var(--gap-md);
   }
 
-  .staff-card__photo {
-    aspect-ratio: 3 / 4;
+  .staff__photo-wrap {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
     overflow: hidden;
-    border-radius: 0.5rem;
-    background-color: var(--color-border);
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
   }
 
-  .staff-card__photo--placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .staff-card__image {
+  .staff__photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .staff-card__image--placeholder {
-    width: 50%;
-    height: 50%;
-    opacity: 0.3;
+  .staff__photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-border);
   }
 
-  .staff-card__info {
+  .staff__photo-placeholder svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  .staff__info {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
   }
 
-  .staff-card__name {
+  .staff__name {
     font-weight: 600;
-    font-size: 1.0625rem;
-    margin: 0;
+    letter-spacing: 0.02em;
   }
 
-  .staff-card__role {
+  .staff__role {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .staff__description {
     font-size: 0.875rem;
-    opacity: 0.65;
-    margin: 0;
+    line-height: 1.7;
+    opacity: 0.75;
+    margin-block-start: 0.5rem;
   }
 
-  .staff-card__bio {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    margin-block-start: 0.25rem;
-    margin-block-end: 0;
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--reveal-delay, 0ms);
   }
 
-  .staff-card__social {
-    display: inline-block;
-    margin-block-start: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-foreground);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
   }
 
-  .staff-card__social:hover {
-    opacity: 0.7;
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
-</style>
+{% endstylesheet %}
+
+<script>
+  (function () {
+    if (!window._revealObserver) {
+      window._revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              window._revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+    }
+    document
+      .querySelectorAll('.staff-{{ section.id }} .reveal')
+      .forEach(function (el) {
+        window._revealObserver.observe(el);
+      });
+  })();
+</script>
 
 {% schema %}
 {
-  "name": "Staff introduction",
-  "class": "staff-introduction-wrapper",
+  "name": "スタッフ紹介",
+  "class": "staff-wrapper",
   "settings": [
     {
       "type": "text",
+      "id": "label",
+      "label": "ラベル",
+      "default": "OUR TEAM"
+    },
+    {
+      "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "Meet our team"
+      "label": "見出し",
+      "default": "私たちのチーム"
     },
     {
       "type": "text",
       "id": "subheading",
-      "label": "Subheading"
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "label": "Columns",
-      "min": 2,
-      "max": 4,
-      "step": 1,
-      "default": 3
+      "label": "サブ見出し",
+      "default": "スキンケアへの情熱を持つ専門家たちが、あなたの美しさをサポートします。"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:settings.color_scheme",
-      "default": "scheme-1"
+      "default": "scheme-3"
     },
     {
       "type": "select",
       "id": "section_width",
       "label": "t:settings.width",
       "options": [
-        {
-          "value": "page-width",
-          "label": "t:options.page"
-        },
-        {
-          "value": "full-width",
-          "label": "t:options.full"
-        }
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" }
       ],
       "default": "page-width"
     },
@@ -245,27 +266,85 @@
       "type": "range",
       "id": "padding-block-start",
       "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 64
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 96
     },
     {
       "type": "range",
       "id": "padding-block-end",
       "label": "t:settings.bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 64
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "スタッフ",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "写真"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "写真URL（外部画像）",
+          "default": "https://randomuser.me/api/portraits/women/44.jpg"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "名前",
+          "default": "田中 美咲"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "役職",
+          "default": "ファウンダー & CEO"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "紹介文",
+          "default": "自然由来の成分だけで美しい肌を実現することへの情熱から、Botanicaを創業しました。"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Staff introduction",
-      "category": "t:categories.basic"
+      "name": "スタッフ紹介",
+      "category": "t:categories.basic",
+      "blocks": [
+        {
+          "type": "member",
+          "settings": {
+            "image_url": "https://randomuser.me/api/portraits/women/44.jpg",
+            "name": "田中 美咲",
+            "role": "ファウンダー & CEO",
+            "description": "自然由来の成分だけで美しい肌を実現することへの情熱から、Botanicaを創業しました。"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "image_url": "https://randomuser.me/api/portraits/men/32.jpg",
+            "name": "山田 健太",
+            "role": "チーフ フォーミュレーター",
+            "description": "化粧品科学の博士号を持ち、植物成分の研究に15年以上携わってきた専門家です。"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "image_url": "https://randomuser.me/api/portraits/women/68.jpg",
+            "name": "佐藤 彩香",
+            "role": "カスタマーケア ディレクター",
+            "description": "お客様一人ひとりの肌悩みに寄り添い、最適なスキンケアをご提案します。"
+          }
+        }
+      ]
     }
   ],
   "disabled_on": {
