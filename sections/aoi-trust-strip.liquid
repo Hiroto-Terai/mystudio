@@ -1,0 +1,98 @@
+<section class="aoi-trust">
+  {%- for block in section.blocks -%}
+    <div class="aoi-trust__item" {{ block.shopify_attributes }}>
+      {%- case block.settings.icon -%}
+        {%- when 'shipping' -%}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="7" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="17" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        {%- when 'leaf' -%}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21c0-6 0-9 5-13-1 6-2 9-5 13Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M12 21c0-5-1-8-6-11 2 5 3 8 6 11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        {%- when 'refresh' -%}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 12a8 8 0 0114-5m1-3v4h-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 12a8 8 0 01-14 5m-1 3v-4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        {%- when 'shield' -%}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l8 3v6c0 5-4 9-8 10C8 21 4 17 4 12V6l8-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        {%- else -%}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 12.5l2.5 2.5 5.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      {%- endcase -%}
+      <span>{{ block.settings.text }}</span>
+    </div>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "aoi Trust Strip",
+  "tag": "div",
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "バッジ",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "アイコン",
+          "options": [
+            { "value": "shipping", "label": "配送" },
+            { "value": "leaf", "label": "葉" },
+            { "value": "refresh", "label": "リターン" },
+            { "value": "shield", "label": "保証" },
+            { "value": "check", "label": "チェック" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "テキスト",
+          "default": "¥5,000以上で送料無料"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "aoi Trust Strip",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "shipping",
+            "text": "¥5,000以上で送料無料"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "text": "無添加・低刺激処方"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "text": "30日間 返品保証"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
