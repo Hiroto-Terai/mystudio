@@ -843,6 +843,273 @@
         "padding-block-end": 64
       }
     },
+    "brand_story_section": {
+      "type": "brand-story",
+      "name": "ブランドストーリー",
+      "settings": {
+        "section_num": "01",
+        "label": "OUR STORY",
+        "heading": "植物の力を、信じて。",
+        "body": "<p>自然の中に答えがある。私たちはそう信じて、Botanicaを創りました。化学物質に頼らず、植物由来の成分だけで肌の本来の美しさを引き出す。それが、私たちの約束です。</p>",
+        "cta_label": "ブランドについて",
+        "cta_url": "/pages/about",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "ingredients_section": {
+      "type": "ingredients",
+      "blocks": {
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ローズヒップオイル",
+            "name_en": "ROSEHIP OIL",
+            "color": "#e8c4b8",
+            "description": "ビタミンCとオメガ脂肪酸を豊富に含み、肌の再生を促進。乾燥やシワに働きかけ、なめらかな素肌へ導きます。"
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ヒアルロン酸",
+            "name_en": "HYALURONIC ACID",
+            "color": "#c4d8e8",
+            "description": "1gで6Lの水分を保持する保湿の王様。肌の奥深くまで水分を届け、ふっくらとしたうるおいを長時間キープします。"
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "グリーンティー",
+            "name_en": "GREEN TEA",
+            "color": "#c4dcc8",
+            "description": "強力な抗酸化作用を持つカテキンが、紫外線や環境ストレスから肌を守ります。透明感のある肌へ。"
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "name": "シアバター",
+            "name_en": "SHEA BUTTER",
+            "color": "#f0e4c8",
+            "description": "アフリカ産シアの木から採れる天然の保湿成分。豊かな脂肪酸が肌のバリア機能をサポートし、しっとりと包み込みます。"
+          }
+        },
+        "ing_5": {
+          "type": "ingredient",
+          "settings": {
+            "name": "ナイアシンアミド",
+            "name_en": "NIACINAMIDE",
+            "color": "#e8e4d4",
+            "description": "毛穴を引き締め、メラニンの生成を抑制。肌のトーンを均一に整え、ハリと輝きをもたらします。"
+          }
+        },
+        "ing_6": {
+          "type": "ingredient",
+          "settings": {
+            "name": "セラミド",
+            "name_en": "CERAMIDE",
+            "color": "#d4c8e8",
+            "description": "肌本来のバリア成分。外部刺激から肌を守り、水分の蒸発を防ぎます。敏感肌にも優しく寄り添います。"
+          }
+        }
+      },
+      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6"],
+      "name": "成分紹介",
+      "settings": {
+        "label": "INGREDIENTS",
+        "heading": "肌に宿る、植物の叡智。",
+        "subheading": "自然界が育んだ最上の成分だけを、厳選してお届けします。",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
+    "how_to_section": {
+      "type": "how-to",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "洗顔",
+            "title_en": "CLEANSE",
+            "description": "ぬるま湯で顔を濡らし、泡立てたクレンザーで優しく洗い流します。肌に必要な水分は残しながら、余分な汚れだけを落とします。",
+            "color": "#c4d8e8"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "化粧水",
+            "title_en": "TONE",
+            "description": "化粧水を手のひらにとり、顔全体にやさしく押し込むように馴染ませます。肌のpHバランスを整え、次のステップへの準備を整えます。",
+            "color": "#e8c4b8"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "保湿",
+            "title_en": "MOISTURIZE",
+            "description": "モイスチャライザーを指先で温めてから、顔の中心から外側へ向けて丁寧に塗布します。肌に水分を閉じ込め、一日中うるおいをキープします。",
+            "color": "#c4dcc8"
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3"],
+      "name": "使い方",
+      "settings": {
+        "label": "HOW TO USE",
+        "heading": "3ステップで、輝く素肌へ。",
+        "subheading": "毎日のルーティンに取り入れるだけで、肌の変化を実感できます。",
+        "color_scheme": "scheme-3",
+        "section_width": "page-width",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
+    "values_section": {
+      "type": "values",
+      "blocks": {
+        "val_1": {
+          "type": "value",
+          "settings": {
+            "label": "ヴィーガン対応",
+            "label_en": "VEGAN",
+            "color": "#c9dcc4",
+            "icon": "🌿"
+          }
+        },
+        "val_2": {
+          "type": "value",
+          "settings": {
+            "label": "動物実験なし",
+            "label_en": "CRUELTY-FREE",
+            "color": "#bcd2e0",
+            "icon": "🐰"
+          }
+        },
+        "val_3": {
+          "type": "value",
+          "settings": {
+            "label": "オーガニック認証",
+            "label_en": "ORGANIC",
+            "color": "#f0e4c8",
+            "icon": "✓"
+          }
+        },
+        "val_4": {
+          "type": "value",
+          "settings": {
+            "label": "環境への配慮",
+            "label_en": "ECO-FRIENDLY",
+            "color": "#e2c4b8",
+            "icon": "♻"
+          }
+        }
+      },
+      "block_order": ["val_1", "val_2", "val_3", "val_4"],
+      "name": "ブランド価値観",
+      "settings": {
+        "label": "OUR VALUES",
+        "heading": "地球と肌に、誠実に。",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "product_comparison_section": {
+      "type": "product-comparison",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "容量",
+            "val1": "30ml",
+            "val2": "50ml",
+            "val3": "30ml"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "肌質",
+            "val1": "乾燥・普通",
+            "val2": "全肌質",
+            "val3": "混合・脂性"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "保湿力",
+            "val1": "★★★★",
+            "val2": "★★★★★",
+            "val3": "★★★"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "ヴィーガン",
+            "val1": "✓",
+            "val2": "✓",
+            "val3": "✓"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "動物実験なし",
+            "val1": "✓",
+            "val2": "✓",
+            "val3": "✓"
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "label": "無香料",
+            "val1": "✓",
+            "val2": "—",
+            "val3": "✓"
+          }
+        },
+        "row_7": {
+          "type": "row",
+          "settings": {
+            "label": "オーガニック",
+            "val1": "—",
+            "val2": "✓",
+            "val3": "—"
+          }
+        }
+      },
+      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5", "row_6", "row_7"],
+      "name": "商品比較",
+      "settings": {
+        "label": "COMPARE",
+        "heading": "あなたに合った一本を。",
+        "p1_name": "ハイドロ セラム",
+        "p1_name_jp": "保湿美容液",
+        "p1_price": "¥6,800",
+        "p2_name": "ボタニカル クリーム",
+        "p2_name_jp": "植物性クリーム",
+        "p2_price": "¥8,200",
+        "p3_name": "バランス エッセンス",
+        "p3_name_jp": "バランスエッセンス",
+        "p3_price": "¥5,500",
+        "featured_column": "2",
+        "color_scheme": "scheme-1",
+        "section_width": "page-width",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
     "staff_section": {
       "type": "staff-introduction",
       "name": "スタッフ紹介",
@@ -876,10 +1143,15 @@
   "order": [
     "hero_jVaWmY",
     "marquee_keywords",
+    "brand_story_section",
     "featured_product_main",
     "collection_list_shop",
     "product_list_qU3bEB",
+    "ingredients_section",
+    "how_to_section",
+    "values_section",
     "media_with_content_story",
+    "product_comparison_section",
     "testimonials_section",
     "faq_section",
     "staff_section",
