@@ -18,7 +18,7 @@
             {%- if article.image != blank -%}
               {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: article.title }}
             {%- else -%}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
             {%- endif -%}
           </div>
           <div class="aoi-jcard__meta">
@@ -39,7 +39,11 @@
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
             {%- else -%}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- case forloop.index0 -%}
+                {%- when 0 -%}<img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+                {%- when 1 -%}<img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+                {%- else -%}<img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+              {%- endcase -%}
             {%- endif -%}
           </div>
           <div class="aoi-jcard__meta">{{ block.settings.category }} ・ {{ block.settings.date }}</div>

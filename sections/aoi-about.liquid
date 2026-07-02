@@ -8,7 +8,7 @@
       {%- if section.settings.hero_image != blank -%}
         {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high' }}
       {%- else -%}
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=1400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
       {%- endif -%}
     </div>
   </div>
@@ -48,7 +48,7 @@
         {%- if section.settings.message_image != blank -%}
           {{ section.settings.message_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
         {%- else -%}
-          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          <img src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=1000&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
         {%- endif -%}
       </div>
       <div class="aoi-about__message-text">
