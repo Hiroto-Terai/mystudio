@@ -46,11 +46,7 @@
           }
         }
       },
-      "block_order": [
-        "trust_1",
-        "trust_2",
-        "trust_3"
-      ],
+      "block_order": ["trust_1", "trust_2", "trust_3"],
       "settings": {}
     },
     "aoi_categories": {
@@ -89,26 +85,18 @@
           }
         }
       },
-      "block_order": [
-        "cat_1",
-        "cat_2",
-        "cat_3",
-        "cat_4"
-      ],
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
       "settings": {
         "eyebrow": "Shop by Category",
         "heading": "カテゴリーから探す"
       }
     },
     "featured_products": {
-      "type": "product-list",
+      "type": "aoi-product-grid",
       "settings": {
-        "collection": "all",
-        "max_products": 8,
-        "columns": 4,
-        "section_width": "page-width",
-        "gap": 24,
-        "color_scheme": "scheme-1",
+        "eyebrow": "Featured",
+        "heading": "人気のアイテム",
+        "products_count": 8,
         "padding-block-start": 40,
         "padding-block-end": 56
       }
@@ -154,11 +142,7 @@
           }
         }
       },
-      "block_order": [
-        "article_1",
-        "article_2",
-        "article_3"
-      ],
+      "block_order": ["article_1", "article_2", "article_3"],
       "settings": {
         "eyebrow": "Journal",
         "heading": "読みもの"
