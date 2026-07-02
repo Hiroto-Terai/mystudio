@@ -1,0 +1,317 @@
+<div class="aoi-about">
+
+  <div class="aoi-about__hero">
+    <span class="aoi-about__eyebrow">Our Story</span>
+    <h1 class="aoi-about__hero-heading">植物と、素肌と、<br>ていねいに向き合う。</h1>
+    <p class="aoi-about__hero-body">aoi は、国産のボタニカル成分を主役にした基礎化粧品ブランド。肌が本来もっている力を信じ、必要なものだけを選び抜いた処方をお届けします。</p>
+    <div class="aoi-about__hero-image-wrap">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="aoi-about__story">
+    <p class="aoi-about__story-lead">2018年、「肌にやさしいものを、うしろめたさなく選べるように」という想いから aoi は生まれました。</p>
+    <p class="aoi-about__story-body">大量生産ではなく、少量ずつていねいに。産地の見える植物原料と、環境に配慮した容器。使う人の肌と、その先の自然にまで思いを巡らせながら、一つひとつの処方をつくっています。派手さはなくても、毎日続けたくなる。そんな心地よさを大切にしています。</p>
+  </div>
+
+  <div class="aoi-about__values">
+    <div class="aoi-about__values-inner">
+      <span class="aoi-about__eyebrow">Our Values</span>
+      <h2 class="aoi-about__values-heading">私たちが大切にすること</h2>
+      <div class="aoi-about__values-grid">
+        <div class="aoi-about__value-item">
+          <span class="aoi-about__value-num">01</span>
+          <h3 class="aoi-about__value-title">産地の見える原料</h3>
+          <p class="aoi-about__value-desc">契約農園の国産植物を中心に、由来のわかる原料だけを使用します。</p>
+        </div>
+        <div class="aoi-about__value-item">
+          <span class="aoi-about__value-num">02</span>
+          <h3 class="aoi-about__value-title">引き算の処方</h3>
+          <p class="aoi-about__value-desc">パラベン・合成香料・着色料は不使用。必要なものだけを、やさしく。</p>
+        </div>
+        <div class="aoi-about__value-item">
+          <span class="aoi-about__value-num">03</span>
+          <h3 class="aoi-about__value-title">環境への配慮</h3>
+          <p class="aoi-about__value-desc">再生素材の容器と、詰め替えの仕組みで、廃棄を減らしていきます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aoi-about__message">
+    <div class="aoi-about__message-inner">
+      <div class="aoi-about__message-image-wrap">
+        {%- if section.settings.message_image != blank -%}
+          {{ section.settings.message_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'person-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+      <div class="aoi-about__message-text">
+        <span class="aoi-about__eyebrow">Message</span>
+        <h2 class="aoi-about__message-heading">つくり手より</h2>
+        <p class="aoi-about__message-body">「肌のことは、暮らしのこと」。そう思って aoi をはじめました。スキンケアは特別なことではなく、毎朝・毎晩の小さなひとときです。そのひとときが、少しだけ心地よくなれたら。そのために、原料を選び、処方をつくり、容器を考え続けています。あなたの肌に寄り添える一本を、ていねいにお届けします。</p>
+        <p class="aoi-about__message-sig">aoi botanical ファウンダー ／ 青井 みどり</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="aoi-about__cta-band">
+    <h2 class="aoi-about__cta-heading">はじめてのお手入れに。</h2>
+    <p class="aoi-about__cta-body">まずは人気のアイテムから、あなたの肌に合う一本を。</p>
+    <a href="{{ section.settings.store_url }}" class="aoi-btn aoi-btn--featured aoi-btn--lg">ストアを見る</a>
+  </div>
+
+</div>
+
+{% style %}
+.aoi-about__hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 40px 40px;
+  text-align: center;
+}
+.aoi-about__eyebrow {
+  font-family: var(--aoi-font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aoi-green-70);
+  display: block;
+}
+.aoi-about__hero-heading {
+  font-family: var(--aoi-font-display);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--aoi-ink);
+  margin: 18px 0 0;
+}
+.aoi-about__hero-body {
+  font-family: var(--aoi-font-body);
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--aoi-shade-50);
+  max-width: 680px;
+  margin: 22px auto 0;
+}
+.aoi-about__hero-image-wrap {
+  aspect-ratio: 16 / 7;
+  border-radius: var(--aoi-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--aoi-shadow-3);
+  margin-top: 44px;
+}
+.aoi-about__hero-image-wrap img,
+.aoi-about__hero-image-wrap svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.aoi-about__story {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 40px;
+  text-align: center;
+}
+.aoi-about__story-lead {
+  font-family: var(--aoi-font-body);
+  font-size: 20px;
+  line-height: 1.85;
+  color: var(--aoi-ink);
+  margin: 0 0 20px;
+}
+.aoi-about__story-body {
+  font-family: var(--aoi-font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--aoi-shade-50);
+  margin: 0;
+}
+.aoi-about__values {
+  background: var(--aoi-surface-band);
+  padding: 72px 40px;
+}
+.aoi-about__values-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.aoi-about__values-heading {
+  font-family: var(--aoi-font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--aoi-ink);
+  margin: 10px 0 48px;
+}
+.aoi-about__values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  text-align: left;
+}
+.aoi-about__value-num {
+  font-family: var(--aoi-font-display);
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--aoi-green-70);
+  display: block;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.aoi-about__value-title {
+  font-family: var(--aoi-font-body);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--aoi-ink);
+  margin: 0 0 10px;
+}
+.aoi-about__value-desc {
+  font-family: var(--aoi-font-body);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--aoi-shade-50);
+  margin: 0;
+}
+.aoi-about__message {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+.aoi-about__message-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.aoi-about__message-image-wrap {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--aoi-radius-xl);
+  overflow: hidden;
+}
+.aoi-about__message-image-wrap img,
+.aoi-about__message-image-wrap svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.aoi-about__message-heading {
+  font-family: var(--aoi-font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--aoi-ink);
+  margin: 10px 0 20px;
+}
+.aoi-about__message-body {
+  font-family: var(--aoi-font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--aoi-shade-50);
+  margin: 0 0 24px;
+}
+.aoi-about__message-sig {
+  font-family: var(--aoi-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--aoi-ink);
+  margin: 0;
+}
+.aoi-about__cta-band {
+  background: var(--aoi-ink);
+  color: var(--aoi-on-ink);
+  padding: 72px 40px;
+  text-align: center;
+}
+.aoi-about__cta-heading {
+  font-family: var(--aoi-font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--aoi-on-ink);
+  margin: 0 0 16px;
+}
+.aoi-about__cta-body {
+  font-family: var(--aoi-font-body);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--aoi-on-ink);
+  opacity: 0.6;
+  margin: 0 0 32px;
+}
+.aoi-btn--featured {
+  background: var(--aoi-on-ink);
+  color: var(--aoi-ink);
+  border-color: var(--aoi-on-ink);
+}
+.aoi-btn--featured:hover {
+  background: var(--aoi-shade-20);
+  border-color: var(--aoi-shade-20);
+}
+@media screen and (max-width: 60em) {
+  .aoi-about__hero {
+    padding: 40px 20px 32px;
+  }
+  .aoi-about__hero-heading {
+    font-size: 40px;
+  }
+  .aoi-about__story {
+    padding: 32px 20px;
+  }
+  .aoi-about__values {
+    padding: 56px 20px;
+  }
+  .aoi-about__values-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .aoi-about__message {
+    padding: 56px 20px;
+  }
+  .aoi-about__message-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .aoi-about__cta-band {
+    padding: 56px 20px;
+  }
+}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "aoi About",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "ヒーロー画像"
+    },
+    {
+      "type": "image_picker",
+      "id": "message_image",
+      "label": "メッセージ画像"
+    },
+    {
+      "type": "url",
+      "id": "store_url",
+      "label": "ストアURL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "aoi About"
+    }
+  ]
+}
+{% endschema %}

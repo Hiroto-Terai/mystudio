@@ -1,0 +1,962 @@
+/*
+ * aoi botanical — Design System
+ * Full site override on top of Horizon v1.0.2
+ */
+
+/* ============================================================
+   GOOGLE FONTS  (Hanken Grotesk + Noto Sans JP)
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap");
+
+/* ============================================================
+   AOI TOKENS
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --aoi-canvas-cream: #fbfbf5;
+  --aoi-canvas-white: #ffffff;
+  --aoi-canvas-ink:   #0e100f;
+
+  /* Text */
+  --aoi-ink:    #0e100f;
+  --aoi-on-ink: #ffffff;
+
+  /* Neutral scale */
+  --aoi-shade-20: #ececed;
+  --aoi-shade-30: #d7d7d2;
+  --aoi-shade-40: #a6a69f;
+  --aoi-shade-50: #71716b;
+  --aoi-shade-60: #52524d;
+  --aoi-shade-70: #38383a;
+
+  /* Green brand scale */
+  --aoi-green-05: #f1fbf4;
+  --aoi-green-10: #d8f6e2;
+  --aoi-green-20: #c1fbd4;
+  --aoi-green-30: #97e8b8;
+  --aoi-green-40: #55c98c;
+  --aoi-green-50: #2ea36a;
+  --aoi-green-60: #1f7d52;
+  --aoi-green-70: #145038;
+
+  /* Hairlines */
+  --aoi-hairline:     #e8e8e1;
+  --aoi-hairline-ink: #23241f;
+
+  /* Links */
+  --aoi-link-quiet: #8f8f88;
+  --aoi-link-mint:  #7fa892;
+
+  /* Semantic surfaces */
+  --aoi-surface-page:    var(--aoi-canvas-cream);
+  --aoi-surface-card:    var(--aoi-canvas-white);
+  --aoi-surface-band:    var(--aoi-green-10);
+  --aoi-surface-wash:    var(--aoi-green-05);
+  --aoi-surface-inverse: var(--aoi-canvas-ink);
+  --aoi-surface-muted:   var(--aoi-shade-20);
+
+  /* Semantic text */
+  --aoi-text-primary:   var(--aoi-ink);
+  --aoi-text-secondary: var(--aoi-shade-50);
+  --aoi-text-tertiary:  var(--aoi-shade-40);
+
+  /* Typography */
+  --aoi-font-display: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --aoi-font-body:    "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+
+  /* Radius */
+  --aoi-radius-xs:   4px;
+  --aoi-radius-sm:   6px;
+  --aoi-radius-md:   8px;
+  --aoi-radius-lg:   12px;
+  --aoi-radius-xl:   20px;
+  --aoi-radius-pill: 9999px;
+
+  /* Shadows */
+  --aoi-shadow-2: 0 0 0 1px rgba(14,16,15,.05), 0 1px 3px rgba(14,16,15,.08), 0 6px 14px rgba(14,16,15,.06);
+  --aoi-shadow-3: 0 8px 8px rgba(14,16,15,.04), 0 4px 4px rgba(14,16,15,.04), 0 2px 2px rgba(14,16,15,.04), 0 0 0 1px rgba(14,16,15,.05);
+  --aoi-shadow-4: 0 25px 50px -12px rgba(14,16,15,.22);
+}
+
+/* ============================================================
+   GLOBAL BASE OVERRIDES
+   ============================================================ */
+body {
+  font-family: var(--aoi-font-body) !important;
+  background-color: var(--aoi-canvas-cream) !important;
+  color: var(--aoi-ink) !important;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "palt" 1;
+}
+
+/* Page background must be cream */
+.color-scheme-1,
+.color-1,
+[class*="color-scheme-1"] {
+  --color-background: var(--aoi-canvas-cream) !important;
+  background-color: var(--aoi-canvas-cream) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--aoi-font-body) !important;
+  color: var(--aoi-ink) !important;
+}
+
+/* ============================================================
+   HEADER  — sticky white bar, hairline border-bottom
+   ============================================================ */
+.header,
+.section--header,
+header-component,
+.header-wrapper {
+  background-color: var(--aoi-canvas-white) !important;
+  border-bottom: 1px solid var(--aoi-hairline) !important;
+  box-shadow: none !important;
+}
+
+/* Nav links */
+.header__nav-link,
+.header__nav-item a,
+.header-menu__item a,
+.header__nav a {
+  font-family: var(--aoi-font-body) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: var(--aoi-ink) !important;
+  opacity: 0.82;
+  transition: opacity .15s ease, color .15s ease !important;
+}
+.header__nav-link:hover,
+.header__nav-item a:hover,
+.header-menu__item a:hover,
+.header__nav a:hover {
+  opacity: 1 !important;
+  color: var(--aoi-green-60) !important;
+}
+
+/* Logo text */
+.header__logo,
+.header__heading a,
+.header__heading-link,
+.site-header__logo {
+  font-family: var(--aoi-font-display) !important;
+  font-weight: 300 !important;
+  font-size: 27px !important;
+  letter-spacing: 0.04em !important;
+  color: var(--aoi-ink) !important;
+}
+
+/* Header icon buttons */
+.header__icon,
+.header__icon-btn,
+.header-actions__icon {
+  color: var(--aoi-ink) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  padding: 10px !important;
+  transition: background .15s ease !important;
+}
+.header__icon:hover,
+.header__icon-btn:hover,
+.header-actions__icon:hover {
+  background: var(--aoi-surface-muted) !important;
+}
+
+/* Cart badge */
+.cart-count-bubble,
+.header__cart-count {
+  background: var(--aoi-green-50) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+/* ============================================================
+   ANNOUNCEMENT BAR  — green band
+   ============================================================ */
+.announcement-bar,
+.announcement-bar__wrapper {
+  background-color: var(--aoi-green-70) !important;
+  color: var(--aoi-on-ink) !important;
+}
+
+.announcement-bar *,
+.announcement-bar__message {
+  color: var(--aoi-on-ink) !important;
+  font-family: var(--aoi-font-body) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* ============================================================
+   BUTTONS  — aoi button styles
+   ============================================================ */
+/* Primary */
+.button--primary,
+.btn--primary,
+[class*="button"][class*="primary"],
+.shopify-payment-button__button {
+  background-color: var(--aoi-ink) !important;
+  color: var(--aoi-on-ink) !important;
+  border-color: var(--aoi-ink) !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  font-family: var(--aoi-font-body) !important;
+  font-weight: 500 !important;
+  transition: background .15s ease !important;
+}
+.button--primary:hover,
+.btn--primary:hover {
+  background-color: var(--aoi-shade-70) !important;
+}
+
+/* Accent (green) */
+.button--accent,
+.btn--accent,
+.button--secondary.button--solid {
+  background-color: var(--aoi-green-60) !important;
+  color: var(--aoi-on-ink) !important;
+  border-color: var(--aoi-green-60) !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  font-family: var(--aoi-font-body) !important;
+  font-weight: 500 !important;
+}
+
+/* Outline */
+.button--outline,
+.btn--outline,
+.button--secondary {
+  background: transparent !important;
+  color: var(--aoi-ink) !important;
+  border: 1.5px solid var(--aoi-ink) !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  font-family: var(--aoi-font-body) !important;
+  font-weight: 500 !important;
+}
+.button--outline:hover,
+.btn--outline:hover {
+  background: var(--aoi-ink) !important;
+  color: var(--aoi-on-ink) !important;
+}
+
+/* All standard buttons - pill shape */
+.button, .btn, button[class*="button"] {
+  border-radius: var(--aoi-radius-pill) !important;
+  font-family: var(--aoi-font-body) !important;
+}
+
+/* ============================================================
+   PRODUCT CARDS
+   ============================================================ */
+.product-card,
+.card--product {
+  background: var(--aoi-canvas-white) !important;
+  border-radius: var(--aoi-radius-lg) !important;
+  border: 1px solid var(--aoi-hairline) !important;
+  box-shadow: none !important;
+  transition: transform .25s ease !important;
+  overflow: hidden !important;
+}
+.product-card:hover,
+.card--product:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--aoi-shadow-3) !important;
+}
+
+.product-card__title,
+.card__heading {
+  font-family: var(--aoi-font-body) !important;
+  font-weight: 500 !important;
+  color: var(--aoi-ink) !important;
+}
+
+.product-card__price,
+.price {
+  color: var(--aoi-ink) !important;
+}
+
+/* ============================================================
+   COLLECTION CARDS
+   ============================================================ */
+.collection-card {
+  border-radius: var(--aoi-radius-xl) !important;
+  overflow: hidden !important;
+  transition: transform .25s ease !important;
+}
+.collection-card:hover {
+  transform: translateY(-4px) !important;
+}
+
+/* ============================================================
+   INPUTS & FORMS
+   ============================================================ */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+select,
+textarea {
+  font-family: var(--aoi-font-body) !important;
+  border-color: var(--aoi-hairline) !important;
+  border-radius: var(--aoi-radius-md) !important;
+  background: var(--aoi-canvas-white) !important;
+  color: var(--aoi-ink) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--aoi-green-50) !important;
+  box-shadow: 0 0 0 3px rgba(46,163,106,.25) !important;
+}
+
+/* ============================================================
+   SECTIONS — shared container widths
+   ============================================================ */
+.section--page-width,
+.page-width {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
+/* ============================================================
+   AOI HOMEPAGE SECTIONS (custom)
+   ============================================================ */
+
+/* --- aoi-announcement --- */
+.aoi-announcement {
+  background: var(--aoi-green-70);
+  color: var(--aoi-on-ink);
+  text-align: center;
+  padding: 9px 16px;
+  font-family: var(--aoi-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* --- aoi-hero --- */
+.aoi-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 40px 32px;
+}
+.aoi-hero__grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.aoi-hero__eyebrow {
+  font-family: var(--aoi-font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aoi-green-60);
+}
+.aoi-hero__heading {
+  font-family: var(--aoi-font-display);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 18px 0 0;
+  color: var(--aoi-ink);
+}
+.aoi-hero__body {
+  font-family: var(--aoi-font-body);
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--aoi-shade-50);
+  max-width: 440px;
+  margin: 22px 0 0;
+}
+.aoi-hero__cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.aoi-hero__image-wrap {
+  border-radius: var(--aoi-radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--aoi-shadow-3);
+}
+.aoi-hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Buttons inside hero */
+.aoi-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 50px;
+  border-radius: var(--aoi-radius-pill);
+  font-family: var(--aoi-font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.aoi-btn--primary {
+  background: var(--aoi-ink);
+  color: var(--aoi-on-ink);
+  border-color: var(--aoi-ink);
+}
+.aoi-btn--primary:hover {
+  background: var(--aoi-shade-70);
+  border-color: var(--aoi-shade-70);
+}
+.aoi-btn--outline {
+  background: transparent;
+  color: var(--aoi-ink);
+  border-color: var(--aoi-ink);
+}
+.aoi-btn--outline:hover {
+  background: var(--aoi-ink);
+  color: var(--aoi-on-ink);
+}
+.aoi-btn--accent {
+  background: var(--aoi-green-60);
+  color: var(--aoi-on-ink);
+  border-color: var(--aoi-green-60);
+}
+.aoi-btn--accent:hover {
+  background: var(--aoi-green-70);
+  border-color: var(--aoi-green-70);
+}
+.aoi-btn--ghost {
+  background: transparent;
+  color: var(--aoi-ink);
+  border-color: transparent;
+}
+.aoi-btn--ghost:hover {
+  background: var(--aoi-shade-20);
+}
+.aoi-btn--featured {
+  background: var(--aoi-on-ink);
+  color: var(--aoi-ink);
+  border-color: var(--aoi-on-ink);
+}
+.aoi-btn--featured:hover {
+  background: var(--aoi-shade-20);
+  border-color: var(--aoi-shade-20);
+}
+.aoi-btn--sm {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+.aoi-btn--lg {
+  height: 50px;
+  padding: 0 28px;
+  font-size: 16px;
+}
+
+/* --- aoi-trust-strip --- */
+.aoi-trust {
+  max-width: 1000px;
+  margin: 8px auto 0;
+  padding: 16px 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.aoi-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--aoi-shade-50);
+  font-family: var(--aoi-font-body);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.aoi-trust__item svg {
+  flex: none;
+  color: var(--aoi-ink);
+}
+
+/* --- aoi-category-tiles --- */
+.aoi-categories {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 40px 24px;
+}
+.aoi-categories__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.aoi-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.aoi-tile {
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: transform .25s ease;
+}
+.aoi-tile:hover {
+  transform: translateY(-4px);
+}
+.aoi-tile__image-wrap {
+  border-radius: var(--aoi-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--aoi-surface-wash);
+}
+.aoi-tile__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.aoi-tile:hover .aoi-tile__image-wrap img {
+  transform: scale(1.05);
+}
+.aoi-tile__title {
+  font-family: var(--aoi-font-body);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--aoi-ink);
+  margin-top: 14px;
+}
+.aoi-tile__sub {
+  font-family: var(--aoi-font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--aoi-shade-40);
+}
+
+/* --- Section header (eyebrow + h2) shared --- */
+.aoi-section-eyebrow {
+  font-family: var(--aoi-font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aoi-green-60);
+  display: block;
+}
+.aoi-section-heading {
+  font-family: var(--aoi-font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--aoi-ink);
+  margin: 10px 0 0;
+}
+
+/* --- aoi-philosophy-band --- */
+.aoi-philosophy {
+  background: var(--aoi-surface-band);
+  padding: 80px 40px;
+}
+.aoi-philosophy__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.aoi-philosophy__image-wrap {
+  border-radius: var(--aoi-radius-xl);
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+.aoi-philosophy__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.aoi-philosophy__body {
+  font-family: var(--aoi-font-body);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--aoi-shade-50);
+  margin: 0 0 28px;
+  max-width: 440px;
+}
+
+/* --- aoi-journal --- */
+.aoi-journal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 40px;
+}
+.aoi-journal__header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.aoi-journal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.aoi-jcard {
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.aoi-jcard__image-wrap {
+  border-radius: var(--aoi-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--aoi-surface-wash);
+}
+.aoi-jcard__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.aoi-jcard:hover .aoi-jcard__image-wrap img {
+  transform: scale(1.04);
+}
+.aoi-jcard__meta {
+  font-family: var(--aoi-font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aoi-green-60);
+  margin-top: 16px;
+}
+.aoi-jcard__title {
+  font-family: var(--aoi-font-body);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--aoi-ink);
+  margin: 8px 0 6px;
+}
+.aoi-jcard__excerpt {
+  font-family: var(--aoi-font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--aoi-shade-50);
+  margin: 0;
+}
+
+/* --- aoi-newsletter --- */
+.aoi-newsletter {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+.aoi-newsletter__inner {
+  background: var(--aoi-surface-wash);
+  border-radius: var(--aoi-radius-xl);
+  padding: 56px 40px;
+  text-align: center;
+}
+.aoi-newsletter__heading {
+  font-family: var(--aoi-font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--aoi-ink);
+  margin: 12px 0 8px;
+}
+.aoi-newsletter__body {
+  font-family: var(--aoi-font-body);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--aoi-shade-50);
+  margin: 0 0 24px;
+}
+.aoi-newsletter__form {
+  display: flex;
+  gap: 10px;
+  max-width: 440px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.aoi-newsletter__input {
+  flex: 1;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--aoi-hairline);
+  border-radius: var(--aoi-radius-pill);
+  font-family: var(--aoi-font-body);
+  font-size: 15px;
+  background: var(--aoi-canvas-white);
+  color: var(--aoi-ink);
+  outline: none;
+}
+.aoi-newsletter__input:focus {
+  border-color: var(--aoi-green-50);
+  box-shadow: 0 0 0 3px rgba(46,163,106,.25);
+}
+.aoi-newsletter__submit {
+  height: 44px;
+  padding: 0 20px;
+  background: var(--aoi-green-60);
+  color: var(--aoi-on-ink);
+  border: none;
+  border-radius: var(--aoi-radius-pill);
+  font-family: var(--aoi-font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s ease;
+}
+.aoi-newsletter__submit:hover {
+  background: var(--aoi-green-70);
+}
+
+/* --- aoi-footer --- */
+.aoi-footer {
+  background: var(--aoi-canvas-ink);
+  color: var(--aoi-on-ink);
+  padding: 64px 40px 32px;
+}
+.aoi-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.aoi-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  justify-content: space-between;
+}
+.aoi-footer__brand {
+  max-width: 280px;
+}
+.aoi-footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+.aoi-footer__logo-text {
+  font-family: var(--aoi-font-display);
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--aoi-on-ink);
+}
+.aoi-footer__tagline {
+  font-family: var(--aoi-font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--aoi-link-quiet);
+  margin-top: 16px;
+}
+.aoi-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+}
+.aoi-footer__col {
+  min-width: 120px;
+}
+.aoi-footer__col-title {
+  font-family: var(--aoi-font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aoi-link-mint);
+  margin-bottom: 14px;
+  display: block;
+}
+.aoi-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.aoi-footer__link {
+  font-family: var(--aoi-font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--aoi-link-quiet);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.aoi-footer__link:hover {
+  color: var(--aoi-on-ink);
+}
+.aoi-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--aoi-hairline-ink);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.aoi-footer__copy {
+  font-family: var(--aoi-font-body);
+  font-size: 13px;
+  color: var(--aoi-link-quiet);
+}
+
+/* ============================================================
+   NEWSLETTER SECTION — override existing section to match aoi design
+   ============================================================ */
+.newsletter {
+  background: transparent !important;
+}
+.newsletter__inner {
+  background: var(--aoi-surface-wash) !important;
+  border-radius: var(--aoi-radius-xl) !important;
+  padding: 56px 40px !important;
+  text-align: center !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.newsletter__heading {
+  font-family: var(--aoi-font-display) !important;
+  font-size: 36px !important;
+  font-weight: 300 !important;
+  line-height: 1.2 !important;
+  color: var(--aoi-ink) !important;
+  margin: 12px 0 8px !important;
+}
+.newsletter__subheading {
+  font-family: var(--aoi-font-body) !important;
+  font-size: 16px !important;
+  color: var(--aoi-shade-50) !important;
+  margin: 0 0 24px !important;
+}
+.newsletter__form {
+  display: flex !important;
+  gap: 10px !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
+}
+.newsletter__form input[type="email"] {
+  flex: 1 !important;
+  height: 44px !important;
+  padding: 0 16px !important;
+  border: 1px solid var(--aoi-hairline) !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  background: var(--aoi-canvas-white) !important;
+  color: var(--aoi-ink) !important;
+  font-size: 15px !important;
+}
+.newsletter__form button,
+.newsletter__form .button {
+  height: 44px !important;
+  padding: 0 20px !important;
+  background: var(--aoi-green-60) !important;
+  color: var(--aoi-on-ink) !important;
+  border: none !important;
+  border-radius: var(--aoi-radius-pill) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+.newsletter__form button:hover,
+.newsletter__form .button:hover {
+  background: var(--aoi-green-70) !important;
+}
+
+/* ============================================================
+   MARQUEE (existing section) — restyle
+   ============================================================ */
+.marquee-section {
+  background: var(--aoi-ink) !important;
+  color: var(--aoi-on-ink) !important;
+}
+.marquee-section * {
+  color: var(--aoi-on-ink) !important;
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+@media screen and (max-width: 60em) {
+  .aoi-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .aoi-hero {
+    padding: 40px 20px 24px;
+  }
+  .aoi-hero__heading {
+    font-size: 40px;
+  }
+  .aoi-categories__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .aoi-categories {
+    padding: 40px 20px 16px;
+  }
+  .aoi-philosophy__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .aoi-philosophy {
+    padding: 56px 20px;
+  }
+  .aoi-journal__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .aoi-journal {
+    padding: 56px 20px 32px;
+  }
+  .aoi-trust {
+    padding: 16px 20px;
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .aoi-newsletter {
+    padding: 32px 20px 56px;
+  }
+  .aoi-newsletter__inner {
+    padding: 40px 24px;
+  }
+  .aoi-newsletter__form {
+    flex-direction: column;
+  }
+  .aoi-newsletter__input,
+  .aoi-newsletter__submit {
+    width: 100%;
+  }
+  .aoi-footer {
+    padding: 48px 20px 24px;
+  }
+  .aoi-footer__top {
+    gap: 32px;
+  }
+  .aoi-footer__nav {
+    gap: 32px;
+  }
+  .aoi-section-heading {
+    font-size: 28px;
+  }
+}
