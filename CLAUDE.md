@@ -36,3 +36,4 @@
 | `/bug-hunt` | バグの原因調査と修正方針の提示 |
 | `/perf` | パフォーマンスボトルネックの特定と改善案 |
 | `/refactor` | コード品質改善（動作は変えない） |
+| `/shopify-design-reimport` | Claude Design → Shopify 完全再現（デザイントークン・セクション・ページ・商品・画像・レビュー） |
