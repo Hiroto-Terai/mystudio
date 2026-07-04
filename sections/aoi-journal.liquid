@@ -1,0 +1,156 @@
+{%- assign blog_obj = blogs[section.settings.blog] -%}
+
+<section class="aoi-journal">
+  <div class="aoi-journal__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="aoi-section-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="aoi-section-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="aoi-journal__grid">
+    {%- if blog_obj != blank -%}
+      {%- for article in blog_obj.articles limit: 3 -%}
+        <a href="{{ article.url }}" class="aoi-jcard">
+          <div class="aoi-jcard__image-wrap">
+            {%- if article.image != blank -%}
+              {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: article.title }}
+            {%- else -%}
+              <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+            {%- endif -%}
+          </div>
+          <div class="aoi-jcard__meta">
+            {{ article.tags | first }}
+            {%- if article.tags.size > 0 %} ・ {% endif -%}
+            {{ article.published_at | date: '%Y/%m/%d' }}
+          </div>
+          <h3 class="aoi-jcard__title">{{ article.title }}</h3>
+          {%- if article.excerpt != blank -%}
+            <p class="aoi-jcard__excerpt">{{ article.excerpt | strip_html | truncate: 80 }}</p>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        <div class="aoi-jcard" {{ block.shopify_attributes }}>
+          <div class="aoi-jcard__image-wrap">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              {%- case forloop.index0 -%}
+                {%- when 0 -%}<img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+                {%- when 1 -%}<img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+                {%- else -%}<img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=700&q=80" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+              {%- endcase -%}
+            {%- endif -%}
+          </div>
+          <div class="aoi-jcard__meta">{{ block.settings.category }} ・ {{ block.settings.date }}</div>
+          <h3 class="aoi-jcard__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.excerpt != blank -%}
+            <p class="aoi-jcard__excerpt">{{ block.settings.excerpt }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "aoi Journal",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き",
+      "default": "Journal"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "読みもの"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "ブログ（未選択の場合は固定コンテンツ）"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "article",
+      "name": "記事（固定）",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "サムネイル"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "カテゴリー",
+          "default": "スキンケア"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "日付",
+          "default": "2026/01/10"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "タイトル",
+          "default": "ローズヒップオイルの使い方と効果"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "概要",
+          "default": "乾燥が気になる季節に、ぜひ試してほしい一滴。使い方と効果を詳しくご紹介します。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "aoi Journal",
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "category": "スキンケア",
+            "date": "2026/01/10",
+            "title": "ローズヒップオイルの使い方と効果",
+            "excerpt": "乾燥が気になる季節に、ぜひ試してほしい一滴。使い方と効果を詳しくご紹介します。"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category": "ブランド",
+            "date": "2025/12/20",
+            "title": "冬のスキンケアルーティン、aoi の場合",
+            "excerpt": "朝・夜に分けて実践している、シンプルだけど効果的なお手入れの流れをご紹介します。"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "category": "成分解説",
+            "date": "2025/12/01",
+            "title": "ナイアシンアミドとは？美肌成分を深掘り",
+            "excerpt": "最近話題のナイアシンアミドについて、働きや使い方を詳しく解説。"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

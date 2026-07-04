@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "aoi_about": {
+      "type": "aoi-about",
+      "settings": {}
+    }
+  },
+  "order": ["aoi_about"]
+}

@@ -5,6 +5,7 @@
 >
   <head>
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'aoi.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.favicon != blank -%}
       <link
@@ -27,6 +28,47 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
+
+    {% comment %} aoi botanical — global color + font overrides (must be after color-schemes) {% endcomment %}
+    {% style %}
+      :root,
+      .color-scheme-1,
+      .color-1 {
+        --color-background: #fbfbf5;
+        --color-foreground: #0e100f;
+        --color-foreground-heading: #0e100f;
+        --color-border: #e8e8e1;
+        --color-shadow: #0e100f;
+        --color-primary-button-background: #0e100f;
+        --color-primary-button-text: #ffffff;
+        --color-primary-button-border: #0e100f;
+        --color-primary-button-hover-background: #38383a;
+        --color-primary-button-hover-text: #ffffff;
+        --color-primary-button-hover-border: #38383a;
+        --color-secondary-button-text: #0e100f;
+        --color-secondary-button-background: transparent;
+        --color-secondary-button-border: #0e100f;
+        --color-secondary-button-hover-text: #ffffff;
+        --color-secondary-button-hover-background: #0e100f;
+        --color-secondary-button-hover-border: #0e100f;
+        --color-input-background: #ffffff;
+        --color-input-text: #0e100f;
+        --color-input-border: #e8e8e1;
+        --color-input-hover-background: #f1fbf4;
+        --style-border-radius-inputs: 8px;
+        --style-border-radius-buttons-primary: 9999px;
+        --style-border-radius-buttons-secondary: 9999px;
+        --font-body--family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+        --font-heading--family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+        --font-subheading--family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+        --font-accent--family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+      }
+      body {
+        background: #fbfbf5;
+        color: #0e100f;
+        font-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+      }
+    {% endstyle %}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
