@@ -1,0 +1,28 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo" subtitle="スプラウト（成長）マーク + 細字ワードマーク" -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  .wrap { display: grid; grid-template-columns: 1fr 1fr; }
+  .cell { padding: 40px; display: flex; align-items: center; gap: 14px; }
+  .light { background: var(--canvas-light); }
+  .dark { background: var(--canvas-ink); }
+  .word { font-family: var(--font-display); font-weight: 400; font-size: 40px; letter-spacing: -0.01em; line-height: 1; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cell light">
+      <img src="../assets/logo/hirot-mark.svg" width="44" height="44" alt="Hirot mark">
+      <span class="word" style="color:var(--ink)">Hirot</span>
+    </div>
+    <div class="cell dark">
+      <img src="../assets/logo/hirot-mark.svg" width="44" height="44" alt="Hirot mark">
+      <span class="word" style="color:var(--on-ink)">Hirot</span>
+    </div>
+  </div>
+</body>
+</html>

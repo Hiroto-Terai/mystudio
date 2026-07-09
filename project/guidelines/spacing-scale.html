@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Spacing Scale" subtitle="8px 基準 + 細かなサブユニット" -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-card); color: var(--text-primary); }
+  .wrap { padding: 24px 28px; display: flex; align-items: flex-end; gap: 16px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar { background: var(--green-30); border-radius: 3px; width: 100%; }
+  .tag { font: var(--micro); font-family: var(--font-mono); color: var(--text-secondary); white-space: nowrap; }
+  .col { display:flex; flex-direction:column; align-items:center; gap:8px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="col"><div class="bar" style="width:4px;height:4px"></div><span class="tag">xs 4</span></div>
+    <div class="col"><div class="bar" style="width:8px;height:8px"></div><span class="tag">sm 8</span></div>
+    <div class="col"><div class="bar" style="width:12px;height:12px"></div><span class="tag">md 12</span></div>
+    <div class="col"><div class="bar" style="width:16px;height:16px"></div><span class="tag">lg 16</span></div>
+    <div class="col"><div class="bar" style="width:24px;height:24px"></div><span class="tag">xl 24</span></div>
+    <div class="col"><div class="bar" style="width:32px;height:32px"></div><span class="tag">xxl 32</span></div>
+    <div class="col"><div class="bar" style="width:48px;height:48px"></div><span class="tag">3xl 48</span></div>
+    <div class="col"><div class="bar" style="width:64px;height:64px"></div><span class="tag">huge 64</span></div>
+  </div>
+</body>
+</html>

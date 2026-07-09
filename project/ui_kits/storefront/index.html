@@ -1,0 +1,145 @@
+<!-- @dsCard group="Storefront" viewport="1200x780" name="EC Storefront" subtitle="ホーム → 一覧 → 商品詳細 → カート（操作可能）" -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hirot Storefront</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-page); color: var(--text-primary); font: var(--body-md); }
+  a { color: inherit; }
+  .app-nav { position: sticky; top: 0; z-index: 50; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="./data.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="./tweaks-panel.jsx"></script>
+<script type="text/babel" src="./Home.jsx"></script>
+<script type="text/babel" src="./Catalog.jsx"></script>
+<script type="text/babel" src="./Cart.jsx"></script>
+
+<script type="text/babel">
+const { NavBar, Footer } = window.HirotDesignSystem_e62cf3;
+const { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakToggle } = window;
+
+const THEMES = {
+  forest: { g10:"#d8f6e2", g20:"#c1fbd4", g30:"#97e8b8", g40:"#55c98c", g50:"#2ea36a", g60:"#1f7d52", g70:"#145038" },
+  sage:   { g10:"#e7f0e4", g20:"#d7e6d4", g30:"#b7cdb2", g40:"#8fae88", g50:"#7fa17f", g60:"#5c7d5c", g70:"#3d543d" },
+  citrus: { g10:"#e8fad2", g20:"#d6f5b8", g30:"#bde98a", g40:"#8fd44f", g50:"#6fbf3a", g60:"#4f9e26", g70:"#356b18" },
+};
+const FONTS = {
+  modern: '"Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif',
+  gothic: '"Zen Kaku Gothic New", "Noto Sans JP", system-ui, sans-serif',
+  mincho: '"Noto Serif JP", serif',
+};
+
+const NAV_LINKS = [{label:"ストア"},{label:"特集"},{label:"制作実績"},{label:"料金"}];
+const FOOTER_COLS = [
+  { title:"Shop", links:[{label:"すべての商品"},{label:"アパレル"},{label:"生活雑貨"},{label:"ギフト"}] },
+  { title:"About", links:[{label:"Hirotについて"},{label:"制作実績"},{label:"料金プラン"}] },
+  { title:"Support", links:[{label:"配送について"},{label:"返品・交換"},{label:"よくある質問"}] },
+];
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "forest",
+  "displayFont": "modern",
+  "gridCols": "4",
+  "heroReverse": false,
+  "footerDark": true
+}/*EDITMODE-END*/;
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const data = window.HIROT_DATA;
+
+  const [route, setRoute] = React.useState("home");
+  const [category, setCategory] = React.useState("すべて");
+  const [product, setProduct] = React.useState(null);
+  const [lines, setLines] = React.useState([]);
+  const [cartOpen, setCartOpen] = React.useState(false);
+
+  // apply theme + font tweaks to :root
+  React.useEffect(() => {
+    const r = document.documentElement.style;
+    const th = THEMES[t.theme] || THEMES.forest;
+    r.setProperty("--green-10", th.g10); r.setProperty("--green-20", th.g20);
+    r.setProperty("--green-30", th.g30); r.setProperty("--green-40", th.g40);
+    r.setProperty("--green-50", th.g50); r.setProperty("--green-60", th.g60);
+    r.setProperty("--green-70", th.g70);
+    r.setProperty("--font-display", FONTS[t.displayFont] || FONTS.modern);
+  }, [t.theme, t.displayFont]);
+
+  const cols = parseInt(t.gridCols, 10) || 4;
+  const cartCount = lines.reduce((s, l) => s + l.qty, 0);
+
+  function addToCart(p, qty = 1) {
+    setLines((prev) => {
+      const ex = prev.find((l) => l.product.id === p.id);
+      if (ex) return prev.map((l) => l.product.id === p.id ? { ...l, qty: l.qty + qty } : l);
+      return [...prev, { product: p, qty }];
+    });
+    setCartOpen(true);
+  }
+  function setQty(id, qty) { setLines((prev) => prev.map((l) => l.product.id === id ? { ...l, qty } : l)); }
+  function removeLine(id) { setLines((prev) => prev.filter((l) => l.product.id !== id)); }
+  function openProduct(p) { setProduct(p); setRoute("detail"); window.scrollTo(0, 0); }
+  function goList(cat) { if (cat) setCategory(cat); setRoute("list"); window.scrollTo(0, 0); }
+  function goHome() { setRoute("home"); window.scrollTo(0, 0); }
+
+  return (
+    <div>
+      <div className="app-nav">
+        <NavBar
+          links={NAV_LINKS}
+          cartCount={cartCount}
+          ctaLabel="無料で相談する"
+          onLogoClick={goHome}
+          onCartClick={() => setCartOpen(true)}
+          onLinkClick={(l) => l.label === "ストア" ? goList("すべて") : goList("すべて")}
+        />
+      </div>
+
+      {route === "home" && (
+        <window.HirotHome data={data} cols={cols} heroReverse={t.heroReverse}
+          onOpenProduct={openProduct} onAdd={addToCart} onShop={() => goList("すべて")} />
+      )}
+      {route === "list" && (
+        <window.HirotList data={data} category={category} cols={cols}
+          onCategory={setCategory} onOpen={openProduct} onAdd={addToCart} />
+      )}
+      {route === "detail" && product && (
+        <window.HirotDetail product={product} data={data} cols={cols}
+          onAdd={addToCart} onBack={() => goList(category)} onOpen={openProduct} />
+      )}
+
+      <Footer tone={t.footerDark ? "dark" : "light"} columns={FOOTER_COLS} />
+
+      <window.HirotCart open={cartOpen} lines={lines}
+        onClose={() => setCartOpen(false)} onQty={setQty} onRemove={removeLine} />
+
+      <TweaksPanel>
+        <TweakSection label="テーマ" />
+        <TweakRadio label="カラー" value={t.theme} options={["forest","sage","citrus"]} onChange={(v)=>setTweak("theme", v)} />
+        <TweakRadio label="表示フォント" value={t.displayFont} options={["modern","gothic","mincho"]} onChange={(v)=>setTweak("displayFont", v)} />
+        <TweakSection label="レイアウト" />
+        <TweakRadio label="商品グリッド" value={t.gridCols} options={["4","3"]} onChange={(v)=>setTweak("gridCols", v)} />
+        <TweakToggle label="ヒーロー画像を左に" value={t.heroReverse} onChange={(v)=>setTweak("heroReverse", v)} />
+        <TweakToggle label="フッターをダークに" value={t.footerDark} onChange={(v)=>setTweak("footerDark", v)} />
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

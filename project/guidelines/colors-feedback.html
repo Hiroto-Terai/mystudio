@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Feedback" subtitle="状態を伝えるセマンティックカラー" -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-card); }
+  .row { display: flex; padding: 20px; gap: 14px; }
+  .sw { flex: 1; height: 84px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box; color:#fff; }
+  .l { font: var(--caption); font-weight: 600; }
+  .h { font-size: 11px; font-family: var(--font-mono); opacity:0.75; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:var(--success)"><span class="l">Success</span><span class="h">#1f7d52</span></div>
+    <div class="sw" style="background:var(--info)"><span class="l">Info</span><span class="h">#2b6cb0</span></div>
+    <div class="sw" style="background:var(--warning)"><span class="l">Warning</span><span class="h">#b8860b</span></div>
+    <div class="sw" style="background:var(--danger)"><span class="l">Danger</span><span class="h">#c0392b</span></div>
+  </div>
+</body>
+</html>

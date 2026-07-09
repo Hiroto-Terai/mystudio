@@ -1,0 +1,30 @@
+/* ============================================================
+   Hirot — Spacing tokens
+   Base unit 8px, with fine sub-units for dense EC layouts.
+   ============================================================ */
+
+:root {
+  --space-xxs:  2px;
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   12px;
+  --space-lg:   16px;
+  --space-xl:   24px;
+  --space-xxl:  32px;
+  --space-3xl:  48px;
+  --space-huge: 64px;
+  --space-mega: 96px;
+
+  /* Section rhythm */
+  --section-pad-marketing: 96px;   /* editorial breathing room */
+  --section-pad-commerce:  48px;   /* denser transactional bands */
+
+  /* Card padding */
+  --card-pad:      32px;   /* pricing / feature cards */
+  --card-pad-tight:24px;   /* product tiles, compact rows */
+
+  /* Containers */
+  --container-wide:    1440px;
+  --container-default: 1200px;
+  --container-reading: 760px;
+}
