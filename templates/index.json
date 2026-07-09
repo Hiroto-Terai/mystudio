@@ -1,48 +1,83 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "image-with-text",
       "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Design & Commerce",
+            "text_style": "caption-with-letter-spacing"
+          }
+        },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading": "売れる体験を、ていねいに設計する。",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hirot は、企画からデザイン、運用までを一貫して支える EC 制作スタジオ。ブランドの世界観を、購入体験の隅々まで。</p>",
+            "text_style": "body"
           }
         },
         "button": {
-          "type": "buttons",
+          "type": "button",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_label": "ストアを見る",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
           }
         }
       },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+      "block_order": ["caption", "heading", "text", "button"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "height": "large",
+        "layout": "text_first",
+        "desktop_image_width": "medium",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "mobile_content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 24
+      }
+    },
+    "brand_strip": {
+      "type": "multicolumn",
+      "blocks": {
+        "c1": { "type": "column", "settings": { "title": "AOYAMA", "text": "<p></p>" } },
+        "c2": { "type": "column", "settings": { "title": "MORI", "text": "<p></p>" } },
+        "c3": { "type": "column", "settings": { "title": "KAZE", "text": "<p></p>" } },
+        "c4": { "type": "column", "settings": { "title": "SORA", "text": "<p></p>" } },
+        "c5": { "type": "column", "settings": { "title": "NAGI", "text": "<p></p>" } },
+        "c6": { "type": "column", "settings": { "title": "HANA", "text": "<p></p>" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "今週のおすすめ",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -53,23 +88,63 @@
         "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "link",
         "enable_desktop_slider": false,
         "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
-        "show_vendor": false,
+        "show_vendor": true,
         "show_rating": false,
-        "quick_add": "none",
+        "quick_add": "standard",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "value_band": {
+      "type": "multicolumn",
+      "blocks": {
+        "v1": {
+          "type": "column",
+          "settings": {
+            "title": "一貫した設計",
+            "text": "<p>情報設計から UI、実装、運用改善まで一気通貫で。</p>"
+          }
+        },
+        "v2": {
+          "type": "column",
+          "settings": {
+            "title": "編集的なデザイン",
+            "text": "<p>写真と余白を活かし、ブランドの世界観を丁寧に。</p>"
+          }
+        },
+        "v3": {
+          "type": "column",
+          "settings": {
+            "title": "成果への責任",
+            "text": "<p>CVR・回遊率を指標に、公開後も伴走します。</p>"
+          }
+        }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {
+        "title": "選ばれる、3つの理由",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     }
   },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+  "order": ["hero", "brand_strip", "featured_collection", "value_band"]
 }

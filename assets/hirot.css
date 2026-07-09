@@ -1,0 +1,193 @@
+/* ============================================================
+   Hirot — reskin layer over Dawn.
+   Loaded AFTER base.css so it overrides Dawn's defaults.
+   Colors come from the Hirot color schemes (settings_data.json);
+   this file carries the brand's typographic + component signatures:
+   thin editorial display type, Japanese-friendly leading, pill
+   buttons, and the stacked-shadow "paper halo" card depth.
+   ============================================================ */
+
+:root {
+  /* --- Hirot brand tokens (reference / used below) --- */
+  --hirot-ink: #0e100f;
+  --hirot-cream: #fbfbf5;
+  --hirot-white: #ffffff;
+  --hirot-green-05: #f1fbf4;
+  --hirot-green-10: #d8f6e2;
+  --hirot-green-20: #c1fbd4;
+  --hirot-green-50: #2ea36a;
+  --hirot-green-60: #1f7d52;
+  --hirot-green-70: #145038;
+  --hirot-shade-40: #a6a69f;
+  --hirot-shade-50: #71716b;
+  --hirot-hairline: #e8e8e1;
+
+  /* Signature stacked-tiny-shadow paper halo (Level 3). */
+  --hirot-halo:
+    0 8px 8px rgba(14, 16, 15, 0.04),
+    0 4px 4px rgba(14, 16, 15, 0.04),
+    0 2px 2px rgba(14, 16, 15, 0.04),
+    0 0 0 1px rgba(14, 16, 15, 0.05);
+
+  /* --- Font families: Japanese body, Latin display --- */
+  --font-body-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+
+  --font-heading-family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --font-heading-style: normal;
+  /* Thin display is the brand signature — never bump past 300. */
+  --font-heading-weight: 300;
+}
+
+/* ---- Base type: Japanese-friendly rhythm ---- */
+body {
+  /* palt = proportional CJK metrics; opens up loose kana spacing. */
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Headings: thin, editorial, tighter tracking ---- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.14;
+}
+
+/* Dawn's default display sizes run very large (up to ~7rem); Hirot's
+   editorial scale is quieter — the thinness carries the size. */
+.h0 {
+  font-size: clamp(4rem, 8vw, 5.5rem);
+}
+h1, .h1 {
+  font-size: clamp(3.2rem, 6vw, 4rem);
+}
+h2, .h2 {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+}
+h3, .h3 {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+/* Card / section titles that use body font stay medium weight for legibility. */
+.card__heading,
+.card-information__text {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Buttons: the pill is non-negotiable ---- */
+.button,
+.button:after,
+.shopify-payment-button__button--unbranded,
+.card__inner .quick-add__submit {
+  border-radius: 9999px;
+}
+.button {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+/* ---- Inputs: soft 8px radius, hairline border ---- */
+.field__input,
+.select__select,
+.customer .field input,
+.localization-form__select {
+  border-radius: 8px;
+}
+
+/* ---- Cards: 12px radius + signature paper halo on hover ---- */
+.card-wrapper,
+.card {
+  border-radius: 12px;
+}
+.card__inner {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+.card-wrapper {
+  transition: transform 0.2s ease;
+}
+.card-wrapper:hover {
+  transform: translateY(-3px);
+}
+.card-wrapper:hover .card__inner {
+  box-shadow: var(--hirot-halo);
+}
+/* Contained cards (card--card) get the halo at rest. */
+.card--card .card__inner {
+  box-shadow: var(--hirot-halo);
+}
+
+/* ---- Product media framing ---- */
+.card__media,
+.media {
+  border-radius: 12px;
+}
+
+/* ---- Badges / tags: mint pill, quiet all-caps ---- */
+.badge {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.9rem;
+}
+
+/* ---- Price: brand red only for the sale figure, ink for the rest ---- */
+.price__sale .price-item--sale,
+.price--on-sale .price-item--sale {
+  color: var(--hirot-green-70);
+}
+.price .price-item--regular {
+  font-weight: 600;
+}
+
+/* ---- Header: airy, editorial ---- */
+.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.header__heading-link .h2 {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.header__menu-item {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Links: brand green, no permanent underline ---- */
+a:not(.button):not(.card__heading a):hover {
+  text-decoration-color: var(--hirot-green-50);
+}
+
+/* ---- Footer polish (renders on the ink scheme) ---- */
+.footer__content-top {
+  padding-bottom: 3rem;
+}
+.footer-block__heading {
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+/* ---- Rich-text / section eyebrows: uppercase green accent ---- */
+.rich-text__caption,
+.title-wrapper .caption-with-letter-spacing,
+.caption-with-letter-spacing {
+  color: var(--hirot-green-60);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
