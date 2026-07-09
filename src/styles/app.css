@@ -1,0 +1,35 @@
+/* ============================================================
+   Storefront app-level base styles.
+   Design tokens live in styles.css → tokens/*. This file only
+   holds the app shell reset the prototype declared inline.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font: var(--body-md);
+}
+
+a {
+  color: inherit;
+}
+
+/* Sticky top navigation. */
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ---- Responsive collapse ---- */
+@media (max-width: 767px) {
+  /* NavBar center links collapse below tablet. */
+  .hirot-nav-links {
+    display: none !important;
+  }
+}

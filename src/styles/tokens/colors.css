@@ -1,0 +1,84 @@
+/* ============================================================
+   Hirot — Color tokens
+   Light-based editorial EC system. Green = growth / commerce.
+   ============================================================ */
+
+:root {
+  /* --- Surfaces --- */
+  --canvas-light: #ffffff;     /* pure white — cards, product tiles */
+  --canvas-cream: #fbfbf5;     /* warm off-white — page background */
+  --canvas-ink:   #0e100f;     /* near-black — rare cinematic band, footer */
+
+  /* --- Ink / neutral text --- */
+  --ink:       #0e100f;        /* primary text on light */
+  --on-ink:    #ffffff;        /* text on dark / filled pills */
+
+  /* --- Neutral shade ladder --- */
+  --shade-20: #ececed;         /* subtle fill, track */
+  --shade-30: #d7d7d2;         /* chip bg, dividers */
+  --shade-40: #a6a69f;         /* tertiary text */
+  --shade-50: #71716b;         /* secondary text */
+  --shade-60: #52524d;         /* deep secondary */
+  --shade-70: #38383a;         /* pressed pill */
+
+  /* --- Green scale (brand accent) --- */
+  --green-05: #f1fbf4;         /* faintest wash */
+  --green-10: #d8f6e2;         /* pistachio band */
+  --green-20: #c1fbd4;         /* aloe — featured / growth fill */
+  --green-30: #97e8b8;
+  --green-40: #55c98c;
+  --green-50: #2ea36a;         /* brand green — links, small accents */
+  --green-60: #1f7d52;         /* accent strong — text on light */
+  --green-70: #145038;         /* deepest — pressed / footer accent */
+
+  /* --- Hairlines --- */
+  --hairline-light: #e8e8e1;   /* 1px borders on light cards, table rows */
+  --hairline-cream: #ecece3;   /* borders on cream surface */
+  --hairline-ink:   #23241f;   /* rare dark-surface chrome */
+
+  /* --- Muted link tones (footer / tertiary) --- */
+  --link-quiet:  #8f8f88;
+  --link-mint:   #7fa892;
+
+  /* --- Feedback --- */
+  --danger:  #c0392b;
+  --warning: #b8860b;
+  --success: #1f7d52;
+  --info:    #2b6cb0;
+
+  /* ==========================================================
+     Semantic aliases — reference THESE in components.
+     ========================================================== */
+
+  /* Text */
+  --text-primary:   var(--ink);
+  --text-secondary: var(--shade-50);
+  --text-tertiary:  var(--shade-40);
+  --text-inverse:   var(--on-ink);
+  --text-accent:    var(--green-60);
+  --text-link:      var(--green-60);
+
+  /* Surface */
+  --surface-page:      var(--canvas-cream);
+  --surface-card:      var(--canvas-light);
+  --surface-raised:    var(--canvas-light);
+  --surface-featured:  var(--green-20);   /* aloe */
+  --surface-band:      var(--green-10);   /* pistachio */
+  --surface-wash:      var(--green-05);
+  --surface-inverse:   var(--canvas-ink);
+  --surface-muted:     var(--shade-20);
+
+  /* Border */
+  --border-hairline: var(--hairline-light);
+  --border-strong:   var(--ink);
+  --border-accent:   var(--green-40);
+
+  /* Actions */
+  --btn-primary-bg:    var(--ink);
+  --btn-primary-fg:    var(--on-ink);
+  --btn-primary-press: var(--shade-70);
+  --btn-featured-bg:   var(--green-20);
+  --btn-featured-fg:   var(--ink);
+  --btn-accent-bg:     var(--green-60);
+  --btn-accent-fg:     var(--on-ink);
+}

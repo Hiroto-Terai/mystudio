@@ -1,0 +1,65 @@
+/* ============================================================
+   Hirot — Typography tokens
+   Latin (English decoration) : Hanken Grotesk, thin weights.
+   Japanese (primary)         : Noto Sans JP.
+   The Latin-first display stack renders English glyphs in
+   Hanken and lets Japanese fall through to Noto Sans JP —
+   the editorial bilingual signature.
+   ============================================================ */
+
+:root {
+  /* --- Font families --- */
+  --font-display: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --font-body:    "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-jp:      "Noto Sans JP", system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* --- Weights (thin display is the brand) --- */
+  --weight-thin:    300;   /* display tier — never bump past this */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* --- Japanese-friendly line-heights (generous) --- */
+  --leading-display: 1.14;
+  --leading-heading: 1.4;
+  --leading-body:    1.85;   /* JP body wants air */
+  --leading-tight:   1.5;
+
+  /* --- Letter spacing (JP body opens slightly) --- */
+  --tracking-display: -0.01em;
+  --tracking-body:    0.02em;
+  --tracking-eyebrow: 0.18em;  /* all-caps English eyebrow */
+
+  /* ==========================================================
+     Type roles — size / weight / leading
+     ========================================================== */
+  --display-xxl: var(--weight-thin) 88px/1.06 var(--font-display);
+  --display-xl:  var(--weight-thin) 64px/1.08 var(--font-display);
+  --display-lg:  var(--weight-thin) 48px/1.12 var(--font-display);
+  --display-md:  var(--weight-thin) 36px/1.2  var(--font-display);
+
+  --heading-xl:  var(--weight-medium) 28px/1.4  var(--font-body);
+  --heading-lg:  var(--weight-medium) 24px/1.42 var(--font-body);
+  --heading-md:  var(--weight-medium) 20px/1.5  var(--font-body);
+  --heading-sm:  var(--weight-medium) 18px/1.5  var(--font-body);
+
+  --body-lg:     var(--weight-regular) 18px/1.9  var(--font-body);
+  --body-md:     var(--weight-regular) 16px/1.85 var(--font-body);
+  --body-strong: var(--weight-semibold) 16px/1.85 var(--font-body);
+  --caption:     var(--weight-regular) 14px/1.7  var(--font-body);
+  --micro:       var(--weight-medium) 13px/1.6  var(--font-body);
+  --eyebrow:     var(--weight-medium) 12px/1.4  var(--font-display);
+  --code:        var(--weight-regular) 15px/1.6  var(--font-mono);
+}
+
+/* Base application — consumers get readable JP defaults for free. */
+html {
+  font: var(--body-md);
+  color: var(--text-primary);
+  /* palt = proportional metrics for Japanese; tightens the loose CJK spacing */
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
