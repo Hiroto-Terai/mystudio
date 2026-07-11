@@ -1,28 +1,19 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "aoi_hero": {
-      "type": "aoi-hero",
+    "hirot_hero": {
+      "type": "hirot-hero",
       "settings": {
         "eyebrow": "Botanical Skincare",
         "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
-        "body": "国産植物由来の成分を、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていく。aoi の基礎化粧品。",
+        "body": "国産植物由来の成分を、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていく。",
         "cta_primary_label": "ストアを見る",
-        "cta_primary_url": "/collections/all",
+        "cta_primary_url": "shopify://collections/all",
         "cta_secondary_label": "ブランドについて",
-        "cta_secondary_url": "/pages/about"
+        "cta_secondary_url": "shopify://pages/about"
       }
     },
-    "aoi_trust": {
-      "type": "aoi-trust-strip",
+    "trust_strip": {
+      "type": "hirot-trust-strip",
       "blocks": {
         "trust_1": {
           "type": "item",
@@ -49,15 +40,43 @@
       "block_order": ["trust_1", "trust_2", "trust_3"],
       "settings": {}
     },
-    "aoi_categories": {
-      "type": "aoi-category-tiles",
+    "brand_strip": {
+      "type": "multicolumn",
+      "blocks": {
+        "c1": { "type": "column", "settings": { "title": "AOYAMA", "text": "<p></p>" } },
+        "c2": { "type": "column", "settings": { "title": "MORI", "text": "<p></p>" } },
+        "c3": { "type": "column", "settings": { "title": "KAZE", "text": "<p></p>" } },
+        "c4": { "type": "column", "settings": { "title": "SORA", "text": "<p></p>" } },
+        "c5": { "type": "column", "settings": { "title": "NAGI", "text": "<p></p>" } },
+        "c6": { "type": "column", "settings": { "title": "HANA", "text": "<p></p>" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "category_tiles": {
+      "type": "hirot-category-tiles",
       "blocks": {
         "cat_1": {
           "type": "tile",
           "settings": {
             "label": "クレンジング",
             "sub": "洗顔・クレンジング",
-            "url": "/collections/all"
+            "url": "shopify://collections/all"
           }
         },
         "cat_2": {
@@ -65,7 +84,7 @@
           "settings": {
             "label": "化粧水・美容液",
             "sub": "保湿・美白ケア",
-            "url": "/collections/all"
+            "url": "shopify://collections/all"
           }
         },
         "cat_3": {
@@ -73,7 +92,7 @@
           "settings": {
             "label": "クリーム・オイル",
             "sub": "集中保湿ケア",
-            "url": "/collections/all"
+            "url": "shopify://collections/all"
           }
         },
         "cat_4": {
@@ -81,7 +100,7 @@
           "settings": {
             "label": "ギフト・キット",
             "sub": "セットでお得",
-            "url": "/collections/all"
+            "url": "shopify://collections/all"
           }
         }
       },
@@ -92,27 +111,69 @@
       }
     },
     "featured_products": {
-      "type": "aoi-product-grid",
+      "type": "hirot-product-grid",
       "settings": {
         "eyebrow": "Featured",
-        "heading": "人気のアイテム",
-        "products_count": 8,
-        "padding-block-start": 40,
-        "padding-block-end": 56
+        "heading": "今週のおすすめ",
+        "collection": "all",
+        "products_count": 8
       }
     },
-    "aoi_philosophy": {
-      "type": "aoi-philosophy-band",
+    "philosophy_band": {
+      "type": "hirot-philosophy-band",
       "settings": {
         "eyebrow": "Our Philosophy",
         "heading": "<p>肌本来の力を、<br>植物が引き出す。</p>",
         "body": "私たちは、必要なものだけを選び抜いた処方にこだわります。国産のボタニカル成分と、余計なものを加えないシンプルなレシピで、敏感な肌にもやさしく寄り添います。",
         "cta_label": "ブランドストーリー",
-        "cta_url": "/pages/about"
+        "cta_url": "shopify://pages/about"
       }
     },
-    "aoi_journal": {
-      "type": "aoi-journal",
+    "value_band": {
+      "type": "multicolumn",
+      "blocks": {
+        "v1": {
+          "type": "column",
+          "settings": {
+            "title": "一貫した設計",
+            "text": "<p>情報設計から UI、実装、運用改善まで一気通貫で。</p>"
+          }
+        },
+        "v2": {
+          "type": "column",
+          "settings": {
+            "title": "編集的なデザイン",
+            "text": "<p>写真と余白を活かし、ブランドの世界観を丁寧に。</p>"
+          }
+        },
+        "v3": {
+          "type": "column",
+          "settings": {
+            "title": "成果への責任",
+            "text": "<p>CVR・回遊率を指標に、公開後も伴走します。</p>"
+          }
+        }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {
+        "title": "選ばれる、3つの理由",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "journal": {
+      "type": "hirot-journal",
       "blocks": {
         "article_1": {
           "type": "article",
@@ -128,7 +189,7 @@
           "settings": {
             "category": "ブランド",
             "date": "2025/12/20",
-            "title": "冬のスキンケアルーティン、aoi の場合",
+            "title": "冬のスキンケアルーティン",
             "excerpt": "朝・夜に分けて実践している、シンプルだけど効果的なお手入れの流れをご紹介します。"
           }
         },
@@ -148,20 +209,45 @@
         "heading": "読みもの"
       }
     },
-    "aoi_newsletter": {
+    "newsletter": {
       "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "最新情報をお届けします",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>新商品やお得な情報を、いち早くメールでお知らせします。</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
       "settings": {
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "padding_top": 48,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
-    "aoi_hero",
-    "aoi_trust",
-    "aoi_categories",
+    "hirot_hero",
+    "trust_strip",
+    "brand_strip",
+    "category_tiles",
     "featured_products",
-    "aoi_philosophy",
-    "aoi_journal",
-    "aoi_newsletter"
+    "philosophy_band",
+    "value_band",
+    "journal",
+    "newsletter"
   ]
 }

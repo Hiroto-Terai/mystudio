@@ -1,31 +1,22 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
+  "name": "t:sections.footer.name",
   "type": "footer",
-  "name": "Footer",
   "sections": {
-    "aoi_footer": {
-      "type": "aoi-footer",
+    "footer": {
+      "type": "hirot-footer",
       "blocks": {
         "col_shop": {
           "type": "column",
           "settings": {
             "title": "Shop",
             "link_1_label": "すべての商品",
-            "link_1_url": "/collections/all",
+            "link_1_url": "shopify://collections/all",
             "link_2_label": "クレンジング",
-            "link_2_url": "/collections/all",
+            "link_2_url": "shopify://collections/all",
             "link_3_label": "化粧水・美容液",
-            "link_3_url": "/collections/all",
+            "link_3_url": "shopify://collections/all",
             "link_4_label": "ギフト・キット",
-            "link_4_url": "/collections/all"
+            "link_4_url": "shopify://collections/all"
           }
         },
         "col_about": {
@@ -33,11 +24,11 @@
           "settings": {
             "title": "About",
             "link_1_label": "ブランドについて",
-            "link_1_url": "/pages/about",
+            "link_1_url": "shopify://pages/about",
             "link_2_label": "私たちの想い",
-            "link_2_url": "/pages/about",
+            "link_2_url": "shopify://pages/about",
             "link_3_label": "お問い合わせ",
-            "link_3_url": "/pages/contact"
+            "link_3_url": "shopify://pages/contact"
           }
         },
         "col_support": {
@@ -45,20 +36,21 @@
           "settings": {
             "title": "Support",
             "link_1_label": "配送について",
-            "link_1_url": "/pages/contact",
+            "link_1_url": "shopify://pages/contact",
             "link_2_label": "返品・交換",
-            "link_2_url": "/pages/contact",
+            "link_2_url": "shopify://pages/contact",
             "link_3_label": "アカウント",
-            "link_3_url": "/account"
+            "link_3_url": "shopify://account"
           }
         }
       },
       "block_order": ["col_shop", "col_about", "col_support"],
       "settings": {
-        "store_name": "aoi",
         "tagline": "植物のちからで、素肌をととのえる。国産ボタニカル基礎化粧品ブランド。"
       }
     }
   },
-  "order": ["aoi_footer"]
+  "order": [
+    "footer"
+  ]
 }

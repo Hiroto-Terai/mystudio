@@ -1,0 +1,663 @@
+/* ============================================================
+   Hirot — reskin layer over Dawn.
+   Loaded AFTER base.css so it overrides Dawn's defaults.
+   Colors come from the Hirot color schemes (settings_data.json);
+   this file carries the brand's typographic + component signatures:
+   thin editorial display type, Japanese-friendly leading, pill
+   buttons, and the stacked-shadow "paper halo" card depth.
+   ============================================================ */
+
+:root {
+  /* --- Hirot brand tokens (reference / used below) --- */
+  --hirot-ink: #0e100f;
+  --hirot-cream: #fbfbf5;
+  --hirot-white: #ffffff;
+  --hirot-green-05: #f1fbf4;
+  --hirot-green-10: #d8f6e2;
+  --hirot-green-20: #c1fbd4;
+  --hirot-green-30: #97e8b8;
+  --hirot-green-40: #55c98c;
+  --hirot-green-50: #2ea36a;
+  --hirot-green-60: #1f7d52;
+  --hirot-green-70: #145038;
+  --hirot-shade-20: #ececed;
+  --hirot-shade-30: #d7d7d2;
+  --hirot-shade-40: #a6a69f;
+  --hirot-shade-50: #71716b;
+  --hirot-shade-70: #38383a;
+  --hirot-hairline: #e8e8e1;
+  --hirot-surface-wash: var(--hirot-green-05);
+  --hirot-surface-band: var(--hirot-green-10);
+
+  /* Signature stacked-tiny-shadow paper halo (Level 3). */
+  --hirot-halo:
+    0 8px 8px rgba(14, 16, 15, 0.04),
+    0 4px 4px rgba(14, 16, 15, 0.04),
+    0 2px 2px rgba(14, 16, 15, 0.04),
+    0 0 0 1px rgba(14, 16, 15, 0.05);
+
+  /* --- Font families: Japanese body, Latin display --- */
+  --font-body-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+
+  --font-heading-family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --font-heading-style: normal;
+  /* Thin display is the brand signature — never bump past 300. */
+  --font-heading-weight: 300;
+}
+
+/* ---- Base type: Japanese-friendly rhythm ---- */
+body {
+  /* palt = proportional CJK metrics; opens up loose kana spacing. */
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Headings: thin, editorial, tighter tracking ---- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.14;
+}
+
+/* Dawn's default display sizes run very large (up to ~7rem); Hirot's
+   editorial scale is quieter — the thinness carries the size. */
+.h0 {
+  font-size: clamp(4rem, 8vw, 5.5rem);
+}
+h1, .h1 {
+  font-size: clamp(3.2rem, 6vw, 4rem);
+}
+h2, .h2 {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+}
+h3, .h3 {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+/* Card / section titles that use body font stay medium weight for legibility. */
+.card__heading,
+.card-information__text {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Buttons: the pill is non-negotiable ---- */
+.button,
+.button:after,
+.shopify-payment-button__button--unbranded,
+.card__inner .quick-add__submit {
+  border-radius: 9999px;
+}
+.button {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+/* ---- Inputs: soft 8px radius, hairline border ---- */
+.field__input,
+.select__select,
+.customer .field input,
+.localization-form__select {
+  border-radius: 8px;
+}
+
+/* ---- Cards: 12px radius + signature paper halo on hover ---- */
+.card-wrapper,
+.card {
+  border-radius: 12px;
+}
+.card__inner {
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+.card-wrapper {
+  transition: transform 0.2s ease;
+}
+.card-wrapper:hover {
+  transform: translateY(-3px);
+}
+.card-wrapper:hover .card__inner {
+  box-shadow: var(--hirot-halo);
+}
+/* Contained cards (card--card) get the halo at rest. */
+.card--card .card__inner {
+  box-shadow: var(--hirot-halo);
+}
+
+/* ---- Product media framing ---- */
+.card__media,
+.media {
+  border-radius: 12px;
+}
+
+/* ---- Badges / tags: mint pill, quiet all-caps ---- */
+.badge {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.9rem;
+}
+
+/* ---- Price: brand red only for the sale figure, ink for the rest ---- */
+.price__sale .price-item--sale,
+.price--on-sale .price-item--sale {
+  color: var(--hirot-green-70);
+}
+.price .price-item--regular {
+  font-weight: 600;
+}
+
+/* ---- Header: airy, editorial ---- */
+.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.header__heading-link .h2 {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.header__menu-item {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Links: brand green, no permanent underline ---- */
+a:not(.button):not(.card__heading a):hover {
+  text-decoration-color: var(--hirot-green-50);
+}
+
+/* ---- Footer polish (renders on the ink scheme) ---- */
+.footer__content-top {
+  padding-bottom: 3rem;
+}
+.footer-block__heading {
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+/* ---- Rich-text / section eyebrows: uppercase green accent ---- */
+.rich-text__caption,
+.title-wrapper .caption-with-letter-spacing,
+.caption-with-letter-spacing {
+  color: var(--hirot-green-60);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Homepage story sections — brought over from the brand's real
+   storefront (main), reproduced here as Dawn sections. Shared
+   eyebrow/heading pattern used by category tiles, product grid,
+   philosophy band, and journal.
+   ============================================================ */
+.hirot-section-eyebrow {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hirot-green-60);
+  display: block;
+}
+.hirot-section-heading {
+  font-family: var(--font-heading-family);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--hirot-ink);
+  margin: 10px 0 0;
+}
+
+/* Shared pill button used inside these sections (mirrors .button but as <a>/<button>). */
+.hirot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 50px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.hirot-btn--primary { background: var(--hirot-ink); color: #fff; border-color: var(--hirot-ink); }
+.hirot-btn--primary:hover { background: var(--hirot-shade-70); border-color: var(--hirot-shade-70); }
+.hirot-btn--outline { background: transparent; color: var(--hirot-ink); border-color: var(--hirot-ink); }
+.hirot-btn--outline:hover { background: var(--hirot-ink); color: #fff; }
+.hirot-btn--accent { background: var(--hirot-green-60); color: #fff; border-color: var(--hirot-green-60); }
+.hirot-btn--accent:hover { background: var(--hirot-green-70); border-color: var(--hirot-green-70); }
+.hirot-btn--ghost { background: transparent; color: var(--hirot-ink); border-color: transparent; }
+.hirot-btn--ghost:hover { background: var(--hirot-shade-20); }
+.hirot-btn--sm { height: 40px; padding: 0 16px; font-size: 14px; }
+.hirot-btn--lg { height: 50px; padding: 0 28px; font-size: 16px; }
+
+/* --- hirot-hero --- */
+.hirot-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 40px 32px;
+}
+.hirot-hero__grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hirot-hero__heading {
+  font-family: var(--font-heading-family);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 18px 0 0;
+  color: var(--hirot-ink);
+}
+.hirot-hero__body {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 440px;
+  margin: 22px 0 0;
+}
+.hirot-hero__cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.hirot-hero__image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--hirot-halo);
+}
+.hirot-hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- hirot-trust-strip --- */
+.hirot-trust {
+  max-width: 1000px;
+  margin: 8px auto 0;
+  padding: 16px 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hirot-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hirot-shade-50);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.hirot-trust__item svg { flex: none; color: var(--hirot-ink); }
+
+/* --- hirot-category-tiles --- */
+.hirot-categories {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 40px 24px;
+}
+.hirot-categories__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.hirot-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.hirot-tile {
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: transform .25s ease;
+}
+.hirot-tile:hover { transform: translateY(-4px); }
+.hirot-tile__image-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--hirot-surface-wash);
+}
+.hirot-tile__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.hirot-tile:hover .hirot-tile__image-wrap img { transform: scale(1.05); }
+.hirot-tile__title {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin-top: 14px;
+}
+.hirot-tile__sub {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-shade-40);
+}
+
+/* --- hirot-product-grid --- */
+.hirot-product-grid {
+  padding: 40px 40px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.hirot-product-grid__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+}
+.hirot-product-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.hirot-card {
+  background: var(--hirot-white);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.hirot-card__image-wrap {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  background: var(--hirot-surface-wash);
+}
+.hirot-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.hirot-card:hover .hirot-card__image-wrap img { transform: scale(1.05); }
+.hirot-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--hirot-ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+.hirot-card__soldout-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+.hirot-card__info { padding: 16px 0 0; }
+.hirot-card__brand {
+  font-family: var(--font-heading-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hirot-green-70);
+  margin-bottom: 6px;
+}
+.hirot-card__title {
+  font-family: var(--font-heading-family);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--hirot-ink);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.hirot-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.hirot-star--full { color: var(--hirot-green-70); }
+.hirot-star--half { color: var(--hirot-green-70); opacity: 0.5; }
+.hirot-star--empty { color: var(--hirot-shade-20); }
+.hirot-card__rating-score { font-size: 13px; font-weight: 600; color: var(--hirot-ink); margin-left: 4px; }
+.hirot-card__rating-count { font-size: 12px; color: var(--hirot-shade-50); margin-left: 2px; }
+.hirot-card__price-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+.hirot-card__price { font-family: var(--font-body-family); font-size: 16px; font-weight: 700; color: var(--hirot-ink); }
+.hirot-card__compare-price { font-size: 13px; color: var(--hirot-shade-50); text-decoration: line-through; }
+.hirot-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid var(--hirot-ink);
+  background: var(--hirot-ink);
+  color: #fff;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.hirot-card__btn:hover { background: var(--hirot-shade-70); border-color: var(--hirot-shade-70); }
+
+/* --- hirot-philosophy-band --- */
+.hirot-philosophy {
+  background: var(--hirot-surface-band);
+  padding: 80px 40px;
+}
+.hirot-philosophy__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hirot-philosophy__image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+.hirot-philosophy__image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hirot-philosophy__body {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--hirot-shade-50);
+  margin: 0 0 28px;
+  max-width: 440px;
+}
+
+/* --- hirot-journal --- */
+.hirot-journal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 40px;
+}
+.hirot-journal__header { text-align: center; margin-bottom: 36px; }
+.hirot-journal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.hirot-jcard { cursor: pointer; text-decoration: none; display: block; }
+.hirot-jcard__image-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--hirot-surface-wash);
+}
+.hirot-jcard__image-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.hirot-jcard:hover .hirot-jcard__image-wrap img { transform: scale(1.04); }
+.hirot-jcard__meta {
+  font-family: var(--font-heading-family);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hirot-green-60);
+  margin-top: 16px;
+}
+.hirot-jcard__title {
+  font-family: var(--font-body-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 8px 0 6px;
+}
+.hirot-jcard__excerpt {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-shade-50);
+  margin: 0;
+}
+
+/* --- hirot-footer --- */
+.hirot-footer {
+  background: var(--hirot-canvas-ink, #0e100f);
+  color: #fff;
+  padding: 64px 40px 32px;
+}
+.hirot-footer__inner { max-width: 1200px; margin: 0 auto; }
+.hirot-footer__top { display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; }
+.hirot-footer__brand { max-width: 280px; }
+.hirot-footer__logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.hirot-footer__logo-text {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.hirot-footer__tagline {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-link-quiet, #8f8f88);
+  margin-top: 16px;
+}
+.hirot-footer__nav { display: flex; flex-wrap: wrap; gap: 56px; }
+.hirot-footer__col { min-width: 120px; }
+.hirot-footer__col-title {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hirot-link-mint, #7fa892);
+  margin-bottom: 14px;
+  display: block;
+}
+.hirot-footer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.hirot-footer__link {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-link-quiet, #8f8f88);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.hirot-footer__link:hover { color: #fff; }
+.hirot-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hirot-hairline-ink, #23241f);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hirot-footer__copy { font-family: var(--font-body-family); font-size: 13px; color: var(--hirot-link-quiet, #8f8f88); }
+
+/* --- newsletter (Dawn stock section) — restyle to match --- */
+.newsletter__wrapper {
+  background: var(--hirot-surface-wash) !important;
+  border-radius: 20px !important;
+  padding: 56px 40px !important;
+}
+.newsletter__heading { font-weight: 300 !important; }
+.newsletter-form__field-wrapper .field__input {
+  border-radius: 9999px !important;
+  background: var(--hirot-white) !important;
+}
+.newsletter-form__button {
+  border-radius: 9999px !important;
+  background: var(--hirot-green-60) !important;
+  color: #fff !important;
+}
+.newsletter-form__button:hover { background: var(--hirot-green-70) !important; }
+
+/* ---- Responsive: mobile ---- */
+@media screen and (max-width: 60em) {
+  .hirot-hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hirot-hero { padding: 40px 20px 24px; }
+  .hirot-hero__heading { font-size: 40px; }
+  .hirot-categories__grid { grid-template-columns: repeat(2, 1fr); }
+  .hirot-categories { padding: 40px 20px 16px; }
+  .hirot-product-grid__grid { grid-template-columns: repeat(2, 1fr); }
+  .hirot-product-grid { padding: 24px 16px 40px; }
+  .hirot-philosophy__inner { grid-template-columns: 1fr; gap: 32px; }
+  .hirot-philosophy { padding: 56px 20px; }
+  .hirot-journal__grid { grid-template-columns: 1fr; gap: 20px; }
+  .hirot-journal { padding: 56px 20px 32px; }
+  .hirot-trust { padding: 16px 20px; gap: 20px; flex-direction: column; align-items: flex-start; }
+  .hirot-footer { padding: 48px 20px 24px; }
+  .hirot-footer__top { gap: 32px; }
+  .hirot-footer__nav { gap: 32px; }
+  .hirot-section-heading { font-size: 28px; }
+}
