@@ -1,50 +1,44 @@
 {
   "sections": {
-    "hero": {
-      "type": "image-with-text",
+    "hirot_hero": {
+      "type": "hirot-hero",
+      "settings": {
+        "eyebrow": "Botanical Skincare",
+        "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
+        "body": "国産植物由来の成分を、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていく。",
+        "cta_primary_label": "ストアを見る",
+        "cta_primary_url": "shopify://collections/all",
+        "cta_secondary_label": "ブランドについて",
+        "cta_secondary_url": "shopify://pages/about"
+      }
+    },
+    "trust_strip": {
+      "type": "hirot-trust-strip",
       "blocks": {
-        "caption": {
-          "type": "caption",
+        "trust_1": {
+          "type": "item",
           "settings": {
-            "caption": "Design & Commerce",
-            "text_style": "caption-with-letter-spacing"
+            "icon": "shipping",
+            "text": "¥5,000以上で送料無料"
           }
         },
-        "heading": {
-          "type": "heading",
+        "trust_2": {
+          "type": "item",
           "settings": {
-            "heading": "売れる体験を、ていねいに設計する。",
-            "heading_size": "h1"
+            "icon": "leaf",
+            "text": "無添加・低刺激処方"
           }
         },
-        "text": {
-          "type": "text",
+        "trust_3": {
+          "type": "item",
           "settings": {
-            "text": "<p>Hirot は、企画からデザイン、運用までを一貫して支える EC 制作スタジオ。ブランドの世界観を、購入体験の隅々まで。</p>",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "ストアを見る",
-            "button_link": "shopify://collections/all",
-            "button_style_secondary": false
+            "icon": "refresh",
+            "text": "30日間 返品保証"
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
-      "settings": {
-        "height": "large",
-        "layout": "text_first",
-        "desktop_image_width": "medium",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "mobile_content_alignment": "left",
-        "color_scheme": "scheme-1",
-        "padding_top": 52,
-        "padding_bottom": 24
-      }
+      "block_order": ["trust_1", "trust_2", "trust_3"],
+      "settings": {}
     },
     "brand_strip": {
       "type": "multicolumn",
@@ -74,32 +68,65 @@
         "padding_bottom": 16
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "category_tiles": {
+      "type": "hirot-category-tiles",
+      "blocks": {
+        "cat_1": {
+          "type": "tile",
+          "settings": {
+            "label": "クレンジング",
+            "sub": "洗顔・クレンジング",
+            "url": "shopify://collections/all"
+          }
+        },
+        "cat_2": {
+          "type": "tile",
+          "settings": {
+            "label": "化粧水・美容液",
+            "sub": "保湿・美白ケア",
+            "url": "shopify://collections/all"
+          }
+        },
+        "cat_3": {
+          "type": "tile",
+          "settings": {
+            "label": "クリーム・オイル",
+            "sub": "集中保湿ケア",
+            "url": "shopify://collections/all"
+          }
+        },
+        "cat_4": {
+          "type": "tile",
+          "settings": {
+            "label": "ギフト・キット",
+            "sub": "セットでお得",
+            "url": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
       "settings": {
-        "title": "今週のおすすめ",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
+        "eyebrow": "Shop by Category",
+        "heading": "カテゴリーから探す"
+      }
+    },
+    "featured_products": {
+      "type": "hirot-product-grid",
+      "settings": {
+        "eyebrow": "Featured",
+        "heading": "今週のおすすめ",
         "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": true,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "products_count": 8
+      }
+    },
+    "philosophy_band": {
+      "type": "hirot-philosophy-band",
+      "settings": {
+        "eyebrow": "Our Philosophy",
+        "heading": "<p>肌本来の力を、<br>植物が引き出す。</p>",
+        "body": "私たちは、必要なものだけを選び抜いた処方にこだわります。国産のボタニカル成分と、余計なものを加えないシンプルなレシピで、敏感な肌にもやさしく寄り添います。",
+        "cta_label": "ブランドストーリー",
+        "cta_url": "shopify://pages/about"
       }
     },
     "value_band": {
@@ -144,7 +171,83 @@
         "padding_top": 56,
         "padding_bottom": 56
       }
+    },
+    "journal": {
+      "type": "hirot-journal",
+      "blocks": {
+        "article_1": {
+          "type": "article",
+          "settings": {
+            "category": "スキンケア",
+            "date": "2026/01/10",
+            "title": "ローズヒップオイルの使い方と効果",
+            "excerpt": "乾燥が気になる季節に、ぜひ試してほしい一滴。使い方と効果を詳しくご紹介します。"
+          }
+        },
+        "article_2": {
+          "type": "article",
+          "settings": {
+            "category": "ブランド",
+            "date": "2025/12/20",
+            "title": "冬のスキンケアルーティン",
+            "excerpt": "朝・夜に分けて実践している、シンプルだけど効果的なお手入れの流れをご紹介します。"
+          }
+        },
+        "article_3": {
+          "type": "article",
+          "settings": {
+            "category": "成分解説",
+            "date": "2025/12/01",
+            "title": "ナイアシンアミドとは？美肌成分を深掘り",
+            "excerpt": "最近話題のナイアシンアミドについて、働きや使い方を詳しく解説。"
+          }
+        }
+      },
+      "block_order": ["article_1", "article_2", "article_3"],
+      "settings": {
+        "eyebrow": "Journal",
+        "heading": "読みもの"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "最新情報をお届けします",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>新商品やお得な情報を、いち早くメールでお知らせします。</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "padding_top": 48,
+        "padding_bottom": 80
+      }
     }
   },
-  "order": ["hero", "brand_strip", "featured_collection", "value_band"]
+  "order": [
+    "hirot_hero",
+    "trust_strip",
+    "brand_strip",
+    "category_tiles",
+    "featured_products",
+    "philosophy_band",
+    "value_band",
+    "journal",
+    "newsletter"
+  ]
 }
