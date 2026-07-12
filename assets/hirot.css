@@ -490,6 +490,90 @@ a:not(.button):not(.card__heading a):hover {
 }
 .hirot-card__btn:hover { background: var(--hirot-shade-70); border-color: var(--hirot-shade-70); }
 
+/* --- hirot-staff --- */
+.hirot-staff {
+  padding: var(--staff-pt, 56px) 0 var(--staff-pb, 64px);
+}
+.hirot-staff__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.hirot-staff__header {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+.hirot-staff__subtext {
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  margin-top: 12px;
+}
+.hirot-staff__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--staff-columns, 3), 1fr);
+  gap: 40px 24px;
+}
+.hirot-staff-card {
+  display: flex;
+  flex-direction: column;
+}
+.hirot-staff-card__photo {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--hirot-surface-wash);
+  margin-bottom: 16px;
+}
+.hirot-staff-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hirot-staff-card__name {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+}
+.hirot-staff-card__role {
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--hirot-green-60);
+  margin-top: 4px;
+}
+.hirot-staff-card__bio {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin-top: 12px;
+}
+.hirot-staff-card__social {
+  align-self: flex-start;
+  margin-top: 14px;
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hirot-hairline);
+  padding-bottom: 2px;
+  transition: border-color .2s ease;
+}
+.hirot-staff-card__social:hover { border-color: var(--hirot-ink); }
+@media screen and (max-width: 60em) {
+  .hirot-staff__inner { padding: 0 20px; }
+  .hirot-staff__grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-staff__grid { grid-template-columns: 1fr; }
+}
+
 /* --- hirot-philosophy-band --- */
 .hirot-philosophy {
   background: var(--hirot-surface-band);
