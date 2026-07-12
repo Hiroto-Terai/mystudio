@@ -1,0 +1,127 @@
+{%- liquid
+  assign staff_entries = metaobjects.staff_member.values
+-%}
+
+<div
+  class="hirot-staff"
+  style="--staff-columns: {{ section.settings.columns }}; --staff-pt: {{ section.settings.padding_top }}px; --staff-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
+>
+  <div class="hirot-staff__inner">
+    {%- if section.settings.heading != blank or section.settings.subtext != blank -%}
+      <div class="hirot-staff__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <p class="hirot-staff__subtext">{{ section.settings.subtext }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="hirot-staff__grid">
+      {%- for staff in staff_entries limit: section.settings.max_entries -%}
+        <article class="hirot-staff-card">
+          <div class="hirot-staff-card__photo">
+            {%- assign photo = staff.photo.value -%}
+            {%- if photo != blank -%}
+              {{ photo | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 360, 480', alt: staff.name.value }}
+            {%- endif -%}
+          </div>
+          <div class="hirot-staff-card__body">
+            {%- if staff.name.value != blank -%}
+              <h3 class="hirot-staff-card__name">{{ staff.name.value }}</h3>
+            {%- endif -%}
+            {%- if staff.role.value != blank -%}
+              <p class="hirot-staff-card__role">{{ staff.role.value }}</p>
+            {%- endif -%}
+            {%- if staff.bio.value != blank -%}
+              <p class="hirot-staff-card__bio">{{ staff.bio.value | newline_to_br }}</p>
+            {%- endif -%}
+            {%- if staff.social_url.value != blank -%}
+              <a
+                class="hirot-staff-card__social"
+                href="{{ staff.social_url.value }}"
+                target="_blank"
+                rel="noopener"
+              >
+                SNSを見る
+              </a>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "スタッフ紹介",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "スタッフ紹介"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "サブテキスト",
+      "default": "私たちのチームをご紹介します。"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "カラム数",
+      "options": [
+        { "value": "2", "label": "2列" },
+        { "value": "3", "label": "3列" },
+        { "value": "4", "label": "4列" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "max_entries",
+      "label": "表示上限件数",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "スタッフ紹介"
+    }
+  ]
+}
+{% endschema %}
