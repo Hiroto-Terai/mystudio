@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -40,7 +49,7 @@
             "link_2_label": "返品・交換",
             "link_2_url": "shopify://pages/contact",
             "link_3_label": "アカウント",
-            "link_3_url": "shopify://account"
+            "link_3_url": "/account"
           }
         }
       },
