@@ -40,34 +40,6 @@
       "block_order": ["trust_1", "trust_2", "trust_3"],
       "settings": {}
     },
-    "brand_strip": {
-      "type": "multicolumn",
-      "blocks": {
-        "c1": { "type": "column", "settings": { "title": "AOYAMA", "text": "<p></p>" } },
-        "c2": { "type": "column", "settings": { "title": "MORI", "text": "<p></p>" } },
-        "c3": { "type": "column", "settings": { "title": "KAZE", "text": "<p></p>" } },
-        "c4": { "type": "column", "settings": { "title": "SORA", "text": "<p></p>" } },
-        "c5": { "type": "column", "settings": { "title": "NAGI", "text": "<p></p>" } },
-        "c6": { "type": "column", "settings": { "title": "HANA", "text": "<p></p>" } }
-      },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
-      "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 6,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 16,
-        "padding_bottom": 16
-      }
-    },
     "category_tiles": {
       "type": "hirot-category-tiles",
       "blocks": {
@@ -251,7 +223,6 @@
   "order": [
     "hirot_hero",
     "trust_strip",
-    "brand_strip",
     "category_tiles",
     "featured_products",
     "philosophy_band",
