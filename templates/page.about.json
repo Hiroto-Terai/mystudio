@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "staff_intro": {
+      "type": "staff-list",
+      "settings": {
+        "heading": "スタッフ紹介",
+        "subtext": "私たちのチームをご紹介します。",
+        "columns": "3",
+        "max_entries": 6
+      }
+    }
+  },
+  "order": [
+    "main",
+    "staff_intro"
+  ]
+}
