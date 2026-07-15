@@ -172,6 +172,15 @@
         "padding_bottom": 56
       }
     },
+    "staff_intro": {
+      "type": "staff-list",
+      "settings": {
+        "heading": "スタッフ紹介",
+        "subtext": "私たちのチームをご紹介します。",
+        "columns": "3",
+        "max_entries": 6
+      }
+    },
     "journal": {
       "type": "hirot-journal",
       "blocks": {
@@ -247,6 +256,7 @@
     "featured_products",
     "philosophy_band",
     "value_band",
+    "staff_intro",
     "journal",
     "newsletter"
   ]
