@@ -1,10 +1,101 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "about_statement": {
+      "type": "hirot-philosophy-band",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "eyebrow": "About hirot",
+        "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
+        "body": "hirot は、国産の植物由来成分を軸にした基礎化粧品ブランドです。必要なものだけを、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていきます。（※プレースホルダ：ブランドの一言ステートメントに差し替え）",
+        "cta_label": "商品を見る",
+        "cta_url": "shopify://collections/all"
+      }
+    },
+    "about_promise": {
+      "type": "multicolumn",
+      "blocks": {
+        "p1": {
+          "type": "column",
+          "settings": {
+            "title": "厳選した成分",
+            "text": "<p>国産のボタニカル成分を中心に、肌への負担を考えて選び抜いています。（プレースホルダ）</p>"
+          }
+        },
+        "p2": {
+          "type": "column",
+          "settings": {
+            "title": "余計を足さない処方",
+            "text": "<p>必要なものだけのシンプルな設計。敏感な肌にもやさしく寄り添います。（プレースホルダ）</p>"
+          }
+        },
+        "p3": {
+          "type": "column",
+          "settings": {
+            "title": "国内での製造",
+            "text": "<p>品質管理の行き届いた国内工場で、一つひとつ丁寧に仕上げています。（プレースホルダ）</p>"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "title": "私たちの3つの約束",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "about_numbers": {
+      "type": "hirot-trust-strip",
+      "blocks": {
+        "n1": {
+          "type": "item",
+          "settings": {
+            "icon": "leaf",
+            "text": "国産植物成分 使用"
+          }
+        },
+        "n2": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "text": "無添加◯項目（プレースホルダ）"
+          }
+        },
+        "n3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "レビュー ★4.8（プレースホルダ）"
+          }
+        },
+        "n4": {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "text": "30日間 返品保証"
+          }
+        }
+      },
+      "block_order": ["n1", "n2", "n3", "n4"],
+      "settings": {}
+    },
+    "about_story": {
+      "type": "hirot-philosophy-band",
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "<p>敏感な肌にも、<br>心地よいものを。</p>",
+        "body": "「敏感な肌にも安心して使えるものが、どうしてこんなに少ないのだろう」— そんな疑問から hirot は始まりました。国産の植物由来成分を、必要なぶんだけ。余計なものを足さない処方で、毎日に寄り添う一本を目指しています。（※プレースホルダ：創業ストーリーに差し替え）",
+        "cta_label": "読みものを見る",
+        "cta_url": "shopify://blogs/news"
       }
     },
     "staff_intro": {
@@ -15,10 +106,73 @@
         "columns": "3",
         "max_entries": 6
       }
+    },
+    "about_products": {
+      "type": "hirot-product-grid",
+      "settings": {
+        "eyebrow": "Products",
+        "heading": "hirot のアイテム",
+        "collection": "all",
+        "products_count": 4,
+        "view_all_url": "shopify://collections/all"
+      }
+    },
+    "about_journal": {
+      "type": "hirot-journal",
+      "blocks": {
+        "a1": {
+          "type": "article",
+          "settings": {
+            "category": "成分解説",
+            "date": "2026/01/10",
+            "title": "国産ボタニカル成分について（プレースホルダ）",
+            "excerpt": "私たちが選ぶ植物成分の背景と、こだわりをご紹介します。"
+          }
+        },
+        "a2": {
+          "type": "article",
+          "settings": {
+            "category": "ブランド",
+            "date": "2025/12/20",
+            "title": "hirot のものづくり（プレースホルダ）",
+            "excerpt": "処方から製造まで、大切にしている考え方をお伝えします。"
+          }
+        },
+        "a3": {
+          "type": "article",
+          "settings": {
+            "category": "スキンケア",
+            "date": "2025/12/01",
+            "title": "毎日のお手入れのヒント（プレースホルダ）",
+            "excerpt": "シンプルだけど効果的な、日々のスキンケアの流れをご紹介。"
+          }
+        }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": {
+        "eyebrow": "Journal",
+        "heading": "読みもの"
+      }
+    },
+    "about_contact": {
+      "type": "hirot-philosophy-band",
+      "settings": {
+        "eyebrow": "Contact",
+        "heading": "<p>お気軽に<br>ご相談ください。</p>",
+        "body": "商品やご注文についてのご質問など、どうぞお問い合わせください。（プレースホルダ）",
+        "cta_label": "お問い合わせ",
+        "cta_url": "shopify://pages/contact"
+      }
     }
   },
   "order": [
-    "main",
-    "staff_intro"
+    "about_statement",
+    "about_promise",
+    "about_numbers",
+    "about_story",
+    "staff_intro",
+    "about_products",
+    "about_journal",
+    "about_contact"
   ]
 }

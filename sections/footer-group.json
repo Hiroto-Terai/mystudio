@@ -40,7 +40,7 @@
             "link_2_label": "返品・交換",
             "link_2_url": "shopify://pages/contact",
             "link_3_label": "アカウント",
-            "link_3_url": "shopify://account"
+            "link_3_url": "/account"
           }
         }
       },
