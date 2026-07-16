@@ -69,6 +69,15 @@
         "padding_bottom": 12
       }
     },
+    "product_details": {
+      "type": "hirot-product-details",
+      "settings": {
+        "eyebrow": "Product Details",
+        "show_rating": true,
+        "ingredients_heading": "全成分",
+        "usage_heading": "使い方"
+      }
+    },
     "disclosures": {
       "type": "disclosures",
       "settings": {
@@ -97,6 +106,7 @@
   },
   "order": [
     "main",
+    "product_details",
     "disclosures",
     "related-products"
   ]
