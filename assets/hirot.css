@@ -791,3 +791,42 @@ a:not(.button):not(.card__heading a):hover {
   .hirot-pdetails { padding: 40px 20px 48px; }
   .hirot-pdetails__row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
 }
+
+/* --- hirot-collection-header (コレクションページ上部) --- */
+.hirot-collection-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-collection-header__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: 20px;
+  padding: 56px 48px;
+}
+.hirot-collection-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-collection-header__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-collection-header__description p { margin: 0; }
+@media screen and (max-width: 60em) {
+  .hirot-collection-header { padding: 32px 20px 8px; }
+  .hirot-collection-header__inner { padding: 40px 28px; }
+  .hirot-collection-header__heading { font-size: 34px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-collection-header__inner { padding: 32px 20px; }
+  .hirot-collection-header__heading { font-size: 28px; }
+}

@@ -1,11 +1,10 @@
 {
   "sections": {
     "banner": {
-      "type": "main-collection-banner",
+      "type": "hirot-collection-header",
       "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "eyebrow": "Collection",
+        "show_description": true
       }
     },
     "product-grid": {
