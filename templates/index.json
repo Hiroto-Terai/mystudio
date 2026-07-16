@@ -99,7 +99,7 @@
     "philosophy_band": {
       "type": "hirot-philosophy-band",
       "settings": {
-        "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
+        "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
         "eyebrow": "Our Philosophy",
         "heading": "<p>肌本来の力を、<br>植物が引き出す。</p>",
         "body": "私たちは、必要なものだけを選び抜いた処方にこだわります。国産のボタニカル成分と、余計なものを加えないシンプルなレシピで、敏感な肌にもやさしく寄り添います。",
@@ -165,7 +165,7 @@
         "article_1": {
           "type": "article",
           "settings": {
-            "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
+            "image": "shopify://shop_images/photo-1466692476868-aef1dfb1e735.jpg",
             "category": "成分解説",
             "date": "2026/07/10",
             "title": "国産ボタニカル成分ができるまで",
