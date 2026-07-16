@@ -127,9 +127,10 @@
           "settings": {
             "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
             "category": "成分解説",
-            "date": "2026/01/10",
+            "date": "2026/07/10",
             "title": "国産ボタニカル成分ができるまで",
-            "excerpt": "私たちが選ぶ植物成分の背景と、こだわりをご紹介します。"
+            "excerpt": "私たちが選ぶ植物成分の背景と、こだわりをご紹介します。",
+            "url": "shopify://blogs/news/botanical-ingredients"
           }
         },
         "a2": {
@@ -137,9 +138,10 @@
           "settings": {
             "image": "shopify://shop_images/photo-1601049541289-9b1b7bbbfe19.jpg",
             "category": "ブランド",
-            "date": "2025/12/20",
+            "date": "2026/06/28",
             "title": "hirot のものづくりの現場から",
-            "excerpt": "処方から製造まで、大切にしている考え方をお伝えします。"
+            "excerpt": "処方から製造まで、大切にしている考え方をお伝えします。",
+            "url": "shopify://blogs/news/our-craft"
           }
         },
         "a3": {
@@ -147,9 +149,10 @@
           "settings": {
             "image": "shopify://shop_images/photo-1522335789203-aabd1fc54bc9.jpg",
             "category": "スキンケア",
-            "date": "2025/12/01",
+            "date": "2026/06/15",
             "title": "朝と夜、シンプルなお手入れの順番",
-            "excerpt": "シンプルだけど効果的な、日々のスキンケアの流れをご紹介。"
+            "excerpt": "シンプルだけど効果的な、日々のスキンケアの流れをご紹介。",
+            "url": "shopify://blogs/news/skincare-routine"
           }
         }
       },

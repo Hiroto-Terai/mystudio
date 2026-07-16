@@ -34,7 +34,11 @@
       {%- endfor -%}
     {%- else -%}
       {%- for block in section.blocks -%}
-        <div class="hirot-jcard" {{ block.shopify_attributes }}>
+        {%- if block.settings.url != blank -%}
+          <a href="{{ block.settings.url }}" class="hirot-jcard" {{ block.shopify_attributes }}>
+        {%- else -%}
+          <div class="hirot-jcard" {{ block.shopify_attributes }}>
+        {%- endif -%}
           <div class="hirot-jcard__image-wrap">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
@@ -51,7 +55,11 @@
           {%- if block.settings.excerpt != blank -%}
             <p class="hirot-jcard__excerpt">{{ block.settings.excerpt }}</p>
           {%- endif -%}
-        </div>
+        {%- if block.settings.url != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
   </div>
@@ -114,6 +122,11 @@
           "id": "excerpt",
           "label": "概要",
           "default": "乾燥が気になる季節に、ぜひ試してほしい一滴。使い方と効果を詳しくご紹介します。"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "リンク先の記事"
         }
       ]
     }
