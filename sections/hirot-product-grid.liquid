@@ -92,7 +92,8 @@
               <span class="hirot-card__compare-price">{{ product.compare_at_price | money }}</span>
             {%- endif -%}
           </div>
-          <button type="button" class="hirot-card__btn">カートに入れる</button>
+          {%- comment -%} カード全体が a のため button は不可（HTML 不正）。実カート追加もしない飾りなので装飾 span にする {%- endcomment -%}
+          <span class="hirot-card__btn" aria-hidden="true">カートに入れる</span>
         </div>
       </a>
     {%- endfor -%}

@@ -791,3 +791,112 @@ a:not(.button):not(.card__heading a):hover {
   .hirot-pdetails { padding: 40px 20px 48px; }
   .hirot-pdetails__row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
 }
+
+/* --- hirot-collection-header (コレクションページ上部) --- */
+.hirot-collection-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-collection-header__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: 20px;
+  padding: 56px 48px;
+}
+.hirot-collection-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-collection-header__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-collection-header__description p { margin: 0; }
+@media screen and (max-width: 60em) {
+  .hirot-collection-header { padding: 32px 20px 8px; }
+  .hirot-collection-header__inner { padding: 40px 28px; }
+  .hirot-collection-header__heading { font-size: 34px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-collection-header__inner { padding: 32px 20px; }
+  .hirot-collection-header__heading { font-size: 28px; }
+}
+
+/* --- コレクション商品グリッド (Dawn main-collection-product-grid の上書き) ---
+   Dawn 素のカードをトップページの .hirot-card と同系統のトーン
+   （白カード・角丸12px・halo ホバー・品名/価格のタイポ）に揃える。
+   フィルター/並び替えで再描画される DOM も同じ .product-grid / .card* class を
+   持つため、class のみで当てる。 */
+.product-grid .card--standard {
+  background: var(--hirot-white);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.product-grid .card--standard .card__inner,
+.product-grid .card--standard .card__media {
+  border-radius: 12px 12px 0 0;
+}
+/* 画像ロード中の下地は .hirot-card__image-wrap と同じ surface-wash */
+.product-grid .card--standard .card__inner {
+  background: var(--hirot-surface-wash);
+}
+/* halo は白カード全体に掛ける（グローバル既定の .card__inner 側は打ち消す） */
+.product-grid .card-wrapper:hover .card__inner {
+  box-shadow: none;
+}
+.product-grid .card-wrapper:hover .card--standard {
+  box-shadow: var(--hirot-halo);
+}
+/* 品名/価格が白カードの内側に乗るため左右にも余白を付ける */
+.product-grid .card--standard > .card__content .card__information {
+  padding: 14px 16px 18px;
+}
+/* 品名: .hirot-card__title と同じタイポ */
+.product-grid .card__heading {
+  font-family: var(--font-heading-family);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--hirot-ink);
+}
+/* .hirot-card はホバーで下線を引かないので揃える */
+.product-grid .underline-links-hover:hover a {
+  text-decoration: none;
+}
+/* 価格: .hirot-card__price / __compare-price と同じタイポ */
+.product-grid .price .price-item {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--hirot-ink);
+}
+.product-grid .price__sale .price-item--regular {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--hirot-shade-50);
+}
+.product-grid .price__sale .price-item--sale {
+  color: var(--hirot-green-70);
+}
+/* バッジ: .hirot-card__badge と同じ小ぶりのピル */
+.product-grid .card__badge .badge {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border: 0;
+}
+@media screen and (max-width: 40em) {
+  .product-grid .card--standard > .card__content .card__information {
+    padding: 12px 12px 14px;
+  }
+}
