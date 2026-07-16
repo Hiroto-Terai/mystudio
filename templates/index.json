@@ -9,7 +9,8 @@
         "cta_primary_label": "ストアを見る",
         "cta_primary_url": "shopify://collections/all",
         "cta_secondary_label": "ブランドについて",
-        "cta_secondary_url": "shopify://pages/about"
+        "cta_secondary_url": "shopify://pages/about",
+        "image": "shopify://shop_images/photo-1583209814683-c023dd293cc6.jpg"
       }
     },
     "trust_strip": {
@@ -46,33 +47,37 @@
         "cat_1": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/photo-1620916566398-39f1143ab7be_87dd1189-54a4-4e04-b526-754db2de44e1.jpg",
             "label": "クレンジング",
             "sub": "洗顔・クレンジング",
-            "url": "shopify://collections/all"
+            "url": "shopify://collections/cleansing"
           }
         },
         "cat_2": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/photo-1611930022073-b7a4ba5fcccd_6757bcf2-3626-494c-8a01-6b829668edc4.jpg",
             "label": "化粧水・美容液",
             "sub": "保湿・美白ケア",
-            "url": "shopify://collections/all"
+            "url": "shopify://collections/lotion-serum"
           }
         },
         "cat_3": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/photo-1608248543803-ba4f8c70ae0b_e5e1dd12-dab0-4751-9159-d4611b033126.jpg",
             "label": "クリーム・オイル",
             "sub": "集中保湿ケア",
-            "url": "shopify://collections/all"
+            "url": "shopify://collections/cream-oil"
           }
         },
         "cat_4": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/photo-1612817288484-6f916006741a_11d4b622-0741-4dff-9042-db77fb65e41d.jpg",
             "label": "ギフト・キット",
             "sub": "セットでお得",
-            "url": "shopify://collections/all"
+            "url": "shopify://collections/gift-kit"
           }
         }
       },
@@ -94,6 +99,7 @@
     "philosophy_band": {
       "type": "hirot-philosophy-band",
       "settings": {
+        "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
         "eyebrow": "Our Philosophy",
         "heading": "<p>肌本来の力を、<br>植物が引き出す。</p>",
         "body": "私たちは、必要なものだけを選び抜いた処方にこだわります。国産のボタニカル成分と、余計なものを加えないシンプルなレシピで、敏感な肌にもやさしく寄り添います。",
@@ -159,6 +165,7 @@
         "article_1": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
             "category": "スキンケア",
             "date": "2026/01/10",
             "title": "ローズヒップオイルの使い方と効果",
@@ -168,6 +175,7 @@
         "article_2": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1601049541289-9b1b7bbbfe19.jpg",
             "category": "ブランド",
             "date": "2025/12/20",
             "title": "冬のスキンケアルーティン",
@@ -177,6 +185,7 @@
         "article_3": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1522335789203-aabd1fc54bc9.jpg",
             "category": "成分解説",
             "date": "2025/12/01",
             "title": "ナイアシンアミドとは？美肌成分を深掘り",

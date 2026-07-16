@@ -3,6 +3,7 @@
     "about_statement": {
       "type": "hirot-philosophy-band",
       "settings": {
+        "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
         "eyebrow": "About hirot",
         "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
         "body": "hirot は、国産の植物由来成分を軸にした基礎化粧品ブランドです。肌に届けたいものだけを、敏感な肌にもやさしいシンプルな処方で。植物のちからを借りて、毎日のスキンケアを素肌がよろこぶ心地よい時間に変えていきます。",
@@ -91,6 +92,7 @@
     "about_story": {
       "type": "hirot-philosophy-band",
       "settings": {
+        "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
         "eyebrow": "Our Story",
         "heading": "<p>敏感な肌にも、<br>心地よいものを。</p>",
         "body": "「敏感な肌にも安心して使えるものが、どうしてこんなに少ないのだろう」— そんな疑問から hirot は始まりました。国内の生産者を訪ね、植物由来の成分を一つずつ確かめて、処方には必要なぶんだけ。クレンジングから UV ケアまで、毎日の素肌に寄り添うラインナップを少しずつ育てています。",
@@ -123,6 +125,7 @@
         "a1": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
             "category": "成分解説",
             "date": "2026/01/10",
             "title": "国産ボタニカル成分ができるまで",
@@ -132,6 +135,7 @@
         "a2": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1601049541289-9b1b7bbbfe19.jpg",
             "category": "ブランド",
             "date": "2025/12/20",
             "title": "hirot のものづくりの現場から",
@@ -141,6 +145,7 @@
         "a3": {
           "type": "article",
           "settings": {
+            "image": "shopify://shop_images/photo-1522335789203-aabd1fc54bc9.jpg",
             "category": "スキンケア",
             "date": "2025/12/01",
             "title": "朝と夜、シンプルなお手入れの順番",
@@ -157,6 +162,7 @@
     "about_contact": {
       "type": "hirot-philosophy-band",
       "settings": {
+        "image": "shopify://shop_images/photo-1519014816548-bf5fe059798b.jpg",
         "eyebrow": "Contact",
         "heading": "<p>お気軽に<br>ご相談ください。</p>",
         "body": "商品の選び方や使い方、ご注文についてのご質問など、どうぞお気軽にお問い合わせください。2営業日以内にご返信いたします。",
