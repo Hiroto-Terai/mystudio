@@ -52,50 +52,54 @@
         assign img_index = forloop.index0 | modulo: 12
         assign fallback_id = unsplash_ids[img_index]
       -%}
-      <a href="{{ product.url }}" class="hirot-card">
-        <div class="hirot-card__image-wrap">
-          {%- if product.featured_image != blank -%}
-            {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title }}
-          {%- else -%}
-            <img src="https://images.unsplash.com/{{ fallback_id }}?w=800&q=80" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1067">
-          {%- endif -%}
-          {%- if card_badge != blank -%}
-            <span class="hirot-card__badge">{{ card_badge }}</span>
-          {%- endif -%}
-          {%- unless product.available -%}
-            <span class="hirot-card__soldout-badge">売り切れ</span>
-          {%- endunless -%}
-        </div>
-        <div class="hirot-card__info">
-          <div class="hirot-card__brand">{{ shop.name | upcase }}</div>
-          <div class="hirot-card__title">{{ product.title }}</div>
-          {%- if rating > 0 -%}
-            <div class="hirot-card__rating">
-              {%- for i in (1..5) -%}
-                {%- if i <= full_stars -%}
-                  <span class="hirot-star hirot-star--full">★</span>
-                {%- elsif has_half and i == half_star_position -%}
-                  <span class="hirot-star hirot-star--half">★</span>
-                {%- else -%}
-                  <span class="hirot-star hirot-star--empty">★</span>
+      {%- comment -%} ハート（button）はカードリンクの兄弟に置く（a > button は HTML 不正）。カード全体を div 化しリンクと分離 {%- endcomment -%}
+      <div class="hirot-card hirot-card--fav">
+        <a href="{{ product.url }}" class="hirot-card__link">
+          <div class="hirot-card__image-wrap">
+            {%- if product.featured_image != blank -%}
+              {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title }}
+            {%- else -%}
+              <img src="https://images.unsplash.com/{{ fallback_id }}?w=800&q=80" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1067">
+            {%- endif -%}
+            {%- if card_badge != blank -%}
+              <span class="hirot-card__badge">{{ card_badge }}</span>
+            {%- endif -%}
+            {%- unless product.available -%}
+              <span class="hirot-card__soldout-badge">売り切れ</span>
+            {%- endunless -%}
+          </div>
+          <div class="hirot-card__info">
+            <div class="hirot-card__brand">{{ shop.name | upcase }}</div>
+            <div class="hirot-card__title">{{ product.title }}</div>
+            {%- if rating > 0 -%}
+              <div class="hirot-card__rating">
+                {%- for i in (1..5) -%}
+                  {%- if i <= full_stars -%}
+                    <span class="hirot-star hirot-star--full">★</span>
+                  {%- elsif has_half and i == half_star_position -%}
+                    <span class="hirot-star hirot-star--half">★</span>
+                  {%- else -%}
+                    <span class="hirot-star hirot-star--empty">★</span>
+                  {%- endif -%}
+                {%- endfor -%}
+                <span class="hirot-card__rating-score">{{ rating }}</span>
+                {%- if review_count -%}
+                  <span class="hirot-card__rating-count">({{ review_count }})</span>
                 {%- endif -%}
-              {%- endfor -%}
-              <span class="hirot-card__rating-score">{{ rating }}</span>
-              {%- if review_count -%}
-                <span class="hirot-card__rating-count">({{ review_count }})</span>
+              </div>
+            {%- endif -%}
+            <div class="hirot-card__price-wrap">
+              <span class="hirot-card__price">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <span class="hirot-card__compare-price">{{ product.compare_at_price | money }}</span>
               {%- endif -%}
             </div>
-          {%- endif -%}
-          <div class="hirot-card__price-wrap">
-            <span class="hirot-card__price">{{ product.price | money }}</span>
-            {%- if product.compare_at_price > product.price -%}
-              <span class="hirot-card__compare-price">{{ product.compare_at_price | money }}</span>
-            {%- endif -%}
+            {%- comment -%} リンク内のため button は不可（HTML 不正）。装飾 span だが「詳しく見る」はリンクの挙動説明として正しいので読み上げ対象に含める {%- endcomment -%}
+            <span class="hirot-card__btn">詳しく見る</span>
           </div>
-          {%- comment -%} カード全体が a のため button は不可（HTML 不正）。装飾 span だが「詳しく見る」はリンクの挙動説明として正しいので読み上げ対象に含める {%- endcomment -%}
-          <span class="hirot-card__btn">詳しく見る</span>
-        </div>
-      </a>
+        </a>
+        <hirot-fav-toggle data-product-handle="{{ product.handle }}"></hirot-fav-toggle>
+      </div>
     {%- endfor -%}
   </div>
 </div>

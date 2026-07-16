@@ -906,3 +906,122 @@ a:not(.button):not(.card__heading a):hover {
     padding: 12px 12px 14px;
   }
 }
+
+/* --- F1 お気に入り (wishlist): ハート・ヘッダーバッジ・一覧ページ --- */
+/* Web Component ラッパー自体は箱を作らず、button の absolute 基点は親カード側に置く */
+hirot-fav-toggle { display: contents; }
+.hirot-fav-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: var(--hirot-white);
+  box-shadow: var(--hirot-halo);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hirot-ink);
+}
+.hirot-fav-toggle svg { width: 22px; height: 22px; transition: transform 0.15s ease; }
+.hirot-fav-toggle:hover svg { transform: scale(1.07); }
+.hirot-fav-toggle svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-fav-toggle[aria-pressed="true"] { color: var(--hirot-green-60); }
+.hirot-fav-toggle[aria-pressed="true"] svg path { fill: currentColor; }
+
+/* ハートを持つカード: absolute 基点 + 売り切れバッジをハートの左へ退避
+   （既存グリッドの見た目を変えないため --fav 付きカードに限定して当てる） */
+.hirot-card--fav { position: relative; }
+.hirot-card--fav .hirot-card__soldout-badge { top: 21px; right: 62px; }
+.hirot-card__link { display: block; color: inherit; text-decoration: none; }
+
+/* Dawn カード（コレクション/検索/関連商品グリッド）: hirot-wishlist.js が注入するハートの基点 */
+.product-grid .card-wrapper { position: relative; }
+
+/* 商品詳細: メディアギャラリー右上に重ねる（Dawn のズームアイコンは左上なので干渉しない） */
+.product__media-wrapper { position: relative; }
+.product__media-wrapper .hirot-fav-toggle { top: 12px; right: 12px; }
+
+/* ヘッダーのお気に入りアイコン + 件数バッジ（Dawn .cart-count-bubble のジオメトリ + green-60） */
+.header__icon--wishlist { position: relative; }
+.header__icon--wishlist svg { width: 20px; height: 20px; transition: transform 0.15s ease; }
+.header__icon--wishlist:hover svg { transform: scale(1.07); }
+.hirot-fav-bubble {
+  position: absolute;
+  bottom: 8px;
+  left: 22px;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background: var(--hirot-green-60);
+  color: var(--hirot-white);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hirot-fav-bubble:empty { display: none; }
+
+/* --- hirot-wishlist (お気に入り一覧ページ) --- */
+hirot-wishlist-page { display: block; }
+.hirot-wishlist__band-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-wishlist__band {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-wishlist__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-wishlist__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-wishlist__count { font-size: 14px; color: var(--hirot-shade-50); margin: 8px 0 0; }
+.hirot-wishlist__count strong { color: var(--hirot-ink); font-weight: 600; }
+.hirot-wishlist__grid-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 40px 40px;
+}
+.hirot-wishlist__empty {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+.hirot-wishlist__empty svg { width: 56px; height: 56px; color: var(--hirot-shade-30); }
+.hirot-wishlist__empty svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-wishlist__empty-heading { font-size: 20px; font-weight: 500; color: var(--hirot-ink); margin: 16px 0 0; }
+.hirot-wishlist__empty-body { font-size: 14px; line-height: 1.8; color: var(--hirot-shade-50); margin: 8px 0 24px; }
+@media screen and (max-width: 60em) {
+  .hirot-wishlist__band-wrap { padding: 32px 20px 8px; }
+  .hirot-wishlist__band { padding: 40px 28px; }
+  .hirot-wishlist__heading { font-size: 34px; }
+  .hirot-wishlist__grid-wrap { padding: 8px 16px 32px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-wishlist__band { padding: 32px 20px; }
+  .hirot-wishlist__heading { font-size: 28px; }
+}

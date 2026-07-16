@@ -285,6 +285,14 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      {%- comment -%} hirot F1: お気に入り。件数バッジは hirot-wishlist.js の <hirot-fav-bubble> が localStorage から描画する {%- endcomment -%}
+      <a href="/pages/wishlist" class="header__icon header__icon--wishlist link focus-inset" aria-label="お気に入り">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <hirot-fav-bubble class="hirot-fav-bubble" aria-hidden="true"></hirot-fav-bubble>
+      </a>
+
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>

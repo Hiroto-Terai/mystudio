@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "hirot-wishlist",
+      "settings": {
+        "eyebrow": "Wishlist",
+        "heading": "お気に入り",
+        "description": "気になる商品をこのページに保存しています。ハートを押すと一覧から削除できます。"
+      }
+    }
+  },
+  "order": ["main"]
+}
