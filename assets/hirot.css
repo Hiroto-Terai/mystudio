@@ -745,3 +745,49 @@ a:not(.button):not(.card__heading a):hover {
   .hirot-footer__nav { gap: 32px; }
   .hirot-section-heading { font-size: 28px; }
 }
+
+/* --- hirot-product-details (PDP: metafield 駆動の評価・全成分・使い方) --- */
+.hirot-pdetails { padding: var(--pd-pt, 56px) 32px var(--pd-pb, 64px); }
+.hirot-pdetails__inner { max-width: 1200px; margin: 0 auto; }
+.hirot-pdetails__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 12px 0 28px;
+  font-size: 18px;
+}
+.hirot-pdetails__stars { display: inline-flex; gap: 2px; }
+.hirot-pdetails__score {
+  font-family: var(--font-heading-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  margin-left: 6px;
+}
+.hirot-pdetails__count { font-size: 13px; color: var(--hirot-shade-50); margin-left: 4px; }
+.hirot-pdetails__row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--hirot-shade-30);
+}
+.hirot-pdetails__heading {
+  font-family: var(--font-heading-family);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--hirot-ink);
+  margin: 0;
+}
+.hirot-pdetails__text {
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  margin: 0;
+}
+@media (max-width: 40em) {
+  .hirot-pdetails { padding: 40px 20px 48px; }
+  .hirot-pdetails__row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+}

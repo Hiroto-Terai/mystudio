@@ -1,0 +1,122 @@
+{%- liquid
+  assign rating = product.metafields.aoi.rating | times: 1.0
+  assign review_count = product.metafields.aoi.review_count
+  assign ingredients = product.metafields.aoi.ingredients.value
+  assign how_to_use = product.metafields.aoi.how_to_use.value
+  assign full_stars = rating | floor
+  assign remainder = rating | minus: full_stars
+  assign has_half = false
+  if remainder >= 0.3
+    assign has_half = true
+  endif
+  assign half_star_position = full_stars | plus: 1
+-%}
+
+<div
+  class="hirot-pdetails"
+  style="--pd-pt: {{ section.settings.padding_top }}px; --pd-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
+>
+  <div class="hirot-pdetails__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.show_rating and rating > 0 -%}
+      <div class="hirot-pdetails__rating">
+        <div class="hirot-pdetails__stars" aria-hidden="true">
+          {%- for i in (1..5) -%}
+            {%- if i <= full_stars -%}
+              <span class="hirot-star hirot-star--full">★</span>
+            {%- elsif has_half and i == half_star_position -%}
+              <span class="hirot-star hirot-star--half">★</span>
+            {%- else -%}
+              <span class="hirot-star hirot-star--empty">★</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <span class="hirot-pdetails__score">{{ rating }}</span>
+        {%- if review_count -%}
+          <span class="hirot-pdetails__count">{{ review_count }}件のレビュー</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if ingredients != blank -%}
+      <div class="hirot-pdetails__row">
+        <h3 class="hirot-pdetails__heading">{{ section.settings.ingredients_heading }}</h3>
+        <p class="hirot-pdetails__text">{{ ingredients | newline_to_br }}</p>
+      </div>
+    {%- endif -%}
+
+    {%- if how_to_use != blank -%}
+      <div class="hirot-pdetails__row">
+        <h3 class="hirot-pdetails__heading">{{ section.settings.usage_heading }}</h3>
+        <p class="hirot-pdetails__text">{{ how_to_use | newline_to_br }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "商品ディテール",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き",
+      "default": "Product Details"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "評価を表示",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ingredients_heading",
+      "label": "全成分の見出し",
+      "default": "全成分"
+    },
+    {
+      "type": "text",
+      "id": "usage_heading",
+      "label": "使い方の見出し",
+      "default": "使い方"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f6f5f1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "商品ディテール"
+    }
+  ]
+}
+{% endschema %}
