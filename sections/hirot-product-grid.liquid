@@ -92,8 +92,8 @@
               <span class="hirot-card__compare-price">{{ product.compare_at_price | money }}</span>
             {%- endif -%}
           </div>
-          {%- comment -%} カード全体が a のため button は不可（HTML 不正）。実カート追加もしない飾りなので装飾 span にする {%- endcomment -%}
-          <span class="hirot-card__btn" aria-hidden="true">カートに入れる</span>
+          {%- comment -%} カード全体が a のため button は不可（HTML 不正）。装飾 span だが「詳しく見る」はリンクの挙動説明として正しいので読み上げ対象に含める {%- endcomment -%}
+          <span class="hirot-card__btn">詳しく見る</span>
         </div>
       </a>
     {%- endfor -%}

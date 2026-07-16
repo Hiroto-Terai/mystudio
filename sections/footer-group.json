@@ -12,11 +12,11 @@
             "link_1_label": "すべての商品",
             "link_1_url": "shopify://collections/all",
             "link_2_label": "クレンジング",
-            "link_2_url": "shopify://collections/all",
+            "link_2_url": "shopify://collections/cleansing",
             "link_3_label": "化粧水・美容液",
-            "link_3_url": "shopify://collections/all",
+            "link_3_url": "shopify://collections/lotion-serum",
             "link_4_label": "ギフト・キット",
-            "link_4_url": "shopify://collections/all"
+            "link_4_url": "shopify://collections/gift-kit"
           }
         },
         "col_about": {

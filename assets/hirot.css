@@ -29,6 +29,12 @@
   --hirot-surface-wash: var(--hirot-green-05);
   --hirot-surface-band: var(--hirot-green-10);
 
+  /* --- Radii: card family (product/tile/journal/staff) shares one value,
+     large surface panels (hero/philosophy/newsletter/collection header)
+     another. Pills (9999px) and small badges stay literal. --- */
+  --hirot-radius-card: 12px;
+  --hirot-radius-panel: 20px;
+
   /* Signature stacked-tiny-shadow paper halo (Level 3). */
   --hirot-halo:
     0 8px 8px rgba(14, 16, 15, 0.04),
@@ -113,13 +119,13 @@ h3, .h3 {
   border-radius: 8px;
 }
 
-/* ---- Cards: 12px radius + signature paper halo on hover ---- */
+/* ---- Cards: shared radius token + signature paper halo on hover ---- */
 .card-wrapper,
 .card {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
 }
 .card__inner {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
   transition: box-shadow 0.2s ease;
 }
 .card-wrapper {
@@ -139,7 +145,7 @@ h3, .h3 {
 /* ---- Product media framing ---- */
 .card__media,
 .media {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
 }
 
 /* ---- Badges / tags: mint pill, quiet all-caps ---- */
@@ -287,7 +293,7 @@ a:not(.button):not(.card__heading a):hover {
   flex-wrap: wrap;
 }
 .hirot-hero__image-wrap {
-  border-radius: 20px;
+  border-radius: var(--hirot-radius-panel);
   overflow: hidden;
   aspect-ratio: 4 / 5;
   box-shadow: var(--hirot-halo);
@@ -345,7 +351,7 @@ a:not(.button):not(.card__heading a):hover {
 }
 .hirot-tile:hover { transform: translateY(-4px); }
 .hirot-tile__image-wrap {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background: var(--hirot-surface-wash);
@@ -392,7 +398,7 @@ a:not(.button):not(.card__heading a):hover {
 }
 .hirot-card {
   background: var(--hirot-white);
-  border-radius: 8px;
+  border-radius: var(--hirot-radius-card);
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
@@ -520,7 +526,7 @@ a:not(.button):not(.card__heading a):hover {
   flex-direction: column;
 }
 .hirot-staff-card__photo {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background: var(--hirot-surface-wash);
@@ -588,7 +594,7 @@ a:not(.button):not(.card__heading a):hover {
   align-items: center;
 }
 .hirot-philosophy__image-wrap {
-  border-radius: 20px;
+  border-radius: var(--hirot-radius-panel);
   overflow: hidden;
   aspect-ratio: 5 / 4;
 }
@@ -616,7 +622,7 @@ a:not(.button):not(.card__heading a):hover {
 }
 .hirot-jcard { cursor: pointer; text-decoration: none; display: block; }
 .hirot-jcard__image-wrap {
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
   overflow: hidden;
   aspect-ratio: 3 / 2;
   background: var(--hirot-surface-wash);
@@ -711,7 +717,7 @@ a:not(.button):not(.card__heading a):hover {
 /* --- newsletter (Dawn stock section) — restyle to match --- */
 .newsletter__wrapper {
   background: var(--hirot-surface-wash) !important;
-  border-radius: 20px !important;
+  border-radius: var(--hirot-radius-panel) !important;
   padding: 56px 40px !important;
 }
 .newsletter__heading { font-weight: 300 !important; }
@@ -800,7 +806,7 @@ a:not(.button):not(.card__heading a):hover {
 }
 .hirot-collection-header__inner {
   background: var(--hirot-surface-wash);
-  border-radius: 20px;
+  border-radius: var(--hirot-radius-panel);
   padding: 56px 48px;
 }
 .hirot-collection-header__heading {
@@ -833,18 +839,18 @@ a:not(.button):not(.card__heading a):hover {
 
 /* --- コレクション商品グリッド (Dawn main-collection-product-grid の上書き) ---
    Dawn 素のカードをトップページの .hirot-card と同系統のトーン
-   （白カード・角丸12px・halo ホバー・品名/価格のタイポ）に揃える。
+   （白カード・共通角丸トークン・halo ホバー・品名/価格のタイポ）に揃える。
    フィルター/並び替えで再描画される DOM も同じ .product-grid / .card* class を
    持つため、class のみで当てる。 */
 .product-grid .card--standard {
   background: var(--hirot-white);
-  border-radius: 12px;
+  border-radius: var(--hirot-radius-card);
   overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 .product-grid .card--standard .card__inner,
 .product-grid .card--standard .card__media {
-  border-radius: 12px 12px 0 0;
+  border-radius: var(--hirot-radius-card) var(--hirot-radius-card) 0 0;
 }
 /* 画像ロード中の下地は .hirot-card__image-wrap と同じ surface-wash */
 .product-grid .card--standard .card__inner {
