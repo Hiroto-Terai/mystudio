@@ -514,6 +514,11 @@
           </details>
         {%- endif -%}
 
+        {% comment %} hirot F3: 配送日時指定（ドロワー版・ギフト行の上） {% endcomment %}
+        {%- if cart != empty -%}
+          {%- render 'hirot-delivery', form_id: 'CartDrawer-Form', context: 'drawer', id_suffix: 'CartDrawer' -%}
+        {%- endif -%}
+
         {% comment %} hirot F7: ギフトラッピング（ドロワー版・小計の上） {% endcomment %}
         {%- if cart != empty -%}
           {%- render 'hirot-gift-wrap', form_id: 'CartDrawer-Form', context: 'drawer' -%}

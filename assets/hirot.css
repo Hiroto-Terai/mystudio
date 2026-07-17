@@ -1162,6 +1162,10 @@ hirot-delivery[hidden] { display: none; }
   margin: 8px 0 0;
   line-height: 1.6;
 }
+/* F3 ドロワー版（snippets/hirot-delivery.liquid context: 'drawer'）。
+   見出しなし・ラベルのみの省スペース版で、ギフト行の上に置く */
+.hirot-delivery-drawer { margin: 0 0 12px; }
+.hirot-cart-options__fields--drawer { gap: 8px; }
 .hirot-gift {
   border-top: 1px solid var(--hirot-hairline);
   margin-top: 16px;
@@ -1235,6 +1239,12 @@ hirot-delivery[hidden] { display: none; }
 @media screen and (max-width: 40em) {
   .hirot-shipbar { padding: 14px 16px; }
   .hirot-cart-options__fields { grid-template-columns: 1fr; }
+  /* ドロワーは常に幅が狭い前提のデザインなので横並びを維持する */
+  .hirot-cart-options__fields--drawer { grid-template-columns: 1fr 1fr; }
+}
+/* 320px 級だけはドロワー内でも縦積みに落とす */
+@media screen and (max-width: 20em) {
+  .hirot-cart-options__fields--drawer { grid-template-columns: 1fr; }
 }
 
 /* --- hirot-reviews（F4 レビュー表示・投稿。sections/hirot-reviews.liquid） --- */

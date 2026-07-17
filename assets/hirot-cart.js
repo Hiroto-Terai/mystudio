@@ -119,9 +119,9 @@
   customElements.define('hirot-gift-wrap', HirotGiftWrap);
 
   /* ---- F3 配送日時指定 ----
-   * sections/hirot-cart-options.liquid のルート要素（カートページのみ）。
+   * snippets/hirot-delivery.liquid のルート要素（カートページ / ドロワー共通）。
    * 選択の変更を cart attributes「配送希望日」「配送希望時間帯」へ即時 POST する。
-   * リロード時の復元はサーバー描画（cart.attributes → selected）が担う。 */
+   * リロード・ドロワー再描画時の復元はサーバー描画（cart.attributes → selected）が担う。 */
 
   const DELIVERY_DATE_ATTRIBUTE = '配送希望日';
   const DELIVERY_TIME_ATTRIBUTE = '配送希望時間帯';
