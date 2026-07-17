@@ -2,86 +2,18 @@
   F3 配送日時指定 + F7 ギフトラッピング（カートページの白パネル）。
   templates/cart.json で main-cart-footer の直前に配置し、footer 左カラム相当の
   幅（1.2fr / 1fr グリッドの左）に白パネルを置く。Dawn の main-cart-*.liquid は不改変。
-
-  配送日の選択肢は、Liquid で組むと 'now' がページキャッシュで古くなるため
-  assets/hirot-cart.js の <hirot-delivery> がクライアント側で生成する（翌日〜14日先）。
-  JS 無効時は「指定なし」のまま送信される縮退で良い。
-  選択は cart attributes「配送希望日」「配送希望時間帯」に記録し、
-  select の attributes[] + form 紐付けでチェックアウト時のフォーム送信とも一貫させる。
+  マークアップ本体はドロワーと共用の snippets/hirot-delivery.liquid にある。
 {%- endcomment -%}
-{%- liquid
-  assign saved_date = cart.attributes['配送希望日']
-  assign saved_time = cart.attributes['配送希望時間帯']
-  assign time_slots = '午前中,14〜16時,16〜18時,18〜20時' | split: ','
--%}
 <div class="page-width">
   <div class="hirot-cart-options-grid">
-    <hirot-delivery
-      data-exclude-sunday="{{ section.settings.exclude_sunday }}"
-      {% if cart == empty %}
-        hidden
-      {% endif %}
-    >
-      <div class="hirot-cart-options">
-        <h2 class="hirot-cart-options__title">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <circle cx="7" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="17" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          配送日時の指定
-          <span class="hirot-cart-options__optional">任意</span>
-        </h2>
-        <div class="hirot-cart-options__fields">
-          <div class="hirot-cart-options__field">
-            <label for="HirotDeliveryDate-{{ section.id }}">配送日</label>
-            <div class="hirot-select-wrap">
-              <select
-                id="HirotDeliveryDate-{{ section.id }}"
-                name="attributes[配送希望日]"
-                form="cart"
-                data-delivery-date
-                data-saved="{{ saved_date | escape }}"
-              >
-                <option value="">指定なし</option>
-                {%- if saved_date != blank -%}
-                  <option selected>{{ saved_date | escape }}</option>
-                {%- endif -%}
-              </select>
-            </div>
-          </div>
-          <div class="hirot-cart-options__field">
-            <label for="HirotDeliveryTime-{{ section.id }}">時間帯</label>
-            <div class="hirot-select-wrap">
-              <select
-                id="HirotDeliveryTime-{{ section.id }}"
-                name="attributes[配送希望時間帯]"
-                form="cart"
-                data-delivery-time
-              >
-                <option value="">指定なし</option>
-                {%- for slot in time_slots -%}
-                  <option
-                    {% if saved_time == slot %}
-                      selected
-                    {% endif %}
-                  >
-                    {{- slot -}}
-                  </option>
-                {%- endfor -%}
-              </select>
-            </div>
-          </div>
-        </div>
-        <p class="hirot-cart-options__help">翌日から14日先までご指定いただけます。</p>
-        {%- render 'hirot-gift-wrap',
-          form_id: 'cart',
-          context: 'page',
-          price: section.settings.price,
-          note: section.settings.note
-        -%}
-      </div>
-    </hirot-delivery>
+    {%- render 'hirot-delivery',
+      form_id: 'cart',
+      context: 'page',
+      id_suffix: section.id,
+      exclude_sunday: section.settings.exclude_sunday,
+      gift_price: section.settings.price,
+      gift_note: section.settings.note
+    -%}
   </div>
 </div>
 <script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
