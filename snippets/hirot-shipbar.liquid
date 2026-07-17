@@ -1,0 +1,40 @@
+{%- comment -%}
+  F2 送料無料プログレスバー（カートページ / ドロワー共通）。
+  カート更新時の追随は assets/hirot-cart.js の <hirot-shipbar> が行う
+  （ドロワーは Dawn がセクション再描画するためサーバー描画だけでも一致する）。
+
+  引数:
+  - threshold_yen: 送料無料しきい値（円）。省略時 5000
+  - context: 'page'（既定） | 'drawer'
+{%- endcomment -%}
+{%- liquid
+  assign threshold_yen = threshold_yen | default: 5000
+  if threshold_yen < 1
+    assign threshold_yen = 5000
+  endif
+  assign threshold = threshold_yen | times: 100
+  assign remaining = threshold | minus: cart.total_price
+  assign percent = cart.total_price | times: 100.0 | divided_by: threshold | at_most: 100 | round: 1
+-%}
+<hirot-shipbar
+  class="hirot-shipbar hirot-shipbar--{{ context | default: 'page' }}{% if remaining <= 0 %} hirot-shipbar--done{% endif %}"
+  data-threshold="{{ threshold }}"
+  role="status"
+  {% if cart == empty %}
+    hidden
+  {% endif %}
+>
+  <p class="hirot-shipbar__label hirot-shipbar__label--progress">
+    あと<span class="hirot-shipbar__amount" data-shipbar-amount>{{ remaining | at_least: 0 | money }}</span>で送料無料になります
+  </p>
+  <p class="hirot-shipbar__label hirot-shipbar__label--done">
+    <svg class="hirot-shipbar__check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 12.5l2.5 2.5 5.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    送料無料でお届けします
+  </p>
+  <div class="hirot-shipbar__track">
+    <div class="hirot-shipbar__fill" data-shipbar-fill style="width: {{ percent }}%;"></div>
+  </div>
+</hirot-shipbar>

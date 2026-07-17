@@ -906,3 +906,803 @@ a:not(.button):not(.card__heading a):hover {
     padding: 12px 12px 14px;
   }
 }
+
+/* --- F1 お気に入り (wishlist): ハート・ヘッダーバッジ・一覧ページ --- */
+/* Web Component ラッパー自体は箱を作らず、button の absolute 基点は親カード側に置く */
+hirot-fav-toggle { display: contents; }
+.hirot-fav-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: var(--hirot-white);
+  box-shadow: var(--hirot-halo);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hirot-ink);
+}
+.hirot-fav-toggle svg { width: 22px; height: 22px; transition: transform 0.15s ease; }
+.hirot-fav-toggle:hover svg { transform: scale(1.07); }
+.hirot-fav-toggle svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-fav-toggle[aria-pressed="true"] { color: var(--hirot-green-60); }
+.hirot-fav-toggle[aria-pressed="true"] svg path { fill: currentColor; }
+
+/* ハートを持つカード: absolute 基点 + 売り切れバッジをハートの左へ退避
+   （既存グリッドの見た目を変えないため --fav 付きカードに限定して当てる） */
+.hirot-card--fav { position: relative; }
+.hirot-card--fav .hirot-card__soldout-badge { top: 21px; right: 62px; }
+.hirot-card__link { display: block; color: inherit; text-decoration: none; }
+
+/* Dawn カード（コレクション/検索/関連商品グリッド）: hirot-wishlist.js が注入するハートの基点 */
+.product-grid .card-wrapper { position: relative; }
+
+/* 商品詳細: メディアギャラリー右上に重ねる（Dawn のズームアイコンは左上なので干渉しない） */
+.product__media-wrapper { position: relative; }
+.product__media-wrapper .hirot-fav-toggle { top: 12px; right: 12px; }
+
+/* ヘッダーのお気に入りアイコン + 件数バッジ（Dawn .cart-count-bubble のジオメトリ + green-60） */
+.header__icon--wishlist { position: relative; }
+.header__icon--wishlist svg { width: 20px; height: 20px; transition: transform 0.15s ease; }
+.header__icon--wishlist:hover svg { transform: scale(1.07); }
+.hirot-fav-bubble {
+  position: absolute;
+  bottom: 8px;
+  left: 22px;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background: var(--hirot-green-60);
+  color: var(--hirot-white);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hirot-fav-bubble:empty { display: none; }
+
+/* --- hirot-wishlist (お気に入り一覧ページ) --- */
+hirot-wishlist-page { display: block; }
+.hirot-wishlist__band-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-wishlist__band {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-wishlist__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-wishlist__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-wishlist__count { font-size: 14px; color: var(--hirot-shade-50); margin: 8px 0 0; }
+.hirot-wishlist__count strong { color: var(--hirot-ink); font-weight: 600; }
+.hirot-wishlist__grid-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 40px 40px;
+}
+.hirot-wishlist__empty {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+.hirot-wishlist__empty svg { width: 56px; height: 56px; color: var(--hirot-shade-30); }
+.hirot-wishlist__empty svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-wishlist__empty-heading { font-size: 20px; font-weight: 500; color: var(--hirot-ink); margin: 16px 0 0; }
+.hirot-wishlist__empty-body { font-size: 14px; line-height: 1.8; color: var(--hirot-shade-50); margin: 8px 0 24px; }
+@media screen and (max-width: 60em) {
+  .hirot-wishlist__band-wrap { padding: 32px 20px 8px; }
+  .hirot-wishlist__band { padding: 40px 28px; }
+  .hirot-wishlist__heading { font-size: 34px; }
+  .hirot-wishlist__grid-wrap { padding: 8px 16px 32px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-wishlist__band { padding: 32px 20px; }
+  .hirot-wishlist__heading { font-size: 28px; }
+}
+
+/* --- hirot-cart（F2 送料無料プログレスバー + F3 配送日時指定 + F7 ギフトラッピング） --- */
+
+/* F2 プログレスバー（カートページ / ドロワー共通。snippets/hirot-shipbar.liquid） */
+hirot-shipbar { display: block; }
+hirot-shipbar[hidden],
+hirot-gift-wrap[hidden] { display: none; }
+.hirot-shipbar {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 16px 20px;
+}
+.hirot-shipbar--page { margin-top: 24px; }
+.hirot-shipbar--drawer {
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+.hirot-shipbar__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-ink);
+  margin: 0 0 10px;
+}
+.hirot-shipbar__amount { font-weight: 700; color: var(--hirot-green-70); }
+.hirot-shipbar__label--done { display: none; }
+.hirot-shipbar--done .hirot-shipbar__label--progress { display: none; }
+.hirot-shipbar--done .hirot-shipbar__label--done {
+  display: flex;
+  font-weight: 600;
+  color: var(--hirot-green-70);
+}
+.hirot-shipbar__check { width: 18px; height: 18px; color: var(--hirot-green-60); flex: none; }
+.hirot-shipbar__track {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--hirot-white);
+  box-shadow: inset 0 0 0 1px rgba(14, 16, 15, 0.05);
+  overflow: hidden;
+}
+.hirot-shipbar__fill {
+  height: 100%;
+  min-width: 6px;
+  border-radius: 9999px;
+  background: var(--hirot-green-50);
+  transition: width 0.4s ease;
+}
+.hirot-shipbar--done .hirot-shipbar__fill { background: var(--hirot-green-60); width: 100%; }
+
+/* F3 + F7 オプションパネル（sections/hirot-cart-options。ギフト行はドロワー footer と共通） */
+hirot-delivery,
+hirot-gift-wrap { display: block; }
+hirot-delivery[hidden] { display: none; }
+.hirot-cart-options-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  padding-top: 8px;
+}
+.hirot-cart-options {
+  background: var(--hirot-white);
+  border: 1px solid var(--hirot-hairline);
+  border-radius: var(--hirot-radius-card);
+  padding: 20px;
+}
+.hirot-cart-options__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 0 0 14px;
+}
+.hirot-cart-options__title svg { width: 18px; height: 18px; color: var(--hirot-ink); flex: none; }
+.hirot-cart-options__optional {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--hirot-shade-50);
+}
+.hirot-cart-options__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.hirot-cart-options__field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hirot-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.hirot-select-wrap { position: relative; }
+.hirot-select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 44px; /* タップ領域 */
+  border-radius: 8px; /* hirot の入力角丸（base.css の .field__input 上書きと同値） */
+  border: 1px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  padding: 0 40px 0 14px;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+  cursor: pointer;
+}
+.hirot-select-wrap select:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+.hirot-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--hirot-ink);
+  border-bottom: 1.5px solid var(--hirot-ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.hirot-cart-options__help {
+  font-size: 12px;
+  color: var(--hirot-shade-50);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+.hirot-gift {
+  border-top: 1px solid var(--hirot-hairline);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.hirot-gift--drawer {
+  border-top: 0;
+  margin: 0 0 4px;
+  padding-top: 4px;
+}
+.hirot-gift__row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px; /* タップ領域 */
+  cursor: pointer;
+}
+.hirot-gift__row input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+.hirot-gift__box {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  border-radius: 6px;
+  border: 1.5px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.hirot-gift__box svg { width: 12px; height: 12px; color: var(--hirot-white); opacity: 0; }
+.hirot-gift__row input:checked ~ .hirot-gift__box {
+  background: var(--hirot-green-60);
+  border-color: var(--hirot-green-60);
+}
+.hirot-gift__row input:checked ~ .hirot-gift__box svg { opacity: 1; }
+.hirot-gift__row input:focus-visible ~ .hirot-gift__box {
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+  border-color: var(--hirot-green-50);
+}
+.hirot-gift__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--hirot-ink);
+  line-height: 1.6;
+}
+.hirot-gift__label svg { width: 18px; height: 18px; color: var(--hirot-ink); flex: none; }
+.hirot-gift__price { font-weight: 700; }
+.hirot-gift__note {
+  display: block;
+  font-size: 12px;
+  color: var(--hirot-shade-50);
+  margin: 2px 0 0;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 60em) {
+  .hirot-cart-options-grid { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-shipbar { padding: 14px 16px; }
+  .hirot-cart-options__fields { grid-template-columns: 1fr; }
+}
+
+/* --- hirot-reviews（F4 レビュー表示・投稿。sections/hirot-reviews.liquid） --- */
+.hirot-reviews { padding: var(--rv-pt, 56px) 32px var(--rv-pb, 64px); }
+.hirot-reviews__inner { max-width: 1200px; margin: 0 auto; }
+.hirot-reviews__count { font-size: 14px; color: var(--hirot-shade-50); margin: 12px 0 0; }
+.hirot-reviews__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 32px;
+}
+.hirot-reviews__list { display: grid; gap: 16px; align-content: start; }
+.hirot-review-card {
+  background: var(--hirot-white);
+  border: 1px solid var(--hirot-hairline);
+  border-radius: var(--hirot-radius-card);
+  padding: 22px 24px;
+  transition: box-shadow 0.2s ease;
+}
+.hirot-review-card:hover { box-shadow: var(--hirot-halo); }
+.hirot-review-card__stars { display: inline-flex; gap: 2px; font-size: 15px; line-height: 1; }
+.hirot-review-card__body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--hirot-ink);
+  margin: 10px 0 14px;
+}
+.hirot-review-card__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1px solid var(--hirot-hairline);
+  padding-top: 12px;
+}
+.hirot-review-card__author { font-size: 13px; font-weight: 600; color: var(--hirot-ink); }
+.hirot-review-card__date { font-size: 12px; color: var(--hirot-shade-50); }
+.hirot-reviews__empty {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 40px 28px;
+  text-align: center;
+}
+.hirot-reviews__empty-heading { font-size: 16px; font-weight: 500; color: var(--hirot-ink); margin: 0; }
+.hirot-reviews__empty-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 8px 0 0;
+}
+
+/* 投稿フォーム（緑ウォッシュのパネル。実送信は contact form） */
+.hirot-reviews__form-panel {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 28px;
+}
+.hirot-reviews__form-title {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 0;
+}
+.hirot-reviews__form-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 18px;
+}
+.hirot-reviews__form-error {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #b3261e;
+  background: var(--hirot-white);
+  border: 1px solid #e6c9c7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+}
+.hirot-reviews__field {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.hirot-reviews__field label,
+.hirot-reviews__field legend {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hirot-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+  padding: 0;
+}
+.hirot-reviews__field input[type='text'],
+.hirot-reviews__field input[type='email'],
+.hirot-reviews__field textarea {
+  width: 100%;
+  border-radius: 8px; /* hirot の入力角丸（.field__input 上書きと同値） */
+  border: 1px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+}
+.hirot-reviews__field input[type='text'],
+.hirot-reviews__field input[type='email'] {
+  height: 44px; /* タップ領域 */
+  padding: 0 14px;
+}
+.hirot-reviews__field textarea {
+  padding: 10px 14px;
+  line-height: 1.8;
+  resize: vertical;
+}
+.hirot-reviews__field input:focus-visible,
+.hirot-reviews__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+
+/* 星セレクタ: DOM は 5→1 の逆順 + row-reverse で視覚順 1→5。
+   input:checked ~ label が「選んだ星以下」を塗る CSS-only パターン。 */
+.hirot-star-picker { display: inline-flex; flex-direction: row-reverse; gap: 2px; }
+.hirot-star-picker input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.hirot-star-picker label {
+  font-size: 26px;
+  line-height: 1;
+  color: var(--hirot-shade-30);
+  cursor: pointer;
+  transition: color 0.1s ease;
+}
+.hirot-star-picker input:checked ~ label,
+.hirot-star-picker label:hover,
+.hirot-star-picker label:hover ~ label { color: var(--hirot-green-70); }
+.hirot-star-picker input:focus-visible + label {
+  outline: 2px solid var(--hirot-green-50);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.hirot-reviews__submit { width: 100%; }
+.hirot-reviews__success { text-align: center; padding: 24px 8px; }
+.hirot-reviews__success:focus { outline: none; }
+.hirot-reviews__success svg { width: 40px; height: 40px; color: var(--hirot-green-60); }
+.hirot-reviews__success-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-reviews__success-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 0;
+}
+
+@media screen and (max-width: 60em) {
+  .hirot-reviews { padding: 40px 20px 48px; }
+  .hirot-reviews__grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-reviews__form-panel { padding: 22px 18px; }
+}
+
+/* --- hirot-recent（F5 最近見た商品・PDP下部） --- */
+hirot-recent-products { display: block; }
+hirot-recent-products[hidden] { display: none; }
+.hirot-recent { padding: 56px 32px 64px; }
+.hirot-recent__inner { max-width: 1280px; margin: 0 auto; }
+.hirot-recent__header { margin-bottom: 28px; }
+/* カードは .hirot-card 流用。グリッドは hirot-product-grid と同じリズム */
+.hirot-recent__track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+@media screen and (max-width: 60em) {
+  .hirot-recent { padding: 40px 20px 48px; }
+  .hirot-recent__track { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-recent__track { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- hirot-restock（F6 再入荷通知・売り切れPDPの buy_buttons 直後） --- */
+hirot-restock { display: block; }
+.hirot-restock {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 20px 22px;
+  margin: 20px 0 8px;
+}
+.hirot-restock__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  margin: 0;
+}
+.hirot-restock__title svg { width: 20px; height: 20px; color: var(--hirot-green-60); flex-shrink: 0; }
+.hirot-restock__body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 14px;
+}
+.hirot-restock__form { display: flex; gap: 10px; }
+.hirot-restock__form input[type='email'] {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--hirot-shade-30);
+  border-radius: 8px;
+  background: var(--hirot-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+}
+.hirot-restock__form input[type='email']:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+.hirot-restock__form[hidden] { display: none; }
+.hirot-restock__success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hirot-green-70);
+  margin: 0;
+}
+.hirot-restock__success svg { width: 20px; height: 20px; flex-shrink: 0; }
+.hirot-restock__success[hidden] { display: none; }
+@media screen and (max-width: 40em) {
+  .hirot-restock__form { flex-direction: column; }
+  .hirot-restock__form .hirot-btn { width: 100%; }
+}
+
+/* --- hirot-faq（F8 FAQアコーディオン。metaobject faq 駆動・JSゼロ） --- */
+.hirot-faq { padding: 56px 32px 64px; }
+.hirot-faq__inner { max-width: 840px; margin: 0 auto; }
+.hirot-faq__header { margin-bottom: 28px; }
+.hirot-faq__item { border-bottom: 1px solid var(--hirot-hairline); }
+.hirot-faq__item:first-child { border-top: 1px solid var(--hirot-hairline); }
+.hirot-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 4px;
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--hirot-ink);
+  cursor: pointer;
+  list-style: none;
+}
+.hirot-faq__question::-webkit-details-marker { display: none; }
+.hirot-faq__question:focus-visible {
+  outline: 2px solid var(--hirot-green-50);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.hirot-faq__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--hirot-green-60);
+  transition: transform 0.2s ease;
+}
+/* プラス → 45度回転で「閉じる」の × に見せる（JSゼロの開閉表示） */
+.hirot-faq__item[open] .hirot-faq__icon { transform: rotate(45deg); }
+.hirot-faq__answer {
+  padding: 0 4px 22px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+}
+.hirot-faq__answer p { margin: 0; }
+@media screen and (max-width: 40em) {
+  .hirot-faq { padding: 40px 20px 48px; }
+}
+
+/* --- hirot-flow-showcase（F9 Flow自動化ショーケース。/pages/automation） ---
+   導入バンドは hirot-collection-header、カードの halo は card--card、
+   体験導線リンクは .hirot-staff-card__social と同じ様式。
+   デザイン仕様: docs/design/flow-showcase-spec.md */
+.hirot-flow-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-flow-header__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-flow-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-flow-header__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 24px;
+}
+.hirot-flow__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.hirot-flowcard {
+  background: var(--hirot-white);
+  border-radius: var(--hirot-radius-card);
+  box-shadow: var(--hirot-halo); /* card--card と同じ常時 halo。非リンクなので hover リフトなし */
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.hirot-flowcard--featured { grid-column: 1 / -1; }
+.hirot-flowcard--featured .hirot-flowcard__cols {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: center;
+}
+.hirot-flowcard__chip {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--hirot-green-10);
+  color: var(--hirot-green-70);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.hirot-flowcard__title {
+  font-family: var(--font-body-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 12px 0 6px;
+}
+.hirot-flowcard__body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 0;
+}
+.hirot-flowcard__diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+}
+.hirot-flowcard__link {
+  align-self: flex-start;
+  margin-top: 18px;
+  padding: 10px 0; /* 行のタップ領域を 44px 相当に */
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hirot-hairline);
+  transition: border-color 0.2s ease;
+}
+.hirot-flowcard__link:hover { border-color: var(--hirot-ink); }
+
+/* 図解 SVG（トリガー → 条件 → アクション）。淡い緑 → 白 → ink の 3 段階 */
+.hirot-fd-caption {
+  font-family: var(--font-heading-family);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  fill: var(--hirot-shade-50);
+  text-anchor: middle;
+}
+.hirot-fd-text {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+.hirot-fd-text--trigger { fill: var(--hirot-green-70); }
+.hirot-fd-text--condition { fill: var(--hirot-ink); }
+.hirot-fd-text--action { fill: var(--hirot-white); }
+.hirot-fd-node--trigger { fill: var(--hirot-green-10); stroke: var(--hirot-green-30); }
+.hirot-fd-node--condition { fill: var(--hirot-white); stroke: var(--hirot-shade-30); }
+.hirot-fd-node--action { fill: var(--hirot-ink); }
+.hirot-fd-arrow {
+  stroke: var(--hirot-shade-40);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hirot-flow-cta {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+.hirot-flow-cta__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 40px;
+  text-align: center;
+}
+.hirot-flow-cta__heading {
+  font-family: var(--font-heading-family);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--hirot-ink);
+  margin: 10px 0 0;
+}
+.hirot-flow-cta__body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 560px;
+  margin: 12px auto 24px;
+}
+@media screen and (max-width: 60em) {
+  .hirot-flow-header { padding: 32px 20px 8px; }
+  .hirot-flow-header__inner { padding: 40px 28px; }
+  .hirot-flow-header__heading { font-size: 34px; }
+  .hirot-flow { padding: 24px 20px 16px; }
+  .hirot-flowcard--featured .hirot-flowcard__cols { grid-template-columns: 1fr; gap: 8px; }
+  .hirot-flow-cta { padding: 16px 20px 48px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-flow-header__inner { padding: 32px 20px; }
+  .hirot-flow-header__heading { font-size: 28px; }
+  .hirot-flow__grid { grid-template-columns: 1fr; }
+  .hirot-flowcard { padding: 22px 20px; }
+  .hirot-flow-cta__inner { padding: 40px 24px; }
+}

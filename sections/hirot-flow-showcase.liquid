@@ -1,0 +1,311 @@
+{%- comment -%}
+  F9 Flow 自動化ショーケース（/pages/automation）。
+  導入バンド（hirot-collection-header 様式）→ 自動化例カード → 締め CTA パネル。
+  1 枚目のブロックのみ全幅 featured（テキスト左 / 図解右）。
+  図解はインライン SVG。rect・矢印・キャプションは固定し、
+  <text> のノードラベルだけを block settings から流す（2 行は上段/下段の 2 設定）。
+  デザイン仕様: docs/design/flow-showcase-spec.md / モック: docs/design/flow-showcase.html
+{%- endcomment -%}
+<section class="hirot-flow-header">
+  <div class="hirot-flow-header__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    <h1 class="hirot-flow-header__heading">{{ section.settings.heading }}</h1>
+    {%- if section.settings.description != blank -%}
+      <p class="hirot-flow-header__description">{{ section.settings.description }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="hirot-flow">
+  <div class="hirot-flow__grid">
+    {%- for block in section.blocks -%}
+      {%- capture diagram -%}
+        <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="{{ block.settings.diagram_alt | escape }}">
+          <text class="hirot-fd-caption" x="85" y="14">トリガー</text>
+          <text class="hirot-fd-caption" x="280" y="14">条件</text>
+          <text class="hirot-fd-caption" x="475" y="14">アクション</text>
+          <rect class="hirot-fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+          {%- if block.settings.trigger_2 != blank -%}
+            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="45">{{ block.settings.trigger_1 | escape }}</text>
+            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="62">{{ block.settings.trigger_2 | escape }}</text>
+          {%- else -%}
+            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="53">{{ block.settings.trigger_1 | escape }}</text>
+          {%- endif -%}
+          <path class="hirot-fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="hirot-fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+          {%- if block.settings.condition_2 != blank -%}
+            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="45">{{ block.settings.condition_1 | escape }}</text>
+            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="62">{{ block.settings.condition_2 | escape }}</text>
+          {%- else -%}
+            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="53">{{ block.settings.condition_1 | escape }}</text>
+          {%- endif -%}
+          <path class="hirot-fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="hirot-fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+          {%- if block.settings.action_2 != blank -%}
+            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="45">{{ block.settings.action_1 | escape }}</text>
+            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="62">{{ block.settings.action_2 | escape }}</text>
+          {%- else -%}
+            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="53">{{ block.settings.action_1 | escape }}</text>
+          {%- endif -%}
+        </svg>
+      {%- endcapture -%}
+
+      <article class="hirot-flowcard{% if forloop.first %} hirot-flowcard--featured{% endif %}" {{ block.shopify_attributes }}>
+        {%- if forloop.first -%}
+          <div class="hirot-flowcard__cols">
+            <div>
+              <span class="hirot-flowcard__chip">{{ block.settings.chip }}</span>
+              <h2 class="hirot-flowcard__title">{{ block.settings.title }}</h2>
+              <p class="hirot-flowcard__body">{{ block.settings.body }}</p>
+              {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+                <a class="hirot-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
+              {%- endif -%}
+            </div>
+            {{ diagram }}
+          </div>
+        {%- else -%}
+          <span class="hirot-flowcard__chip">{{ block.settings.chip }}</span>
+          <h2 class="hirot-flowcard__title">{{ block.settings.title }}</h2>
+          <p class="hirot-flowcard__body">{{ block.settings.body }}</p>
+          {{ diagram }}
+          {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+            <a class="hirot-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
+          {%- endif -%}
+        {%- endif -%}
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+{%- if section.settings.cta_heading != blank -%}
+  <section class="hirot-flow-cta">
+    <div class="hirot-flow-cta__inner">
+      {%- if section.settings.cta_eyebrow != blank -%}
+        <span class="hirot-section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="hirot-flow-cta__heading">{{ section.settings.cta_heading }}</h2>
+      {%- if section.settings.cta_body != blank -%}
+        <p class="hirot-flow-cta__body">{{ section.settings.cta_body }}</p>
+      {%- endif -%}
+      {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+        <a class="hirot-btn hirot-btn--accent" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Flow 自動化ショーケース",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "導入バンド"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き (英語)",
+      "default": "Automation"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "Flow でできる、店舗運用の自動化"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "説明文",
+      "default": "Shopify Flow を使うと、追加アプリなしで「きっかけ → 条件 → アクション」の自動化を組み立てられます。このストアで実際に構成できる 5 つの例をご紹介します。"
+    },
+    {
+      "type": "header",
+      "content": "締め CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "CTA 眉書き (英語)",
+      "default": "Consulting"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA 見出し",
+      "default": "この他の自動化も、ご相談ください"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA 本文",
+      "default": "在庫アラート、リピート促進、社内通知など、運用に合わせた自動化を設計します。まずは今の業務フローをお聞かせください。"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA ボタンラベル",
+      "default": "自動化の相談をする"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA ボタンリンク"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "flow_example",
+      "name": "自動化例",
+      "settings": [
+        {
+          "type": "text",
+          "id": "chip",
+          "label": "カテゴリーチップ",
+          "default": "マーケティング"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "タイトル"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "本文"
+        },
+        {
+          "type": "header",
+          "content": "図解ラベル（下段は 2 行にする場合のみ）"
+        },
+        {
+          "type": "text",
+          "id": "trigger_1",
+          "label": "トリガー 上段"
+        },
+        {
+          "type": "text",
+          "id": "trigger_2",
+          "label": "トリガー 下段（任意）"
+        },
+        {
+          "type": "text",
+          "id": "condition_1",
+          "label": "条件 上段"
+        },
+        {
+          "type": "text",
+          "id": "condition_2",
+          "label": "条件 下段（任意）"
+        },
+        {
+          "type": "text",
+          "id": "action_1",
+          "label": "アクション 上段"
+        },
+        {
+          "type": "text",
+          "id": "action_2",
+          "label": "アクション 下段（任意）"
+        },
+        {
+          "type": "text",
+          "id": "diagram_alt",
+          "label": "図解の説明（読み上げ用）"
+        },
+        {
+          "type": "header",
+          "content": "体験導線（任意）"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "リンクラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "リンク先"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flow 自動化ショーケース",
+      "blocks": [
+        {
+          "type": "flow_example",
+          "settings": {
+            "chip": "マーケティング",
+            "title": "お気に入りをきっかけに、LINE・メールでお知らせ",
+            "body": "お客様が商品をお気に入りに追加したら、その商品のセール開始や在庫わずかのタイミングで LINE・メールに通知を配信。買い忘れを防ぎ、再訪問を後押しします。",
+            "trigger_1": "お気に入りに追加",
+            "condition_1": "セール開始 /",
+            "condition_2": "在庫わずか",
+            "action_1": "LINE・メールで通知",
+            "diagram_alt": "お気に入りに追加をきっかけに、セール開始または在庫わずかのとき、LINE・メールで通知する流れ",
+            "link_label": "お気に入り機能を体験する",
+            "link_url": "/pages/wishlist"
+          }
+        },
+        {
+          "type": "flow_example",
+          "settings": {
+            "chip": "マーケティング",
+            "title": "再入荷を待っているお客様へ自動配信",
+            "body": "売り切れ商品の在庫が復活したら、再入荷通知に登録したお客様へメールを自動配信。機会損失をそのまま売上に変えます。",
+            "trigger_1": "在庫が復活",
+            "trigger_2": "（0 → 1 以上）",
+            "condition_1": "通知の登録あり",
+            "action_1": "再入荷メールを配信",
+            "diagram_alt": "在庫が 0 から 1 以上に戻ったとき、通知の登録があるお客様へ再入荷メールを配信する流れ"
+          }
+        },
+        {
+          "type": "flow_example",
+          "settings": {
+            "chip": "顧客フォロー",
+            "title": "購入後、ちょうどよい頃にレビュー依頼",
+            "body": "商品の発送完了から 7 日後、使い心地が分かってきたタイミングでレビュー依頼メールを自動送信。無理なくレビューが集まります。",
+            "trigger_1": "注文の発送完了",
+            "condition_1": "発送から 7 日経過",
+            "action_1": "レビュー依頼メール送信",
+            "diagram_alt": "注文の発送完了から 7 日経過したら、レビュー依頼メールを送信する流れ"
+          }
+        },
+        {
+          "type": "flow_example",
+          "settings": {
+            "chip": "顧客管理",
+            "title": "上位顧客に VIP タグを自動付与",
+            "body": "累計購入額が ¥50,000 を超えたお客様に「VIP」タグを自動で付与。限定クーポンの配布や優先案内など、上位顧客施策の土台になります。",
+            "trigger_1": "注文が作成された",
+            "condition_1": "累計購入額",
+            "condition_2": "¥50,000 以上",
+            "action_1": "「VIP」タグを付与",
+            "diagram_alt": "注文が作成されたとき、累計購入額が 5 万円以上なら顧客に VIP タグを付与する流れ"
+          }
+        },
+        {
+          "type": "flow_example",
+          "settings": {
+            "chip": "不正対策",
+            "title": "高リスク注文を自動で保留",
+            "body": "不正の可能性が高いと判定された注文は、支払い処理を自動で保留して担当者へ通知。チャージバック被害を出荷前に食い止めます。",
+            "trigger_1": "注文が作成された",
+            "condition_1": "リスク評価が High",
+            "action_1": "支払いを保留し",
+            "action_2": "担当へ通知",
+            "diagram_alt": "注文が作成されたとき、リスク評価が High なら支払いを保留し担当へ通知する流れ"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

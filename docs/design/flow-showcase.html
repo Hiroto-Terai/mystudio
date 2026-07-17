@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hirot — Flow 自動化ショーケース（F9）デザインモック</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== hirot トークン（assets/hirot.css より実値コピー） ===== */
+:root {
+  --hirot-ink: #0e100f;
+  --hirot-cream: #fbfbf5;
+  --hirot-white: #ffffff;
+  --hirot-green-05: #f1fbf4;
+  --hirot-green-10: #d8f6e2;
+  --hirot-green-20: #c1fbd4;
+  --hirot-green-30: #97e8b8;
+  --hirot-green-40: #55c98c;
+  --hirot-green-50: #2ea36a;
+  --hirot-green-60: #1f7d52;
+  --hirot-green-70: #145038;
+  --hirot-shade-20: #ececed;
+  --hirot-shade-30: #d7d7d2;
+  --hirot-shade-40: #a6a69f;
+  --hirot-shade-50: #71716b;
+  --hirot-shade-70: #38383a;
+  --hirot-hairline: #e8e8e1;
+  --hirot-surface-wash: var(--hirot-green-05);
+  --hirot-surface-band: var(--hirot-green-10);
+  --hirot-radius-card: 12px;
+  --hirot-radius-panel: 20px;
+  --hirot-halo:
+    0 8px 8px rgba(14, 16, 15, 0.04),
+    0 4px 4px rgba(14, 16, 15, 0.04),
+    0 2px 2px rgba(14, 16, 15, 0.04),
+    0 0 0 1px rgba(14, 16, 15, 0.05);
+  --font-body-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-heading-family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--hirot-white);
+  color: var(--hirot-ink);
+  font-family: var(--font-body-family);
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+.hirot-section-eyebrow {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hirot-green-60);
+  display: block;
+}
+.hirot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 50px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.hirot-btn--accent { background: var(--hirot-green-60); color: #fff; border-color: var(--hirot-green-60); }
+.hirot-btn--accent:hover { background: var(--hirot-green-70); border-color: var(--hirot-green-70); }
+
+/* ===== 1. 導入バンド（hirot-collection-header 様式） ===== */
+.hirot-flow-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-flow-header__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-flow-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-flow-header__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+
+/* ===== 2. カードグリッド ===== */
+.hirot-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 24px;
+}
+.hirot-flow__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.hirot-flowcard {
+  background: var(--hirot-white);
+  border-radius: var(--hirot-radius-card);
+  box-shadow: var(--hirot-halo);           /* card--card と同じ常時 halo */
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.hirot-flowcard--featured { grid-column: 1 / -1; }
+.hirot-flowcard--featured .hirot-flowcard__cols {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: center;
+}
+.hirot-flowcard__chip {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--hirot-green-10);
+  color: var(--hirot-green-70);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.hirot-flowcard__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 12px 0 6px;
+}
+.hirot-flowcard__body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 0;
+}
+.hirot-flowcard__diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+}
+.hirot-flowcard__link {
+  align-self: flex-start;
+  margin-top: 18px;
+  padding: 10px 0;                          /* 行のタップ領域を 44px 相当に */
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hirot-hairline);
+  transition: border-color .2s ease;
+}
+.hirot-flowcard__link:hover { border-color: var(--hirot-ink); }
+
+/* --- 図解 SVG（トリガー → 条件 → アクション） --- */
+.fd-caption {
+  font-family: var(--font-heading-family);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  fill: var(--hirot-shade-50);
+  text-anchor: middle;
+}
+.fd-text {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+.fd-text--trigger { fill: var(--hirot-green-70); }
+.fd-text--condition { fill: var(--hirot-ink); }
+.fd-text--action { fill: var(--hirot-white); }
+.fd-node--trigger { fill: var(--hirot-green-10); stroke: var(--hirot-green-30); }
+.fd-node--condition { fill: var(--hirot-white); stroke: var(--hirot-shade-30); }
+.fd-node--action { fill: var(--hirot-ink); }
+.fd-arrow { stroke: var(--hirot-shade-40); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ===== 3. 締め CTA パネル ===== */
+.hirot-flow-cta {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+.hirot-flow-cta__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 40px;
+  text-align: center;
+}
+.hirot-flow-cta__heading {
+  font-family: var(--font-heading-family);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--hirot-ink);
+  margin: 10px 0 0;
+}
+.hirot-flow-cta__body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 560px;
+  margin: 12px auto 24px;
+}
+
+/* ===== レスポンシブ（hirot 標準 2 ブレークポイント） ===== */
+@media screen and (max-width: 60em) {
+  .hirot-flow-header { padding: 32px 20px 8px; }
+  .hirot-flow-header__inner { padding: 40px 28px; }
+  .hirot-flow-header__heading { font-size: 34px; }
+  .hirot-flow { padding: 24px 20px 16px; }
+  .hirot-flowcard--featured .hirot-flowcard__cols { grid-template-columns: 1fr; gap: 8px; }
+  .hirot-flow-cta { padding: 16px 20px 48px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-flow-header__inner { padding: 32px 20px; }
+  .hirot-flow-header__heading { font-size: 28px; }
+  .hirot-flow__grid { grid-template-columns: 1fr; }
+  .hirot-flowcard { padding: 22px 20px; }
+  .hirot-flow-cta__inner { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. 導入バンド ============ -->
+<section class="hirot-flow-header">
+  <div class="hirot-flow-header__inner">
+    <span class="hirot-section-eyebrow">Automation</span>
+    <h1 class="hirot-flow-header__heading">Flow でできる、店舗運用の自動化</h1>
+    <p class="hirot-flow-header__description">Shopify Flow を使うと、追加アプリなしで「きっかけ → 条件 → アクション」の自動化を組み立てられます。このストアで実際に構成できる 5 つの例をご紹介します。</p>
+  </div>
+</section>
+
+<!-- ============ 2. カードグリッド ============ -->
+<section class="hirot-flow">
+  <div class="hirot-flow__grid">
+
+    <!-- 1. お気に入り → 通知（featured / 全幅） -->
+    <article class="hirot-flowcard hirot-flowcard--featured">
+      <div class="hirot-flowcard__cols">
+        <div>
+          <span class="hirot-flowcard__chip">マーケティング</span>
+          <h2 class="hirot-flowcard__title">お気に入りをきっかけに、LINE・メールでお知らせ</h2>
+          <p class="hirot-flowcard__body">お客様が商品をお気に入りに追加したら、その商品のセール開始や在庫わずかのタイミングで LINE・メールに通知を配信。買い忘れを防ぎ、再訪問を後押しします。</p>
+          <a class="hirot-flowcard__link" href="#">お気に入り機能を体験する →</a>
+        </div>
+        <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="お気に入りに追加をきっかけに、セール開始または在庫わずかのとき、LINE・メールで通知する流れ">
+          <text class="fd-caption" x="85" y="14">トリガー</text>
+          <text class="fd-caption" x="280" y="14">条件</text>
+          <text class="fd-caption" x="475" y="14">アクション</text>
+          <rect class="fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+          <text class="fd-text fd-text--trigger" x="85" y="53">お気に入りに追加</text>
+          <path class="fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+          <text class="fd-text fd-text--condition" x="280" y="45">セール開始 /</text>
+          <text class="fd-text fd-text--condition" x="280" y="62">在庫わずか</text>
+          <path class="fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+          <text class="fd-text fd-text--action" x="475" y="53">LINE・メールで通知</text>
+        </svg>
+      </div>
+    </article>
+
+    <!-- 2. 再入荷通知 -->
+    <article class="hirot-flowcard">
+      <span class="hirot-flowcard__chip">マーケティング</span>
+      <h2 class="hirot-flowcard__title">再入荷を待っているお客様へ自動配信</h2>
+      <p class="hirot-flowcard__body">売り切れ商品の在庫が復活したら、再入荷通知に登録したお客様へメールを自動配信。機会損失をそのまま売上に変えます。</p>
+      <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="在庫が 0 から 1 以上に戻ったとき、通知の登録があるお客様へ再入荷メールを配信する流れ">
+        <text class="fd-caption" x="85" y="14">トリガー</text>
+        <text class="fd-caption" x="280" y="14">条件</text>
+        <text class="fd-caption" x="475" y="14">アクション</text>
+        <rect class="fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--trigger" x="85" y="45">在庫が復活</text>
+        <text class="fd-text fd-text--trigger" x="85" y="62">（0 → 1 以上）</text>
+        <path class="fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--condition" x="280" y="53">通知の登録あり</text>
+        <path class="fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+        <text class="fd-text fd-text--action" x="475" y="53">再入荷メールを配信</text>
+      </svg>
+      <a class="hirot-flowcard__link" href="#">再入荷通知フォームを見る →</a>
+    </article>
+
+    <!-- 3. 購入後レビュー依頼 -->
+    <article class="hirot-flowcard">
+      <span class="hirot-flowcard__chip">顧客フォロー</span>
+      <h2 class="hirot-flowcard__title">購入後、ちょうどよい頃にレビュー依頼</h2>
+      <p class="hirot-flowcard__body">商品の発送完了から 7 日後、使い心地が分かってきたタイミングでレビュー依頼メールを自動送信。無理なくレビューが集まります。</p>
+      <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="注文の発送完了から 7 日経過したら、レビュー依頼メールを送信する流れ">
+        <text class="fd-caption" x="85" y="14">トリガー</text>
+        <text class="fd-caption" x="280" y="14">条件</text>
+        <text class="fd-caption" x="475" y="14">アクション</text>
+        <rect class="fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--trigger" x="85" y="53">注文の発送完了</text>
+        <path class="fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--condition" x="280" y="53">発送から 7 日経過</text>
+        <path class="fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+        <text class="fd-text fd-text--action" x="475" y="53">レビュー依頼メール送信</text>
+      </svg>
+    </article>
+
+    <!-- 4. VIP 自動タグ付け -->
+    <article class="hirot-flowcard">
+      <span class="hirot-flowcard__chip">顧客管理</span>
+      <h2 class="hirot-flowcard__title">上位顧客に VIP タグを自動付与</h2>
+      <p class="hirot-flowcard__body">累計購入額が ¥50,000 を超えたお客様に「VIP」タグを自動で付与。限定クーポンの配布や優先案内など、上位顧客施策の土台になります。</p>
+      <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="注文が作成されたとき、累計購入額が 5 万円以上なら顧客に VIP タグを付与する流れ">
+        <text class="fd-caption" x="85" y="14">トリガー</text>
+        <text class="fd-caption" x="280" y="14">条件</text>
+        <text class="fd-caption" x="475" y="14">アクション</text>
+        <rect class="fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--trigger" x="85" y="53">注文が作成された</text>
+        <path class="fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--condition" x="280" y="45">累計購入額</text>
+        <text class="fd-text fd-text--condition" x="280" y="62">¥50,000 以上</text>
+        <path class="fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+        <text class="fd-text fd-text--action" x="475" y="53">「VIP」タグを付与</text>
+      </svg>
+    </article>
+
+    <!-- 5. 高リスク注文の自動保留 -->
+    <article class="hirot-flowcard">
+      <span class="hirot-flowcard__chip">不正対策</span>
+      <h2 class="hirot-flowcard__title">高リスク注文を自動で保留</h2>
+      <p class="hirot-flowcard__body">不正の可能性が高いと判定された注文は、支払い処理を自動で保留して担当者へ通知。チャージバック被害を出荷前に食い止めます。</p>
+      <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="注文が作成されたとき、リスク評価が High なら支払いを保留し担当へ通知する流れ">
+        <text class="fd-caption" x="85" y="14">トリガー</text>
+        <text class="fd-caption" x="280" y="14">条件</text>
+        <text class="fd-caption" x="475" y="14">アクション</text>
+        <rect class="fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--trigger" x="85" y="53">注文が作成された</text>
+        <path class="fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <text class="fd-text fd-text--condition" x="280" y="53">リスク評価が High</text>
+        <path class="fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+        <rect class="fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+        <text class="fd-text fd-text--action" x="475" y="45">支払いを保留し</text>
+        <text class="fd-text fd-text--action" x="475" y="62">担当へ通知</text>
+      </svg>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 3. 締め CTA ============ -->
+<section class="hirot-flow-cta">
+  <div class="hirot-flow-cta__inner">
+    <span class="hirot-section-eyebrow">Consulting</span>
+    <h2 class="hirot-flow-cta__heading">この他の自動化も、ご相談ください</h2>
+    <p class="hirot-flow-cta__body">在庫アラート、リピート促進、社内通知など、運用に合わせた自動化を設計します。まずは今の業務フローをお聞かせください。</p>
+    <a class="hirot-btn hirot-btn--accent" href="#">自動化の相談をする</a>
+  </div>
+</section>
+
+</body>
+</html>

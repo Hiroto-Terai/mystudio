@@ -10,6 +10,8 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+{% comment %} hirot F2/F7: カート訴求バンドル（送料無料バー + ギフトラッピング） {% endcomment %}
+<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -74,6 +76,10 @@
           </span>
         </button>
       </div>
+      {% comment %} hirot F2: 送料無料プログレスバー（ドロワー版・再描画で金額追随） {% endcomment %}
+      {%- if cart != empty -%}
+        {%- render 'hirot-shipbar', context: 'drawer' -%}
+      {%- endif -%}
       <cart-drawer-items
         view-event-payload="{{ cart | standard_event_data: 'view', context: 'dialog' | escape }}"
         view-event-trigger="manual"
@@ -506,6 +512,11 @@
               >{{ cart.note }}</textarea>
             </cart-note>
           </details>
+        {%- endif -%}
+
+        {% comment %} hirot F7: ギフトラッピング（ドロワー版・小計の上） {% endcomment %}
+        {%- if cart != empty -%}
+          {%- render 'hirot-gift-wrap', form_id: 'CartDrawer-Form', context: 'drawer' -%}
         {%- endif -%}
 
         <!-- Start blocks -->

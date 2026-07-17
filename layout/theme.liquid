@@ -58,6 +58,8 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'standard-actions-override.js' | asset_url }}" defer="defer"></script>
+    {%- comment -%} hirot F1: お気に入り（ヘッダーの件数バッジが全ページに出るためレイアウトで読み込む） {%- endcomment -%}
+    <script src="{{ 'hirot-wishlist.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>

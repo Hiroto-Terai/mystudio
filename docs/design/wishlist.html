@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hirot — お気に入り（F1 wishlist）デザインモック</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== hirot トークン（assets/hirot.css より実値コピー） ===== */
+:root {
+  --hirot-ink: #0e100f;
+  --hirot-cream: #fbfbf5;
+  --hirot-white: #ffffff;
+  --hirot-green-05: #f1fbf4;
+  --hirot-green-10: #d8f6e2;
+  --hirot-green-20: #c1fbd4;
+  --hirot-green-30: #97e8b8;
+  --hirot-green-40: #55c98c;
+  --hirot-green-50: #2ea36a;
+  --hirot-green-60: #1f7d52;
+  --hirot-green-70: #145038;
+  --hirot-shade-20: #ececed;
+  --hirot-shade-30: #d7d7d2;
+  --hirot-shade-40: #a6a69f;
+  --hirot-shade-50: #71716b;
+  --hirot-shade-70: #38383a;
+  --hirot-hairline: #e8e8e1;
+  --hirot-surface-wash: var(--hirot-green-05);
+  --hirot-surface-band: var(--hirot-green-10);
+  --hirot-radius-card: 12px;
+  --hirot-radius-panel: 20px;
+  --hirot-halo:
+    0 8px 8px rgba(14, 16, 15, 0.04),
+    0 4px 4px rgba(14, 16, 15, 0.04),
+    0 2px 2px rgba(14, 16, 15, 0.04),
+    0 0 0 1px rgba(14, 16, 15, 0.05);
+  --font-body-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-heading-family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--hirot-white);
+  color: var(--hirot-ink);
+  font-family: var(--font-body-family);
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== モック用の注記（テーマの一部ではない） ===== */
+.demo-note {
+  max-width: 1200px;
+  margin: 48px auto 12px;
+  padding: 0 40px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hirot-shade-40);
+}
+.demo-note:first-child { margin-top: 32px; }
+
+/* ===== 共有ユーティリティ（hirot.css 既存） ===== */
+.hirot-section-eyebrow {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hirot-green-60);
+  display: block;
+}
+.hirot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 50px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.hirot-btn--outline { background: transparent; color: var(--hirot-ink); border-color: var(--hirot-ink); }
+.hirot-btn--outline:hover { background: var(--hirot-ink); color: #fff; }
+
+/* ===== A. ヘッダー（Dawn header + hirot リスキンの文脈） ===== */
+.mock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 40px;
+  border-bottom: 1px solid var(--hirot-hairline);
+}
+.mock-header__logo {
+  font-family: var(--font-heading-family);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--hirot-ink);
+  text-decoration: none;
+}
+.mock-header__nav { display: flex; gap: 28px; }
+.mock-header__nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hirot-ink);
+  text-decoration: none;
+}
+.mock-header__icons { display: flex; align-items: center; }
+.header__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--hirot-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.header__icon svg { width: 20px; height: 20px; transition: transform .15s ease; }
+.header__icon:hover svg { transform: scale(1.07); }
+/* お気に入り件数バッジ: Dawn .cart-count-bubble のジオメトリ + green-60 */
+.hirot-fav-bubble {
+  position: absolute;
+  bottom: 8px;
+  left: 22px;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background: var(--hirot-green-60);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hirot-fav-bubble:empty { display: none; }
+
+/* ===== B. 商品カード（hirot-card 既存 + ハート） ===== */
+.mock-grid-wrap { max-width: 1280px; margin: 0 auto; padding: 8px 40px 40px; }
+.hirot-product-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.hirot-card {
+  background: var(--hirot-white);
+  border-radius: var(--hirot-radius-card);
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+.hirot-card__image-wrap {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--hirot-radius-card);
+  background: var(--hirot-surface-wash);
+}
+.hirot-card__image-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.hirot-card:hover .hirot-card__image-wrap img { transform: scale(1.05); }
+.hirot-card__badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--hirot-ink);
+  color: #fff;
+  font-size: 11px; font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+.hirot-card__soldout-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px; font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+/* ハートがあるカードでは売り切れバッジをハートの左へ退避 */
+.hirot-card--fav .hirot-card__soldout-badge { right: 62px; top: 21px; }
+.hirot-card__info { padding: 16px 0 0; }
+.hirot-card__brand {
+  font-family: var(--font-heading-family);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--hirot-green-70);
+  margin-bottom: 6px;
+}
+.hirot-card__title {
+  font-family: var(--font-heading-family);
+  font-size: 15px; font-weight: 500;
+  color: var(--hirot-ink);
+  margin-bottom: 8px; line-height: 1.4;
+}
+.hirot-card__price-wrap { display: flex; align-items: baseline; gap: 8px; }
+.hirot-card__price { font-size: 16px; font-weight: 700; color: var(--hirot-ink); }
+
+/* --- ハートボタン（新規 .hirot-fav-toggle） --- */
+.hirot-fav-toggle {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;               /* タップ領域 44px */
+  border-radius: 9999px;
+  background: var(--hirot-white);
+  box-shadow: var(--hirot-halo);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hirot-ink);                  /* rest: ink の線画 */
+}
+.hirot-fav-toggle svg { width: 22px; height: 22px; transition: transform .15s ease; }
+.hirot-fav-toggle:hover svg { transform: scale(1.07); }
+.hirot-fav-toggle svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-fav-toggle[aria-pressed="true"] { color: var(--hirot-green-60); } /* active: green-60 塗り */
+.hirot-fav-toggle[aria-pressed="true"] svg path { fill: currentColor; }
+
+/* ===== C. wishlist ページ ===== */
+.hirot-wishlist__band-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-wishlist__band {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-wishlist__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-wishlist__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.hirot-wishlist__count {
+  font-size: 14px;
+  color: var(--hirot-shade-50);
+  margin-top: 8px;
+}
+.hirot-wishlist__count strong { color: var(--hirot-ink); font-weight: 600; }
+
+/* ===== D. 空状態 ===== */
+.hirot-wishlist__empty {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+.hirot-wishlist__empty svg {
+  width: 56px; height: 56px;
+  color: var(--hirot-shade-30);
+}
+.hirot-wishlist__empty svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.hirot-wishlist__empty-heading {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--hirot-ink);
+  margin: 16px 0 0;
+}
+.hirot-wishlist__empty-body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 8px 0 24px;
+}
+
+/* ===== レスポンシブ（hirot 標準 2 ブレークポイント） ===== */
+@media screen and (max-width: 60em) {
+  .demo-note { padding: 0 20px; }
+  .mock-header { padding: 10px 20px; }
+  .mock-header__nav { display: none; }
+  .mock-grid-wrap { padding: 8px 16px 32px; }
+  .hirot-product-grid__grid { grid-template-columns: repeat(2, 1fr); }
+  .hirot-wishlist__band-wrap { padding: 32px 20px 8px; }
+  .hirot-wishlist__band { padding: 40px 28px; }
+  .hirot-wishlist__heading { font-size: 34px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-wishlist__band { padding: 32px 20px; }
+  .hirot-wishlist__heading { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ A. ヘッダー: ハートアイコン + カウントバッジ ============ -->
+<p class="demo-note">A. ヘッダー — ハートアイコン + 件数バッジ（3件）。カートの左に配置</p>
+<header class="mock-header">
+  <a class="mock-header__logo" href="#">hirot</a>
+  <nav class="mock-header__nav">
+    <a href="#">すべての商品</a>
+    <a href="#">スキンケア</a>
+    <a href="#">ジャーナル</a>
+    <a href="#">私たちについて</a>
+  </nav>
+  <div class="mock-header__icons">
+    <button class="header__icon" aria-label="検索">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <a class="header__icon" href="#" aria-label="お気に入り（3件）">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span class="hirot-fav-bubble" aria-hidden="true">3</span>
+    </a>
+    <a class="header__icon" href="#" aria-label="アカウント">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c1.2-3.4 3.9-5 7-5s5.8 1.6 7 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <a class="header__icon" href="#" aria-label="カート">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 016 0V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<p class="demo-note">A-2. 0 件時 — バッジは非表示（:empty パターン）。ハートのみ残る</p>
+<header class="mock-header" style="border-top: 1px solid var(--hirot-hairline);">
+  <a class="mock-header__logo" href="#">hirot</a>
+  <div class="mock-header__icons">
+    <a class="header__icon" href="#" aria-label="お気に入り（0件）">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span class="hirot-fav-bubble" aria-hidden="true"></span>
+    </a>
+    <a class="header__icon" href="#" aria-label="カート">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 016 0V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ============ B. 商品カード上のハート（状態一覧） ============ -->
+<p class="demo-note">B. 商品カードのハート — 左から: 通常（ink 線画）/ 追加済み（green-60 塗り）/ バッジ併存 / 売り切れ併存（バッジ退避）。クリックで切替可</p>
+<div class="mock-grid-wrap">
+  <div class="hirot-product-grid__grid">
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80" alt="モイストバランス ローション" loading="lazy">
+        <button class="hirot-fav-toggle" type="button" aria-pressed="false" aria-label="お気に入りに追加">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">モイストバランス ローション</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥2,400</span></div>
+      </div>
+    </div>
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80" alt="ボタニカル ハンドクリーム" loading="lazy">
+        <button class="hirot-fav-toggle" type="button" aria-pressed="true" aria-label="お気に入りから削除">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">ボタニカル ハンドクリーム</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥1,800</span></div>
+      </div>
+    </div>
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1598452963314-b09f397a5c48?w=800&q=80" alt="センシティブ UV ミルク" loading="lazy">
+        <span class="hirot-card__badge">人気</span>
+        <button class="hirot-fav-toggle" type="button" aria-pressed="false" aria-label="お気に入りに追加">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">センシティブ UV ミルク</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥3,200</span></div>
+      </div>
+    </div>
+
+    <div class="hirot-card hirot-card--fav">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&q=80" alt="リペア ナイトバーム" loading="lazy">
+        <span class="hirot-card__soldout-badge">売り切れ</span>
+        <button class="hirot-fav-toggle" type="button" aria-pressed="false" aria-label="お気に入りに追加">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">リペア ナイトバーム</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥4,200</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ C. wishlist ページ ============ -->
+<p class="demo-note">C. /pages/wishlist — 導入バンド（hirot-collection-header 様式）+ 一覧。ハート = 削除</p>
+<div class="hirot-wishlist__band-wrap">
+  <div class="hirot-wishlist__band">
+    <span class="hirot-section-eyebrow">Wishlist</span>
+    <h1 class="hirot-wishlist__heading">お気に入り</h1>
+    <p class="hirot-wishlist__description">気になる商品をこのページに保存しています。ハートを押すと一覧から削除できます。</p>
+    <p class="hirot-wishlist__count"><strong>3点</strong>の商品</p>
+  </div>
+</div>
+<div class="mock-grid-wrap">
+  <div class="hirot-product-grid__grid">
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=800&q=80" alt="モイストバランス ローション" loading="lazy">
+        <button class="hirot-fav-toggle" type="button" aria-pressed="true" aria-label="お気に入りから削除">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">モイストバランス ローション</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥2,400</span></div>
+      </div>
+    </div>
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800&q=80" alt="ハーバル リップ トリートメント" loading="lazy">
+        <button class="hirot-fav-toggle" type="button" aria-pressed="true" aria-label="お気に入りから削除">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">ハーバル リップ トリートメント</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥1,500</span></div>
+      </div>
+    </div>
+
+    <div class="hirot-card">
+      <div class="hirot-card__image-wrap">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80" alt="カーミング フェイスオイル" loading="lazy">
+        <button class="hirot-fav-toggle" type="button" aria-pressed="true" aria-label="お気に入りから削除">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+        </button>
+      </div>
+      <div class="hirot-card__info">
+        <div class="hirot-card__brand">HIROT</div>
+        <div class="hirot-card__title">カーミング フェイスオイル</div>
+        <div class="hirot-card__price-wrap"><span class="hirot-card__price">¥3,800</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ D. 空状態 ============ -->
+<p class="demo-note">D. 空状態 — 0 件時はグリッドの代わりにこのブロック</p>
+<div class="hirot-wishlist__band-wrap" style="padding-bottom: 0;">
+  <div class="hirot-wishlist__band">
+    <span class="hirot-section-eyebrow">Wishlist</span>
+    <h1 class="hirot-wishlist__heading">お気に入り</h1>
+  </div>
+</div>
+<div class="hirot-wishlist__empty">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
+  <p class="hirot-wishlist__empty-heading">お気に入りはまだありません</p>
+  <p class="hirot-wishlist__empty-body">商品ページのハートを押すと、ここに保存されます。</p>
+  <a class="hirot-btn hirot-btn--outline" href="#">商品を見る</a>
+</div>
+
+<script>
+/* モック内の状態確認用（実装は Web Component 側で行う） */
+document.querySelectorAll('.hirot-fav-toggle').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var pressed = btn.getAttribute('aria-pressed') === 'true';
+    btn.setAttribute('aria-pressed', String(!pressed));
+    btn.setAttribute('aria-label', pressed ? 'お気に入りに追加' : 'お気に入りから削除');
+  });
+});
+</script>
+</body>
+</html>
