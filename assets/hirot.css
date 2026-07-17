@@ -1236,3 +1236,177 @@ hirot-delivery[hidden] { display: none; }
   .hirot-shipbar { padding: 14px 16px; }
   .hirot-cart-options__fields { grid-template-columns: 1fr; }
 }
+
+/* --- hirot-reviews（F4 レビュー表示・投稿。sections/hirot-reviews.liquid） --- */
+.hirot-reviews { padding: var(--rv-pt, 56px) 32px var(--rv-pb, 64px); }
+.hirot-reviews__inner { max-width: 1200px; margin: 0 auto; }
+.hirot-reviews__count { font-size: 14px; color: var(--hirot-shade-50); margin: 12px 0 0; }
+.hirot-reviews__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 32px;
+}
+.hirot-reviews__list { display: grid; gap: 16px; align-content: start; }
+.hirot-review-card {
+  background: var(--hirot-white);
+  border: 1px solid var(--hirot-hairline);
+  border-radius: var(--hirot-radius-card);
+  padding: 22px 24px;
+  transition: box-shadow 0.2s ease;
+}
+.hirot-review-card:hover { box-shadow: var(--hirot-halo); }
+.hirot-review-card__stars { display: inline-flex; gap: 2px; font-size: 15px; line-height: 1; }
+.hirot-review-card__body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--hirot-ink);
+  margin: 10px 0 14px;
+}
+.hirot-review-card__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1px solid var(--hirot-hairline);
+  padding-top: 12px;
+}
+.hirot-review-card__author { font-size: 13px; font-weight: 600; color: var(--hirot-ink); }
+.hirot-review-card__date { font-size: 12px; color: var(--hirot-shade-50); }
+.hirot-reviews__empty {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 40px 28px;
+  text-align: center;
+}
+.hirot-reviews__empty-heading { font-size: 16px; font-weight: 500; color: var(--hirot-ink); margin: 0; }
+.hirot-reviews__empty-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 8px 0 0;
+}
+
+/* 投稿フォーム（緑ウォッシュのパネル。実送信は contact form） */
+.hirot-reviews__form-panel {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 28px;
+}
+.hirot-reviews__form-title {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 0;
+}
+.hirot-reviews__form-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 18px;
+}
+.hirot-reviews__form-error {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #b3261e;
+  background: var(--hirot-white);
+  border: 1px solid #e6c9c7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+}
+.hirot-reviews__field {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.hirot-reviews__field label,
+.hirot-reviews__field legend {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hirot-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+  padding: 0;
+}
+.hirot-reviews__field input[type='text'],
+.hirot-reviews__field input[type='email'],
+.hirot-reviews__field textarea {
+  width: 100%;
+  border-radius: 8px; /* hirot の入力角丸（.field__input 上書きと同値） */
+  border: 1px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+}
+.hirot-reviews__field input[type='text'],
+.hirot-reviews__field input[type='email'] {
+  height: 44px; /* タップ領域 */
+  padding: 0 14px;
+}
+.hirot-reviews__field textarea {
+  padding: 10px 14px;
+  line-height: 1.8;
+  resize: vertical;
+}
+.hirot-reviews__field input:focus-visible,
+.hirot-reviews__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+
+/* 星セレクタ: DOM は 5→1 の逆順 + row-reverse で視覚順 1→5。
+   input:checked ~ label が「選んだ星以下」を塗る CSS-only パターン。 */
+.hirot-star-picker { display: inline-flex; flex-direction: row-reverse; gap: 2px; }
+.hirot-star-picker input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.hirot-star-picker label {
+  font-size: 26px;
+  line-height: 1;
+  color: var(--hirot-shade-30);
+  cursor: pointer;
+  transition: color 0.1s ease;
+}
+.hirot-star-picker input:checked ~ label,
+.hirot-star-picker label:hover,
+.hirot-star-picker label:hover ~ label { color: var(--hirot-green-70); }
+.hirot-star-picker input:focus-visible + label {
+  outline: 2px solid var(--hirot-green-50);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.hirot-reviews__submit { width: 100%; }
+.hirot-reviews__success { text-align: center; padding: 24px 8px; }
+.hirot-reviews__success:focus { outline: none; }
+.hirot-reviews__success svg { width: 40px; height: 40px; color: var(--hirot-green-60); }
+.hirot-reviews__success-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-reviews__success-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 0;
+}
+
+@media screen and (max-width: 60em) {
+  .hirot-reviews { padding: 40px 20px 48px; }
+  .hirot-reviews__grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-reviews__form-panel { padding: 22px 18px; }
+}

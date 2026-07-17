@@ -91,6 +91,13 @@
         "usage_heading": "使い方"
       }
     },
+    "reviews": {
+      "type": "hirot-reviews",
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "カスタマーレビュー"
+      }
+    },
     "disclosures": {
       "type": "disclosures",
       "settings": {
@@ -120,6 +127,7 @@
   "order": [
     "main",
     "product_details",
+    "reviews",
     "disclosures",
     "related-products"
   ]

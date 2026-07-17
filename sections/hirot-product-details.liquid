@@ -1,6 +1,21 @@
 {%- liquid
-  assign rating = product.metafields.aoi.rating | times: 1.0
-  assign review_count = product.metafields.aoi.review_count
+  # F4: metaobject `review` にこの商品のエントリがあれば、その平均・件数を星に使う
+  # （PDP 下部のレビュー一覧と数字が食い違わないように一覧基準へ寄せる）。
+  # エントリが無い商品は従来どおり aoi.rating / aoi.review_count にフォールバック。
+  assign review_count = 0
+  assign rating_sum = 0
+  for entry in metaobjects.review.values
+    if entry.product.value.id == product.id
+      assign review_count = review_count | plus: 1
+      assign rating_sum = rating_sum | plus: entry.rating.value
+    endif
+  endfor
+  if review_count > 0
+    assign rating = rating_sum | times: 1.0 | divided_by: review_count | round: 1
+  else
+    assign rating = product.metafields.aoi.rating | times: 1.0
+    assign review_count = product.metafields.aoi.review_count
+  endif
   assign ingredients = product.metafields.aoi.ingredients.value
   assign how_to_use = product.metafields.aoi.how_to_use.value
   assign full_stars = rating | floor
