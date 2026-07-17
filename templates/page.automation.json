@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "flow": {
+      "type": "hirot-flow-showcase",
+      "blocks": {
+        "wishlist_notify": {
+          "type": "flow_example",
+          "settings": {
+            "chip": "マーケティング",
+            "title": "お気に入りをきっかけに、LINE・メールでお知らせ",
+            "body": "お客様が商品をお気に入りに追加したら、その商品のセール開始や在庫わずかのタイミングで LINE・メールに通知を配信。買い忘れを防ぎ、再訪問を後押しします。",
+            "trigger_1": "お気に入りに追加",
+            "trigger_2": "",
+            "condition_1": "セール開始 /",
+            "condition_2": "在庫わずか",
+            "action_1": "LINE・メールで通知",
+            "action_2": "",
+            "diagram_alt": "お気に入りに追加をきっかけに、セール開始または在庫わずかのとき、LINE・メールで通知する流れ",
+            "link_label": "お気に入り機能を体験する",
+            "link_url": "/pages/wishlist"
+          }
+        },
+        "restock_notify": {
+          "type": "flow_example",
+          "settings": {
+            "chip": "マーケティング",
+            "title": "再入荷を待っているお客様へ自動配信",
+            "body": "売り切れ商品の在庫が復活したら、再入荷通知に登録したお客様へメールを自動配信。機会損失をそのまま売上に変えます。",
+            "trigger_1": "在庫が復活",
+            "trigger_2": "（0 → 1 以上）",
+            "condition_1": "通知の登録あり",
+            "condition_2": "",
+            "action_1": "再入荷メールを配信",
+            "action_2": "",
+            "diagram_alt": "在庫が 0 から 1 以上に戻ったとき、通知の登録があるお客様へ再入荷メールを配信する流れ",
+            "link_label": "再入荷通知フォームを見る",
+            "link_url": "/products/リップ-トリートメント"
+          }
+        },
+        "review_request": {
+          "type": "flow_example",
+          "settings": {
+            "chip": "顧客フォロー",
+            "title": "購入後、ちょうどよい頃にレビュー依頼",
+            "body": "商品の発送完了から 7 日後、使い心地が分かってきたタイミングでレビュー依頼メールを自動送信。無理なくレビューが集まります。",
+            "trigger_1": "注文の発送完了",
+            "trigger_2": "",
+            "condition_1": "発送から 7 日経過",
+            "condition_2": "",
+            "action_1": "レビュー依頼メール送信",
+            "action_2": "",
+            "diagram_alt": "注文の発送完了から 7 日経過したら、レビュー依頼メールを送信する流れ",
+            "link_label": "",
+            "link_url": ""
+          }
+        },
+        "vip_tag": {
+          "type": "flow_example",
+          "settings": {
+            "chip": "顧客管理",
+            "title": "上位顧客に VIP タグを自動付与",
+            "body": "累計購入額が ¥50,000 を超えたお客様に「VIP」タグを自動で付与。限定クーポンの配布や優先案内など、上位顧客施策の土台になります。",
+            "trigger_1": "注文が作成された",
+            "trigger_2": "",
+            "condition_1": "累計購入額",
+            "condition_2": "¥50,000 以上",
+            "action_1": "「VIP」タグを付与",
+            "action_2": "",
+            "diagram_alt": "注文が作成されたとき、累計購入額が 5 万円以上なら顧客に VIP タグを付与する流れ",
+            "link_label": "",
+            "link_url": ""
+          }
+        },
+        "risk_hold": {
+          "type": "flow_example",
+          "settings": {
+            "chip": "不正対策",
+            "title": "高リスク注文を自動で保留",
+            "body": "不正の可能性が高いと判定された注文は、支払い処理を自動で保留して担当者へ通知。チャージバック被害を出荷前に食い止めます。",
+            "trigger_1": "注文が作成された",
+            "trigger_2": "",
+            "condition_1": "リスク評価が High",
+            "condition_2": "",
+            "action_1": "支払いを保留し",
+            "action_2": "担当へ通知",
+            "diagram_alt": "注文が作成されたとき、リスク評価が High なら支払いを保留し担当へ通知する流れ",
+            "link_label": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "wishlist_notify",
+        "restock_notify",
+        "review_request",
+        "vip_tag",
+        "risk_hold"
+      ],
+      "settings": {
+        "eyebrow": "Automation",
+        "heading": "Flow でできる、店舗運用の自動化",
+        "description": "Shopify Flow を使うと、追加アプリなしで「きっかけ → 条件 → アクション」の自動化を組み立てられます。このストアで実際に構成できる 5 つの例をご紹介します。",
+        "cta_eyebrow": "Consulting",
+        "cta_heading": "この他の自動化も、ご相談ください",
+        "cta_body": "在庫アラート、リピート促進、社内通知など、運用に合わせた自動化を設計します。まずは今の業務フローをお聞かせください。",
+        "cta_label": "自動化の相談をする",
+        "cta_url": "/pages/contact"
+      }
+    },
+    "faq": {
+      "type": "hirot-faq",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "よくあるご質問"
+      }
+    }
+  },
+  "order": ["flow", "faq"]
+}
