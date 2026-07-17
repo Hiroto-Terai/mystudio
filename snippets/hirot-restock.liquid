@@ -1,0 +1,43 @@
+{%- comment -%}
+  F6 再入荷通知（売り切れ商品の PDP・buy_buttons 直後）。
+  templates/product.json の custom_liquid ブロックから
+  {% render 'hirot-restock', product: product %} で呼ぶ（main-product.liquid は不改変）。
+  売り切れ（product.available == false）のときだけ描画し、在庫ありでは何も出さない。
+  送信は assets/hirot-pdp.js の <hirot-restock> が localStorage に記録して
+  完了表示へ切り替えるデモ実装（実配信は Shopify Flow 連携の入口という位置づけ）。
+{%- endcomment -%}
+{%- unless product.available -%}
+  <hirot-restock class="hirot-restock" data-product-handle="{{ product.handle }}">
+    <p class="hirot-restock__title">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 10a6 6 0 0 1 12 0c0 3.5 1 4.8 1.8 5.8H4.2C5 14.8 6 13.5 6 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M10 18.5a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      再入荷をお知らせします
+    </p>
+    <p class="hirot-restock__body">
+      ただいま売り切れです。メールアドレスをご登録いただくと、再入荷時にお知らせします。
+    </p>
+    <form class="hirot-restock__form" data-restock-form>
+      <label class="visually-hidden" for="HirotRestockEmail-{{ product.id }}">メールアドレス</label>
+      <input
+        type="email"
+        id="HirotRestockEmail-{{ product.id }}"
+        placeholder="mail@example.com"
+        autocomplete="email"
+        spellcheck="false"
+        autocapitalize="off"
+        required
+      >
+      <button type="submit" class="hirot-btn hirot-btn--primary hirot-btn--sm">登録する</button>
+    </form>
+    <p class="hirot-restock__success" data-restock-success hidden>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 12.5l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span data-restock-success-text>登録しました。再入荷時にメールでお知らせします。</span>
+    </p>
+  </hirot-restock>
+  <script src="{{ 'hirot-pdp.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}

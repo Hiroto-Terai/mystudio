@@ -45,6 +45,12 @@
             "show_gift_card_recipient": true
           }
         },
+        "restock_notice": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'hirot-restock', product: product %}"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -63,6 +69,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "restock_notice",
         "description",
         "share"
       ],
@@ -122,6 +129,13 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "recent": {
+      "type": "hirot-recent-products",
+      "settings": {
+        "eyebrow": "Recently Viewed",
+        "heading": "最近見た商品"
+      }
     }
   },
   "order": [
@@ -129,6 +143,7 @@
     "product_details",
     "reviews",
     "disclosures",
-    "related-products"
+    "related-products",
+    "recent"
   ]
 }

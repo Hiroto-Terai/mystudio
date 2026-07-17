@@ -1410,3 +1410,83 @@ hirot-delivery[hidden] { display: none; }
 @media screen and (max-width: 40em) {
   .hirot-reviews__form-panel { padding: 22px 18px; }
 }
+
+/* --- hirot-recent（F5 最近見た商品・PDP下部） --- */
+hirot-recent-products { display: block; }
+hirot-recent-products[hidden] { display: none; }
+.hirot-recent { padding: 56px 32px 64px; }
+.hirot-recent__inner { max-width: 1280px; margin: 0 auto; }
+.hirot-recent__header { margin-bottom: 28px; }
+/* カードは .hirot-card 流用。グリッドは hirot-product-grid と同じリズム */
+.hirot-recent__track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+@media screen and (max-width: 60em) {
+  .hirot-recent { padding: 40px 20px 48px; }
+  .hirot-recent__track { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-recent__track { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- hirot-restock（F6 再入荷通知・売り切れPDPの buy_buttons 直後） --- */
+hirot-restock { display: block; }
+.hirot-restock {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 20px 22px;
+  margin: 20px 0 8px;
+}
+.hirot-restock__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hirot-ink);
+  margin: 0;
+}
+.hirot-restock__title svg { width: 20px; height: 20px; color: var(--hirot-green-60); flex-shrink: 0; }
+.hirot-restock__body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 6px 0 14px;
+}
+.hirot-restock__form { display: flex; gap: 10px; }
+.hirot-restock__form input[type='email'] {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--hirot-shade-30);
+  border-radius: 8px;
+  background: var(--hirot-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+}
+.hirot-restock__form input[type='email']:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+.hirot-restock__form[hidden] { display: none; }
+.hirot-restock__success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hirot-green-70);
+  margin: 0;
+}
+.hirot-restock__success svg { width: 20px; height: 20px; flex-shrink: 0; }
+.hirot-restock__success[hidden] { display: none; }
+@media screen and (max-width: 40em) {
+  .hirot-restock__form { flex-direction: column; }
+  .hirot-restock__form .hirot-btn { width: 100%; }
+}
