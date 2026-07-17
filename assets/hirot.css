@@ -1026,7 +1026,7 @@ hirot-wishlist-page { display: block; }
   .hirot-wishlist__heading { font-size: 28px; }
 }
 
-/* --- hirot-cart（F2 送料無料プログレスバー + F7 ギフトラッピング） --- */
+/* --- hirot-cart（F2 送料無料プログレスバー + F3 配送日時指定 + F7 ギフトラッピング） --- */
 
 /* F2 プログレスバー（カートページ / ドロワー共通。snippets/hirot-shipbar.liquid） */
 hirot-shipbar { display: block; }
@@ -1076,8 +1076,10 @@ hirot-gift-wrap[hidden] { display: none; }
 }
 .hirot-shipbar--done .hirot-shipbar__fill { background: var(--hirot-green-60); width: 100%; }
 
-/* F7 ギフトラッピング（sections/hirot-cart-options + ドロワー footer） */
+/* F3 + F7 オプションパネル（sections/hirot-cart-options。ギフト行はドロワー footer と共通） */
+hirot-delivery,
 hirot-gift-wrap { display: block; }
+hirot-delivery[hidden] { display: none; }
 .hirot-cart-options-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -1090,16 +1092,80 @@ hirot-gift-wrap { display: block; }
   border-radius: var(--hirot-radius-card);
   padding: 20px;
 }
+.hirot-cart-options__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 0 0 14px;
+}
+.hirot-cart-options__title svg { width: 18px; height: 18px; color: var(--hirot-ink); flex: none; }
+.hirot-cart-options__optional {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--hirot-shade-50);
+}
+.hirot-cart-options__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.hirot-cart-options__field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hirot-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.hirot-select-wrap { position: relative; }
+.hirot-select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 44px; /* タップ領域 */
+  border-radius: 8px; /* hirot の入力角丸（base.css の .field__input 上書きと同値） */
+  border: 1px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  padding: 0 40px 0 14px;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--hirot-ink);
+  cursor: pointer;
+}
+.hirot-select-wrap select:focus-visible {
+  outline: none;
+  border-color: var(--hirot-green-50);
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+}
+.hirot-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--hirot-ink);
+  border-bottom: 1.5px solid var(--hirot-ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.hirot-cart-options__help {
+  font-size: 12px;
+  color: var(--hirot-shade-50);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
 .hirot-gift {
   border-top: 1px solid var(--hirot-hairline);
   margin-top: 16px;
   padding-top: 16px;
-}
-/* パネル先頭に置かれる間（F3 追加前）は区切り線を出さない */
-.hirot-cart-options > .hirot-gift:first-child {
-  border-top: 0;
-  margin-top: 0;
-  padding-top: 0;
 }
 .hirot-gift--drawer {
   border-top: 0;
@@ -1168,4 +1234,5 @@ hirot-gift-wrap { display: block; }
 }
 @media screen and (max-width: 40em) {
   .hirot-shipbar { padding: 14px 16px; }
+  .hirot-cart-options__fields { grid-template-columns: 1fr; }
 }

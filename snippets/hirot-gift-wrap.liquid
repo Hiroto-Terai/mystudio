@@ -7,7 +7,6 @@
   引数:
   - form_id: attributes[] を紐付けるカートフォームの id（'cart' / 'CartDrawer-Form'）
   - context: 'page'（既定） | 'drawer'
-  - panel: true でページ用の白パネル（.hirot-cart-options）に包む
   - price: ラッピング料金の表示額（円）。省略時 300
   - note: 補足文。省略時は既定文言
 {%- endcomment -%}
@@ -24,7 +23,6 @@
     hidden
   {% endif %}
 >
-  {%- if panel -%}<div class="hirot-cart-options">{%- endif -%}
   <div class="hirot-gift{% if context == 'drawer' %} hirot-gift--drawer{% endif %}">
     <label class="hirot-gift__row">
       <input type="hidden" name="attributes[ギフトラッピング]" value="" form="{{ form_id }}">
@@ -54,5 +52,4 @@
       </span>
     </label>
   </div>
-  {%- if panel -%}</div>{%- endif -%}
 </hirot-gift-wrap>

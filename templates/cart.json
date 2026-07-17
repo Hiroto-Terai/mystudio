@@ -17,6 +17,7 @@
     "cart-options": {
       "type": "hirot-cart-options",
       "settings": {
+        "exclude_sunday": true,
         "price": 300,
         "note": "リボン付きの包装紙でお包みします。"
       }
