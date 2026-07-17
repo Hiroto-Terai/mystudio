@@ -1,0 +1,32 @@
+{%- comment -%}
+  F2 送料無料プログレスバー（カートページ用）。
+  templates/cart.json で main-cart-items の上に全幅で配置する。
+  マークアップ本体はドロワーと共通の snippets/hirot-shipbar.liquid。
+{%- endcomment -%}
+<div class="page-width">
+  {%- render 'hirot-shipbar', threshold_yen: section.settings.threshold, context: 'page' -%}
+</div>
+<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "送料無料プログレスバー",
+  "tag": "div",
+  "enabled_on": {
+    "templates": ["cart"]
+  },
+  "settings": [
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "送料無料のしきい値（円）",
+      "default": 5000
+    }
+  ],
+  "presets": [
+    {
+      "name": "送料無料プログレスバー"
+    }
+  ]
+}
+{% endschema %}

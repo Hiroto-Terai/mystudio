@@ -1025,3 +1025,147 @@ hirot-wishlist-page { display: block; }
   .hirot-wishlist__band { padding: 32px 20px; }
   .hirot-wishlist__heading { font-size: 28px; }
 }
+
+/* --- hirot-cart（F2 送料無料プログレスバー + F7 ギフトラッピング） --- */
+
+/* F2 プログレスバー（カートページ / ドロワー共通。snippets/hirot-shipbar.liquid） */
+hirot-shipbar { display: block; }
+hirot-shipbar[hidden],
+hirot-gift-wrap[hidden] { display: none; }
+.hirot-shipbar {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-card);
+  padding: 16px 20px;
+}
+.hirot-shipbar--page { margin-top: 24px; }
+.hirot-shipbar--drawer {
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+.hirot-shipbar__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hirot-ink);
+  margin: 0 0 10px;
+}
+.hirot-shipbar__amount { font-weight: 700; color: var(--hirot-green-70); }
+.hirot-shipbar__label--done { display: none; }
+.hirot-shipbar--done .hirot-shipbar__label--progress { display: none; }
+.hirot-shipbar--done .hirot-shipbar__label--done {
+  display: flex;
+  font-weight: 600;
+  color: var(--hirot-green-70);
+}
+.hirot-shipbar__check { width: 18px; height: 18px; color: var(--hirot-green-60); flex: none; }
+.hirot-shipbar__track {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--hirot-white);
+  box-shadow: inset 0 0 0 1px rgba(14, 16, 15, 0.05);
+  overflow: hidden;
+}
+.hirot-shipbar__fill {
+  height: 100%;
+  min-width: 6px;
+  border-radius: 9999px;
+  background: var(--hirot-green-50);
+  transition: width 0.4s ease;
+}
+.hirot-shipbar--done .hirot-shipbar__fill { background: var(--hirot-green-60); width: 100%; }
+
+/* F7 ギフトラッピング（sections/hirot-cart-options + ドロワー footer） */
+hirot-gift-wrap { display: block; }
+.hirot-cart-options-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  padding-top: 8px;
+}
+.hirot-cart-options {
+  background: var(--hirot-white);
+  border: 1px solid var(--hirot-hairline);
+  border-radius: var(--hirot-radius-card);
+  padding: 20px;
+}
+.hirot-gift {
+  border-top: 1px solid var(--hirot-hairline);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+/* パネル先頭に置かれる間（F3 追加前）は区切り線を出さない */
+.hirot-cart-options > .hirot-gift:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+.hirot-gift--drawer {
+  border-top: 0;
+  margin: 0 0 4px;
+  padding-top: 4px;
+}
+.hirot-gift__row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px; /* タップ領域 */
+  cursor: pointer;
+}
+.hirot-gift__row input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+.hirot-gift__box {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  border-radius: 6px;
+  border: 1.5px solid var(--hirot-shade-30);
+  background: var(--hirot-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.hirot-gift__box svg { width: 12px; height: 12px; color: var(--hirot-white); opacity: 0; }
+.hirot-gift__row input:checked ~ .hirot-gift__box {
+  background: var(--hirot-green-60);
+  border-color: var(--hirot-green-60);
+}
+.hirot-gift__row input:checked ~ .hirot-gift__box svg { opacity: 1; }
+.hirot-gift__row input:focus-visible ~ .hirot-gift__box {
+  box-shadow: 0 0 0 3px var(--hirot-green-10);
+  border-color: var(--hirot-green-50);
+}
+.hirot-gift__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--hirot-ink);
+  line-height: 1.6;
+}
+.hirot-gift__label svg { width: 18px; height: 18px; color: var(--hirot-ink); flex: none; }
+.hirot-gift__price { font-weight: 700; }
+.hirot-gift__note {
+  display: block;
+  font-size: 12px;
+  color: var(--hirot-shade-50);
+  margin: 2px 0 0;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 60em) {
+  .hirot-cart-options-grid { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-shipbar { padding: 14px 16px; }
+}

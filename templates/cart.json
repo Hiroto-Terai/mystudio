@@ -1,11 +1,24 @@
 {
   "sections": {
+    "shipbar": {
+      "type": "hirot-shipbar",
+      "settings": {
+        "threshold": 5000
+      }
+    },
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "cart-options": {
+      "type": "hirot-cart-options",
+      "settings": {
+        "price": 300,
+        "note": "リボン付きの包装紙でお包みします。"
       }
     },
     "cart-footer": {
@@ -34,7 +47,9 @@
     }
   },
   "order": [
+    "shipbar",
     "cart-items",
+    "cart-options",
     "cart-footer"
   ]
 }

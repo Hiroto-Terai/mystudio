@@ -1,0 +1,48 @@
+{%- comment -%}
+  F7 ギフトラッピング（カートページ用）。
+  templates/cart.json で main-cart-footer の直前に配置し、footer 左カラム相当の
+  幅（1.2fr / 1fr グリッドの左）に白パネルを置く。Dawn の main-cart-*.liquid は不改変。
+  マークアップ本体はドロワーと共通の snippets/hirot-gift-wrap.liquid。
+{%- endcomment -%}
+<div class="page-width">
+  <div class="hirot-cart-options-grid">
+    {%- render 'hirot-gift-wrap',
+      form_id: 'cart',
+      context: 'page',
+      panel: true,
+      price: section.settings.price,
+      note: section.settings.note
+    -%}
+  </div>
+</div>
+<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "ギフトラッピング",
+  "tag": "div",
+  "enabled_on": {
+    "templates": ["cart"]
+  },
+  "settings": [
+    {
+      "type": "number",
+      "id": "price",
+      "label": "表示料金（円）",
+      "info": "デモのため実課金はされません（cart attribute の記録のみ）",
+      "default": 300
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "補足文",
+      "default": "リボン付きの包装紙でお包みします。"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ギフトラッピング"
+    }
+  ]
+}
+{% endschema %}
