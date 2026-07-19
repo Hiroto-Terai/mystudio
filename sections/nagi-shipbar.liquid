@@ -1,12 +1,12 @@
 {%- comment -%}
   F2 送料無料プログレスバー（カートページ用）。
   templates/cart.json で main-cart-items の上に全幅で配置する。
-  マークアップ本体はドロワーと共通の snippets/hirot-shipbar.liquid。
+  マークアップ本体はドロワーと共通の snippets/nagi-shipbar.liquid。
 {%- endcomment -%}
 <div class="page-width">
-  {%- render 'hirot-shipbar', threshold_yen: section.settings.threshold, context: 'page' -%}
+  {%- render 'nagi-shipbar', threshold_yen: section.settings.threshold, context: 'page' -%}
 </div>
-<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'nagi-cart.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

@@ -1,45 +1,45 @@
 {%- assign blog_obj = blogs[section.settings.blog] -%}
 
-<section class="hirot-journal">
-  <div class="hirot-journal__header">
+<section class="nagi-journal">
+  <div class="nagi-journal__header">
     {%- if section.settings.eyebrow != blank -%}
-      <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
     {%- if section.settings.heading != blank -%}
-      <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+      <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
     {%- endif -%}
   </div>
 
-  <div class="hirot-journal__grid">
+  <div class="nagi-journal__grid">
     {%- if blog_obj != blank -%}
       {%- for article in blog_obj.articles limit: 3 -%}
-        <a href="{{ article.url }}" class="hirot-jcard">
-          <div class="hirot-jcard__image-wrap">
+        <a href="{{ article.url }}" class="nagi-jcard">
+          <div class="nagi-jcard__image-wrap">
             {%- if article.image != blank -%}
               {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: article.title }}
             {%- else -%}
               <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=700&q=80" alt="" width="700" height="467" style="width:100%;height:100%;object-fit:cover;display:block">
             {%- endif -%}
           </div>
-          <div class="hirot-jcard__meta">
+          <div class="nagi-jcard__meta">
             {{ article.tags | first }}
             {%- if article.tags.size > 0 %} ・ {% endif -%}
             {{ article.published_at | date: '%Y/%m/%d' }}
           </div>
-          <h3 class="hirot-jcard__title">{{ article.title }}</h3>
+          <h3 class="nagi-jcard__title">{{ article.title }}</h3>
           {%- if article.excerpt != blank -%}
-            <p class="hirot-jcard__excerpt">{{ article.excerpt | strip_html | truncate: 80 }}</p>
+            <p class="nagi-jcard__excerpt">{{ article.excerpt | strip_html | truncate: 80 }}</p>
           {%- endif -%}
         </a>
       {%- endfor -%}
     {%- else -%}
       {%- for block in section.blocks -%}
         {%- if block.settings.url != blank -%}
-          <a href="{{ block.settings.url }}" class="hirot-jcard" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.url }}" class="nagi-jcard" {{ block.shopify_attributes }}>
         {%- else -%}
-          <div class="hirot-jcard" {{ block.shopify_attributes }}>
+          <div class="nagi-jcard" {{ block.shopify_attributes }}>
         {%- endif -%}
-          <div class="hirot-jcard__image-wrap">
+          <div class="nagi-jcard__image-wrap">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
             {%- else -%}
@@ -50,10 +50,10 @@
               {%- endcase -%}
             {%- endif -%}
           </div>
-          <div class="hirot-jcard__meta">{{ block.settings.category }} ・ {{ block.settings.date }}</div>
-          <h3 class="hirot-jcard__title">{{ block.settings.title }}</h3>
+          <div class="nagi-jcard__meta">{{ block.settings.category }} ・ {{ block.settings.date }}</div>
+          <h3 class="nagi-jcard__title">{{ block.settings.title }}</h3>
           {%- if block.settings.excerpt != blank -%}
-            <p class="hirot-jcard__excerpt">{{ block.settings.excerpt }}</p>
+            <p class="nagi-jcard__excerpt">{{ block.settings.excerpt }}</p>
           {%- endif -%}
         {%- if block.settings.url != blank -%}
           </a>
@@ -67,7 +67,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Journal",
+  "name": "Nagi Journal",
   "tag": "div",
   "settings": [
     {
@@ -133,7 +133,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Journal",
+      "name": "Nagi Journal",
       "blocks": [
         {
           "type": "article",
@@ -149,7 +149,7 @@
           "settings": {
             "category": "ブランド",
             "date": "2025/12/20",
-            "title": "冬のスキンケアルーティン、aoi の場合",
+            "title": "冬のスキンケアルーティン、nagi の場合",
             "excerpt": "朝・夜に分けて実践している、シンプルだけど効果的なお手入れの流れをご紹介します。"
           }
         },

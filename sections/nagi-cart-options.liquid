@@ -2,11 +2,11 @@
   F3 配送日時指定 + F7 ギフトラッピング（カートページの白パネル）。
   templates/cart.json で main-cart-footer の直前に配置し、footer 左カラム相当の
   幅（1.2fr / 1fr グリッドの左）に白パネルを置く。Dawn の main-cart-*.liquid は不改変。
-  マークアップ本体はドロワーと共用の snippets/hirot-delivery.liquid にある。
+  マークアップ本体はドロワーと共用の snippets/nagi-delivery.liquid にある。
 {%- endcomment -%}
 <div class="page-width">
-  <div class="hirot-cart-options-grid">
-    {%- render 'hirot-delivery',
+  <div class="nagi-cart-options-grid">
+    {%- render 'nagi-delivery',
       form_id: 'cart',
       context: 'page',
       id_suffix: section.id,
@@ -16,7 +16,7 @@
     -%}
   </div>
 </div>
-<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'nagi-cart.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

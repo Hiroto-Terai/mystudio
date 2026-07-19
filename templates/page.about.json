@@ -10,12 +10,12 @@
 {
   "sections": {
     "about_statement": {
-      "type": "hirot-philosophy-band",
+      "type": "nagi-philosophy-band",
       "settings": {
         "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
-        "eyebrow": "About hirot",
+        "eyebrow": "About nagi",
         "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
-        "body": "hirot は、国産の植物由来成分を軸にした基礎化粧品ブランドです。肌に届けたいものだけを、敏感な肌にもやさしいシンプルな処方で。植物のちからを借りて、毎日のスキンケアを素肌がよろこぶ心地よい時間に変えていきます。",
+        "body": "nagi は、国産の植物由来成分を軸にした基礎化粧品ブランドです。肌に届けたいものだけを、敏感な肌にもやさしいシンプルな処方で。植物のちからを借りて、毎日のスキンケアを素肌がよろこぶ心地よい時間に変えていきます。",
         "cta_label": "商品を見る",
         "cta_url": "shopify://collections/all"
       }
@@ -64,7 +64,7 @@
       }
     },
     "about_numbers": {
-      "type": "hirot-trust-strip",
+      "type": "nagi-trust-strip",
       "blocks": {
         "n1": {
           "type": "item",
@@ -99,12 +99,12 @@
       "settings": {}
     },
     "about_story": {
-      "type": "hirot-philosophy-band",
+      "type": "nagi-philosophy-band",
       "settings": {
         "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
         "eyebrow": "Our Story",
         "heading": "<p>敏感な肌にも、<br>心地よいものを。</p>",
-        "body": "「敏感な肌にも安心して使えるものが、どうしてこんなに少ないのだろう」— そんな疑問から hirot は始まりました。国内の生産者を訪ね、植物由来の成分を一つずつ確かめて、処方には必要なぶんだけ。クレンジングから UV ケアまで、毎日の素肌に寄り添うラインナップを少しずつ育てています。",
+        "body": "「敏感な肌にも安心して使えるものが、どうしてこんなに少ないのだろう」— そんな疑問から nagi は始まりました。国内の生産者を訪ね、植物由来の成分を一つずつ確かめて、処方には必要なぶんだけ。クレンジングから UV ケアまで、毎日の素肌に寄り添うラインナップを少しずつ育てています。",
         "cta_label": "読みものを見る",
         "cta_url": "shopify://blogs/news"
       }
@@ -119,17 +119,17 @@
       }
     },
     "about_products": {
-      "type": "hirot-product-grid",
+      "type": "nagi-product-grid",
       "settings": {
         "eyebrow": "Products",
-        "heading": "hirot のアイテム",
+        "heading": "nagi のアイテム",
         "collection": "all",
         "products_count": 4,
         "view_all_url": "shopify://collections/all"
       }
     },
     "about_journal": {
-      "type": "hirot-journal",
+      "type": "nagi-journal",
       "blocks": {
         "a1": {
           "type": "article",
@@ -148,7 +148,7 @@
             "image": "shopify://shop_images/photo-1601049541289-9b1b7bbbfe19.jpg",
             "category": "ブランド",
             "date": "2026/06/28",
-            "title": "hirot のものづくりの現場から",
+            "title": "nagi のものづくりの現場から",
             "excerpt": "処方から製造まで、大切にしている考え方をお伝えします。",
             "url": "shopify://blogs/news/our-craft"
           }
@@ -173,7 +173,7 @@
       }
     },
     "about_contact": {
-      "type": "hirot-philosophy-band",
+      "type": "nagi-philosophy-band",
       "settings": {
         "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
         "eyebrow": "Contact",

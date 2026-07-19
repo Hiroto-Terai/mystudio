@@ -8,7 +8,7 @@
       }
     },
     "faq": {
-      "type": "hirot-faq",
+      "type": "nagi-faq",
       "settings": {
         "eyebrow": "FAQ",
         "heading": "よくあるご質問"

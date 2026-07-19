@@ -1,7 +1,7 @@
 {
   "sections": {
     "banner": {
-      "type": "hirot-collection-header",
+      "type": "nagi-collection-header",
       "settings": {
         "eyebrow": "Collection",
         "show_description": true

@@ -3,43 +3,43 @@
 -%}
 
 <div
-  class="hirot-staff"
+  class="nagi-staff"
   style="--staff-columns: {{ section.settings.columns }}; --staff-pt: {{ section.settings.padding_top }}px; --staff-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
 >
-  <div class="hirot-staff__inner">
+  <div class="nagi-staff__inner">
     {%- if section.settings.heading != blank or section.settings.subtext != blank -%}
-      <div class="hirot-staff__header">
+      <div class="nagi-staff__header">
         {%- if section.settings.heading != blank -%}
-          <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+          <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
         {%- endif -%}
         {%- if section.settings.subtext != blank -%}
-          <p class="hirot-staff__subtext">{{ section.settings.subtext }}</p>
+          <p class="nagi-staff__subtext">{{ section.settings.subtext }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
 
-    <div class="hirot-staff__grid">
+    <div class="nagi-staff__grid">
       {%- for staff in staff_entries limit: section.settings.max_entries -%}
-        <article class="hirot-staff-card">
-          <div class="hirot-staff-card__photo">
+        <article class="nagi-staff-card">
+          <div class="nagi-staff-card__photo">
             {%- assign photo = staff.photo.value -%}
             {%- if photo != blank -%}
               {{ photo | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 360, 480', alt: staff.name.value }}
             {%- endif -%}
           </div>
-          <div class="hirot-staff-card__body">
+          <div class="nagi-staff-card__body">
             {%- if staff.name.value != blank -%}
-              <h3 class="hirot-staff-card__name">{{ staff.name.value }}</h3>
+              <h3 class="nagi-staff-card__name">{{ staff.name.value }}</h3>
             {%- endif -%}
             {%- if staff.role.value != blank -%}
-              <p class="hirot-staff-card__role">{{ staff.role.value }}</p>
+              <p class="nagi-staff-card__role">{{ staff.role.value }}</p>
             {%- endif -%}
             {%- if staff.bio.value != blank -%}
-              <p class="hirot-staff-card__bio">{{ staff.bio.value | newline_to_br }}</p>
+              <p class="nagi-staff-card__bio">{{ staff.bio.value | newline_to_br }}</p>
             {%- endif -%}
             {%- if staff.social_url.value != blank -%}
               <a
-                class="hirot-staff-card__social"
+                class="nagi-staff-card__social"
                 href="{{ staff.social_url.value }}"
                 target="_blank"
                 rel="noopener"

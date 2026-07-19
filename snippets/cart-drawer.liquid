@@ -10,8 +10,8 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
-{% comment %} hirot F2/F7: カート訴求バンドル（送料無料バー + ギフトラッピング） {% endcomment %}
-<script src="{{ 'hirot-cart.js' | asset_url }}" defer="defer"></script>
+{% comment %} nagi F2/F7: カート訴求バンドル（送料無料バー + ギフトラッピング） {% endcomment %}
+<script src="{{ 'nagi-cart.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -76,9 +76,9 @@
           </span>
         </button>
       </div>
-      {% comment %} hirot F2: 送料無料プログレスバー（ドロワー版・再描画で金額追随） {% endcomment %}
+      {% comment %} nagi F2: 送料無料プログレスバー（ドロワー版・再描画で金額追随） {% endcomment %}
       {%- if cart != empty -%}
-        {%- render 'hirot-shipbar', context: 'drawer' -%}
+        {%- render 'nagi-shipbar', context: 'drawer' -%}
       {%- endif -%}
       <cart-drawer-items
         view-event-payload="{{ cart | standard_event_data: 'view', context: 'dialog' | escape }}"
@@ -514,14 +514,14 @@
           </details>
         {%- endif -%}
 
-        {% comment %} hirot F3: 配送日時指定（ドロワー版・ギフト行の上） {% endcomment %}
+        {% comment %} nagi F3: 配送日時指定（ドロワー版・ギフト行の上） {% endcomment %}
         {%- if cart != empty -%}
-          {%- render 'hirot-delivery', form_id: 'CartDrawer-Form', context: 'drawer', id_suffix: 'CartDrawer' -%}
+          {%- render 'nagi-delivery', form_id: 'CartDrawer-Form', context: 'drawer', id_suffix: 'CartDrawer' -%}
         {%- endif -%}
 
-        {% comment %} hirot F7: ギフトラッピング（ドロワー版・小計の上） {% endcomment %}
+        {% comment %} nagi F7: ギフトラッピング（ドロワー版・小計の上） {% endcomment %}
         {%- if cart != empty -%}
-          {%- render 'hirot-gift-wrap', form_id: 'CartDrawer-Form', context: 'drawer' -%}
+          {%- render 'nagi-gift-wrap', form_id: 'CartDrawer-Form', context: 'drawer' -%}
         {%- endif -%}
 
         <!-- Start blocks -->

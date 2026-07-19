@@ -1,13 +1,13 @@
 /* F1 お気に入り（wishlist）
  * 依存ゼロの自己完結 Web Component 群。layout/theme.liquid から defer で読み込む。
- * localStorage キー `hirot:wishlist` に商品ハンドルの配列（追加順）を保存する。
+ * localStorage キー `nagi:wishlist` に商品ハンドルの配列（追加順）を保存する。
  * ハートはログイン不要のゲスト体験（localStorage のみ）で完結する。
  */
 (() => {
   'use strict';
 
-  const STORAGE_KEY = 'hirot:wishlist';
-  const CHANGE_EVENT = 'hirot:wishlist:change';
+  const STORAGE_KEY = 'nagi:wishlist';
+  const CHANGE_EVENT = 'nagi:wishlist:change';
   const BUBBLE_MAX_COUNT = 9;
   const CARD_IMAGE_WIDTH = 800;
   const HEART_PATH =
@@ -84,15 +84,15 @@
   }
 
   /* ---- ハート切り替えボタン ----
-   * <hirot-fav-toggle data-product-handle="..."> をカードの <a> の兄弟として置く
+   * <nagi-fav-toggle data-product-handle="..."> をカードの <a> の兄弟として置く
    * （a > button の HTML 不正を回避。デザイン仕様 §2）。中身が空なら自前で
    * ボタンを生成するので、JS からの注入時は要素を append するだけでよい。 */
 
-  class HirotFavToggle extends HTMLElement {
+  class NagiFavToggle extends HTMLElement {
     connectedCallback() {
       this.handle = this.dataset.productHandle || '';
       if (!this.querySelector('button')) {
-        this.innerHTML = `<button type="button" class="hirot-fav-toggle" aria-pressed="false" aria-label="お気に入りに追加">${heartSvg(22)}</button>`;
+        this.innerHTML = `<button type="button" class="nagi-fav-toggle" aria-pressed="false" aria-label="お気に入りに追加">${heartSvg(22)}</button>`;
       }
       this.button = this.querySelector('button');
       this.button.addEventListener('click', (event) => {
@@ -115,13 +115,13 @@
     }
   }
 
-  customElements.define('hirot-fav-toggle', HirotFavToggle);
+  customElements.define('nagi-fav-toggle', NagiFavToggle);
 
   /* ---- ヘッダーの件数バッジ ----
    * 0 件時は中身を空にして :empty { display: none } で消す（Dawn の
    * cart-count-bubble パターン）。10 件以上は「9+」に丸める。 */
 
-  class HirotFavBubble extends HTMLElement {
+  class NagiFavBubble extends HTMLElement {
     connectedCallback() {
       this.onChange = () => this.update();
       document.addEventListener(CHANGE_EVENT, this.onChange);
@@ -144,13 +144,13 @@
     }
   }
 
-  customElements.define('hirot-fav-bubble', HirotFavBubble);
+  customElements.define('nagi-fav-bubble', NagiFavBubble);
 
   /* ---- wishlist ページ ----
-   * sections/hirot-wishlist.liquid のルート要素。localStorage のハンドルから
-   * /products/<handle>.js を取得し、.hirot-card と同一構造のカードを描画する。 */
+   * sections/nagi-wishlist.liquid のルート要素。localStorage のハンドルから
+   * /products/<handle>.js を取得し、.nagi-card と同一構造のカードを描画する。 */
 
-  class HirotWishlistPage extends HTMLElement {
+  class NagiWishlistPage extends HTMLElement {
     connectedCallback() {
       this.brand = this.dataset.brand || '';
       this.grid = this.querySelector('[data-wishlist-grid]');
@@ -221,33 +221,33 @@
         : '';
       const soldoutBadge = product.available
         ? ''
-        : '<span class="hirot-card__soldout-badge">売り切れ</span>';
+        : '<span class="nagi-card__soldout-badge">売り切れ</span>';
       const comparePrice =
         product.compare_at_price > product.price
-          ? `<span class="hirot-card__compare-price">${formatMoney(product.compare_at_price)}</span>`
+          ? `<span class="nagi-card__compare-price">${formatMoney(product.compare_at_price)}</span>`
           : '';
       return `
-        <div class="hirot-card hirot-card--fav">
-          <a href="/products/${encodeURIComponent(product.handle)}" class="hirot-card__link">
-            <div class="hirot-card__image-wrap">
+        <div class="nagi-card nagi-card--fav">
+          <a href="/products/${encodeURIComponent(product.handle)}" class="nagi-card__link">
+            <div class="nagi-card__image-wrap">
               ${image}
               ${soldoutBadge}
             </div>
-            <div class="hirot-card__info">
-              <div class="hirot-card__brand">${esc(this.brand)}</div>
-              <div class="hirot-card__title">${esc(product.title)}</div>
-              <div class="hirot-card__price-wrap">
-                <span class="hirot-card__price">${formatMoney(product.price)}</span>
+            <div class="nagi-card__info">
+              <div class="nagi-card__brand">${esc(this.brand)}</div>
+              <div class="nagi-card__title">${esc(product.title)}</div>
+              <div class="nagi-card__price-wrap">
+                <span class="nagi-card__price">${formatMoney(product.price)}</span>
                 ${comparePrice}
               </div>
             </div>
           </a>
-          <hirot-fav-toggle data-product-handle="${esc(product.handle)}"></hirot-fav-toggle>
+          <nagi-fav-toggle data-product-handle="${esc(product.handle)}"></nagi-fav-toggle>
         </div>`;
     }
   }
 
-  customElements.define('hirot-wishlist-page', HirotWishlistPage);
+  customElements.define('nagi-wishlist-page', NagiWishlistPage);
 
   /* ---- Dawn 標準カード・商品詳細への注入 ----
    * Dawn の Liquid（card-product / main-product）は改変しない方針のため、
@@ -257,11 +257,11 @@
 
   function injectCardToggles() {
     document.querySelectorAll('.product-grid .card-wrapper').forEach((wrapper) => {
-      if (wrapper.querySelector('hirot-fav-toggle')) return;
+      if (wrapper.querySelector('nagi-fav-toggle')) return;
       const link = wrapper.querySelector('a[href*="/products/"]');
       const handle = link ? extractHandle(link.getAttribute('href')) : '';
       if (!handle) return;
-      const toggle = document.createElement('hirot-fav-toggle');
+      const toggle = document.createElement('nagi-fav-toggle');
       toggle.dataset.productHandle = handle;
       wrapper.appendChild(toggle);
     });
@@ -269,10 +269,10 @@
 
   function injectPdpToggle() {
     const mediaWrapper = document.querySelector('.product__media-wrapper');
-    if (!mediaWrapper || mediaWrapper.querySelector('hirot-fav-toggle')) return;
+    if (!mediaWrapper || mediaWrapper.querySelector('nagi-fav-toggle')) return;
     const handle = extractHandle(window.location.pathname);
     if (!handle) return;
-    const toggle = document.createElement('hirot-fav-toggle');
+    const toggle = document.createElement('nagi-fav-toggle');
     toggle.dataset.productHandle = handle;
     mediaWrapper.appendChild(toggle);
   }

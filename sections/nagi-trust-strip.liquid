@@ -1,6 +1,6 @@
-<section class="hirot-trust">
+<section class="nagi-trust">
   {%- for block in section.blocks -%}
-    <div class="hirot-trust__item" {{ block.shopify_attributes }}>
+    <div class="nagi-trust__item" {{ block.shopify_attributes }}>
       {%- case block.settings.icon -%}
         {%- when 'shipping' -%}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -36,7 +36,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Trust Strip",
+  "name": "Nagi Trust Strip",
   "tag": "div",
   "max_blocks": 5,
   "blocks": [
@@ -68,7 +68,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Trust Strip",
+      "name": "Nagi Trust Strip",
       "blocks": [
         {
           "type": "item",

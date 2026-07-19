@@ -16,29 +16,29 @@
   assign sorted_keys = sort_keys | split: ',' | sort
 -%}
 
-<div class="hirot-faq">
-  <div class="hirot-faq__inner">
-    <div class="hirot-faq__header">
+<div class="nagi-faq">
+  <div class="nagi-faq__inner">
+    <div class="nagi-faq__header">
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+      <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
     </div>
 
     {%- if faq_entries.size > 0 -%}
-      <div class="hirot-faq__list">
+      <div class="nagi-faq__list">
         {%- for key in sorted_keys -%}
           {%- assign entry_index = key | split: '::' | last | plus: 0 -%}
           {%- for entry in faq_entries -%}
             {%- if forloop.index0 == entry_index and entry.question.value != blank -%}
-              <details class="hirot-faq__item">
-                <summary class="hirot-faq__question">
+              <details class="nagi-faq__item">
+                <summary class="nagi-faq__question">
                   <span>{{ entry.question.value }}</span>
-                  <svg class="hirot-faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <svg class="nagi-faq__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                   </svg>
                 </summary>
-                <div class="hirot-faq__answer">
+                <div class="nagi-faq__answer">
                   <p>{{ entry.answer.value | newline_to_br }}</p>
                 </div>
               </details>

@@ -1,7 +1,7 @@
 {%- comment -%}
   F7 ギフトラッピング（カートページ / ドロワー共通）。
   チェック状態は cart attribute「ギフトラッピング: 希望する」に記録する。
-  即時反映は assets/hirot-cart.js の <hirot-gift-wrap> が cart/update.js へ POST し、
+  即時反映は assets/nagi-cart.js の <nagi-gift-wrap> が cart/update.js へ POST し、
   JS 無効時も hidden + checkbox の attributes[] ペアがチェックアウト時のフォーム送信で効く。
 
   引数:
@@ -18,13 +18,13 @@
     assign is_checked = true
   endif
 -%}
-<hirot-gift-wrap
+<nagi-gift-wrap
   {% if cart == empty %}
     hidden
   {% endif %}
 >
-  <div class="hirot-gift{% if context == 'drawer' %} hirot-gift--drawer{% endif %}">
-    <label class="hirot-gift__row">
+  <div class="nagi-gift{% if context == 'drawer' %} nagi-gift--drawer{% endif %}">
+    <label class="nagi-gift__row">
       <input type="hidden" name="attributes[ギフトラッピング]" value="" form="{{ form_id }}">
       <input
         type="checkbox"
@@ -35,21 +35,21 @@
           checked
         {% endif %}
       >
-      <span class="hirot-gift__box" aria-hidden="true">
+      <span class="nagi-gift__box" aria-hidden="true">
         <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       <span>
-        <span class="hirot-gift__label">
+        <span class="nagi-gift__label">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <rect x="4" y="9.5" width="16" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
             <path d="M4 9.5h16M12 9.5V20" stroke="currentColor" stroke-width="1.5"/>
             <path d="M12 9.5C12 7 10.6 5.5 9.2 5.5c-1.2 0-2 .8-2 1.9 0 1.5 2 2.1 4.8 2.1Zm0 0c0-2.5 1.4-4 2.8-4 1.2 0 2 .8 2 1.9 0 1.5-2 2.1-4.8 2.1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           </svg>
           ギフトラッピングを希望する
-          <span class="hirot-gift__price">+{{ price | times: 100 | money }}</span>
+          <span class="nagi-gift__price">+{{ price | times: 100 | money }}</span>
         </span>
-        <span class="hirot-gift__note">{{ note }}</span>
+        <span class="nagi-gift__note">{{ note }}</span>
       </span>
     </label>
   </div>
-</hirot-gift-wrap>
+</nagi-gift-wrap>

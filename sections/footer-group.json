@@ -12,7 +12,7 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "hirot-footer",
+      "type": "nagi-footer",
       "blocks": {
         "col_shop": {
           "type": "column",

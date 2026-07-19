@@ -1,9 +1,9 @@
-# Hirot — Shopify theme (Dawn reskin)
+# Nagi — Shopify theme (Dawn reskin)
 
-The Hirot design applied to a real, installable **Shopify theme**, built on
+The Nagi design applied to a real, installable **Shopify theme**, built on
 Shopify's reference theme **[Dawn](https://github.com/Shopify/dawn)**. It keeps all of
 Dawn's real commerce functionality (product/collection/cart/checkout, sections, theme
-editor) and reskins it with the Hirot brand: a cream editorial canvas, growth‑green
+editor) and reskins it with the Nagi brand: a cream editorial canvas, growth‑green
 accents, thin‑weight display type over Noto Sans JP, pill buttons, and the signature
 stacked‑shadow "paper halo" card depth.
 
@@ -19,13 +19,13 @@ Everything is done as **overrides on top of vanilla Dawn**, so it stays upgradea
 
 | Layer | File | What it does |
 |---|---|---|
-| Color | [`config/settings_data.json`](./config/settings_data.json) | 5 Hirot color schemes: cream page · white card · pistachio band · ink footer · aloe featured. Plus pill button radius (40), 12px card radius, 8px inputs, 24px grid gap, and a **drawer** cart. |
-| Type + components | [`assets/hirot.css`](./assets/hirot.css) | Loaded after `base.css`. Overrides the font‑family vars (Noto Sans JP body / Hanken Grotesk display), thins headings to weight 300 with tighter tracking, sets Japanese line‑height + `palt`, forces pill buttons, and adds the stacked‑shadow card halo on hover. |
-| Fonts | [`layout/theme.liquid`](./layout/theme.liquid) | Adds the Google Fonts link (Noto Sans JP + Hanken Grotesk) and wires in `hirot.css`. |
-| Homepage | [`templates/index.json`](./templates/index.json) | Rebuilt to echo the Hirot home: editorial hero (image‑with‑text), brand strip, featured‑collection grid (4‑up, portrait cards, quick‑add), and a pistachio "選ばれる、3つの理由" value band. |
+| Color | [`config/settings_data.json`](./config/settings_data.json) | 5 Nagi color schemes: cream page · white card · pistachio band · ink footer · aloe featured. Plus pill button radius (40), 12px card radius, 8px inputs, 24px grid gap, and a **drawer** cart. |
+| Type + components | [`assets/nagi.css`](./assets/nagi.css) | Loaded after `base.css`. Overrides the font‑family vars (Noto Sans JP body / Hanken Grotesk display), thins headings to weight 300 with tighter tracking, sets Japanese line‑height + `palt`, forces pill buttons, and adds the stacked‑shadow card halo on hover. |
+| Fonts | [`layout/theme.liquid`](./layout/theme.liquid) | Adds the Google Fonts link (Noto Sans JP + Hanken Grotesk) and wires in `nagi.css`. |
+| Homepage | [`templates/index.json`](./templates/index.json) | Rebuilt to echo the Nagi home: editorial hero (image‑with‑text), brand strip, featured‑collection grid (4‑up, portrait cards, quick‑add), and a pistachio "選ばれる、3つの理由" value band. |
 | Footer | [`sections/footer-group.json`](./sections/footer-group.json) | Switched to the ink‑dark scheme. |
 
-The Hirot color/type values map 1:1 to the design system tokens (`--green-20` = aloe
+The Nagi color/type values map 1:1 to the design system tokens (`--green-20` = aloe
 `#c1fbd4`, `--canvas-cream` = `#fbfbf5`, display weight 300, etc.).
 
 ## Install / preview
@@ -60,7 +60,7 @@ one) — that step needs your store + CLI auth.
 - **Fonts load from Google Fonts by URL.** Matches the design system and is editable in one
   place, but theme‑check prefers CDN‑hosted assets. Can be self‑hosted into `assets/` on
   request for best performance + offline theme‑editor rendering.
-- **Logo** is the shop‑name wordmark (styled). The Hirot sprout mark can be added as an
+- **Logo** is the shop‑name wordmark (styled). The Nagi sprout mark can be added as an
   uploaded logo image in the theme editor (Header section) — Shopify needs it uploaded to
   the store's media library, so it isn't wired via `settings_data.json`.
 - **Product imagery / catalog** comes from your real Shopify products. The homepage's
@@ -70,7 +70,7 @@ one) — that step needs your store + CLI auth.
 
 ## History
 
-- Branch **`implement-hirot-storefront`** — the standalone React + Vite + TS storefront
+- Branch **`implement-nagi-storefront`** — the standalone React + Vite + TS storefront
   implementation of the same design.
 - Branch **`main`** / earlier commits — the original Claude Design handoff bundle
   (`project/`, `chats/`) with the full design‑system spec, tokens, and specimen cards.

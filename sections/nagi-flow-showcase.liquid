@@ -1,77 +1,77 @@
 {%- comment -%}
   F9 Flow 自動化ショーケース（/pages/automation）。
-  導入バンド（hirot-collection-header 様式）→ 自動化例カード → 締め CTA パネル。
+  導入バンド（nagi-collection-header 様式）→ 自動化例カード → 締め CTA パネル。
   1 枚目のブロックのみ全幅 featured（テキスト左 / 図解右）。
   図解はインライン SVG。rect・矢印・キャプションは固定し、
   <text> のノードラベルだけを block settings から流す（2 行は上段/下段の 2 設定）。
   デザイン仕様: docs/design/flow-showcase-spec.md / モック: docs/design/flow-showcase.html
 {%- endcomment -%}
-<section class="hirot-flow-header">
-  <div class="hirot-flow-header__inner">
+<section class="nagi-flow-header">
+  <div class="nagi-flow-header__inner">
     {%- if section.settings.eyebrow != blank -%}
-      <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
-    <h1 class="hirot-flow-header__heading">{{ section.settings.heading }}</h1>
+    <h1 class="nagi-flow-header__heading">{{ section.settings.heading }}</h1>
     {%- if section.settings.description != blank -%}
-      <p class="hirot-flow-header__description">{{ section.settings.description }}</p>
+      <p class="nagi-flow-header__description">{{ section.settings.description }}</p>
     {%- endif -%}
   </div>
 </section>
 
-<section class="hirot-flow">
-  <div class="hirot-flow__grid">
+<section class="nagi-flow">
+  <div class="nagi-flow__grid">
     {%- for block in section.blocks -%}
       {%- capture diagram -%}
-        <svg class="hirot-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="{{ block.settings.diagram_alt | escape }}">
-          <text class="hirot-fd-caption" x="85" y="14">トリガー</text>
-          <text class="hirot-fd-caption" x="280" y="14">条件</text>
-          <text class="hirot-fd-caption" x="475" y="14">アクション</text>
-          <rect class="hirot-fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+        <svg class="nagi-flowcard__diagram" viewBox="0 0 560 96" role="img" aria-label="{{ block.settings.diagram_alt | escape }}">
+          <text class="nagi-fd-caption" x="85" y="14">トリガー</text>
+          <text class="nagi-fd-caption" x="280" y="14">条件</text>
+          <text class="nagi-fd-caption" x="475" y="14">アクション</text>
+          <rect class="nagi-fd-node--trigger" x="1" y="24" width="168" height="48" rx="12" stroke-width="1"/>
           {%- if block.settings.trigger_2 != blank -%}
-            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="45">{{ block.settings.trigger_1 | escape }}</text>
-            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="62">{{ block.settings.trigger_2 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--trigger" x="85" y="45">{{ block.settings.trigger_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--trigger" x="85" y="62">{{ block.settings.trigger_2 | escape }}</text>
           {%- else -%}
-            <text class="hirot-fd-text hirot-fd-text--trigger" x="85" y="53">{{ block.settings.trigger_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--trigger" x="85" y="53">{{ block.settings.trigger_1 | escape }}</text>
           {%- endif -%}
-          <path class="hirot-fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
-          <rect class="hirot-fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
+          <path class="nagi-fd-arrow" d="M174 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="nagi-fd-node--condition" x="196" y="24" width="168" height="48" rx="12" stroke-width="1"/>
           {%- if block.settings.condition_2 != blank -%}
-            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="45">{{ block.settings.condition_1 | escape }}</text>
-            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="62">{{ block.settings.condition_2 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--condition" x="280" y="45">{{ block.settings.condition_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--condition" x="280" y="62">{{ block.settings.condition_2 | escape }}</text>
           {%- else -%}
-            <text class="hirot-fd-text hirot-fd-text--condition" x="280" y="53">{{ block.settings.condition_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--condition" x="280" y="53">{{ block.settings.condition_1 | escape }}</text>
           {%- endif -%}
-          <path class="hirot-fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
-          <rect class="hirot-fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
+          <path class="nagi-fd-arrow" d="M369 48h14m-5-4.5 5 4.5-5 4.5"/>
+          <rect class="nagi-fd-node--action" x="391" y="24" width="168" height="48" rx="12"/>
           {%- if block.settings.action_2 != blank -%}
-            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="45">{{ block.settings.action_1 | escape }}</text>
-            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="62">{{ block.settings.action_2 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--action" x="475" y="45">{{ block.settings.action_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--action" x="475" y="62">{{ block.settings.action_2 | escape }}</text>
           {%- else -%}
-            <text class="hirot-fd-text hirot-fd-text--action" x="475" y="53">{{ block.settings.action_1 | escape }}</text>
+            <text class="nagi-fd-text nagi-fd-text--action" x="475" y="53">{{ block.settings.action_1 | escape }}</text>
           {%- endif -%}
         </svg>
       {%- endcapture -%}
 
-      <article class="hirot-flowcard{% if forloop.first %} hirot-flowcard--featured{% endif %}" {{ block.shopify_attributes }}>
+      <article class="nagi-flowcard{% if forloop.first %} nagi-flowcard--featured{% endif %}" {{ block.shopify_attributes }}>
         {%- if forloop.first -%}
-          <div class="hirot-flowcard__cols">
+          <div class="nagi-flowcard__cols">
             <div>
-              <span class="hirot-flowcard__chip">{{ block.settings.chip }}</span>
-              <h2 class="hirot-flowcard__title">{{ block.settings.title }}</h2>
-              <p class="hirot-flowcard__body">{{ block.settings.body }}</p>
+              <span class="nagi-flowcard__chip">{{ block.settings.chip }}</span>
+              <h2 class="nagi-flowcard__title">{{ block.settings.title }}</h2>
+              <p class="nagi-flowcard__body">{{ block.settings.body }}</p>
               {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
-                <a class="hirot-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
+                <a class="nagi-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
               {%- endif -%}
             </div>
             {{ diagram }}
           </div>
         {%- else -%}
-          <span class="hirot-flowcard__chip">{{ block.settings.chip }}</span>
-          <h2 class="hirot-flowcard__title">{{ block.settings.title }}</h2>
-          <p class="hirot-flowcard__body">{{ block.settings.body }}</p>
+          <span class="nagi-flowcard__chip">{{ block.settings.chip }}</span>
+          <h2 class="nagi-flowcard__title">{{ block.settings.title }}</h2>
+          <p class="nagi-flowcard__body">{{ block.settings.body }}</p>
           {{ diagram }}
           {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
-            <a class="hirot-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
+            <a class="nagi-flowcard__link" href="{{ block.settings.link_url }}">{{ block.settings.link_label }} →</a>
           {%- endif -%}
         {%- endif -%}
       </article>
@@ -80,17 +80,17 @@
 </section>
 
 {%- if section.settings.cta_heading != blank -%}
-  <section class="hirot-flow-cta">
-    <div class="hirot-flow-cta__inner">
+  <section class="nagi-flow-cta">
+    <div class="nagi-flow-cta__inner">
       {%- if section.settings.cta_eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
       {%- endif -%}
-      <h2 class="hirot-flow-cta__heading">{{ section.settings.cta_heading }}</h2>
+      <h2 class="nagi-flow-cta__heading">{{ section.settings.cta_heading }}</h2>
       {%- if section.settings.cta_body != blank -%}
-        <p class="hirot-flow-cta__body">{{ section.settings.cta_body }}</p>
+        <p class="nagi-flow-cta__body">{{ section.settings.cta_body }}</p>
       {%- endif -%}
       {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
-        <a class="hirot-btn hirot-btn--accent" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        <a class="nagi-btn nagi-btn--accent" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
     </div>
   </section>

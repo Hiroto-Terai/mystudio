@@ -58,8 +58,8 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'standard-actions-override.js' | asset_url }}" defer="defer"></script>
-    {%- comment -%} hirot F1: お気に入り（ヘッダーの件数バッジが全ページに出るためレイアウトで読み込む） {%- endcomment -%}
-    <script src="{{ 'hirot-wishlist.js' | asset_url }}" defer="defer"></script>
+    {%- comment -%} nagi F1: お気に入り（ヘッダーの件数バッジが全ページに出るためレイアウトで読み込む） {%- endcomment -%}
+    <script src="{{ 'nagi-wishlist.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -282,13 +282,13 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
-    {%- comment %} Hirot brand webfonts: Japanese body (Noto Sans JP) + Latin display (Hanken Grotesk). {% endcomment -%}
+    {%- comment %} Nagi brand webfonts: Japanese body (Noto Sans JP) + Latin display (Hanken Grotesk). {% endcomment -%}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap">
 
-    {%- comment %} Hirot reskin layer — loaded after base.css so it overrides Dawn. {% endcomment -%}
-    {{ 'hirot.css' | asset_url | stylesheet_tag }}
+    {%- comment %} Nagi reskin layer — loaded after base.css so it overrides Dawn. {% endcomment -%}
+    {{ 'nagi.css' | asset_url | stylesheet_tag }}
 
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 

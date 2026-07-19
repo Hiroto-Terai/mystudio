@@ -1,19 +1,19 @@
 /* F5 最近見た商品 + F6 再入荷通知（商品詳細ページ）
  * 依存ゼロの自己完結 Web Component 群。対象セクション/スニペットから defer で読み込む。
- * F5 は localStorage キー `hirot:recent` に商品ハンドルの配列（新しい順）を保存し、
- * F1 wishlist と同じ /products/<handle>.js フェッチ + .hirot-card 構造で描画する。
- * F6 は localStorage キー `hirot:restock` に { handle: email } を記録するデモ実装
+ * F5 は localStorage キー `nagi:recent` に商品ハンドルの配列（新しい順）を保存し、
+ * F1 wishlist と同じ /products/<handle>.js フェッチ + .nagi-card 構造で描画する。
+ * F6 は localStorage キー `nagi:restock` に { handle: email } を記録するデモ実装
  * （実配信は Shopify Flow 連携の入口という位置づけ）。
  * 同一ページに複数の <script> が並ぶことがあるため、二重定義を先頭で防ぐ。
  */
 (() => {
   'use strict';
 
-  if (customElements.get('hirot-recent-products')) return;
+  if (customElements.get('nagi-recent-products')) return;
 
-  const RECENT_KEY = 'hirot:recent';
+  const RECENT_KEY = 'nagi:recent';
   const RECENT_MAX = 8;
-  const RESTOCK_KEY = 'hirot:restock';
+  const RESTOCK_KEY = 'nagi:restock';
   const CARD_IMAGE_WIDTH = 800;
 
   /* ---- 共通ヘルパー ---- */
@@ -56,11 +56,11 @@
   }
 
   /* ---- F5 最近見た商品 ----
-   * sections/hirot-recent-products.liquid のルート要素（初期状態は hidden）。
+   * sections/nagi-recent-products.liquid のルート要素（初期状態は hidden）。
    * 「現商品を除いた閲覧履歴」を描画してから現商品を履歴の先頭に記録する
    * （同じページのリロードでも表示が変わらないようにする）。0 件なら hidden のまま。 */
 
-  class HirotRecentProducts extends HTMLElement {
+  class NagiRecentProducts extends HTMLElement {
     connectedCallback() {
       this.brand = this.dataset.brand || '';
       this.track = this.querySelector('[data-recent-track]');
@@ -101,28 +101,28 @@
         : '';
       const soldoutBadge = product.available
         ? ''
-        : '<span class="hirot-card__soldout-badge">売り切れ</span>';
+        : '<span class="nagi-card__soldout-badge">売り切れ</span>';
       const comparePrice =
         product.compare_at_price > product.price
-          ? `<span class="hirot-card__compare-price">${formatMoney(product.compare_at_price)}</span>`
+          ? `<span class="nagi-card__compare-price">${formatMoney(product.compare_at_price)}</span>`
           : '';
       return `
-        <div class="hirot-card hirot-card--fav">
-          <a href="/products/${encodeURIComponent(product.handle)}" class="hirot-card__link">
-            <div class="hirot-card__image-wrap">
+        <div class="nagi-card nagi-card--fav">
+          <a href="/products/${encodeURIComponent(product.handle)}" class="nagi-card__link">
+            <div class="nagi-card__image-wrap">
               ${image}
               ${soldoutBadge}
             </div>
-            <div class="hirot-card__info">
-              <div class="hirot-card__brand">${esc(this.brand)}</div>
-              <div class="hirot-card__title">${esc(product.title)}</div>
-              <div class="hirot-card__price-wrap">
-                <span class="hirot-card__price">${formatMoney(product.price)}</span>
+            <div class="nagi-card__info">
+              <div class="nagi-card__brand">${esc(this.brand)}</div>
+              <div class="nagi-card__title">${esc(product.title)}</div>
+              <div class="nagi-card__price-wrap">
+                <span class="nagi-card__price">${formatMoney(product.price)}</span>
                 ${comparePrice}
               </div>
             </div>
           </a>
-          <hirot-fav-toggle data-product-handle="${esc(product.handle)}"></hirot-fav-toggle>
+          <nagi-fav-toggle data-product-handle="${esc(product.handle)}"></nagi-fav-toggle>
         </div>`;
     }
   }
@@ -139,14 +139,14 @@
     return { error: true };
   }
 
-  customElements.define('hirot-recent-products', HirotRecentProducts);
+  customElements.define('nagi-recent-products', NagiRecentProducts);
 
   /* ---- F6 再入荷通知 ----
-   * snippets/hirot-restock.liquid のルート要素（売り切れ商品のみサーバー描画される）。
+   * snippets/nagi-restock.liquid のルート要素（売り切れ商品のみサーバー描画される）。
    * 送信でメールアドレスを localStorage に記録し、フォームを完了表示へ差し替える。
    * リロード時も登録済みなら完了表示のままにする。 */
 
-  class HirotRestock extends HTMLElement {
+  class NagiRestock extends HTMLElement {
     connectedCallback() {
       this.handle = this.dataset.productHandle || '';
       this.form = this.querySelector('[data-restock-form]');
@@ -181,5 +181,5 @@
     return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
   }
 
-  customElements.define('hirot-restock', HirotRestock);
+  customElements.define('nagi-restock', NagiRestock);
 })();

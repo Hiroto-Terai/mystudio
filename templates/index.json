@@ -9,8 +9,8 @@
  */
 {
   "sections": {
-    "hirot_hero": {
-      "type": "hirot-hero",
+    "nagi_hero": {
+      "type": "nagi-hero",
       "settings": {
         "eyebrow": "Botanical Skincare",
         "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
@@ -23,7 +23,7 @@
       }
     },
     "trust_strip": {
-      "type": "hirot-trust-strip",
+      "type": "nagi-trust-strip",
       "blocks": {
         "trust_1": {
           "type": "item",
@@ -51,7 +51,7 @@
       "settings": {}
     },
     "category_tiles": {
-      "type": "hirot-category-tiles",
+      "type": "nagi-category-tiles",
       "blocks": {
         "cat_1": {
           "type": "tile",
@@ -97,7 +97,7 @@
       }
     },
     "featured_products": {
-      "type": "hirot-product-grid",
+      "type": "nagi-product-grid",
       "settings": {
         "eyebrow": "Featured",
         "heading": "今週のおすすめ",
@@ -106,7 +106,7 @@
       }
     },
     "philosophy_band": {
-      "type": "hirot-philosophy-band",
+      "type": "nagi-philosophy-band",
       "settings": {
         "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
         "eyebrow": "Our Philosophy",
@@ -169,7 +169,7 @@
       }
     },
     "journal": {
-      "type": "hirot-journal",
+      "type": "nagi-journal",
       "blocks": {
         "article_1": {
           "type": "article",
@@ -188,7 +188,7 @@
             "image": "shopify://shop_images/photo-1601049541289-9b1b7bbbfe19.jpg",
             "category": "ブランド",
             "date": "2026/06/28",
-            "title": "hirot のものづくりの現場から",
+            "title": "nagi のものづくりの現場から",
             "excerpt": "処方から製造まで、大切にしている考え方をお伝えします。",
             "url": "shopify://blogs/news/our-craft"
           }
@@ -243,7 +243,7 @@
     }
   },
   "order": [
-    "hirot_hero",
+    "nagi_hero",
     "trust_strip",
     "category_tiles",
     "featured_products",

@@ -1,18 +1,18 @@
-<section class="hirot-collection-header">
-  <div class="hirot-collection-header__inner">
+<section class="nagi-collection-header">
+  <div class="nagi-collection-header__inner">
     {%- if section.settings.eyebrow != blank -%}
-      <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
-    <h1 class="hirot-collection-header__heading">{{ collection.title }}</h1>
+    <h1 class="nagi-collection-header__heading">{{ collection.title }}</h1>
     {%- if section.settings.show_description and collection.description != blank -%}
-      <div class="hirot-collection-header__description">{{ collection.description }}</div>
+      <div class="nagi-collection-header__description">{{ collection.description }}</div>
     {%- endif -%}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Hirot Collection Header",
+  "name": "Nagi Collection Header",
   "tag": "div",
   "settings": [
     {
@@ -30,7 +30,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Collection Header"
+      "name": "Nagi Collection Header"
     }
   ]
 }

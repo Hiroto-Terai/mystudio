@@ -1,27 +1,27 @@
 {%- comment -%}
   F5 最近見た商品（PDP 下部・related-products の後）。閲覧履歴は localStorage
-  （キー hirot:recent）にしか無いため、一覧は assets/hirot-pdp.js の
-  <hirot-recent-products> がクライアント側で描画する（F1 wishlist と同じ
-  /products/<handle>.js フェッチ + .hirot-card 構造）。
+  （キー nagi:recent）にしか無いため、一覧は assets/nagi-pdp.js の
+  <nagi-recent-products> がクライアント側で描画する（F1 wishlist と同じ
+  /products/<handle>.js フェッチ + .nagi-card 構造）。
   履歴 0 件（初訪問）や現商品しか無い場合は hidden のままセクションごと非表示。
 {%- endcomment -%}
-<hirot-recent-products
-  class="hirot-recent"
+<nagi-recent-products
+  class="nagi-recent"
   data-current-handle="{{ product.handle }}"
   data-brand="{{ shop.name | upcase }}"
   hidden
 >
-  <div class="hirot-recent__inner">
-    <div class="hirot-recent__header">
+  <div class="nagi-recent__inner">
+    <div class="nagi-recent__header">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
-      <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+      <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
     </div>
-    <div class="hirot-recent__track" data-recent-track></div>
+    <div class="nagi-recent__track" data-recent-track></div>
   </div>
-</hirot-recent-products>
-<script src="{{ 'hirot-pdp.js' | asset_url }}" defer="defer"></script>
+</nagi-recent-products>
+<script src="{{ 'nagi-pdp.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

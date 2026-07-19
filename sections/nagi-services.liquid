@@ -3,38 +3,38 @@
   このデモストアで見せている実装の先に、追加で提供できる施策・設定を一覧する。
   ブロックは順序どおりに描画し、group_heading は 1 段のグリッドを全幅で仕切る見出し、
   capability はカード。実装本体はスコープ外（＝リンク/相談導線のみ置く）。
-  他 hirot セクション同様 JS ゼロ・スニペット依存ゼロ。スタイルは assets/hirot.css。
+  他 nagi セクション同様 JS ゼロ・スニペット依存ゼロ。スタイルは assets/nagi.css。
 {%- endcomment -%}
-<section class="hirot-svc-header">
-  <div class="hirot-svc-header__inner">
+<section class="nagi-svc-header">
+  <div class="nagi-svc-header__inner">
     {%- if section.settings.eyebrow != blank -%}
-      <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
-    <h1 class="hirot-svc-header__heading">{{ section.settings.heading }}</h1>
+    <h1 class="nagi-svc-header__heading">{{ section.settings.heading }}</h1>
     {%- if section.settings.description != blank -%}
-      <p class="hirot-svc-header__description">{{ section.settings.description }}</p>
+      <p class="nagi-svc-header__description">{{ section.settings.description }}</p>
     {%- endif -%}
   </div>
 </section>
 
-<section class="hirot-svc">
-  <div class="hirot-svc__grid">
+<section class="nagi-svc">
+  <div class="nagi-svc__grid">
     {%- for block in section.blocks -%}
       {%- if block.type == 'group_heading' -%}
-        <div class="hirot-svc__group" {{ block.shopify_attributes }}>
-          <span class="hirot-svc__group-label">{{ block.settings.label }}</span>
+        <div class="nagi-svc__group" {{ block.shopify_attributes }}>
+          <span class="nagi-svc__group-label">{{ block.settings.label }}</span>
           {%- if block.settings.note != blank -%}
-            <span class="hirot-svc__group-note">{{ block.settings.note }}</span>
+            <span class="nagi-svc__group-note">{{ block.settings.note }}</span>
           {%- endif -%}
         </div>
       {%- else -%}
-        <article class="hirot-svc-card" {{ block.shopify_attributes }}>
+        <article class="nagi-svc-card" {{ block.shopify_attributes }}>
           {%- if block.settings.tag != blank -%}
-            <span class="hirot-svc-card__tag">{{ block.settings.tag }}</span>
+            <span class="nagi-svc-card__tag">{{ block.settings.tag }}</span>
           {%- endif -%}
-          <h3 class="hirot-svc-card__title">{{ block.settings.title }}</h3>
+          <h3 class="nagi-svc-card__title">{{ block.settings.title }}</h3>
           {%- if block.settings.body != blank -%}
-            <p class="hirot-svc-card__body">{{ block.settings.body }}</p>
+            <p class="nagi-svc-card__body">{{ block.settings.body }}</p>
           {%- endif -%}
         </article>
       {%- endif -%}
@@ -43,17 +43,17 @@
 </section>
 
 {%- if section.settings.cta_heading != blank -%}
-  <section class="hirot-svc-cta">
-    <div class="hirot-svc-cta__inner">
+  <section class="nagi-svc-cta">
+    <div class="nagi-svc-cta__inner">
       {%- if section.settings.cta_eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.cta_eyebrow }}</span>
       {%- endif -%}
-      <h2 class="hirot-svc-cta__heading">{{ section.settings.cta_heading }}</h2>
+      <h2 class="nagi-svc-cta__heading">{{ section.settings.cta_heading }}</h2>
       {%- if section.settings.cta_body != blank -%}
-        <p class="hirot-svc-cta__body">{{ section.settings.cta_body }}</p>
+        <p class="nagi-svc-cta__body">{{ section.settings.cta_body }}</p>
       {%- endif -%}
       {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
-        <a class="hirot-btn hirot-btn--accent hirot-btn--lg" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        <a class="nagi-btn nagi-btn--accent nagi-btn--lg" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
     </div>
   </section>
