@@ -168,7 +168,8 @@
       "block_order": ["a1", "a2", "a3"],
       "settings": {
         "eyebrow": "Journal",
-        "heading": "読みもの"
+        "heading": "読みもの",
+        "blog": "journal"
       }
     },
     "about_contact": {

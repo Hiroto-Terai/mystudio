@@ -1716,3 +1716,139 @@ hirot-restock { display: block; }
   .hirot-flowcard { padding: 22px 20px; }
   .hirot-flow-cta__inner { padding: 40px 24px; }
 }
+
+/* --- hirot-services（できることショーケース。/pages/services） ---
+   導入バンド／締め CTA は hirot-flow-showcase と同じ様式。
+   カードグリッドは 3 列、group_heading は全幅で章を仕切る。 */
+.hirot-svc-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.hirot-svc-header__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 48px;
+}
+.hirot-svc-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+  margin: 12px 0 0;
+}
+.hirot-svc-header__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 680px;
+  margin: 16px 0 0;
+}
+.hirot-svc {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 24px;
+}
+.hirot-svc__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.hirot-svc__group {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  padding: 24px 0 4px;
+  border-bottom: 1px solid var(--hirot-hairline);
+}
+.hirot-svc__group:first-child { padding-top: 4px; }
+.hirot-svc__group-label {
+  font-family: var(--font-heading-family);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--hirot-ink);
+}
+.hirot-svc__group-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--hirot-shade-50);
+}
+.hirot-svc-card {
+  background: var(--hirot-white);
+  border-radius: var(--hirot-radius-card);
+  box-shadow: var(--hirot-halo);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.hirot-svc-card__tag {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--hirot-green-10);
+  color: var(--hirot-green-70);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.hirot-svc-card__title {
+  font-family: var(--font-body-family);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hirot-ink);
+  margin: 12px 0 6px;
+}
+.hirot-svc-card__body {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--hirot-shade-50);
+  margin: 0;
+}
+.hirot-svc-cta {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+.hirot-svc-cta__inner {
+  background: var(--hirot-surface-wash);
+  border-radius: var(--hirot-radius-panel);
+  padding: 56px 40px;
+  text-align: center;
+}
+.hirot-svc-cta__heading {
+  font-family: var(--font-heading-family);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--hirot-ink);
+  margin: 10px 0 0;
+}
+.hirot-svc-cta__body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--hirot-shade-50);
+  max-width: 560px;
+  margin: 12px auto 24px;
+}
+@media screen and (max-width: 60em) {
+  .hirot-svc-header { padding: 32px 20px 8px; }
+  .hirot-svc-header__inner { padding: 40px 28px; }
+  .hirot-svc-header__heading { font-size: 34px; }
+  .hirot-svc { padding: 24px 20px 16px; }
+  .hirot-svc__grid { grid-template-columns: repeat(2, 1fr); }
+  .hirot-svc-cta { padding: 16px 20px 48px; }
+}
+@media screen and (max-width: 40em) {
+  .hirot-svc-header__inner { padding: 32px 20px; }
+  .hirot-svc-header__heading { font-size: 28px; }
+  .hirot-svc__grid { grid-template-columns: 1fr; }
+  .hirot-svc-card { padding: 22px 20px; }
+  .hirot-svc-cta__inner { padding: 40px 24px; }
+}
