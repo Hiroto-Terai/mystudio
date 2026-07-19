@@ -37,7 +37,9 @@
             "link_2_label": "私たちの想い",
             "link_2_url": "shopify://pages/about",
             "link_3_label": "お問い合わせ",
-            "link_3_url": "shopify://pages/contact"
+            "link_3_url": "shopify://pages/contact",
+            "link_4_label": "このストアでできること",
+            "link_4_url": "/pages/services"
           }
         },
         "col_support": {

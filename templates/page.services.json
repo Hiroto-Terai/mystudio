@@ -1,0 +1,215 @@
+{
+  "sections": {
+    "services": {
+      "type": "hirot-services",
+      "blocks": {
+        "g_live": {
+          "type": "group_heading",
+          "settings": {
+            "label": "デモ機能を、実運用へ",
+            "note": "このストアで体験できる機能を、本番のメール配信・課金・データ連携につなぎます"
+          }
+        },
+        "cap_restock": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "再入荷通知の本番配信",
+            "body": "現在は登録受付までのデモ。Shopify Email + Flow か専用アプリで、在庫復活時に自動メール配信まで実装します。"
+          }
+        },
+        "cap_review": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "レビューの収集・掲載・星表示",
+            "body": "投稿フォームから、承認・掲載・平均点の自動反映まで。Judge.me / Loox 等の導入と既存デザインへの統合を行います。"
+          }
+        },
+        "cap_gift": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "ギフトラッピングの実課金",
+            "body": "現在は選択 UI のみ。ラッピング料金を実際に加算し、注文に反映する仕組みを組み込みます。"
+          }
+        },
+        "cap_delivery": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "配送日時指定のフルフィルメント連携",
+            "body": "選択内容をカートに記録するデモから、注文・出荷オペレーションに引き渡す実運用フローへ。"
+          }
+        },
+        "cap_wishlist": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "お気に入りのアカウント同期",
+            "body": "現在は端末内保存。ログイン連携で端末をまたいで同期し、再訪問時のカゴ落ちを防ぎます。"
+          }
+        },
+        "g_measure": {
+          "type": "group_heading",
+          "settings": {
+            "label": "集客と計測",
+            "note": "「誰が・どこから来て・何を買ったか」を可視化し、広告に接続します"
+          }
+        },
+        "cap_ga4": {
+          "type": "capability",
+          "settings": {
+            "tag": "設定",
+            "title": "GA4 / GTM / 広告タグ設定",
+            "body": "Google アナリティクス 4・Google タグマネージャー・各種広告タグ（Google/Meta/LINE 等）を設置し、購入・カート追加などのイベント計測を整えます。"
+          }
+        },
+        "cap_cv": {
+          "type": "capability",
+          "settings": {
+            "tag": "設定",
+            "title": "コンバージョン計測・EC 拡張",
+            "body": "拡張計測とサーバーサイド連携で、広告の費用対効果を正しく測れる状態にします。"
+          }
+        },
+        "cap_seo": {
+          "type": "capability",
+          "settings": {
+            "tag": "実装",
+            "title": "構造化データ / SEO 仕上げ",
+            "body": "Product・Review の構造化データ（schema.org）を実装し、検索結果での星表示や商品リッチリザルトに対応。メタ情報・サイト構造も最適化します。"
+          }
+        },
+        "g_experience": {
+          "type": "group_heading",
+          "settings": {
+            "label": "接客と回遊",
+            "note": "選ぶ楽しさと納得感を高め、回遊と単価を伸ばします"
+          }
+        },
+        "cap_quiz": {
+          "type": "capability",
+          "settings": {
+            "tag": "新規実装",
+            "title": "肌診断クイズ（肌タイプ → 商品提案）",
+            "body": "数問の設問から肌タイプを判定し、最適な商品・ライン一式を提案。リード獲得とパーソナライズを両立するオリジナルセクションを制作します。"
+          }
+        },
+        "cap_glossary": {
+          "type": "capability",
+          "settings": {
+            "tag": "新規実装",
+            "title": "成分辞典ページ",
+            "body": "配合成分を metaobject で管理し、はたらき・由来を解説。商品ページから該当成分へリンクし、ブランドの誠実さと SEO を両取りします。"
+          }
+        },
+        "cap_sample": {
+          "type": "capability",
+          "settings": {
+            "tag": "新規実装",
+            "title": "お試し / サンプルサイズ導線",
+            "body": "初回ハードルを下げるトライアル商品やサンプル同梱の仕組みを設計し、本商品への引き上げまで導線を作ります。"
+          }
+        },
+        "cap_ugc": {
+          "type": "capability",
+          "settings": {
+            "tag": "新規実装",
+            "title": "UGC / Instagram ギャラリー",
+            "body": "お客様の投稿や公式フィードをトップ・商品ページに掲載。社会的証明で購入の後押しをします。"
+          }
+        },
+        "g_retention": {
+          "type": "group_heading",
+          "settings": {
+            "label": "定着とリピート",
+            "note": "一度きりを、続く関係に変えます"
+          }
+        },
+        "cap_subscription": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "定期購入（サブスク）",
+            "body": "補充需要の大きいスキンケアと好相性。Shopify Subscriptions / Recharge で定期便を導入し、LTV を伸ばします。"
+          }
+        },
+        "cap_loyalty": {
+          "type": "capability",
+          "settings": {
+            "tag": "アプリ連携",
+            "title": "ポイント / ロイヤリティ",
+            "body": "購入・レビュー・紹介でポイントが貯まる仕組みを導入し、再購入の理由をつくります。"
+          }
+        },
+        "cap_popup": {
+          "type": "capability",
+          "settings": {
+            "tag": "実装",
+            "title": "ニュースレターポップアップ（初回クーポン）",
+            "body": "初回登録で使えるクーポンを提示し、メール・LINE の会員基盤を育てます。表示タイミングも最適化します。"
+          }
+        },
+        "g_quality": {
+          "type": "group_heading",
+          "settings": {
+            "label": "品質と信頼",
+            "note": "誰にとっても使いやすく、安心して買える状態に"
+          }
+        },
+        "cap_a11y": {
+          "type": "capability",
+          "settings": {
+            "tag": "監査",
+            "title": "アクセシビリティ監査・改善",
+            "body": "WCAG に沿ってコントラスト・キーボード操作・読み上げ対応を点検し、誰もが使えるストアへ改善します。"
+          }
+        },
+        "cap_i18n": {
+          "type": "capability",
+          "settings": {
+            "tag": "実装",
+            "title": "多言語・多通貨対応",
+            "body": "Shopify Markets で英語などの言語・通貨に対応し、海外からの購入にも備えます。"
+          }
+        }
+      },
+      "block_order": [
+        "g_live",
+        "cap_restock",
+        "cap_review",
+        "cap_gift",
+        "cap_delivery",
+        "cap_wishlist",
+        "g_measure",
+        "cap_ga4",
+        "cap_cv",
+        "cap_seo",
+        "g_experience",
+        "cap_quiz",
+        "cap_glossary",
+        "cap_sample",
+        "cap_ugc",
+        "g_retention",
+        "cap_subscription",
+        "cap_loyalty",
+        "cap_popup",
+        "g_quality",
+        "cap_a11y",
+        "cap_i18n"
+      ],
+      "settings": {
+        "eyebrow": "Capabilities",
+        "heading": "このデモの先に、できること",
+        "description": "このストアは、フリーランスの制作デモです。ここに並ぶ機能・セクションは実際に構築したもの。さらにご要望に合わせて、計測・集客・接客・定着まで一貫して設計・実装できます。以下は追加で対応できる施策の一例です。",
+        "cta_eyebrow": "Get in touch",
+        "cta_heading": "やりたいことから、ご相談ください",
+        "cta_body": "「この機能を本番化したい」「まず計測だけ入れたい」など、部分的なご依頼も歓迎です。今のストアの状況をお聞かせいただければ、優先順位から一緒に整理します。",
+        "cta_label": "お問い合わせ",
+        "cta_url": "/pages/contact"
+      }
+    }
+  },
+  "order": ["services"]
+}

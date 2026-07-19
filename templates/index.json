@@ -208,7 +208,8 @@
       "block_order": ["article_1", "article_2", "article_3"],
       "settings": {
         "eyebrow": "Journal",
-        "heading": "読みもの"
+        "heading": "読みもの",
+        "blog": "journal"
       }
     },
     "newsletter": {
