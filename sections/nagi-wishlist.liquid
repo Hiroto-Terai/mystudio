@@ -1,34 +1,34 @@
 {%- comment -%}
   お気に入り一覧（F1 wishlist）。一覧は localStorage のハンドルを元に
-  assets/hirot-wishlist.js の <hirot-wishlist-page> がクライアント側で描画する
+  assets/nagi-wishlist.js の <nagi-wishlist-page> がクライアント側で描画する
   （ゲスト体験前提のためサーバー側では商品を列挙できない）。
   グリッドと空状態は描画確定まで hidden にしてチラつきを避ける。
 {%- endcomment -%}
-<hirot-wishlist-page class="hirot-wishlist" data-brand="{{ shop.name | upcase }}">
-  <div class="hirot-wishlist__band-wrap">
-    <div class="hirot-wishlist__band">
+<nagi-wishlist-page class="nagi-wishlist" data-brand="{{ shop.name | upcase }}">
+  <div class="nagi-wishlist__band-wrap">
+    <div class="nagi-wishlist__band">
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="hirot-wishlist__heading">{{ section.settings.heading }}</h1>
+      <h1 class="nagi-wishlist__heading">{{ section.settings.heading }}</h1>
       {%- if section.settings.description != blank -%}
-        <p class="hirot-wishlist__description">{{ section.settings.description }}</p>
+        <p class="nagi-wishlist__description">{{ section.settings.description }}</p>
       {%- endif -%}
-      <p class="hirot-wishlist__count" data-wishlist-count hidden></p>
+      <p class="nagi-wishlist__count" data-wishlist-count hidden></p>
     </div>
   </div>
 
-  <div class="hirot-wishlist__grid-wrap" data-wishlist-grid-wrap hidden>
-    <div class="hirot-product-grid__grid" data-wishlist-grid></div>
+  <div class="nagi-wishlist__grid-wrap" data-wishlist-grid-wrap hidden>
+    <div class="nagi-product-grid__grid" data-wishlist-grid></div>
   </div>
 
-  <div class="hirot-wishlist__empty" data-wishlist-empty hidden>
+  <div class="nagi-wishlist__empty" data-wishlist-empty hidden>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6C7.2 16.9 3.5 13.4 3.5 9.6 3.5 7 5.6 5 8.1 5c1.6 0 3 .8 3.9 2.1C12.9 5.8 14.3 5 15.9 5c2.5 0 4.6 2 4.6 4.6 0 3.8-3.7 7.3-8.5 11z"/></svg>
-    <p class="hirot-wishlist__empty-heading">お気に入りはまだありません</p>
-    <p class="hirot-wishlist__empty-body">商品ページのハートを押すと、ここに保存されます。</p>
-    <a class="hirot-btn hirot-btn--outline" href="{{ routes.all_products_collection_url }}">商品を見る</a>
+    <p class="nagi-wishlist__empty-heading">お気に入りはまだありません</p>
+    <p class="nagi-wishlist__empty-body">商品ページのハートを押すと、ここに保存されます。</p>
+    <a class="nagi-btn nagi-btn--outline" href="{{ routes.all_products_collection_url }}">商品を見る</a>
   </div>
-</hirot-wishlist-page>
+</nagi-wishlist-page>
 
 {% schema %}
 {

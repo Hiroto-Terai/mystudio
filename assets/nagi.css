@@ -1,0 +1,1854 @@
+/* ============================================================
+   Nagi — reskin layer over Dawn.
+   Loaded AFTER base.css so it overrides Dawn's defaults.
+   Colors come from the Nagi color schemes (settings_data.json);
+   this file carries the brand's typographic + component signatures:
+   thin editorial display type, Japanese-friendly leading, pill
+   buttons, and the stacked-shadow "paper halo" card depth.
+   ============================================================ */
+
+:root {
+  /* --- Nagi brand tokens (reference / used below) --- */
+  --nagi-ink: #0e100f;
+  --nagi-cream: #fbfbf5;
+  --nagi-white: #ffffff;
+  --nagi-green-05: #f1fbf4;
+  --nagi-green-10: #d8f6e2;
+  --nagi-green-20: #c1fbd4;
+  --nagi-green-30: #97e8b8;
+  --nagi-green-40: #55c98c;
+  --nagi-green-50: #2ea36a;
+  --nagi-green-60: #1f7d52;
+  --nagi-green-70: #145038;
+  --nagi-shade-20: #ececed;
+  --nagi-shade-30: #d7d7d2;
+  --nagi-shade-40: #a6a69f;
+  --nagi-shade-50: #71716b;
+  --nagi-shade-70: #38383a;
+  --nagi-hairline: #e8e8e1;
+  --nagi-surface-wash: var(--nagi-green-05);
+  --nagi-surface-band: var(--nagi-green-10);
+
+  /* --- Radii: card family (product/tile/journal/staff) shares one value,
+     large surface panels (hero/philosophy/newsletter/collection header)
+     another. Pills (9999px) and small badges stay literal. --- */
+  --nagi-radius-card: 12px;
+  --nagi-radius-panel: 20px;
+
+  /* Signature stacked-tiny-shadow paper halo (Level 3). */
+  --nagi-halo:
+    0 8px 8px rgba(14, 16, 15, 0.04),
+    0 4px 4px rgba(14, 16, 15, 0.04),
+    0 2px 2px rgba(14, 16, 15, 0.04),
+    0 0 0 1px rgba(14, 16, 15, 0.05);
+
+  /* --- Font families: Japanese body, Latin display --- */
+  --font-body-family: "Noto Sans JP", "Hanken Grotesk", system-ui, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+
+  --font-heading-family: "Hanken Grotesk", "Noto Sans JP", system-ui, sans-serif;
+  --font-heading-style: normal;
+  /* Thin display is the brand signature — never bump past 300. */
+  --font-heading-weight: 300;
+}
+
+/* ---- Base type: Japanese-friendly rhythm ---- */
+body {
+  /* palt = proportional CJK metrics; opens up loose kana spacing. */
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Headings: thin, editorial, tighter tracking ---- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.14;
+}
+
+/* Dawn's default display sizes run very large (up to ~7rem); Nagi's
+   editorial scale is quieter — the thinness carries the size. */
+.h0 {
+  font-size: clamp(4rem, 8vw, 5.5rem);
+}
+h1, .h1 {
+  font-size: clamp(3.2rem, 6vw, 4rem);
+}
+h2, .h2 {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+}
+h3, .h3 {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+
+/* Card / section titles that use body font stay medium weight for legibility. */
+.card__heading,
+.card-information__text {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Buttons: the pill is non-negotiable ---- */
+.button,
+.button:after,
+.shopify-payment-button__button--unbranded,
+.card__inner .quick-add__submit {
+  border-radius: 9999px;
+}
+.button {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+/* ---- Inputs: soft 8px radius, hairline border ---- */
+.field__input,
+.select__select,
+.customer .field input,
+.localization-form__select {
+  border-radius: 8px;
+}
+
+/* ---- Cards: shared radius token + signature paper halo on hover ---- */
+.card-wrapper,
+.card {
+  border-radius: var(--nagi-radius-card);
+}
+.card__inner {
+  border-radius: var(--nagi-radius-card);
+  transition: box-shadow 0.2s ease;
+}
+.card-wrapper {
+  transition: transform 0.2s ease;
+}
+.card-wrapper:hover {
+  transform: translateY(-3px);
+}
+.card-wrapper:hover .card__inner {
+  box-shadow: var(--nagi-halo);
+}
+/* Contained cards (card--card) get the halo at rest. */
+.card--card .card__inner {
+  box-shadow: var(--nagi-halo);
+}
+
+/* ---- Product media framing ---- */
+.card__media,
+.media {
+  border-radius: var(--nagi-radius-card);
+}
+
+/* ---- Badges / tags: mint pill, quiet all-caps ---- */
+.badge {
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.9rem;
+}
+
+/* ---- Price: brand red only for the sale figure, ink for the rest ---- */
+.price__sale .price-item--sale,
+.price--on-sale .price-item--sale {
+  color: var(--nagi-green-70);
+}
+.price .price-item--regular {
+  font-weight: 600;
+}
+
+/* ---- Header: airy, editorial ---- */
+.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.header__heading-link .h2 {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.header__menu-item {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Links: brand green, no permanent underline ---- */
+a:not(.button):not(.card__heading a):hover {
+  text-decoration-color: var(--nagi-green-50);
+}
+
+/* ---- Footer polish (renders on the ink scheme) ---- */
+.footer__content-top {
+  padding-bottom: 3rem;
+}
+.footer-block__heading {
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+/* ---- Rich-text / section eyebrows: uppercase green accent ---- */
+.rich-text__caption,
+.title-wrapper .caption-with-letter-spacing,
+.caption-with-letter-spacing {
+  color: var(--nagi-green-60);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Homepage story sections — brought over from the brand's real
+   storefront (main), reproduced here as Dawn sections. Shared
+   eyebrow/heading pattern used by category tiles, product grid,
+   philosophy band, and journal.
+   ============================================================ */
+.nagi-section-eyebrow {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--nagi-green-60);
+  display: block;
+}
+.nagi-section-heading {
+  font-family: var(--font-heading-family);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--nagi-ink);
+  margin: 10px 0 0;
+}
+
+/* Shared pill button used inside these sections (mirrors .button but as <a>/<button>). */
+.nagi-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 50px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+}
+.nagi-btn--primary { background: var(--nagi-ink); color: #fff; border-color: var(--nagi-ink); }
+.nagi-btn--primary:hover { background: var(--nagi-shade-70); border-color: var(--nagi-shade-70); }
+.nagi-btn--outline { background: transparent; color: var(--nagi-ink); border-color: var(--nagi-ink); }
+.nagi-btn--outline:hover { background: var(--nagi-ink); color: #fff; }
+.nagi-btn--accent { background: var(--nagi-green-60); color: #fff; border-color: var(--nagi-green-60); }
+.nagi-btn--accent:hover { background: var(--nagi-green-70); border-color: var(--nagi-green-70); }
+.nagi-btn--ghost { background: transparent; color: var(--nagi-ink); border-color: transparent; }
+.nagi-btn--ghost:hover { background: var(--nagi-shade-20); }
+.nagi-btn--sm { height: 40px; padding: 0 16px; font-size: 14px; }
+.nagi-btn--lg { height: 50px; padding: 0 28px; font-size: 16px; }
+
+/* --- nagi-hero --- */
+.nagi-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 40px 32px;
+}
+.nagi-hero__grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.nagi-hero__heading {
+  font-family: var(--font-heading-family);
+  font-size: 64px;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 18px 0 0;
+  color: var(--nagi-ink);
+}
+.nagi-hero__body {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 440px;
+  margin: 22px 0 0;
+}
+.nagi-hero__cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.nagi-hero__image-wrap {
+  border-radius: var(--nagi-radius-panel);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--nagi-halo);
+}
+.nagi-hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- nagi-trust-strip --- */
+.nagi-trust {
+  max-width: 1000px;
+  margin: 8px auto 0;
+  padding: 16px 40px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nagi-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--nagi-shade-50);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.nagi-trust__item svg { flex: none; color: var(--nagi-ink); }
+
+/* --- nagi-category-tiles --- */
+.nagi-categories {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 40px 24px;
+}
+.nagi-categories__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.nagi-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.nagi-tile {
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: transform .25s ease;
+}
+.nagi-tile:hover { transform: translateY(-4px); }
+.nagi-tile__image-wrap {
+  border-radius: var(--nagi-radius-card);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--nagi-surface-wash);
+}
+.nagi-tile__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.nagi-tile:hover .nagi-tile__image-wrap img { transform: scale(1.05); }
+.nagi-tile__title {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin-top: 14px;
+}
+.nagi-tile__sub {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nagi-shade-40);
+}
+
+/* --- nagi-product-grid --- */
+.nagi-product-grid {
+  padding: 40px 40px 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.nagi-product-grid__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+}
+.nagi-product-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.nagi-card {
+  background: var(--nagi-white);
+  border-radius: var(--nagi-radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.nagi-card__image-wrap {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  background: var(--nagi-surface-wash);
+}
+.nagi-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.nagi-card:hover .nagi-card__image-wrap img { transform: scale(1.05); }
+.nagi-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--nagi-ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+.nagi-card__soldout-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+.nagi-card__info { padding: 16px 0 0; }
+.nagi-card__brand {
+  font-family: var(--font-heading-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nagi-green-70);
+  margin-bottom: 6px;
+}
+.nagi-card__title {
+  font-family: var(--font-heading-family);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--nagi-ink);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.nagi-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.nagi-star--full { color: var(--nagi-green-70); }
+.nagi-star--half { color: var(--nagi-green-70); opacity: 0.5; }
+.nagi-star--empty { color: var(--nagi-shade-20); }
+.nagi-card__rating-score { font-size: 13px; font-weight: 600; color: var(--nagi-ink); margin-left: 4px; }
+.nagi-card__rating-count { font-size: 12px; color: var(--nagi-shade-50); margin-left: 2px; }
+.nagi-card__price-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+.nagi-card__price { font-family: var(--font-body-family); font-size: 16px; font-weight: 700; color: var(--nagi-ink); }
+.nagi-card__compare-price { font-size: 13px; color: var(--nagi-shade-50); text-decoration: line-through; }
+.nagi-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid var(--nagi-ink);
+  background: var(--nagi-ink);
+  color: #fff;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.nagi-card__btn:hover { background: var(--nagi-shade-70); border-color: var(--nagi-shade-70); }
+
+/* --- nagi-staff --- */
+.nagi-staff {
+  padding: var(--staff-pt, 56px) 0 var(--staff-pb, 64px);
+}
+.nagi-staff__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.nagi-staff__header {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+.nagi-staff__subtext {
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  margin-top: 12px;
+}
+.nagi-staff__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--staff-columns, 3), 1fr);
+  gap: 40px 24px;
+}
+.nagi-staff-card {
+  display: flex;
+  flex-direction: column;
+}
+.nagi-staff-card__photo {
+  border-radius: var(--nagi-radius-card);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--nagi-surface-wash);
+  margin-bottom: 16px;
+}
+.nagi-staff-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nagi-staff-card__name {
+  font-family: var(--font-body-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+}
+.nagi-staff-card__role {
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--nagi-green-60);
+  margin-top: 4px;
+}
+.nagi-staff-card__bio {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin-top: 12px;
+}
+.nagi-staff-card__social {
+  align-self: flex-start;
+  margin-top: 14px;
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nagi-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--nagi-hairline);
+  padding-bottom: 2px;
+  transition: border-color .2s ease;
+}
+.nagi-staff-card__social:hover { border-color: var(--nagi-ink); }
+@media screen and (max-width: 60em) {
+  .nagi-staff__inner { padding: 0 20px; }
+  .nagi-staff__grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-staff__grid { grid-template-columns: 1fr; }
+}
+
+/* --- nagi-philosophy-band --- */
+.nagi-philosophy {
+  background: var(--nagi-surface-band);
+  padding: 80px 40px;
+}
+.nagi-philosophy__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.nagi-philosophy__image-wrap {
+  border-radius: var(--nagi-radius-panel);
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+.nagi-philosophy__image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nagi-philosophy__body {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--nagi-shade-50);
+  margin: 0 0 28px;
+  max-width: 440px;
+}
+
+/* --- nagi-journal --- */
+.nagi-journal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 40px;
+}
+.nagi-journal__header { text-align: center; margin-bottom: 36px; }
+.nagi-journal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.nagi-jcard { cursor: pointer; text-decoration: none; display: block; }
+.nagi-jcard__image-wrap {
+  border-radius: var(--nagi-radius-card);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--nagi-surface-wash);
+}
+.nagi-jcard__image-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.nagi-jcard:hover .nagi-jcard__image-wrap img { transform: scale(1.04); }
+.nagi-jcard__meta {
+  font-family: var(--font-heading-family);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nagi-green-60);
+  margin-top: 16px;
+}
+.nagi-jcard__title {
+  font-family: var(--font-body-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin: 8px 0 6px;
+}
+.nagi-jcard__excerpt {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nagi-shade-50);
+  margin: 0;
+}
+
+/* --- nagi-footer --- */
+.nagi-footer {
+  background: var(--nagi-canvas-ink, #0e100f);
+  color: #fff;
+  padding: 64px 40px 32px;
+}
+.nagi-footer__inner { max-width: 1200px; margin: 0 auto; }
+.nagi-footer__top { display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; }
+.nagi-footer__brand { max-width: 280px; }
+.nagi-footer__logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.nagi-footer__logo-text {
+  font-family: var(--font-heading-family);
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.nagi-footer__tagline {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nagi-link-quiet, #8f8f88);
+  margin-top: 16px;
+}
+.nagi-footer__nav { display: flex; flex-wrap: wrap; gap: 56px; }
+.nagi-footer__col { min-width: 120px; }
+.nagi-footer__col-title {
+  font-family: var(--font-heading-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nagi-link-mint, #7fa892);
+  margin-bottom: 14px;
+  display: block;
+}
+.nagi-footer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.nagi-footer__link {
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nagi-link-quiet, #8f8f88);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.nagi-footer__link:hover { color: #fff; }
+.nagi-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--nagi-hairline-ink, #23241f);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.nagi-footer__copy { font-family: var(--font-body-family); font-size: 13px; color: var(--nagi-link-quiet, #8f8f88); }
+
+/* --- newsletter (Dawn stock section) — restyle to match --- */
+.newsletter__wrapper {
+  background: var(--nagi-surface-wash) !important;
+  border-radius: var(--nagi-radius-panel) !important;
+  padding: 56px 40px !important;
+}
+.newsletter__heading { font-weight: 300 !important; }
+.newsletter-form__field-wrapper .field__input {
+  border-radius: 9999px !important;
+  background: var(--nagi-white) !important;
+}
+.newsletter-form__button {
+  border-radius: 9999px !important;
+  background: var(--nagi-green-60) !important;
+  color: #fff !important;
+}
+.newsletter-form__button:hover { background: var(--nagi-green-70) !important; }
+
+/* ---- Responsive: mobile ---- */
+@media screen and (max-width: 60em) {
+  .nagi-hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .nagi-hero { padding: 40px 20px 24px; }
+  .nagi-hero__heading { font-size: 40px; }
+  .nagi-categories__grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-categories { padding: 40px 20px 16px; }
+  .nagi-product-grid__grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-product-grid { padding: 24px 16px 40px; }
+  .nagi-philosophy__inner { grid-template-columns: 1fr; gap: 32px; }
+  .nagi-philosophy { padding: 56px 20px; }
+  .nagi-journal__grid { grid-template-columns: 1fr; gap: 20px; }
+  .nagi-journal { padding: 56px 20px 32px; }
+  .nagi-trust { padding: 16px 20px; gap: 20px; flex-direction: column; align-items: flex-start; }
+  .nagi-footer { padding: 48px 20px 24px; }
+  .nagi-footer__top { gap: 32px; }
+  .nagi-footer__nav { gap: 32px; }
+  .nagi-section-heading { font-size: 28px; }
+}
+
+/* --- nagi-product-details (PDP: metafield 駆動の評価・全成分・使い方) --- */
+.nagi-pdetails { padding: var(--pd-pt, 56px) 32px var(--pd-pb, 64px); }
+.nagi-pdetails__inner { max-width: 1200px; margin: 0 auto; }
+.nagi-pdetails__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 12px 0 28px;
+  font-size: 18px;
+}
+.nagi-pdetails__stars { display: inline-flex; gap: 2px; }
+.nagi-pdetails__score {
+  font-family: var(--font-heading-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--nagi-ink);
+  margin-left: 6px;
+}
+.nagi-pdetails__count { font-size: 13px; color: var(--nagi-shade-50); margin-left: 4px; }
+.nagi-pdetails__row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--nagi-shade-30);
+}
+.nagi-pdetails__heading {
+  font-family: var(--font-heading-family);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--nagi-ink);
+  margin: 0;
+}
+.nagi-pdetails__text {
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  margin: 0;
+}
+@media (max-width: 40em) {
+  .nagi-pdetails { padding: 40px 20px 48px; }
+  .nagi-pdetails__row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+}
+
+/* --- nagi-collection-header (コレクションページ上部) --- */
+.nagi-collection-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.nagi-collection-header__inner {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 48px;
+}
+.nagi-collection-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--nagi-ink);
+  margin: 12px 0 0;
+}
+.nagi-collection-header__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.nagi-collection-header__description p { margin: 0; }
+@media screen and (max-width: 60em) {
+  .nagi-collection-header { padding: 32px 20px 8px; }
+  .nagi-collection-header__inner { padding: 40px 28px; }
+  .nagi-collection-header__heading { font-size: 34px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-collection-header__inner { padding: 32px 20px; }
+  .nagi-collection-header__heading { font-size: 28px; }
+}
+
+/* --- コレクション商品グリッド (Dawn main-collection-product-grid の上書き) ---
+   Dawn 素のカードをトップページの .nagi-card と同系統のトーン
+   （白カード・共通角丸トークン・halo ホバー・品名/価格のタイポ）に揃える。
+   フィルター/並び替えで再描画される DOM も同じ .product-grid / .card* class を
+   持つため、class のみで当てる。 */
+.product-grid .card--standard {
+  background: var(--nagi-white);
+  border-radius: var(--nagi-radius-card);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+.product-grid .card--standard .card__inner,
+.product-grid .card--standard .card__media {
+  border-radius: var(--nagi-radius-card) var(--nagi-radius-card) 0 0;
+}
+/* 画像ロード中の下地は .nagi-card__image-wrap と同じ surface-wash */
+.product-grid .card--standard .card__inner {
+  background: var(--nagi-surface-wash);
+}
+/* halo は白カード全体に掛ける（グローバル既定の .card__inner 側は打ち消す） */
+.product-grid .card-wrapper:hover .card__inner {
+  box-shadow: none;
+}
+.product-grid .card-wrapper:hover .card--standard {
+  box-shadow: var(--nagi-halo);
+}
+/* 品名/価格が白カードの内側に乗るため左右にも余白を付ける */
+.product-grid .card--standard > .card__content .card__information {
+  padding: 14px 16px 18px;
+}
+/* 品名: .nagi-card__title と同じタイポ */
+.product-grid .card__heading {
+  font-family: var(--font-heading-family);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--nagi-ink);
+}
+/* .nagi-card はホバーで下線を引かないので揃える */
+.product-grid .underline-links-hover:hover a {
+  text-decoration: none;
+}
+/* 価格: .nagi-card__price / __compare-price と同じタイポ */
+.product-grid .price .price-item {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--nagi-ink);
+}
+.product-grid .price__sale .price-item--regular {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--nagi-shade-50);
+}
+.product-grid .price__sale .price-item--sale {
+  color: var(--nagi-green-70);
+}
+/* バッジ: .nagi-card__badge と同じ小ぶりのピル */
+.product-grid .card__badge .badge {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border: 0;
+}
+@media screen and (max-width: 40em) {
+  .product-grid .card--standard > .card__content .card__information {
+    padding: 12px 12px 14px;
+  }
+}
+
+/* --- F1 お気に入り (wishlist): ハート・ヘッダーバッジ・一覧ページ --- */
+/* Web Component ラッパー自体は箱を作らず、button の absolute 基点は親カード側に置く */
+nagi-fav-toggle { display: contents; }
+.nagi-fav-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: var(--nagi-white);
+  box-shadow: var(--nagi-halo);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nagi-ink);
+}
+.nagi-fav-toggle svg { width: 22px; height: 22px; transition: transform 0.15s ease; }
+.nagi-fav-toggle:hover svg { transform: scale(1.07); }
+.nagi-fav-toggle svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.nagi-fav-toggle[aria-pressed="true"] { color: var(--nagi-green-60); }
+.nagi-fav-toggle[aria-pressed="true"] svg path { fill: currentColor; }
+
+/* ハートを持つカード: absolute 基点 + 売り切れバッジをハートの左へ退避
+   （既存グリッドの見た目を変えないため --fav 付きカードに限定して当てる） */
+.nagi-card--fav { position: relative; }
+.nagi-card--fav .nagi-card__soldout-badge { top: 21px; right: 62px; }
+.nagi-card__link { display: block; color: inherit; text-decoration: none; }
+
+/* Dawn カード（コレクション/検索/関連商品グリッド）: nagi-wishlist.js が注入するハートの基点 */
+.product-grid .card-wrapper { position: relative; }
+
+/* 商品詳細: メディアギャラリー右上に重ねる（Dawn のズームアイコンは左上なので干渉しない） */
+.product__media-wrapper { position: relative; }
+.product__media-wrapper .nagi-fav-toggle { top: 12px; right: 12px; }
+
+/* ヘッダーのお気に入りアイコン + 件数バッジ（Dawn .cart-count-bubble のジオメトリ + green-60） */
+.header__icon--wishlist { position: relative; }
+.header__icon--wishlist svg { width: 20px; height: 20px; transition: transform 0.15s ease; }
+.header__icon--wishlist:hover svg { transform: scale(1.07); }
+.nagi-fav-bubble {
+  position: absolute;
+  bottom: 8px;
+  left: 22px;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background: var(--nagi-green-60);
+  color: var(--nagi-white);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nagi-fav-bubble:empty { display: none; }
+
+/* --- nagi-wishlist (お気に入り一覧ページ) --- */
+nagi-wishlist-page { display: block; }
+.nagi-wishlist__band-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.nagi-wishlist__band {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 48px;
+}
+.nagi-wishlist__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--nagi-ink);
+  margin: 12px 0 0;
+}
+.nagi-wishlist__description {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.nagi-wishlist__count { font-size: 14px; color: var(--nagi-shade-50); margin: 8px 0 0; }
+.nagi-wishlist__count strong { color: var(--nagi-ink); font-weight: 600; }
+.nagi-wishlist__grid-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px 40px 40px;
+}
+.nagi-wishlist__empty {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+.nagi-wishlist__empty svg { width: 56px; height: 56px; color: var(--nagi-shade-30); }
+.nagi-wishlist__empty svg path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.nagi-wishlist__empty-heading { font-size: 20px; font-weight: 500; color: var(--nagi-ink); margin: 16px 0 0; }
+.nagi-wishlist__empty-body { font-size: 14px; line-height: 1.8; color: var(--nagi-shade-50); margin: 8px 0 24px; }
+@media screen and (max-width: 60em) {
+  .nagi-wishlist__band-wrap { padding: 32px 20px 8px; }
+  .nagi-wishlist__band { padding: 40px 28px; }
+  .nagi-wishlist__heading { font-size: 34px; }
+  .nagi-wishlist__grid-wrap { padding: 8px 16px 32px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-wishlist__band { padding: 32px 20px; }
+  .nagi-wishlist__heading { font-size: 28px; }
+}
+
+/* --- nagi-cart（F2 送料無料プログレスバー + F3 配送日時指定 + F7 ギフトラッピング） --- */
+
+/* F2 プログレスバー（カートページ / ドロワー共通。snippets/nagi-shipbar.liquid） */
+nagi-shipbar { display: block; }
+nagi-shipbar[hidden],
+nagi-gift-wrap[hidden] { display: none; }
+.nagi-shipbar {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-card);
+  padding: 16px 20px;
+}
+.nagi-shipbar--page { margin-top: 24px; }
+.nagi-shipbar--drawer {
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+.nagi-shipbar__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--nagi-ink);
+  margin: 0 0 10px;
+}
+.nagi-shipbar__amount { font-weight: 700; color: var(--nagi-green-70); }
+.nagi-shipbar__label--done { display: none; }
+.nagi-shipbar--done .nagi-shipbar__label--progress { display: none; }
+.nagi-shipbar--done .nagi-shipbar__label--done {
+  display: flex;
+  font-weight: 600;
+  color: var(--nagi-green-70);
+}
+.nagi-shipbar__check { width: 18px; height: 18px; color: var(--nagi-green-60); flex: none; }
+.nagi-shipbar__track {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--nagi-white);
+  box-shadow: inset 0 0 0 1px rgba(14, 16, 15, 0.05);
+  overflow: hidden;
+}
+.nagi-shipbar__fill {
+  height: 100%;
+  min-width: 6px;
+  border-radius: 9999px;
+  background: var(--nagi-green-50);
+  transition: width 0.4s ease;
+}
+.nagi-shipbar--done .nagi-shipbar__fill { background: var(--nagi-green-60); width: 100%; }
+
+/* F3 + F7 オプションパネル（sections/nagi-cart-options。ギフト行はドロワー footer と共通） */
+nagi-delivery,
+nagi-gift-wrap { display: block; }
+nagi-delivery[hidden] { display: none; }
+.nagi-cart-options-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  padding-top: 8px;
+}
+.nagi-cart-options {
+  background: var(--nagi-white);
+  border: 1px solid var(--nagi-hairline);
+  border-radius: var(--nagi-radius-card);
+  padding: 20px;
+}
+.nagi-cart-options__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin: 0 0 14px;
+}
+.nagi-cart-options__title svg { width: 18px; height: 18px; color: var(--nagi-ink); flex: none; }
+.nagi-cart-options__optional {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--nagi-shade-50);
+}
+.nagi-cart-options__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.nagi-cart-options__field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nagi-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.nagi-select-wrap { position: relative; }
+.nagi-select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 44px; /* タップ領域 */
+  border-radius: 8px; /* nagi の入力角丸（base.css の .field__input 上書きと同値） */
+  border: 1px solid var(--nagi-shade-30);
+  background: var(--nagi-white);
+  padding: 0 40px 0 14px;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--nagi-ink);
+  cursor: pointer;
+}
+.nagi-select-wrap select:focus-visible {
+  outline: none;
+  border-color: var(--nagi-green-50);
+  box-shadow: 0 0 0 3px var(--nagi-green-10);
+}
+.nagi-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--nagi-ink);
+  border-bottom: 1.5px solid var(--nagi-ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.nagi-cart-options__help {
+  font-size: 12px;
+  color: var(--nagi-shade-50);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+/* F3 ドロワー版（snippets/nagi-delivery.liquid context: 'drawer'）。
+   見出しなし・ラベルのみの省スペース版で、ギフト行の上に置く */
+.nagi-delivery-drawer { margin: 0 0 12px; }
+.nagi-cart-options__fields--drawer { gap: 8px; }
+.nagi-gift {
+  border-top: 1px solid var(--nagi-hairline);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.nagi-gift--drawer {
+  border-top: 0;
+  margin: 0 0 4px;
+  padding-top: 4px;
+}
+.nagi-gift__row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px; /* タップ領域 */
+  cursor: pointer;
+}
+.nagi-gift__row input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+.nagi-gift__box {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  border-radius: 6px;
+  border: 1.5px solid var(--nagi-shade-30);
+  background: var(--nagi-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.nagi-gift__box svg { width: 12px; height: 12px; color: var(--nagi-white); opacity: 0; }
+.nagi-gift__row input:checked ~ .nagi-gift__box {
+  background: var(--nagi-green-60);
+  border-color: var(--nagi-green-60);
+}
+.nagi-gift__row input:checked ~ .nagi-gift__box svg { opacity: 1; }
+.nagi-gift__row input:focus-visible ~ .nagi-gift__box {
+  box-shadow: 0 0 0 3px var(--nagi-green-10);
+  border-color: var(--nagi-green-50);
+}
+.nagi-gift__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--nagi-ink);
+  line-height: 1.6;
+}
+.nagi-gift__label svg { width: 18px; height: 18px; color: var(--nagi-ink); flex: none; }
+.nagi-gift__price { font-weight: 700; }
+.nagi-gift__note {
+  display: block;
+  font-size: 12px;
+  color: var(--nagi-shade-50);
+  margin: 2px 0 0;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 60em) {
+  .nagi-cart-options-grid { grid-template-columns: 1fr; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-shipbar { padding: 14px 16px; }
+  .nagi-cart-options__fields { grid-template-columns: 1fr; }
+  /* ドロワーは常に幅が狭い前提のデザインなので横並びを維持する */
+  .nagi-cart-options__fields--drawer { grid-template-columns: 1fr 1fr; }
+}
+/* 320px 級だけはドロワー内でも縦積みに落とす */
+@media screen and (max-width: 20em) {
+  .nagi-cart-options__fields--drawer { grid-template-columns: 1fr; }
+}
+
+/* --- nagi-reviews（F4 レビュー表示・投稿。sections/nagi-reviews.liquid） --- */
+.nagi-reviews { padding: var(--rv-pt, 56px) 32px var(--rv-pb, 64px); }
+.nagi-reviews__inner { max-width: 1200px; margin: 0 auto; }
+.nagi-reviews__count { font-size: 14px; color: var(--nagi-shade-50); margin: 12px 0 0; }
+.nagi-reviews__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 32px;
+}
+.nagi-reviews__list { display: grid; gap: 16px; align-content: start; }
+.nagi-review-card {
+  background: var(--nagi-white);
+  border: 1px solid var(--nagi-hairline);
+  border-radius: var(--nagi-radius-card);
+  padding: 22px 24px;
+  transition: box-shadow 0.2s ease;
+}
+.nagi-review-card:hover { box-shadow: var(--nagi-halo); }
+.nagi-review-card__stars { display: inline-flex; gap: 2px; font-size: 15px; line-height: 1; }
+.nagi-review-card__body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--nagi-ink);
+  margin: 10px 0 14px;
+}
+.nagi-review-card__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1px solid var(--nagi-hairline);
+  padding-top: 12px;
+}
+.nagi-review-card__author { font-size: 13px; font-weight: 600; color: var(--nagi-ink); }
+.nagi-review-card__date { font-size: 12px; color: var(--nagi-shade-50); }
+.nagi-reviews__empty {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-card);
+  padding: 40px 28px;
+  text-align: center;
+}
+.nagi-reviews__empty-heading { font-size: 16px; font-weight: 500; color: var(--nagi-ink); margin: 0; }
+.nagi-reviews__empty-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin: 8px 0 0;
+}
+
+/* 投稿フォーム（緑ウォッシュのパネル。実送信は contact form） */
+.nagi-reviews__form-panel {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 28px;
+}
+.nagi-reviews__form-title {
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin: 0;
+}
+.nagi-reviews__form-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--nagi-shade-50);
+  margin: 6px 0 18px;
+}
+.nagi-reviews__form-error {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #b3261e;
+  background: var(--nagi-white);
+  border: 1px solid #e6c9c7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+}
+.nagi-reviews__field {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.nagi-reviews__field label,
+.nagi-reviews__field legend {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nagi-shade-50);
+  margin-bottom: 6px;
+  line-height: 1.5;
+  padding: 0;
+}
+.nagi-reviews__field input[type='text'],
+.nagi-reviews__field input[type='email'],
+.nagi-reviews__field textarea {
+  width: 100%;
+  border-radius: 8px; /* nagi の入力角丸（.field__input 上書きと同値） */
+  border: 1px solid var(--nagi-shade-30);
+  background: var(--nagi-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--nagi-ink);
+}
+.nagi-reviews__field input[type='text'],
+.nagi-reviews__field input[type='email'] {
+  height: 44px; /* タップ領域 */
+  padding: 0 14px;
+}
+.nagi-reviews__field textarea {
+  padding: 10px 14px;
+  line-height: 1.8;
+  resize: vertical;
+}
+.nagi-reviews__field input:focus-visible,
+.nagi-reviews__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--nagi-green-50);
+  box-shadow: 0 0 0 3px var(--nagi-green-10);
+}
+
+/* 星セレクタ: DOM は 5→1 の逆順 + row-reverse で視覚順 1→5。
+   input:checked ~ label が「選んだ星以下」を塗る CSS-only パターン。 */
+.nagi-star-picker { display: inline-flex; flex-direction: row-reverse; gap: 2px; }
+.nagi-star-picker input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.nagi-star-picker label {
+  font-size: 26px;
+  line-height: 1;
+  color: var(--nagi-shade-30);
+  cursor: pointer;
+  transition: color 0.1s ease;
+}
+.nagi-star-picker input:checked ~ label,
+.nagi-star-picker label:hover,
+.nagi-star-picker label:hover ~ label { color: var(--nagi-green-70); }
+.nagi-star-picker input:focus-visible + label {
+  outline: 2px solid var(--nagi-green-50);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.nagi-reviews__submit { width: 100%; }
+.nagi-reviews__success { text-align: center; padding: 24px 8px; }
+.nagi-reviews__success:focus { outline: none; }
+.nagi-reviews__success svg { width: 40px; height: 40px; color: var(--nagi-green-60); }
+.nagi-reviews__success-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--nagi-ink);
+  margin: 12px 0 0;
+}
+.nagi-reviews__success-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin: 6px 0 0;
+}
+
+@media screen and (max-width: 60em) {
+  .nagi-reviews { padding: 40px 20px 48px; }
+  .nagi-reviews__grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-reviews__form-panel { padding: 22px 18px; }
+}
+
+/* --- nagi-recent（F5 最近見た商品・PDP下部） --- */
+nagi-recent-products { display: block; }
+nagi-recent-products[hidden] { display: none; }
+.nagi-recent { padding: 56px 32px 64px; }
+.nagi-recent__inner { max-width: 1280px; margin: 0 auto; }
+.nagi-recent__header { margin-bottom: 28px; }
+/* カードは .nagi-card 流用。グリッドは nagi-product-grid と同じリズム */
+.nagi-recent__track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+@media screen and (max-width: 60em) {
+  .nagi-recent { padding: 40px 20px 48px; }
+  .nagi-recent__track { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-recent__track { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- nagi-restock（F6 再入荷通知・売り切れPDPの buy_buttons 直後） --- */
+nagi-restock { display: block; }
+.nagi-restock {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-card);
+  padding: 20px 22px;
+  margin: 20px 0 8px;
+}
+.nagi-restock__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nagi-ink);
+  margin: 0;
+}
+.nagi-restock__title svg { width: 20px; height: 20px; color: var(--nagi-green-60); flex-shrink: 0; }
+.nagi-restock__body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin: 6px 0 14px;
+}
+.nagi-restock__form { display: flex; gap: 10px; }
+.nagi-restock__form input[type='email'] {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--nagi-shade-30);
+  border-radius: 8px;
+  background: var(--nagi-white);
+  font-family: var(--font-body-family);
+  font-size: 14px;
+  color: var(--nagi-ink);
+}
+.nagi-restock__form input[type='email']:focus-visible {
+  outline: none;
+  border-color: var(--nagi-green-50);
+  box-shadow: 0 0 0 3px var(--nagi-green-10);
+}
+.nagi-restock__form[hidden] { display: none; }
+.nagi-restock__success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--nagi-green-70);
+  margin: 0;
+}
+.nagi-restock__success svg { width: 20px; height: 20px; flex-shrink: 0; }
+.nagi-restock__success[hidden] { display: none; }
+@media screen and (max-width: 40em) {
+  .nagi-restock__form { flex-direction: column; }
+  .nagi-restock__form .nagi-btn { width: 100%; }
+}
+
+/* --- nagi-faq（F8 FAQアコーディオン。metaobject faq 駆動・JSゼロ） --- */
+.nagi-faq { padding: 56px 32px 64px; }
+.nagi-faq__inner { max-width: 840px; margin: 0 auto; }
+.nagi-faq__header { margin-bottom: 28px; }
+.nagi-faq__item { border-bottom: 1px solid var(--nagi-hairline); }
+.nagi-faq__item:first-child { border-top: 1px solid var(--nagi-hairline); }
+.nagi-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 4px;
+  font-family: var(--font-body-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--nagi-ink);
+  cursor: pointer;
+  list-style: none;
+}
+.nagi-faq__question::-webkit-details-marker { display: none; }
+.nagi-faq__question:focus-visible {
+  outline: 2px solid var(--nagi-green-50);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.nagi-faq__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--nagi-green-60);
+  transition: transform 0.2s ease;
+}
+/* プラス → 45度回転で「閉じる」の × に見せる（JSゼロの開閉表示） */
+.nagi-faq__item[open] .nagi-faq__icon { transform: rotate(45deg); }
+.nagi-faq__answer {
+  padding: 0 4px 22px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+}
+.nagi-faq__answer p { margin: 0; }
+@media screen and (max-width: 40em) {
+  .nagi-faq { padding: 40px 20px 48px; }
+}
+
+/* --- nagi-flow-showcase（F9 Flow自動化ショーケース。/pages/automation） ---
+   導入バンドは nagi-collection-header、カードの halo は card--card、
+   体験導線リンクは .nagi-staff-card__social と同じ様式。
+   デザイン仕様: docs/design/flow-showcase-spec.md */
+.nagi-flow-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.nagi-flow-header__inner {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 48px;
+}
+.nagi-flow-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--nagi-ink);
+  margin: 12px 0 0;
+}
+.nagi-flow-header__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 640px;
+  margin: 16px 0 0;
+}
+.nagi-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 24px;
+}
+.nagi-flow__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.nagi-flowcard {
+  background: var(--nagi-white);
+  border-radius: var(--nagi-radius-card);
+  box-shadow: var(--nagi-halo); /* card--card と同じ常時 halo。非リンクなので hover リフトなし */
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.nagi-flowcard--featured { grid-column: 1 / -1; }
+.nagi-flowcard--featured .nagi-flowcard__cols {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: center;
+}
+.nagi-flowcard__chip {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--nagi-green-10);
+  color: var(--nagi-green-70);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.nagi-flowcard__title {
+  font-family: var(--font-body-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin: 12px 0 6px;
+}
+.nagi-flowcard__body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin: 0;
+}
+.nagi-flowcard__diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+}
+.nagi-flowcard__link {
+  align-self: flex-start;
+  margin-top: 18px;
+  padding: 10px 0; /* 行のタップ領域を 44px 相当に */
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nagi-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--nagi-hairline);
+  transition: border-color 0.2s ease;
+}
+.nagi-flowcard__link:hover { border-color: var(--nagi-ink); }
+
+/* 図解 SVG（トリガー → 条件 → アクション）。淡い緑 → 白 → ink の 3 段階 */
+.nagi-fd-caption {
+  font-family: var(--font-heading-family);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  fill: var(--nagi-shade-50);
+  text-anchor: middle;
+}
+.nagi-fd-text {
+  font-family: var(--font-body-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+.nagi-fd-text--trigger { fill: var(--nagi-green-70); }
+.nagi-fd-text--condition { fill: var(--nagi-ink); }
+.nagi-fd-text--action { fill: var(--nagi-white); }
+.nagi-fd-node--trigger { fill: var(--nagi-green-10); stroke: var(--nagi-green-30); }
+.nagi-fd-node--condition { fill: var(--nagi-white); stroke: var(--nagi-shade-30); }
+.nagi-fd-node--action { fill: var(--nagi-ink); }
+.nagi-fd-arrow {
+  stroke: var(--nagi-shade-40);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nagi-flow-cta {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+.nagi-flow-cta__inner {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 40px;
+  text-align: center;
+}
+.nagi-flow-cta__heading {
+  font-family: var(--font-heading-family);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--nagi-ink);
+  margin: 10px 0 0;
+}
+.nagi-flow-cta__body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 560px;
+  margin: 12px auto 24px;
+}
+@media screen and (max-width: 60em) {
+  .nagi-flow-header { padding: 32px 20px 8px; }
+  .nagi-flow-header__inner { padding: 40px 28px; }
+  .nagi-flow-header__heading { font-size: 34px; }
+  .nagi-flow { padding: 24px 20px 16px; }
+  .nagi-flowcard--featured .nagi-flowcard__cols { grid-template-columns: 1fr; gap: 8px; }
+  .nagi-flow-cta { padding: 16px 20px 48px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-flow-header__inner { padding: 32px 20px; }
+  .nagi-flow-header__heading { font-size: 28px; }
+  .nagi-flow__grid { grid-template-columns: 1fr; }
+  .nagi-flowcard { padding: 22px 20px; }
+  .nagi-flow-cta__inner { padding: 40px 24px; }
+}
+
+/* --- nagi-services（できることショーケース。/pages/services） ---
+   導入バンド／締め CTA は nagi-flow-showcase と同じ様式。
+   カードグリッドは 3 列、group_heading は全幅で章を仕切る。 */
+.nagi-svc-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 8px;
+}
+.nagi-svc-header__inner {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 48px;
+}
+.nagi-svc-header__heading {
+  font-family: var(--font-heading-family);
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--nagi-ink);
+  margin: 12px 0 0;
+}
+.nagi-svc-header__description {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 680px;
+  margin: 16px 0 0;
+}
+.nagi-svc {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 24px;
+}
+.nagi-svc__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.nagi-svc__group {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  padding: 24px 0 4px;
+  border-bottom: 1px solid var(--nagi-hairline);
+}
+.nagi-svc__group:first-child { padding-top: 4px; }
+.nagi-svc__group-label {
+  font-family: var(--font-heading-family);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--nagi-ink);
+}
+.nagi-svc__group-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--nagi-shade-50);
+}
+.nagi-svc-card {
+  background: var(--nagi-white);
+  border-radius: var(--nagi-radius-card);
+  box-shadow: var(--nagi-halo);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.nagi-svc-card__tag {
+  align-self: flex-start;
+  display: inline-block;
+  background: var(--nagi-green-10);
+  color: var(--nagi-green-70);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+.nagi-svc-card__title {
+  font-family: var(--font-body-family);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--nagi-ink);
+  margin: 12px 0 6px;
+}
+.nagi-svc-card__body {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--nagi-shade-50);
+  margin: 0;
+}
+.nagi-svc-cta {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 64px;
+}
+.nagi-svc-cta__inner {
+  background: var(--nagi-surface-wash);
+  border-radius: var(--nagi-radius-panel);
+  padding: 56px 40px;
+  text-align: center;
+}
+.nagi-svc-cta__heading {
+  font-family: var(--font-heading-family);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--nagi-ink);
+  margin: 10px 0 0;
+}
+.nagi-svc-cta__body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--nagi-shade-50);
+  max-width: 560px;
+  margin: 12px auto 24px;
+}
+@media screen and (max-width: 60em) {
+  .nagi-svc-header { padding: 32px 20px 8px; }
+  .nagi-svc-header__inner { padding: 40px 28px; }
+  .nagi-svc-header__heading { font-size: 34px; }
+  .nagi-svc { padding: 24px 20px 16px; }
+  .nagi-svc__grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-svc-cta { padding: 16px 20px 48px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-svc-header__inner { padding: 32px 20px; }
+  .nagi-svc-header__heading { font-size: 28px; }
+  .nagi-svc__grid { grid-template-columns: 1fr; }
+  .nagi-svc-card { padding: 22px 20px; }
+  .nagi-svc-cta__inner { padding: 40px 24px; }
+}

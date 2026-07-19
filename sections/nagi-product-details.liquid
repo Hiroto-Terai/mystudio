@@ -28,45 +28,45 @@
 -%}
 
 <div
-  class="hirot-pdetails"
+  class="nagi-pdetails"
   style="--pd-pt: {{ section.settings.padding_top }}px; --pd-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
 >
-  <div class="hirot-pdetails__inner">
+  <div class="nagi-pdetails__inner">
     {%- if section.settings.eyebrow != blank -%}
-      <p class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</p>
+      <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
     {%- endif -%}
 
     {%- if section.settings.show_rating and rating > 0 -%}
-      <div class="hirot-pdetails__rating">
-        <div class="hirot-pdetails__stars" aria-hidden="true">
+      <div class="nagi-pdetails__rating">
+        <div class="nagi-pdetails__stars" aria-hidden="true">
           {%- for i in (1..5) -%}
             {%- if i <= full_stars -%}
-              <span class="hirot-star hirot-star--full">★</span>
+              <span class="nagi-star nagi-star--full">★</span>
             {%- elsif has_half and i == half_star_position -%}
-              <span class="hirot-star hirot-star--half">★</span>
+              <span class="nagi-star nagi-star--half">★</span>
             {%- else -%}
-              <span class="hirot-star hirot-star--empty">★</span>
+              <span class="nagi-star nagi-star--empty">★</span>
             {%- endif -%}
           {%- endfor -%}
         </div>
-        <span class="hirot-pdetails__score">{{ rating }}</span>
+        <span class="nagi-pdetails__score">{{ rating }}</span>
         {%- if review_count -%}
-          <span class="hirot-pdetails__count">{{ review_count }}件のレビュー</span>
+          <span class="nagi-pdetails__count">{{ review_count }}件のレビュー</span>
         {%- endif -%}
       </div>
     {%- endif -%}
 
     {%- if ingredients != blank -%}
-      <div class="hirot-pdetails__row">
-        <h3 class="hirot-pdetails__heading">{{ section.settings.ingredients_heading }}</h3>
-        <p class="hirot-pdetails__text">{{ ingredients | newline_to_br }}</p>
+      <div class="nagi-pdetails__row">
+        <h3 class="nagi-pdetails__heading">{{ section.settings.ingredients_heading }}</h3>
+        <p class="nagi-pdetails__text">{{ ingredients | newline_to_br }}</p>
       </div>
     {%- endif -%}
 
     {%- if how_to_use != blank -%}
-      <div class="hirot-pdetails__row">
-        <h3 class="hirot-pdetails__heading">{{ section.settings.usage_heading }}</h3>
-        <p class="hirot-pdetails__text">{{ how_to_use | newline_to_br }}</p>
+      <div class="nagi-pdetails__row">
+        <h3 class="nagi-pdetails__heading">{{ section.settings.usage_heading }}</h3>
+        <p class="nagi-pdetails__text">{{ how_to_use | newline_to_br }}</p>
       </div>
     {%- endif -%}
   </div>

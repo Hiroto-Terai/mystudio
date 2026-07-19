@@ -1,7 +1,7 @@
 {%- comment -%}
   F3 配送日時指定（カートページ / ドロワー共通）。
   配送日の選択肢は、Liquid で組むと 'now' がページキャッシュで古くなるため
-  assets/hirot-cart.js の <hirot-delivery> がクライアント側で生成する（翌日〜14日先）。
+  assets/nagi-cart.js の <nagi-delivery> がクライアント側で生成する（翌日〜14日先）。
   JS 無効時は「指定なし」のまま送信される縮退で良い。
   選択は cart attributes「配送希望日」「配送希望時間帯」に記録し、
   select の attributes[] + form 紐付けでチェックアウト時のフォーム送信とも一貫させる。
@@ -19,30 +19,30 @@
   assign saved_time = cart.attributes['配送希望時間帯']
   assign time_slots = '午前中,14〜16時,16〜18時,18〜20時' | split: ','
 -%}
-<hirot-delivery
+<nagi-delivery
   data-exclude-sunday="{{ exclude_sunday }}"
   {% if cart == empty %}
     hidden
   {% endif %}
 >
-  <div class="{% if context == 'drawer' %}hirot-delivery-drawer{% else %}hirot-cart-options{% endif %}">
+  <div class="{% if context == 'drawer' %}nagi-delivery-drawer{% else %}nagi-cart-options{% endif %}">
     {%- if context != 'drawer' -%}
-      <h2 class="hirot-cart-options__title">
+      <h2 class="nagi-cart-options__title">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           <circle cx="7" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
           <circle cx="17" cy="17" r="1.6" stroke="currentColor" stroke-width="1.5"/>
         </svg>
         配送日時の指定
-        <span class="hirot-cart-options__optional">任意</span>
+        <span class="nagi-cart-options__optional">任意</span>
       </h2>
     {%- endif -%}
-    <div class="hirot-cart-options__fields{% if context == 'drawer' %} hirot-cart-options__fields--drawer{% endif %}">
-      <div class="hirot-cart-options__field">
-        <label for="HirotDeliveryDate-{{ id_suffix }}">配送日</label>
-        <div class="hirot-select-wrap">
+    <div class="nagi-cart-options__fields{% if context == 'drawer' %} nagi-cart-options__fields--drawer{% endif %}">
+      <div class="nagi-cart-options__field">
+        <label for="NagiDeliveryDate-{{ id_suffix }}">配送日</label>
+        <div class="nagi-select-wrap">
           <select
-            id="HirotDeliveryDate-{{ id_suffix }}"
+            id="NagiDeliveryDate-{{ id_suffix }}"
             name="attributes[配送希望日]"
             form="{{ form_id }}"
             data-delivery-date
@@ -55,11 +55,11 @@
           </select>
         </div>
       </div>
-      <div class="hirot-cart-options__field">
-        <label for="HirotDeliveryTime-{{ id_suffix }}">時間帯</label>
-        <div class="hirot-select-wrap">
+      <div class="nagi-cart-options__field">
+        <label for="NagiDeliveryTime-{{ id_suffix }}">時間帯</label>
+        <div class="nagi-select-wrap">
           <select
-            id="HirotDeliveryTime-{{ id_suffix }}"
+            id="NagiDeliveryTime-{{ id_suffix }}"
             name="attributes[配送希望時間帯]"
             form="{{ form_id }}"
             data-delivery-time
@@ -79,8 +79,8 @@
       </div>
     </div>
     {%- if context != 'drawer' -%}
-      <p class="hirot-cart-options__help">翌日から14日先までご指定いただけます。</p>
-      {%- render 'hirot-gift-wrap',
+      <p class="nagi-cart-options__help">翌日から14日先までご指定いただけます。</p>
+      {%- render 'nagi-gift-wrap',
         form_id: form_id,
         context: 'page',
         price: gift_price,
@@ -88,4 +88,4 @@
       -%}
     {%- endif -%}
   </div>
-</hirot-delivery>
+</nagi-delivery>

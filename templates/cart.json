@@ -1,7 +1,7 @@
 {
   "sections": {
     "shipbar": {
-      "type": "hirot-shipbar",
+      "type": "nagi-shipbar",
       "settings": {
         "threshold": 5000
       }
@@ -15,7 +15,7 @@
       }
     },
     "cart-options": {
-      "type": "hirot-cart-options",
+      "type": "nagi-cart-options",
       "settings": {
         "exclude_sunday": true,
         "price": 300,

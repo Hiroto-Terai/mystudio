@@ -48,7 +48,7 @@
         "restock_notice": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'hirot-restock', product: product %}"
+            "custom_liquid": "{% render 'nagi-restock', product: product %}"
           }
         },
         "description": {
@@ -90,7 +90,7 @@
       }
     },
     "product_details": {
-      "type": "hirot-product-details",
+      "type": "nagi-product-details",
       "settings": {
         "eyebrow": "Product Details",
         "show_rating": true,
@@ -99,7 +99,7 @@
       }
     },
     "reviews": {
-      "type": "hirot-reviews",
+      "type": "nagi-reviews",
       "settings": {
         "eyebrow": "Reviews",
         "heading": "カスタマーレビュー"
@@ -131,7 +131,7 @@
       }
     },
     "recent": {
-      "type": "hirot-recent-products",
+      "type": "nagi-recent-products",
       "settings": {
         "eyebrow": "Recently Viewed",
         "heading": "最近見た商品"

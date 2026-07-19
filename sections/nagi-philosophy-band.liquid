@@ -1,6 +1,6 @@
-<section class="hirot-philosophy">
-  <div class="hirot-philosophy__inner">
-    <div class="hirot-philosophy__image-wrap">
+<section class="nagi-philosophy">
+  <div class="nagi-philosophy__inner">
+    <div class="nagi-philosophy__image-wrap">
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
       {%- else -%}
@@ -10,16 +10,16 @@
 
     <div>
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hirot-section-eyebrow" style="color:var(--hirot-green-70)">{{ section.settings.eyebrow }}</span>
+        <span class="nagi-section-eyebrow" style="color:var(--nagi-green-70)">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="hirot-section-heading" style="margin:12px 0 16px">{{ section.settings.heading | replace: '<p>', '' | replace: '</p>', '' }}</h2>
+        <h2 class="nagi-section-heading" style="margin:12px 0 16px">{{ section.settings.heading | replace: '<p>', '' | replace: '</p>', '' }}</h2>
       {%- endif -%}
       {%- if section.settings.body != blank -%}
-        <p class="hirot-philosophy__body">{{ section.settings.body }}</p>
+        <p class="nagi-philosophy__body">{{ section.settings.body }}</p>
       {%- endif -%}
       {%- if section.settings.cta_label != blank -%}
-        <a href="{{ section.settings.cta_url }}" class="hirot-btn hirot-btn--primary" style="height:44px">
+        <a href="{{ section.settings.cta_url }}" class="nagi-btn nagi-btn--primary" style="height:44px">
           {{ section.settings.cta_label }}
         </a>
       {%- endif -%}
@@ -29,7 +29,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Philosophy Band",
+  "name": "Nagi Philosophy Band",
   "tag": "div",
   "settings": [
     {
@@ -69,7 +69,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Philosophy Band"
+      "name": "Nagi Philosophy Band"
     }
   ]
 }

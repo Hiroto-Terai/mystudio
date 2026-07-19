@@ -1,21 +1,21 @@
-<section class="hirot-hero">
-  <div class="hirot-hero__grid">
+<section class="nagi-hero">
+  <div class="nagi-hero__grid">
     <div>
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h1 class="hirot-hero__heading">{{ section.settings.heading | replace: '<p>', '' | replace: '</p>', '' }}</h1>
+      <h1 class="nagi-hero__heading">{{ section.settings.heading | replace: '<p>', '' | replace: '</p>', '' }}</h1>
       {%- if section.settings.body != blank -%}
-        <p class="hirot-hero__body">{{ section.settings.body }}</p>
+        <p class="nagi-hero__body">{{ section.settings.body }}</p>
       {%- endif -%}
-      <div class="hirot-hero__cta">
+      <div class="nagi-hero__cta">
         {%- if section.settings.cta_primary_label != blank -%}
-          <a href="{{ section.settings.cta_primary_url }}" class="hirot-btn hirot-btn--primary hirot-btn--lg">
+          <a href="{{ section.settings.cta_primary_url }}" class="nagi-btn nagi-btn--primary nagi-btn--lg">
             {{ section.settings.cta_primary_label }}
           </a>
         {%- endif -%}
         {%- if section.settings.cta_secondary_label != blank -%}
-          <a href="{{ section.settings.cta_secondary_url }}" class="hirot-btn hirot-btn--outline hirot-btn--lg">
+          <a href="{{ section.settings.cta_secondary_url }}" class="nagi-btn nagi-btn--outline nagi-btn--lg">
             {{ section.settings.cta_secondary_label }}
           </a>
         {%- endif -%}
@@ -23,11 +23,11 @@
     </div>
 
     {%- if section.settings.image != blank -%}
-      <div class="hirot-hero__image-wrap">
+      <div class="nagi-hero__image-wrap">
         {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high' }}
       </div>
     {%- else -%}
-      <div class="hirot-hero__image-wrap" style="background:var(--hirot-surface-wash)">
+      <div class="nagi-hero__image-wrap" style="background:var(--nagi-surface-wash)">
         <img src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=1000&q=80" alt="" width="1000" height="1250" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     {%- endif -%}
@@ -36,7 +36,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Hero",
+  "name": "Nagi Hero",
   "tag": "div",
   "settings": [
     {
@@ -55,7 +55,7 @@
       "type": "textarea",
       "id": "body",
       "label": "本文",
-      "default": "国産植物由来の成分を、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていく。aoi の基礎化粧品。"
+      "default": "国産植物由来の成分を、やさしい処方で。毎日のスキンケアを、心地よい時間に変えていく。nagi の基礎化粧品。"
     },
     {
       "type": "text",
@@ -87,7 +87,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Hero"
+      "name": "Nagi Hero"
     }
   ]
 }

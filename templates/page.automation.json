@@ -1,7 +1,7 @@
 {
   "sections": {
     "flow": {
-      "type": "hirot-flow-showcase",
+      "type": "nagi-flow-showcase",
       "blocks": {
         "wishlist_notify": {
           "type": "flow_example",
@@ -108,7 +108,7 @@
       }
     },
     "faq": {
-      "type": "hirot-faq",
+      "type": "nagi-faq",
       "settings": {
         "eyebrow": "FAQ",
         "heading": "よくあるご質問"

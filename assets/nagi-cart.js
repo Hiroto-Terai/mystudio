@@ -6,11 +6,11 @@
 (() => {
   'use strict';
 
-  if (customElements.get('hirot-shipbar')) return;
+  if (customElements.get('nagi-shipbar')) return;
 
   const GIFT_ATTRIBUTE = 'ギフトラッピング';
   const GIFT_VALUE = '希望する';
-  const GIFT_SYNC_EVENT = 'hirot:gift:change';
+  const GIFT_SYNC_EVENT = 'nagi:gift:change';
 
   // Ajax API の price はすべて「セント換算」（¥2,400 → 240000）で返る
   function formatMoney(cents) {
@@ -53,10 +53,10 @@
   }
 
   /* ---- F2 プログレスバー ----
-   * snippets/hirot-shipbar.liquid のルート要素。初期状態はサーバー描画で、
+   * snippets/nagi-shipbar.liquid のルート要素。初期状態はサーバー描画で、
    * カート更新時に差額・バー幅・達成状態をクライアント側で更新する。 */
 
-  class HirotShipbar extends HTMLElement {
+  class NagiShipbar extends HTMLElement {
     connectedCallback() {
       this.threshold = parseInt(this.dataset.threshold, 10);
       this.amount = this.querySelector('[data-shipbar-amount]');
@@ -72,19 +72,19 @@
       this.hidden = cart.item_count === 0;
       if (this.hidden) return;
       const remaining = this.threshold - cart.total_price;
-      this.classList.toggle('hirot-shipbar--done', remaining <= 0);
+      this.classList.toggle('nagi-shipbar--done', remaining <= 0);
       if (remaining > 0) this.amount.textContent = formatMoney(remaining);
       this.fill.style.width = `${Math.min((cart.total_price / this.threshold) * 100, 100)}%`;
     }
   }
 
-  customElements.define('hirot-shipbar', HirotShipbar);
+  customElements.define('nagi-shipbar', NagiShipbar);
 
   /* ---- F7 ギフトラッピング ----
-   * snippets/hirot-gift-wrap.liquid のルート要素。チェック変更を cart attribute
+   * snippets/nagi-gift-wrap.liquid のルート要素。チェック変更を cart attribute
    * へ即時 POST し、ページ/ドロワーの複数インスタンス間はイベントで同期する。 */
 
-  class HirotGiftWrap extends HTMLElement {
+  class NagiGiftWrap extends HTMLElement {
     connectedCallback() {
       this.checkbox = this.querySelector('input[type="checkbox"]');
       this.checkbox.addEventListener('change', () => this.save(this.checkbox.checked));
@@ -116,10 +116,10 @@
     }
   }
 
-  customElements.define('hirot-gift-wrap', HirotGiftWrap);
+  customElements.define('nagi-gift-wrap', NagiGiftWrap);
 
   /* ---- F3 配送日時指定 ----
-   * snippets/hirot-delivery.liquid のルート要素（カートページ / ドロワー共通）。
+   * snippets/nagi-delivery.liquid のルート要素（カートページ / ドロワー共通）。
    * 選択の変更を cart attributes「配送希望日」「配送希望時間帯」へ即時 POST する。
    * リロード・ドロワー再描画時の復元はサーバー描画（cart.attributes → selected）が担う。 */
 
@@ -129,7 +129,7 @@
   const SUNDAY = 0;
   const WEEKDAY_LABELS = ['日', '月', '火', '水', '木', '金', '土'];
 
-  class HirotDelivery extends HTMLElement {
+  class NagiDelivery extends HTMLElement {
     connectedCallback() {
       this.dateSelect = this.querySelector('[data-delivery-date]');
       this.timeSelect = this.querySelector('[data-delivery-time]');
@@ -179,5 +179,5 @@
     }
   }
 
-  customElements.define('hirot-delivery', HirotDelivery);
+  customElements.define('nagi-delivery', NagiDelivery);
 })();

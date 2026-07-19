@@ -1,6 +1,6 @@
 {%- comment -%}
   F4 カスタマーレビュー（PDP）。metaobject `review` を product.id で絞り込んで一覧表示する。
-  平均点はここでは出さない（平均は hirot-product-details 側の星に一本化し、
+  平均点はここでは出さない（平均は nagi-product-details 側の星に一本化し、
   数字の二重表示による食い違いを避ける）。ここは件数 + 個別レビューの星のみ。
   投稿フォームは Shopify の contact form で実送信（メール受信）まで動くデモ。
   承認・掲載の実処理はスコープ外（Flow 承認フローに乗る体裁）。
@@ -12,48 +12,48 @@
       assign review_count = review_count | plus: 1
     endif
   endfor
-  assign form_id = 'HirotReviewForm-' | append: section.id
+  assign form_id = 'NagiReviewForm-' | append: section.id
 -%}
 
 <div
-  class="hirot-reviews"
+  class="nagi-reviews"
   style="--rv-pt: {{ section.settings.padding_top }}px; --rv-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
 >
-  <div class="hirot-reviews__inner">
-    <div class="hirot-reviews__header">
+  <div class="nagi-reviews__inner">
+    <div class="nagi-reviews__header">
       {%- if section.settings.eyebrow != blank -%}
-        <p class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
-      <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+      <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
       {%- if review_count > 0 -%}
-        <p class="hirot-reviews__count">{{ review_count }}件のレビュー</p>
+        <p class="nagi-reviews__count">{{ review_count }}件のレビュー</p>
       {%- endif -%}
     </div>
 
-    <div class="hirot-reviews__grid">
-      <div class="hirot-reviews__list">
+    <div class="nagi-reviews__grid">
+      <div class="nagi-reviews__list">
         {%- if review_count > 0 -%}
           {%- for entry in metaobjects.review.values -%}
             {%- if entry.product.value.id == product.id -%}
               {%- assign stars = entry.rating.value -%}
-              <article class="hirot-review-card">
-                <div class="hirot-review-card__stars" aria-hidden="true">
+              <article class="nagi-review-card">
+                <div class="nagi-review-card__stars" aria-hidden="true">
                   {%- for i in (1..5) -%}
                     {%- if i <= stars -%}
-                      <span class="hirot-star hirot-star--full">★</span>
+                      <span class="nagi-star nagi-star--full">★</span>
                     {%- else -%}
-                      <span class="hirot-star hirot-star--empty">★</span>
+                      <span class="nagi-star nagi-star--empty">★</span>
                     {%- endif -%}
                   {%- endfor -%}
                 </div>
                 <span class="visually-hidden">評価 {{ stars }} / 5</span>
                 {%- if entry.body.value != blank -%}
-                  <p class="hirot-review-card__body">{{ entry.body.value | newline_to_br }}</p>
+                  <p class="nagi-review-card__body">{{ entry.body.value | newline_to_br }}</p>
                 {%- endif -%}
-                <footer class="hirot-review-card__meta">
-                  <span class="hirot-review-card__author">{{ entry.author.value }}</span>
+                <footer class="nagi-review-card__meta">
+                  <span class="nagi-review-card__author">{{ entry.author.value }}</span>
                   {%- if entry.date.value != blank -%}
-                    <time class="hirot-review-card__date" datetime="{{ entry.date.value }}">
+                    <time class="nagi-review-card__date" datetime="{{ entry.date.value }}">
                       {{- entry.date.value | date: '%Y/%m/%d' -}}
                     </time>
                   {%- endif -%}
@@ -62,39 +62,39 @@
             {%- endif -%}
           {%- endfor -%}
         {%- else -%}
-          <div class="hirot-reviews__empty">
-            <p class="hirot-reviews__empty-heading">まだレビューはありません</p>
-            <p class="hirot-reviews__empty-body">この商品の最初のレビューを、フォームからお寄せください。</p>
+          <div class="nagi-reviews__empty">
+            <p class="nagi-reviews__empty-heading">まだレビューはありません</p>
+            <p class="nagi-reviews__empty-body">この商品の最初のレビューを、フォームからお寄せください。</p>
           </div>
         {%- endif -%}
       </div>
 
-      <div class="hirot-reviews__form-panel">
-        {%- form 'contact', id: form_id, class: 'hirot-reviews__form' -%}
+      <div class="nagi-reviews__form-panel">
+        {%- form 'contact', id: form_id, class: 'nagi-reviews__form' -%}
           {%- if form.posted_successfully? -%}
-            <div class="hirot-reviews__success" tabindex="-1" autofocus>
+            <div class="nagi-reviews__success" tabindex="-1" autofocus>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M8 12.5l2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <p class="hirot-reviews__success-heading">ご投稿ありがとうございます</p>
-              <p class="hirot-reviews__success-body">内容を確認のうえ、承認後に掲載されます。</p>
+              <p class="nagi-reviews__success-heading">ご投稿ありがとうございます</p>
+              <p class="nagi-reviews__success-body">内容を確認のうえ、承認後に掲載されます。</p>
             </div>
           {%- else -%}
-            <h3 class="hirot-reviews__form-title">レビューを投稿する</h3>
-            <p class="hirot-reviews__form-note">ご投稿いただいた内容は、確認のうえ承認後に掲載されます。</p>
+            <h3 class="nagi-reviews__form-title">レビューを投稿する</h3>
+            <p class="nagi-reviews__form-note">ご投稿いただいた内容は、確認のうえ承認後に掲載されます。</p>
 
             {%- if form.errors -%}
-              <p class="hirot-reviews__form-error" role="alert" tabindex="-1" autofocus>
+              <p class="nagi-reviews__form-error" role="alert" tabindex="-1" autofocus>
                 入力内容をご確認ください。メールアドレスが正しくない可能性があります。
               </p>
             {%- endif -%}
 
             <input type="hidden" name="contact[商品]" value="{{ product.title | escape }}">
 
-            <fieldset class="hirot-reviews__field hirot-reviews__field--rating">
+            <fieldset class="nagi-reviews__field nagi-reviews__field--rating">
               <legend>評価</legend>
-              <div class="hirot-star-picker">
+              <div class="nagi-star-picker">
                 {%- for i in (1..5) -%}
                   {%- assign star = 6 | minus: i -%}
                   <input
@@ -111,7 +111,7 @@
               </div>
             </fieldset>
 
-            <div class="hirot-reviews__field">
+            <div class="nagi-reviews__field">
               <label for="{{ form_id }}-name">お名前</label>
               <input
                 type="text"
@@ -119,12 +119,12 @@
                 name="contact[お名前]"
                 value="{{ form.name }}"
                 autocomplete="name"
-                placeholder="例）hirot 太郎"
+                placeholder="例）nagi 太郎"
                 required
               >
             </div>
 
-            <div class="hirot-reviews__field">
+            <div class="nagi-reviews__field">
               <label for="{{ form_id }}-email">メールアドレス（公開されません）</label>
               <input
                 type="email"
@@ -143,7 +143,7 @@
               >
             </div>
 
-            <div class="hirot-reviews__field">
+            <div class="nagi-reviews__field">
               <label for="{{ form_id }}-body">レビュー本文</label>
               <textarea
                 id="{{ form_id }}-body"
@@ -154,7 +154,7 @@
               >{{ form.body }}</textarea>
             </div>
 
-            <button type="submit" class="hirot-btn hirot-btn--primary hirot-reviews__submit">
+            <button type="submit" class="nagi-btn nagi-btn--primary nagi-reviews__submit">
               レビューを送信する
             </button>
           {%- endif -%}

@@ -1,44 +1,44 @@
-<footer class="hirot-footer">
-  <div class="hirot-footer__inner">
-    <div class="hirot-footer__top">
+<footer class="nagi-footer">
+  <div class="nagi-footer__inner">
+    <div class="nagi-footer__top">
       <!-- Brand -->
-      <div class="hirot-footer__brand">
-        <a href="{{ routes.root_url }}" class="hirot-footer__logo">
+      <div class="nagi-footer__brand">
+        <a href="{{ routes.root_url }}" class="nagi-footer__logo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 21c0-6 0-9 5-13-1 6-2 9-5 13Z" fill="var(--hirot-green-40)"/>
-            <path d="M12 21c0-5-1-8-6-11 2 5 3 8 6 11Z" fill="var(--hirot-green-50)"/>
+            <path d="M12 21c0-6 0-9 5-13-1 6-2 9-5 13Z" fill="var(--nagi-green-40)"/>
+            <path d="M12 21c0-5-1-8-6-11 2 5 3 8 6 11Z" fill="var(--nagi-green-50)"/>
           </svg>
-          <span class="hirot-footer__logo-text">{{ section.settings.store_name | default: shop.name }}</span>
+          <span class="nagi-footer__logo-text">{{ section.settings.store_name | default: shop.name }}</span>
         </a>
-        <p class="hirot-footer__tagline">{{ section.settings.tagline }}</p>
+        <p class="nagi-footer__tagline">{{ section.settings.tagline }}</p>
       </div>
 
       <!-- Nav columns -->
-      <nav class="hirot-footer__nav" aria-label="フッターナビゲーション">
+      <nav class="nagi-footer__nav" aria-label="フッターナビゲーション">
         {%- for block in section.blocks -%}
           {%- if block.type == 'column' -%}
-            <div class="hirot-footer__col" {{ block.shopify_attributes }}>
-              <span class="hirot-footer__col-title">{{ block.settings.title }}</span>
-              <ul class="hirot-footer__links">
+            <div class="nagi-footer__col" {{ block.shopify_attributes }}>
+              <span class="nagi-footer__col-title">{{ block.settings.title }}</span>
+              <ul class="nagi-footer__links">
                 {%- assign linklist = linklists[block.settings.menu] -%}
                 {%- if linklist.links.size > 0 -%}
                   {%- for link in linklist.links -%}
                     <li>
-                      <a href="{{ link.url }}" class="hirot-footer__link">{{ link.title }}</a>
+                      <a href="{{ link.url }}" class="nagi-footer__link">{{ link.title }}</a>
                     </li>
                   {%- endfor -%}
                 {%- else -%}
                   {%- if block.settings.link_1_label != blank -%}
-                    <li><a href="{{ block.settings.link_1_url }}" class="hirot-footer__link">{{ block.settings.link_1_label }}</a></li>
+                    <li><a href="{{ block.settings.link_1_url }}" class="nagi-footer__link">{{ block.settings.link_1_label }}</a></li>
                   {%- endif -%}
                   {%- if block.settings.link_2_label != blank -%}
-                    <li><a href="{{ block.settings.link_2_url }}" class="hirot-footer__link">{{ block.settings.link_2_label }}</a></li>
+                    <li><a href="{{ block.settings.link_2_url }}" class="nagi-footer__link">{{ block.settings.link_2_label }}</a></li>
                   {%- endif -%}
                   {%- if block.settings.link_3_label != blank -%}
-                    <li><a href="{{ block.settings.link_3_url }}" class="hirot-footer__link">{{ block.settings.link_3_label }}</a></li>
+                    <li><a href="{{ block.settings.link_3_url }}" class="nagi-footer__link">{{ block.settings.link_3_label }}</a></li>
                   {%- endif -%}
                   {%- if block.settings.link_4_label != blank -%}
-                    <li><a href="{{ block.settings.link_4_url }}" class="hirot-footer__link">{{ block.settings.link_4_label }}</a></li>
+                    <li><a href="{{ block.settings.link_4_url }}" class="nagi-footer__link">{{ block.settings.link_4_label }}</a></li>
                   {%- endif -%}
                 {%- endif -%}
               </ul>
@@ -48,17 +48,17 @@
       </nav>
     </div>
 
-    <div class="hirot-footer__bottom">
-      <span class="hirot-footer__copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
-      <span class="hirot-footer__copy">
+    <div class="nagi-footer__bottom">
+      <span class="nagi-footer__copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <span class="nagi-footer__copy">
         {%- if shop.privacy_policy != blank -%}
-          <a href="{{ shop.privacy_policy.url }}" class="hirot-footer__link">プライバシーポリシー</a> ・
+          <a href="{{ shop.privacy_policy.url }}" class="nagi-footer__link">プライバシーポリシー</a> ・
         {%- endif -%}
         {%- if shop.refund_policy != blank -%}
-          <a href="{{ shop.refund_policy.url }}" class="hirot-footer__link">返品ポリシー</a> ・
+          <a href="{{ shop.refund_policy.url }}" class="nagi-footer__link">返品ポリシー</a> ・
         {%- endif -%}
         {%- if shop.terms_of_service != blank -%}
-          <a href="{{ shop.terms_of_service.url }}" class="hirot-footer__link">利用規約</a>
+          <a href="{{ shop.terms_of_service.url }}" class="nagi-footer__link">利用規約</a>
         {%- endif -%}
       </span>
     </div>
@@ -67,7 +67,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Footer",
+  "name": "Nagi Footer",
   "tag": "div",
   "settings": [
     {
@@ -144,7 +144,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Footer",
+      "name": "Nagi Footer",
       "blocks": [
         {
           "type": "column",

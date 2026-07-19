@@ -1,23 +1,23 @@
-<section class="hirot-categories">
-  <div class="hirot-categories__header">
+<section class="nagi-categories">
+  <div class="nagi-categories__header">
     <div>
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hirot-section-eyebrow">{{ section.settings.eyebrow }}</span>
+        <span class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
       {%- if section.settings.heading != blank -%}
-        <h2 class="hirot-section-heading">{{ section.settings.heading }}</h2>
+        <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
     </div>
   </div>
 
-  <div class="hirot-categories__grid">
+  <div class="nagi-categories__grid">
     {%- for block in section.blocks -%}
       <a
         href="{{ block.settings.url | default: '/collections/all' }}"
-        class="hirot-tile"
+        class="nagi-tile"
         {{ block.shopify_attributes }}
       >
-        <div class="hirot-tile__image-wrap">
+        <div class="nagi-tile__image-wrap">
           {%- if block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
           {%- else -%}
@@ -29,9 +29,9 @@
             {%- endcase -%}
           {%- endif -%}
         </div>
-        <div class="hirot-tile__title">{{ block.settings.label }}</div>
+        <div class="nagi-tile__title">{{ block.settings.label }}</div>
         {%- if block.settings.sub != blank -%}
-          <div class="hirot-tile__sub">{{ block.settings.sub }}</div>
+          <div class="nagi-tile__sub">{{ block.settings.sub }}</div>
         {%- endif -%}
       </a>
     {%- endfor -%}
@@ -40,7 +40,7 @@
 
 {% schema %}
 {
-  "name": "Hirot Category Tiles",
+  "name": "Nagi Category Tiles",
   "tag": "div",
   "max_blocks": 8,
   "settings": [
@@ -89,7 +89,7 @@
   ],
   "presets": [
     {
-      "name": "Hirot Category Tiles",
+      "name": "Nagi Category Tiles",
       "blocks": [
         {
           "type": "tile",

@@ -1,7 +1,7 @@
 {
   "sections": {
     "services": {
-      "type": "hirot-services",
+      "type": "nagi-services",
       "blocks": {
         "g_live": {
           "type": "group_heading",

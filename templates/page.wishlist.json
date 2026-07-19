@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "hirot-wishlist",
+      "type": "nagi-wishlist",
       "settings": {
         "eyebrow": "Wishlist",
         "heading": "お気に入り",
