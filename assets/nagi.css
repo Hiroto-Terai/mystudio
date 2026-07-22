@@ -2100,3 +2100,26 @@ nagi-restock { display: block; }
   .nagi-quiz__result-grid { grid-template-columns: repeat(2, 1fr); }
   .nagi-quiz__question { font-size: 19px; }
 }
+
+/* --- SP 商品ページ画像ギャラリー: 次の画像がちら見えする peek カルーセル ---
+   Dawn は 2列(product--mobile-columns)にも切り替わるが、SP では常に「1枚ずつ + 次の左端がちら見え」に統一。
+   Dawn のフルブリード(負マージン)をやめて本文と同じ左右ガター基準に揃え、peek 量を安定させる。
+   Dawn liquid は変更せず nagi.css で上書き（base.css の後に読み込まれるため優先される）。 */
+@media screen and (max-width: 749px) {
+  .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .product__media-list {
+    margin-left: 0;
+    width: 100%;
+    padding-inline: 1.5rem;
+    scroll-padding-left: 1.5rem;
+    column-gap: 1rem;
+  }
+  .product--mobile-columns .product__media-item:not(.product__media-item--single),
+  .product__media-list .product__media-item:not(.product__media-item--single) {
+    width: 87%;
+    scroll-snap-align: start;
+  }
+}
