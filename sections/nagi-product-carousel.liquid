@@ -1,0 +1,129 @@
+{%- comment -%}
+  商品スワイプカルーセル。コレクションの商品を CSS scroll-snap のトラックに並べ、
+  JS（assets/nagi-motion.js の <nagi-product-carousel>）が前後ボタン・ドット・
+  ドラッグ・任意オートプレイを付与する。scroll-snap により JS 無効でも横スクロールで
+  全商品を見られる（進化的強化）。商品カードは snippets/nagi-product-card.liquid を再利用。
+{%- endcomment -%}
+{%- liquid
+  if section.settings.collection != blank
+    assign products = section.settings.collection.products
+  else
+    assign products = collections.all.products
+  endif
+-%}
+<nagi-product-carousel
+  class="nagi-carousel"
+  data-nagi-reveal
+  {% if section.settings.autoplay %}data-autoplay="{{ section.settings.autoplay_seconds }}"{% endif %}
+  style="--nagi-car-pt: {{ section.settings.padding_top }}px; --nagi-car-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="nagi-carousel__inner">
+    <div class="nagi-carousel__header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      <div class="nagi-carousel__nav">
+        <button class="nagi-carousel__arrow" type="button" data-carousel-prev aria-label="前の商品へ">
+          <span aria-hidden="true">&#8592;</span>
+        </button>
+        <button class="nagi-carousel__arrow" type="button" data-carousel-next aria-label="次の商品へ">
+          <span aria-hidden="true">&#8594;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nagi-carousel__track" data-carousel-track>
+      {%- for product in products limit: section.settings.products_count -%}
+        <div class="nagi-carousel__item">
+          {% render 'nagi-product-card', product: product %}
+        </div>
+      {%- else -%}
+        <p class="nagi-carousel__empty">表示できる商品がありません。</p>
+      {%- endfor -%}
+    </div>
+
+    <div class="nagi-carousel__dots" data-carousel-dots aria-hidden="true"></div>
+  </div>
+</nagi-product-carousel>
+<script src="{{ 'nagi-motion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "商品カルーセル",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き (英語)",
+      "default": "Pick Up"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "注目のアイテム"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "コレクション"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "表示件数",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "自動送り",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_seconds",
+      "label": "自動送りの間隔",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "秒",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "商品カルーセル"
+    }
+  ]
+}
+{% endschema %}

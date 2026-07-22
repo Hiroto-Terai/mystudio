@@ -1,0 +1,268 @@
+{%- comment -%}
+  肌診断クイズ。question ブロックの各選択肢に result_key を持たせ、
+  result ブロックごとにおすすめ商品（コレクション）を Liquid で全部レンダーして
+  hidden にしておく。JS（assets/nagi-motion.js の <nagi-skin-quiz>）は選んだキーを集計し、
+  最多のキーに対応する result だけ表示する（クライアント集計・バックエンド不要）。
+  JS 無効時は最初の質問がそのまま見える（進化的強化）。
+{%- endcomment -%}
+{%- liquid
+  assign question_count = 0
+  for block in section.blocks
+    if block.type == 'question'
+      assign question_count = question_count | plus: 1
+    endif
+  endfor
+-%}
+<nagi-skin-quiz
+  class="nagi-quiz"
+  data-nagi-reveal
+  style="--nagi-quiz-pt: {{ section.settings.padding_top }}px; --nagi-quiz-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
+>
+  <div class="nagi-quiz__inner">
+    <div class="nagi-quiz__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="nagi-quiz__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="nagi-quiz__progress">
+      <span class="nagi-quiz__progress-bar" data-quiz-bar></span>
+    </div>
+
+    <div class="nagi-quiz__body">
+      {%- assign qi = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'question' -%}
+          {%- assign qi = qi | plus: 1 -%}
+          <fieldset
+            class="nagi-quiz__step"
+            data-quiz-step
+            {% unless qi == 1 %}hidden{% endunless %}
+            {{ block.shopify_attributes }}
+          >
+            <legend class="nagi-quiz__question">
+              <span class="nagi-quiz__step-num">Q{{ qi }} / {{ question_count }}</span>
+              {{ block.settings.question }}
+            </legend>
+            <div class="nagi-quiz__options">
+              {%- for i in (1..4) -%}
+                {%- assign label_key = 'option_' | append: i | append: '_label' -%}
+                {%- assign key_key = 'option_' | append: i | append: '_key' -%}
+                {%- assign opt_label = block.settings[label_key] -%}
+                {%- if opt_label != blank -%}
+                  <button
+                    class="nagi-quiz__option"
+                    type="button"
+                    data-quiz-option
+                    data-key="{{ block.settings[key_key] | escape }}"
+                  >
+                    {{ opt_label }}
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="nagi-quiz__results" data-quiz-results hidden>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'result' -%}
+            <div
+              class="nagi-quiz__result"
+              data-quiz-result
+              data-key="{{ block.settings.result_key | escape }}"
+              hidden
+              {{ block.shopify_attributes }}
+            >
+              <div class="nagi-quiz__result-head">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="nagi-section-eyebrow">{{ block.settings.eyebrow }}</p>
+                {%- endif -%}
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="nagi-quiz__result-heading">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.body != blank -%}
+                  <p class="nagi-quiz__result-body">{{ block.settings.body }}</p>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.collection != blank -%}
+                <div class="nagi-quiz__result-grid">
+                  {%- for product in block.settings.collection.products limit: block.settings.products_count -%}
+                    {% render 'nagi-product-card', product: product %}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+              <div class="nagi-quiz__result-actions">
+                {%- if block.settings.cta_url != blank -%}
+                  <a class="nagi-btn nagi-btn--primary" href="{{ block.settings.cta_url }}">
+                    {{ block.settings.cta_label | default: 'コレクションを見る' }}
+                  </a>
+                {%- endif -%}
+                <button class="nagi-quiz__restart" type="button" data-quiz-restart>もう一度診断する</button>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</nagi-skin-quiz>
+<script src="{{ 'nagi-motion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "肌診断クイズ",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き (英語)",
+      "default": "Skin Quiz"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "あなたに合うケアを診断"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "リード文",
+      "default": "3つの質問に答えると、肌悩みに合わせたおすすめアイテムをご提案します。"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f1fbf4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "質問",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "質問文",
+          "default": "いまの肌悩みに一番近いのは？"
+        },
+        { "type": "text", "id": "option_1_label", "label": "選択肢1 ラベル", "default": "乾燥・かさつき" },
+        { "type": "text", "id": "option_1_key", "label": "選択肢1 結果キー", "default": "dry" },
+        { "type": "text", "id": "option_2_label", "label": "選択肢2 ラベル", "default": "テカり・毛穴" },
+        { "type": "text", "id": "option_2_key", "label": "選択肢2 結果キー", "default": "oil" },
+        { "type": "text", "id": "option_3_label", "label": "選択肢3 ラベル", "default": "ゆらぎ・敏感" },
+        { "type": "text", "id": "option_3_key", "label": "選択肢3 結果キー", "default": "sensitive" },
+        { "type": "text", "id": "option_4_label", "label": "選択肢4 ラベル" },
+        { "type": "text", "id": "option_4_key", "label": "選択肢4 結果キー" }
+      ]
+    },
+    {
+      "type": "result",
+      "name": "診断結果",
+      "settings": [
+        { "type": "text", "id": "result_key", "label": "結果キー", "default": "dry" },
+        { "type": "text", "id": "eyebrow", "label": "眉書き (英語)", "default": "Your Result" },
+        { "type": "text", "id": "heading", "label": "見出し", "default": "うるおいチャージが最優先" },
+        { "type": "textarea", "id": "body", "label": "本文", "default": "水分を抱え込む処方で、乾いた肌をやさしく満たすアイテムを選びました。" },
+        { "type": "collection", "id": "collection", "label": "おすすめコレクション" },
+        { "type": "range", "id": "products_count", "label": "表示件数", "min": 2, "max": 8, "step": 1, "default": 3 },
+        { "type": "text", "id": "cta_label", "label": "ボタン文言", "default": "コレクションを見る" },
+        { "type": "url", "id": "cta_url", "label": "ボタンのリンク先" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "肌診断クイズ",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "いまの肌悩みに一番近いのは？",
+            "option_1_label": "乾燥・かさつき", "option_1_key": "dry",
+            "option_2_label": "テカり・毛穴", "option_2_key": "oil",
+            "option_3_label": "ゆらぎ・敏感", "option_3_key": "sensitive"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "スキンケアで重視したいのは？",
+            "option_1_label": "しっとり保湿", "option_1_key": "dry",
+            "option_2_label": "さっぱり皮脂ケア", "option_2_key": "oil",
+            "option_3_label": "低刺激・やさしさ", "option_3_key": "sensitive"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "季節の変わり目、肌はどうなりがち？",
+            "option_1_label": "つっぱる", "option_1_key": "dry",
+            "option_2_label": "ベタつく", "option_2_key": "oil",
+            "option_3_label": "赤み・かゆみ", "option_3_key": "sensitive"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "result_key": "dry",
+            "heading": "うるおいチャージが最優先",
+            "body": "水分を抱え込む処方で、乾いた肌をやさしく満たすアイテムを選びました。",
+            "cta_url": "shopify://collections/cream-oil"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "result_key": "oil",
+            "heading": "皮脂バランスをととのえる",
+            "body": "べたつきをおさえつつ、必要なうるおいは守るケアをご提案します。",
+            "cta_url": "shopify://collections/lotion-serum"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "result_key": "sensitive",
+            "heading": "ゆらぎ肌をいたわる",
+            "body": "低刺激のシンプル処方で、敏感に傾いた肌にそっと寄り添います。",
+            "cta_url": "shopify://collections/cleansing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

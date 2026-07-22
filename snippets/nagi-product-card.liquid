@@ -1,0 +1,33 @@
+{%- comment -%}
+  共有商品カード。既存 .nagi-card 体裁（JS 描画の recent/wishlist と同型）を
+  Liquid でも使えるようにしたもの。カルーセル(F3)・肌診断結果(F2)で再利用する。
+  引数:
+    product（必須）: 商品オブジェクト
+    brand（任意）: ブランド表記。既定は shop.name の大文字
+{%- endcomment -%}
+{%- liquid
+  assign brand_name = brand | default: shop.name | upcase
+-%}
+<div class="nagi-card nagi-card--fav">
+  <a href="{{ product.url }}" class="nagi-card__link">
+    <div class="nagi-card__image-wrap">
+      {%- if product.featured_image != blank -%}
+        {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title }}
+      {%- endif -%}
+      {%- unless product.available -%}
+        <span class="nagi-card__soldout-badge">売り切れ</span>
+      {%- endunless -%}
+    </div>
+    <div class="nagi-card__info">
+      <div class="nagi-card__brand">{{ brand_name }}</div>
+      <div class="nagi-card__title">{{ product.title }}</div>
+      <div class="nagi-card__price-wrap">
+        <span class="nagi-card__price">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="nagi-card__compare-price">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+  <nagi-fav-toggle data-product-handle="{{ product.handle }}"></nagi-fav-toggle>
+</div>

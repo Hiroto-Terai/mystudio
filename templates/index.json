@@ -212,6 +212,85 @@
         "blog": "journal"
       }
     },
+    "skin_quiz": {
+      "type": "nagi-skin-quiz",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "いまの肌悩みに一番近いのは？",
+            "option_1_label": "乾燥・かさつき", "option_1_key": "dry",
+            "option_2_label": "テカり・毛穴", "option_2_key": "oil",
+            "option_3_label": "ゆらぎ・敏感", "option_3_key": "sensitive"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "スキンケアで重視したいのは？",
+            "option_1_label": "しっとり保湿", "option_1_key": "dry",
+            "option_2_label": "さっぱり皮脂ケア", "option_2_key": "oil",
+            "option_3_label": "低刺激・やさしさ", "option_3_key": "sensitive"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "季節の変わり目、肌はどうなりがち？",
+            "option_1_label": "つっぱる", "option_1_key": "dry",
+            "option_2_label": "ベタつく", "option_2_key": "oil",
+            "option_3_label": "赤み・かゆみ", "option_3_key": "sensitive"
+          }
+        },
+        "r_dry": {
+          "type": "result",
+          "settings": {
+            "result_key": "dry",
+            "heading": "うるおいチャージが最優先",
+            "body": "水分を抱え込む処方で、乾いた肌をやさしく満たすアイテムを選びました。",
+            "collection": "cream-oil",
+            "cta_url": "shopify://collections/cream-oil"
+          }
+        },
+        "r_oil": {
+          "type": "result",
+          "settings": {
+            "result_key": "oil",
+            "heading": "皮脂バランスをととのえる",
+            "body": "べたつきをおさえつつ、必要なうるおいは守るケアをご提案します。",
+            "collection": "lotion-serum",
+            "cta_url": "shopify://collections/lotion-serum"
+          }
+        },
+        "r_sensitive": {
+          "type": "result",
+          "settings": {
+            "result_key": "sensitive",
+            "heading": "ゆらぎ肌をいたわる",
+            "body": "低刺激のシンプル処方で、敏感に傾いた肌にそっと寄り添います。",
+            "collection": "cleansing",
+            "cta_url": "shopify://collections/cleansing"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "r_dry", "r_oil", "r_sensitive"]
+    },
+    "product_carousel": {
+      "type": "nagi-product-carousel",
+      "settings": {
+        "eyebrow": "Pick Up",
+        "heading": "注目のアイテム",
+        "collection": "all",
+        "products_count": 10
+      }
+    },
+    "before_after": {
+      "type": "nagi-before-after",
+      "settings": {
+        "heading": "使い続けた素肌の変化",
+        "body": "スライダーを動かして、お手入れ前後の肌印象の違いをご覧ください。"
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "blocks": {
@@ -246,8 +325,11 @@
     "nagi_hero",
     "trust_strip",
     "category_tiles",
+    "skin_quiz",
     "featured_products",
+    "product_carousel",
     "philosophy_band",
+    "before_after",
     "value_band",
     "staff_intro",
     "journal",
