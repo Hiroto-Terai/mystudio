@@ -32,9 +32,19 @@
         "share",
         "content"
       ]
+    },
+    "article_carousel": {
+      "type": "nagi-product-carousel",
+      "settings": {
+        "eyebrow": "Pick Up",
+        "heading": "この記事で紹介したアイテム",
+        "collection": "all",
+        "products_count": 10
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "article_carousel"
   ]
 }

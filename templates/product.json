@@ -98,6 +98,16 @@
         "usage_heading": "使い方"
       }
     },
+    "before_after": {
+      "type": "nagi-before-after",
+      "settings": {
+        "eyebrow": "Before / After",
+        "heading": "使い続けた素肌の変化",
+        "body": "スライダーを動かして、お手入れ前後の肌印象の違いをご覧ください。",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
     "reviews": {
       "type": "nagi-reviews",
       "settings": {
@@ -141,6 +151,7 @@
   "order": [
     "main",
     "product_details",
+    "before_after",
     "reviews",
     "disclosures",
     "related-products",

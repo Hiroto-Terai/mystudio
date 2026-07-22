@@ -1,0 +1,166 @@
+{%- comment -%}
+  Before/After 比較スライダー。after 画像を下地に、before 画像を上に重ねて
+  clip-path で左側だけ見せ、仕切り位置（--pos: 0〜100）を range で動かす。
+  JS（assets/nagi-motion.js の <nagi-before-after>）は range の値を --pos に反映するだけで、
+  JS 無効でも両画像・見出し・タグは崩れずに見える（進化的強化）。
+  range を stage 全面に透明で重ねることで、ドラッグとキーボード操作の両方を1要素で賄う。
+{%- endcomment -%}
+{%- liquid
+  assign before_img = section.settings.before_image
+  assign after_img = section.settings.after_image
+-%}
+<div
+  class="nagi-ba"
+  data-nagi-reveal
+  style="--nagi-ba-pt: {{ section.settings.padding_top }}px; --nagi-ba-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
+>
+  <div class="nagi-ba__inner">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.body != blank -%}
+      <div class="nagi-ba__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <p class="nagi-ba__body">{{ section.settings.body }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <nagi-before-after class="nagi-ba__stage" style="--pos: 50;">
+      <div class="nagi-ba__media nagi-ba__media--after">
+        {%- if after_img != blank -%}
+          {{ after_img | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.after_label }}
+        {%- else -%}
+          <img
+            src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=80"
+            alt="{{ section.settings.after_label | escape }}"
+            loading="lazy"
+            width="1200"
+            height="800"
+          >
+        {%- endif -%}
+        <span class="nagi-ba__tag nagi-ba__tag--after">{{ section.settings.after_label }}</span>
+      </div>
+
+      <div class="nagi-ba__media nagi-ba__media--before" data-ba-clip>
+        {%- if before_img != blank -%}
+          {{ before_img | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.before_label }}
+        {%- else -%}
+          <img
+            src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80"
+            alt="{{ section.settings.before_label | escape }}"
+            loading="lazy"
+            width="1200"
+            height="800"
+          >
+        {%- endif -%}
+        <span class="nagi-ba__tag nagi-ba__tag--before">{{ section.settings.before_label }}</span>
+      </div>
+
+      <div class="nagi-ba__divider" data-ba-divider aria-hidden="true">
+        <span class="nagi-ba__handle"></span>
+      </div>
+
+      <input
+        class="nagi-ba__range"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        step="1"
+        data-ba-range
+        aria-label="{{ section.settings.slider_label | default: '施術前後の比較スライダー' }}"
+      >
+    </nagi-before-after>
+  </div>
+</div>
+<script src="{{ 'nagi-motion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Before/After 比較",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "眉書き (英語)",
+      "default": "Before / After"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "見出し",
+      "default": "使い続けた素肌の変化"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "本文",
+      "default": "スライダーを動かして、お手入れ前後の肌印象の違いをご覧ください。"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before 画像"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After 画像"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before ラベル",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After ラベル",
+      "default": "After"
+    },
+    {
+      "type": "text",
+      "id": "slider_label",
+      "label": "スライダーの読み上げ名 (アクセシビリティ)",
+      "default": "施術前後の比較スライダー"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#fbfbf5"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下の余白",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before/After 比較"
+    }
+  ]
+}
+{% endschema %}

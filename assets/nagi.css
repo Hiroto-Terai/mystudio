@@ -1852,3 +1852,251 @@ nagi-restock { display: block; }
   .nagi-svc-card { padding: 22px 20px; }
   .nagi-svc-cta__inner { padding: 40px 24px; }
 }
+
+/* ============================================================
+   v4 動的リッチセクション群（nagi-motion.js と対）
+   ============================================================ */
+
+/* --- F4 スクロール連動アニメ ---
+   初期非表示は JS が nagi-reveal-armed を付けたときだけ効く。
+   JS 無効時はクラスが付かず、要素は通常どおり表示される（PE 安全）。 */
+.nagi-reveal-armed {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.nagi-reveal-armed.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nagi-reveal-armed { opacity: 1; transform: none; transition: none; }
+}
+
+/* --- F1 Before/After スライダー --- */
+.nagi-ba { padding: var(--nagi-ba-pt, 64px) 0 var(--nagi-ba-pb, 72px); }
+.nagi-ba__inner { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+.nagi-ba__header { text-align: center; max-width: 60ch; margin: 0 auto 32px; }
+.nagi-ba__body { color: var(--nagi-shade-50); margin-top: 12px; }
+.nagi-ba__stage {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--nagi-radius-panel);
+  aspect-ratio: 3 / 2;
+  user-select: none;
+  background: var(--nagi-surface-wash);
+}
+.nagi-ba__media { position: absolute; inset: 0; }
+.nagi-ba__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.nagi-ba__media--before { clip-path: inset(0 calc(100% - var(--pos, 50) * 1%) 0 0); }
+.nagi-ba__tag {
+  position: absolute;
+  bottom: 16px;
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--nagi-ink);
+  background: rgba(255, 255, 255, 0.86);
+  padding: 5px 12px;
+  border-radius: 9999px;
+}
+.nagi-ba__tag--before { left: 16px; }
+.nagi-ba__tag--after { right: 16px; }
+.nagi-ba__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--pos, 50) * 1%);
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(14, 16, 15, 0.08);
+}
+.nagi-ba__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(14, 16, 15, 0.22);
+}
+.nagi-ba__handle::before,
+.nagi-ba__handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.nagi-ba__handle::before {
+  left: 11px;
+  transform: translateY(-50%);
+  border-right: 7px solid var(--nagi-shade-50);
+}
+.nagi-ba__handle::after {
+  right: 11px;
+  transform: translateY(-50%);
+  border-left: 7px solid var(--nagi-shade-50);
+}
+.nagi-ba__range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.nagi-ba__stage:focus-within .nagi-ba__handle {
+  box-shadow: 0 0 0 3px var(--nagi-green-50), 0 2px 12px rgba(14, 16, 15, 0.22);
+}
+
+/* --- F3 商品スワイプカルーセル --- */
+.nagi-carousel { display: block; padding: var(--nagi-car-pt, 56px) 0 var(--nagi-car-pb, 64px); }
+.nagi-carousel__inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.nagi-carousel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.nagi-carousel__nav { display: flex; gap: 8px; flex-shrink: 0; }
+.nagi-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid var(--nagi-ink);
+  background: transparent;
+  color: var(--nagi-ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.nagi-carousel__arrow:hover:not([disabled]) { background: var(--nagi-ink); color: #fff; }
+.nagi-carousel__arrow[disabled] { opacity: 0.3; cursor: default; }
+.nagi-carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 23%;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+.nagi-carousel__track::-webkit-scrollbar { display: none; }
+.nagi-carousel__item { scroll-snap-align: start; min-width: 0; }
+.nagi-carousel__dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.nagi-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  border: none;
+  background: var(--nagi-shade-30);
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.nagi-carousel__dot.is-active { background: var(--nagi-green-60); width: 22px; }
+.nagi-carousel__empty { color: var(--nagi-shade-50); }
+
+/* --- F2 肌診断クイズ --- */
+.nagi-quiz { display: block; padding: var(--nagi-quiz-pt, 64px) 0 var(--nagi-quiz-pb, 72px); }
+.nagi-quiz__inner { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+.nagi-quiz__header { text-align: center; margin-bottom: 28px; }
+.nagi-quiz__intro { color: var(--nagi-shade-50); margin-top: 12px; }
+.nagi-quiz__progress {
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--nagi-shade-20);
+  overflow: hidden;
+  margin-bottom: 36px;
+}
+.nagi-quiz__progress-bar {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--nagi-green-50), var(--nagi-green-60));
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+.nagi-quiz__step { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+.nagi-quiz__question {
+  font-family: var(--font-heading-family);
+  font-size: 22px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 0 auto 24px;
+  padding: 0;
+}
+.nagi-quiz__step-num {
+  display: block;
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--nagi-green-60);
+  margin-bottom: 8px;
+}
+.nagi-quiz__options { display: grid; gap: 12px; max-width: 440px; margin: 0 auto; }
+.nagi-quiz__option {
+  font-family: var(--font-body-family);
+  font-size: 15px;
+  padding: 16px 20px;
+  border-radius: var(--nagi-radius-card);
+  border: 1px solid var(--nagi-hairline);
+  background: var(--nagi-white);
+  color: var(--nagi-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+}
+.nagi-quiz__option:hover { border-color: var(--nagi-green-50); background: var(--nagi-green-05); }
+.nagi-quiz__option:active { transform: scale(0.99); }
+.nagi-quiz__result-head { text-align: center; margin-bottom: 8px; }
+.nagi-quiz__result-heading { font-family: var(--font-heading-family); font-size: 24px; margin: 8px 0 12px; }
+.nagi-quiz__result-body { color: var(--nagi-shade-50); max-width: 52ch; margin: 0 auto; }
+.nagi-quiz__result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 16px; margin: 24px 0; }
+.nagi-quiz__result-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 8px; }
+.nagi-quiz__restart {
+  background: none;
+  border: none;
+  color: var(--nagi-shade-50);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-body-family);
+  font-size: 14px;
+}
+.nagi-carousel__arrow:focus-visible,
+.nagi-carousel__dot:focus-visible,
+.nagi-quiz__option:focus-visible,
+.nagi-quiz__restart:focus-visible {
+  outline: 2px solid var(--nagi-green-60);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 60em) {
+  .nagi-ba__inner,
+  .nagi-carousel__inner,
+  .nagi-quiz__inner { padding-left: 20px; padding-right: 20px; }
+  .nagi-carousel__track { grid-auto-columns: 44%; gap: 16px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-ba__stage { aspect-ratio: 4 / 5; }
+  .nagi-carousel__track { grid-auto-columns: 76%; gap: 14px; }
+  .nagi-quiz__result-grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-quiz__question { font-size: 19px; }
+}
