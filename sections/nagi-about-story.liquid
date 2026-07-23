@@ -1,0 +1,166 @@
+{%- comment -%}
+  about のストーリーセクション。「信念 → 他との違い → 使うとどうなるか → どう価値提供するか → 締め」を
+  1本の物語として設計。説明ではなく主張として読ませ、写真×余白×強タイポ＋reveal で情感を出す。
+  contrast ブロック（違い）と pillar ブロック（価値提供）を種別で振り分けて描画する。
+  JS ゼロ表示系（reveal 演出のみ nagi-motion.js）。
+{%- endcomment -%}
+<section class="nagi-story">
+  <div class="nagi-story__manifesto" data-nagi-reveal style="background: {{ section.settings.manifesto_bg }};">
+    <div class="nagi-story__inner nagi-story__inner--narrow">
+      {%- if section.settings.manifesto_eyebrow != blank -%}
+        <p class="nagi-section-eyebrow">{{ section.settings.manifesto_eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.manifesto_heading != blank -%}
+        <h1 class="nagi-story__manifesto-heading">{{ section.settings.manifesto_heading | newline_to_br }}</h1>
+      {%- endif -%}
+      {%- if section.settings.manifesto_lede != blank -%}
+        <p class="nagi-story__lede">{{ section.settings.manifesto_lede }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- assign contrast_blocks = section.blocks | where: 'type', 'contrast' -%}
+  {%- if section.settings.diff_heading != blank or contrast_blocks.size > 0 -%}
+    <div class="nagi-story__diff" data-nagi-reveal>
+      <div class="nagi-story__inner">
+        {%- if section.settings.diff_heading != blank -%}
+          <h2 class="nagi-section-heading nagi-story__diff-heading">{{ section.settings.diff_heading }}</h2>
+        {%- endif -%}
+        <div class="nagi-story__crows">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'contrast' -%}
+              <div class="nagi-story__crow" {{ block.shopify_attributes }}>
+                <div class="nagi-story__ordinary">
+                  <span class="nagi-story__ctag">よくある</span>
+                  <p>{{ block.settings.ordinary }}</p>
+                </div>
+                <div class="nagi-story__ours">
+                  <span class="nagi-story__ctag nagi-story__ctag--ours">nagi は</span>
+                  <p>{{ block.settings.ours }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="nagi-story__movement" data-nagi-reveal>
+    <div class="nagi-story__inner nagi-story__movement-inner">
+      <div class="nagi-story__movement-media">
+        {%- if section.settings.change_image != blank -%}
+          {{ section.settings.change_image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 45vw, 100vw', widths: '500, 750, 1000', alt: section.settings.change_heading }}
+        {%- endif -%}
+      </div>
+      <div class="nagi-story__movement-text">
+        {%- if section.settings.change_eyebrow != blank -%}
+          <p class="nagi-section-eyebrow">{{ section.settings.change_eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.change_heading != blank -%}
+          <h2 class="nagi-section-heading">{{ section.settings.change_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.change_body != blank -%}
+          <p class="nagi-story__body">{{ section.settings.change_body }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- assign pillar_blocks = section.blocks | where: 'type', 'pillar' -%}
+  {%- if section.settings.pillars_heading != blank or pillar_blocks.size > 0 -%}
+    <div class="nagi-story__pillars" data-nagi-reveal>
+      <div class="nagi-story__inner">
+        {%- if section.settings.pillars_heading != blank -%}
+          <h2 class="nagi-section-heading nagi-story__pillars-heading">{{ section.settings.pillars_heading }}</h2>
+        {%- endif -%}
+        <div class="nagi-story__pillar-grid">
+          {%- assign pi = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'pillar' -%}
+              {%- assign pi = pi | plus: 1 -%}
+              <div class="nagi-story__pillar" {{ block.shopify_attributes }}>
+                <span class="nagi-story__pillar-num">0{{ pi }}</span>
+                <h3 class="nagi-story__pillar-title">{{ block.settings.title }}</h3>
+                <p class="nagi-story__pillar-text">{{ block.settings.text }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.close_heading != blank -%}
+    <div class="nagi-story__close" data-nagi-reveal style="background: {{ section.settings.close_bg }};">
+      <div class="nagi-story__inner nagi-story__inner--narrow">
+        <h2 class="nagi-story__close-heading">{{ section.settings.close_heading }}</h2>
+        {%- if section.settings.close_cta_label != blank -%}
+          <a class="nagi-btn nagi-btn--primary nagi-btn--lg" href="{{ section.settings.close_cta_url }}">{{ section.settings.close_cta_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+<script src="{{ 'nagi-motion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "about ストーリー",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "header", "content": "1. 信念（マニフェスト）" },
+    { "type": "color", "id": "manifesto_bg", "label": "背景色", "default": "#0e100f" },
+    { "type": "text", "id": "manifesto_eyebrow", "label": "眉書き (英語)", "default": "Our Belief" },
+    { "type": "textarea", "id": "manifesto_heading", "label": "信念（改行可）", "default": "肌が変わると、\n毎日の機嫌まで変わる。" },
+    { "type": "textarea", "id": "manifesto_lede", "label": "リード", "default": "私たちは、化粧品を売っているのではありません。鏡を見るのが少し好きになる、そんな朝をつくりたいのです。だから nagi は、余計なものを削ぎ落とし、肌本来の力を信じることから始めました。" },
+    { "type": "header", "content": "2. 他との違い" },
+    { "type": "text", "id": "diff_heading", "label": "見出し", "default": "私たちが、ありふれた化粧品と違う理由" },
+    { "type": "header", "content": "3. 使うとどうなるか" },
+    { "type": "image_picker", "id": "change_image", "label": "画像" },
+    { "type": "text", "id": "change_eyebrow", "label": "眉書き (英語)", "default": "What Changes" },
+    { "type": "text", "id": "change_heading", "label": "見出し", "default": "3週間後、鏡の前のあなたへ。" },
+    { "type": "textarea", "id": "change_body", "label": "本文", "default": "ゆらいでいた肌が、少しずつ落ち着いていく。ファンデーションを薄くしても、平気になる日がくる。特別なことは何もしていないのに、素肌でいることが、こわくなくなる。それが、nagi が届けたい変化です。" },
+    { "type": "header", "content": "4. どう価値提供するか" },
+    { "type": "text", "id": "pillars_heading", "label": "見出し", "default": "その変化を、こうしてお届けします" },
+    { "type": "header", "content": "締め" },
+    { "type": "color", "id": "close_bg", "label": "背景色", "default": "#f1fbf4" },
+    { "type": "text", "id": "close_heading", "label": "見出し", "default": "素肌が、いちばんの自信になる。" },
+    { "type": "text", "id": "close_cta_label", "label": "ボタン文言", "default": "nagi を試してみる" },
+    { "type": "url", "id": "close_cta_url", "label": "ボタンのリンク先" }
+  ],
+  "blocks": [
+    {
+      "type": "contrast",
+      "name": "違い（対比）",
+      "settings": [
+        { "type": "text", "id": "ordinary", "label": "よくある", "default": "話題の成分を次々に足して、盛りだくさんに見せる。" },
+        { "type": "text", "id": "ours", "label": "nagi は", "default": "肌に必要なものだけを選び、あえて引き算する。" }
+      ]
+    },
+    {
+      "type": "pillar",
+      "name": "価値提供（柱）",
+      "settings": [
+        { "type": "text", "id": "title", "label": "見出し", "default": "産地までたどれる成分" },
+        { "type": "textarea", "id": "text", "label": "本文", "default": "国産ボタニカルを中心に、由来のわかる原料だけ。信頼できるものしか、肌にのせたくないから。" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "about ストーリー",
+      "blocks": [
+        { "type": "contrast", "settings": { "ordinary": "話題の成分を次々に足して、盛りだくさんに見せる。", "ours": "肌に必要なものだけを選び、あえて引き算する。" } },
+        { "type": "contrast", "settings": { "ordinary": "香りや使用感で、その場の満足をつくる。", "ours": "敏感な肌が毎日続けられる、心地よさを設計する。" } },
+        { "type": "contrast", "settings": { "ordinary": "売ったら、そこで関係が終わる。", "ours": "使い方に寄り添い、あなたの肌の変化を一緒に見届ける。" } },
+        { "type": "pillar", "settings": { "title": "産地までたどれる成分", "text": "国産ボタニカルを中心に、由来のわかる原料だけ。信頼できるものしか、肌にのせたくないから。" } },
+        { "type": "pillar", "settings": { "title": "余白のある処方", "text": "無添加7項目。必要なものを必要なだけ。敏感な肌が、毎日ためらわず使えるように。" } },
+        { "type": "pillar", "settings": { "title": "国内一貫製造", "text": "処方から検品まで日本の工場で。ひとつずつ、ていねいに仕上げてお届けします。" } },
+        { "type": "pillar", "settings": { "title": "買ったあとの伴走", "text": "選び方も使い方も、いつでもご相談を。あなたの肌が整うまで、そばにいます。" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

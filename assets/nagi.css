@@ -2123,3 +2123,174 @@ nagi-restock { display: block; }
     scroll-snap-align: start;
   }
 }
+
+/* ============================================================
+   v5 コンテンツページ（できること / 読み物 / about）
+   ============================================================ */
+
+/* --- F1 アプリスタック --- */
+.nagi-apps { padding: var(--nagi-apps-pt, 64px) 0 var(--nagi-apps-pb, 72px); }
+.nagi-apps__inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.nagi-apps__header { text-align: center; max-width: 60ch; margin: 0 auto 40px; }
+.nagi-apps__intro { color: var(--nagi-shade-50); margin-top: 12px; }
+.nagi-apps__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.nagi-apps__card {
+  background: var(--nagi-white);
+  border: 1px solid var(--nagi-hairline);
+  border-radius: var(--nagi-radius-card);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.nagi-apps__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--nagi-green-05);
+  color: var(--nagi-green-60);
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+.nagi-apps__icon svg { width: 24px; height: 24px; }
+.nagi-apps__cap { font-family: var(--font-heading-family); font-size: 18px; margin: 0 0 8px; }
+.nagi-apps__desc { color: var(--nagi-shade-50); font-size: 14px; line-height: 1.75; margin: 0 0 16px; flex: 1; }
+.nagi-apps__names {
+  font-size: 13px; color: var(--nagi-ink);
+  margin: 0 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.nagi-apps__names-label {
+  font-size: 11px; letter-spacing: .06em; color: var(--nagi-shade-40);
+  border: 1px solid var(--nagi-hairline); border-radius: 5px; padding: 2px 6px;
+}
+.nagi-apps__modes { display: flex; gap: 8px; }
+.nagi-apps__mode { font-size: 12px; padding: 5px 10px; border-radius: 9999px; font-weight: 600; }
+.nagi-apps__mode--app { background: var(--nagi-green-60); color: #fff; }
+.nagi-apps__mode--build { background: transparent; color: var(--nagi-ink); border: 1px solid var(--nagi-ink); }
+.nagi-apps__note { text-align: center; color: var(--nagi-shade-40); font-size: 13px; margin-top: 28px; }
+
+/* --- F2 ブログ一覧マガジン --- */
+.nagi-blogx { padding: var(--nagi-blogx-pt, 56px) 0 var(--nagi-blogx-pb, 72px); }
+.nagi-blogx__inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.nagi-blogx__header { text-align: center; max-width: 60ch; margin: 0 auto 40px; }
+.nagi-blogx__intro { color: var(--nagi-shade-50); margin-top: 12px; }
+.nagi-blogx__empty { text-align: center; color: var(--nagi-shade-50); padding: 48px 0; }
+.nagi-blogx__lead {
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;
+  text-decoration: none; color: inherit; margin-bottom: 56px;
+}
+.nagi-blogx__lead-thumb {
+  aspect-ratio: 3 / 2; border-radius: var(--nagi-radius-panel); overflow: hidden;
+  background: var(--nagi-surface-wash);
+}
+.nagi-blogx__lead-thumb img,
+.nagi-blogx__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.nagi-blogx__lead:hover .nagi-blogx__lead-thumb img,
+.nagi-blogx__card:hover .nagi-blogx__thumb img { transform: scale(1.04); }
+.nagi-blogx__lead-title { font-family: var(--font-heading-family); font-size: 30px; line-height: 1.3; margin: 12px 0; }
+.nagi-blogx__lead-excerpt { color: var(--nagi-shade-50); line-height: 1.85; }
+.nagi-blogx__more { color: var(--nagi-green-60); font-size: 14px; display: inline-block; margin-top: 14px; }
+.nagi-blogx__meta { display: flex; align-items: center; gap: 12px; font-size: 12px; }
+.nagi-blogx__cat { background: var(--nagi-green-05); color: var(--nagi-green-70); padding: 3px 10px; border-radius: 9999px; font-weight: 600; }
+.nagi-blogx__date { color: var(--nagi-shade-40); font-variant-numeric: tabular-nums; }
+.nagi-blogx__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 24px; }
+.nagi-blogx__card { text-decoration: none; color: inherit; display: block; }
+.nagi-blogx__thumb {
+  aspect-ratio: 3 / 2; border-radius: var(--nagi-radius-card); overflow: hidden;
+  background: var(--nagi-surface-wash); margin-bottom: 14px;
+}
+.nagi-blogx__title { font-family: var(--font-heading-family); font-size: 18px; line-height: 1.45; margin: 10px 0 6px; }
+.nagi-blogx__excerpt { color: var(--nagi-shade-50); font-size: 14px; line-height: 1.75; }
+.nagi-blogx__pagination { display: flex; justify-content: center; margin-top: 48px; }
+
+/* --- F3 記事の読み物タイポ（Dawn の article-template__content を上書き） --- */
+.article-template__content { font-size: 1.05rem; line-height: 1.9; }
+.article-template__content > p:first-of-type { font-size: 1.18rem; color: var(--nagi-ink); }
+.article-template__content h2,
+.article-template__content h3 { font-family: var(--font-heading-family); margin-top: 2.2em; margin-bottom: .6em; }
+.article-template__content img { border-radius: var(--nagi-radius-card); margin: 1.6rem 0; }
+.article-template__content blockquote {
+  border-left: 3px solid var(--nagi-green-50);
+  padding: 4px 0 4px 22px; margin: 1.8rem 0;
+  font-family: var(--font-heading-family); font-size: 1.25rem; line-height: 1.6;
+  color: var(--nagi-green-70);
+}
+.article-template__content figcaption { font-size: .85rem; color: var(--nagi-shade-40); text-align: center; margin-top: 8px; }
+
+/* --- F3 記事アウトロ --- */
+.nagi-outro { padding: var(--nagi-outro-pt, 56px) 0 var(--nagi-outro-pb, 56px); }
+.nagi-outro__inner {
+  max-width: 900px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; gap: 32px;
+}
+.nagi-outro__media {
+  flex: 0 0 34%; aspect-ratio: 1 / 1; border-radius: var(--nagi-radius-panel);
+  overflow: hidden; background: var(--nagi-white);
+}
+.nagi-outro__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nagi-outro__heading { font-family: var(--font-heading-family); font-size: 24px; margin: 8px 0 12px; }
+.nagi-outro__text { color: var(--nagi-shade-50); line-height: 1.85; margin: 0 0 20px; }
+.nagi-outro__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* --- F4 about ストーリー --- */
+.nagi-story__inner { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+.nagi-story__inner--narrow { max-width: 760px; text-align: center; }
+.nagi-story__manifesto { padding: 96px 0; color: #fff; }
+.nagi-story__manifesto .nagi-section-eyebrow { color: var(--nagi-green-40); }
+.nagi-story__manifesto-heading {
+  font-family: var(--font-heading-family); font-weight: var(--font-heading-weight, 300);
+  font-size: clamp(32px, 6vw, 56px); line-height: 1.2; letter-spacing: -.01em;
+  margin: 12px 0 24px; color: #fff;
+}
+.nagi-story__lede { color: rgba(255, 255, 255, .82); font-size: 16px; line-height: 1.95; max-width: 52ch; margin: 0 auto; }
+.nagi-story__diff { padding: 80px 0; }
+.nagi-story__diff-heading { text-align: center; margin-bottom: 40px; }
+.nagi-story__crows { display: flex; flex-direction: column; gap: 16px; max-width: 880px; margin: 0 auto; }
+.nagi-story__crow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.nagi-story__ordinary,
+.nagi-story__ours { padding: 22px 24px; border-radius: var(--nagi-radius-card); }
+.nagi-story__ordinary { background: var(--nagi-shade-20); color: var(--nagi-shade-50); }
+.nagi-story__ours { background: var(--nagi-green-05); color: var(--nagi-ink); border: 1px solid var(--nagi-green-10); }
+.nagi-story__ctag { display: inline-block; font-size: 11px; letter-spacing: .08em; margin-bottom: 8px; color: var(--nagi-shade-40); }
+.nagi-story__ctag--ours { color: var(--nagi-green-60); font-weight: 600; }
+.nagi-story__ordinary p,
+.nagi-story__ours p { margin: 0; font-size: 15px; line-height: 1.75; }
+.nagi-story__movement { padding: 80px 0; }
+.nagi-story__movement-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.nagi-story__movement-media { aspect-ratio: 4 / 5; border-radius: var(--nagi-radius-panel); overflow: hidden; background: var(--nagi-surface-wash); }
+.nagi-story__movement-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nagi-story__body { color: var(--nagi-shade-50); line-height: 1.95; margin-top: 16px; }
+.nagi-story__pillars { padding: 80px 0; background: var(--nagi-surface-wash); }
+.nagi-story__pillars-heading { text-align: center; margin-bottom: 44px; }
+.nagi-story__pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.nagi-story__pillar-num { font-family: var(--font-heading-family); font-size: 14px; color: var(--nagi-green-50); letter-spacing: .1em; }
+.nagi-story__pillar-title { font-family: var(--font-heading-family); font-size: 18px; margin: 10px 0 8px; }
+.nagi-story__pillar-text { color: var(--nagi-shade-50); font-size: 14px; line-height: 1.85; }
+.nagi-story__close { padding: 84px 0; text-align: center; }
+.nagi-story__close-heading {
+  font-family: var(--font-heading-family); font-weight: var(--font-heading-weight, 300);
+  font-size: clamp(26px, 4vw, 40px); margin: 0 0 28px;
+}
+
+@media screen and (max-width: 60em) {
+  .nagi-apps__inner,
+  .nagi-blogx__inner,
+  .nagi-story__inner { padding-left: 24px; padding-right: 24px; }
+  .nagi-apps__grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-blogx__lead { grid-template-columns: 1fr; gap: 20px; }
+  .nagi-blogx__grid { grid-template-columns: repeat(2, 1fr); }
+  .nagi-story__movement-inner { grid-template-columns: 1fr; gap: 28px; }
+  .nagi-story__movement-media { max-width: 480px; }
+  .nagi-story__pillar-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media screen and (max-width: 40em) {
+  .nagi-apps__grid { grid-template-columns: 1fr; }
+  .nagi-blogx__grid { grid-template-columns: 1fr; }
+  .nagi-blogx__lead-title { font-size: 24px; }
+  .nagi-story__crow { grid-template-columns: 1fr; gap: 10px; }
+  .nagi-story__pillar-grid { grid-template-columns: 1fr; }
+  .nagi-story__manifesto { padding: 64px 0; }
+  .nagi-outro__inner { flex-direction: column; text-align: center; }
+  .nagi-outro__media { flex-basis: auto; width: 160px; }
+  .nagi-outro__actions { justify-content: center; }
+}

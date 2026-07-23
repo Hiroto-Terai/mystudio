@@ -1,0 +1,130 @@
+{%- comment -%}
+  アプリスタック。能力ごとに「機能アイコン＋実アプリ名の例＋説明」と、
+  「アプリで即 / 実装で自由に」の2バッジを並べ、どちらの手段でも実現できることを示す。
+  JS ゼロの表示系（reveal 演出のみ nagi-motion.js に依存）。
+  アイコンは使う8種だけ自作インライン SVG（実ロゴは商標/CSPのため使わない）。
+{%- endcomment -%}
+<section
+  class="nagi-apps"
+  data-nagi-reveal
+  style="--nagi-apps-pt: {{ section.settings.padding_top }}px; --nagi-apps-pb: {{ section.settings.padding_bottom }}px; background: {{ section.settings.background_color }};"
+>
+  <div class="nagi-apps__inner">
+    <div class="nagi-apps__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="nagi-section-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="nagi-apps__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="nagi-apps__grid">
+      {%- for block in section.blocks -%}
+        <article class="nagi-apps__card" {{ block.shopify_attributes }}>
+          <span class="nagi-apps__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'mail' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 5.5L20.5 7"/></svg>
+              {%- when 'star' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.6l-5.2 2.4 1-5.8-4.3-4.1 5.9-.8z"/></svg>
+              {%- when 'subscription' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.6"/><path d="M20 6v5h-5"/></svg>
+              {%- when 'loyalty' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11"/><path d="M12 9C10.3 9 9 7.9 9 6.6 9 5.7 9.6 5 10.4 5 12 5 12 9 12 9Zm0 0c1.7 0 3-1.1 3-2.4C15 5.7 14.4 5 13.6 5 12 5 12 9 12 9Z"/></svg>
+              {%- when 'upsell' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>
+              {%- when 'markets' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>
+              {%- when 'search' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5A1.5 1.5 0 0 1 18.5 17H9l-4 3.5V7A1.5 1.5 0 0 1 6.5 5.5h12A1.5 1.5 0 0 1 20 7z"/></svg>
+            {%- endcase -%}
+          </span>
+
+          {%- if block.settings.capability != blank -%}
+            <h3 class="nagi-apps__cap">{{ block.settings.capability }}</h3>
+          {%- endif -%}
+          {%- if block.settings.description != blank -%}
+            <p class="nagi-apps__desc">{{ block.settings.description }}</p>
+          {%- endif -%}
+          {%- if block.settings.app_names != blank -%}
+            <p class="nagi-apps__names"><span class="nagi-apps__names-label">アプリ例</span>{{ block.settings.app_names }}</p>
+          {%- endif -%}
+
+          <div class="nagi-apps__modes">
+            <span class="nagi-apps__mode nagi-apps__mode--app">アプリで即</span>
+            <span class="nagi-apps__mode nagi-apps__mode--build">実装で自由に</span>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.note != blank -%}
+      <p class="nagi-apps__note">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+<script src="{{ 'nagi-motion.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "アプリスタック",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "眉書き (英語)", "default": "Apps & Build" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "アプリでも、実装でも。" },
+    { "type": "textarea", "id": "intro", "label": "リード文", "default": "月額課金の定番アプリで素早く。またはテーマに直接実装して自由に。ご予算とこだわりに合わせて、最適な手段を選べます。" },
+    { "type": "text", "id": "note", "label": "補足", "default": "※ このデモではお気に入り・レビュー・再入荷通知・配送日時指定などを自作で実装済みです。" },
+    { "type": "color", "id": "background_color", "label": "背景色", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "label": "上の余白", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "下の余白", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "app",
+      "name": "アプリ / 能力",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "アイコン",
+          "options": [
+            { "value": "star", "label": "レビュー (星)" },
+            { "value": "mail", "label": "メール配信" },
+            { "value": "subscription", "label": "定期購入" },
+            { "value": "loyalty", "label": "ポイント/紹介" },
+            { "value": "upsell", "label": "アップセル" },
+            { "value": "markets", "label": "多言語/通貨" },
+            { "value": "search", "label": "検索/絞り込み" },
+            { "value": "chat", "label": "接客/FAQ" }
+          ],
+          "default": "star"
+        },
+        { "type": "text", "id": "capability", "label": "能力名", "default": "レビュー・写真投稿" },
+        { "type": "text", "id": "app_names", "label": "アプリ名の例", "default": "Judge.me / Loox" },
+        { "type": "textarea", "id": "description", "label": "説明", "default": "星評価と写真つきレビューを集めて商品ページに表示。購入の後押しに。" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "アプリスタック",
+      "blocks": [
+        { "type": "app", "settings": { "icon": "star", "capability": "レビュー・写真投稿", "app_names": "Judge.me / Loox", "description": "星評価と写真つきレビューを集めて商品ページに表示。購入の後押しに。" } },
+        { "type": "app", "settings": { "icon": "mail", "capability": "メール・LINE 配信", "app_names": "Klaviyo / Omnisend", "description": "カゴ落ち・再入荷・購入後フォローを自動配信。セグメント配信で開封率を上げる。" } },
+        { "type": "app", "settings": { "icon": "subscription", "capability": "定期購入", "app_names": "Recharge / Seal Subscriptions", "description": "消耗品を定期便に。解約されにくい体験と安定した売上をつくる。" } },
+        { "type": "app", "settings": { "icon": "loyalty", "capability": "ポイント・紹介", "app_names": "Smile.io / LoyaltyLion", "description": "購入や紹介でポイント付与。リピートと口コミを仕組みで増やす。" } },
+        { "type": "app", "settings": { "icon": "upsell", "capability": "アップセル・バンドル", "app_names": "ReConvert / Bundler", "description": "カートや購入完了画面でおすすめを提案。客単価を引き上げる。" } },
+        { "type": "app", "settings": { "icon": "markets", "capability": "多言語・多通貨", "app_names": "Shopify Markets / Translate & Adapt", "description": "海外のお客様に現地語・現地通貨で。越境販売の入口を整える。" } },
+        { "type": "app", "settings": { "icon": "search", "capability": "検索・絞り込み", "app_names": "Search & Discovery", "description": "肌悩みや成分で絞り込める検索を追加。探しやすさが回遊を生む。" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
