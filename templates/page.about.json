@@ -9,105 +9,45 @@
  */
 {
   "sections": {
-    "about_statement": {
-      "type": "nagi-philosophy-band",
-      "settings": {
-        "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
-        "eyebrow": "About nagi",
-        "heading": "<p>植物のちからで、<br>素肌をととのえる。</p>",
-        "body": "nagi は、国産の植物由来成分を軸にした基礎化粧品ブランドです。肌に届けたいものだけを、敏感な肌にもやさしいシンプルな処方で。植物のちからを借りて、毎日のスキンケアを素肌がよろこぶ心地よい時間に変えていきます。",
-        "cta_label": "商品を見る",
-        "cta_url": "shopify://collections/all"
-      }
-    },
-    "about_promise": {
-      "type": "multicolumn",
+    "about_story": {
+      "type": "nagi-about-story",
       "blocks": {
-        "p1": {
-          "type": "column",
-          "settings": {
-            "title": "厳選した成分",
-            "text": "<p>国産のボタニカル成分を中心に、産地や製法までたどれる原料だけを厳選。肌への負担を考えて、一つひとつ選び抜いています。</p>"
-          }
-        },
-        "p2": {
-          "type": "column",
-          "settings": {
-            "title": "余計を足さない処方",
-            "text": "<p>合成香料や着色料に頼らない、必要なものだけのシンプルな設計。ゆらぎやすい敏感な肌にも、毎日心地よくお使いいただけます。</p>"
-          }
-        },
-        "p3": {
-          "type": "column",
-          "settings": {
-            "title": "国内での製造",
-            "text": "<p>処方設計から充填・検品まで、品質管理の行き届いた国内工場で一貫して製造。丁寧に仕上げてお届けします。</p>"
-          }
-        }
+        "c1": { "type": "contrast", "settings": { "ordinary": "話題の成分を次々に足して、盛りだくさんに見せる。", "ours": "肌に必要なものだけを選び、あえて引き算する。" } },
+        "c2": { "type": "contrast", "settings": { "ordinary": "香りや使用感で、その場の満足をつくる。", "ours": "敏感な肌が毎日続けられる、心地よさを設計する。" } },
+        "c3": { "type": "contrast", "settings": { "ordinary": "売ったら、そこで関係が終わる。", "ours": "使い方に寄り添い、あなたの肌の変化を一緒に見届ける。" } },
+        "p1": { "type": "pillar", "settings": { "title": "産地までたどれる成分", "text": "国産ボタニカルを中心に、由来のわかる原料だけ。信頼できるものしか、肌にのせたくないから。" } },
+        "p2": { "type": "pillar", "settings": { "title": "余白のある処方", "text": "無添加7項目。必要なものを必要なだけ。敏感な肌が、毎日ためらわず使えるように。" } },
+        "p3": { "type": "pillar", "settings": { "title": "国内一貫製造", "text": "処方から検品まで日本の工場で。ひとつずつ、ていねいに仕上げてお届けします。" } },
+        "p4": { "type": "pillar", "settings": { "title": "買ったあとの伴走", "text": "選び方も使い方も、いつでもご相談を。あなたの肌が整うまで、そばにいます。" } }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": ["c1", "c2", "c3", "p1", "p2", "p3", "p4"],
       "settings": {
-        "title": "私たちの3つの約束",
-        "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "scheme-3",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 56,
-        "padding_bottom": 56
+        "manifesto_bg": "#0e100f",
+        "manifesto_eyebrow": "Our Belief",
+        "manifesto_heading": "肌が変わると、\n毎日の機嫌まで変わる。",
+        "manifesto_lede": "私たちは、化粧品を売っているのではありません。鏡を見るのが少し好きになる、そんな朝をつくりたいのです。だから nagi は、余計なものを削ぎ落とし、肌本来の力を信じることから始めました。",
+        "diff_heading": "私たちが、ありふれた化粧品と違う理由",
+        "change_image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
+        "change_eyebrow": "What Changes",
+        "change_heading": "3週間後、鏡の前のあなたへ。",
+        "change_body": "ゆらいでいた肌が、少しずつ落ち着いていく。ファンデーションを薄くしても、平気になる日がくる。特別なことは何もしていないのに、素肌でいることが、こわくなくなる。それが、nagi が届けたい変化です。",
+        "pillars_heading": "その変化を、こうしてお届けします",
+        "close_bg": "#f1fbf4",
+        "close_heading": "素肌が、いちばんの自信になる。",
+        "close_cta_label": "nagi を試してみる",
+        "close_cta_url": "shopify://collections/all"
       }
     },
     "about_numbers": {
       "type": "nagi-trust-strip",
       "blocks": {
-        "n1": {
-          "type": "item",
-          "settings": {
-            "icon": "leaf",
-            "text": "国産植物成分 90%"
-          }
-        },
-        "n2": {
-          "type": "item",
-          "settings": {
-            "icon": "check",
-            "text": "7つの無添加処方"
-          }
-        },
-        "n3": {
-          "type": "item",
-          "settings": {
-            "icon": "shield",
-            "text": "レビュー平均 ★4.8"
-          }
-        },
-        "n4": {
-          "type": "item",
-          "settings": {
-            "icon": "refresh",
-            "text": "30日間 返品保証"
-          }
-        }
+        "n1": { "type": "item", "settings": { "icon": "leaf", "text": "国産植物成分 90%" } },
+        "n2": { "type": "item", "settings": { "icon": "check", "text": "7つの無添加処方" } },
+        "n3": { "type": "item", "settings": { "icon": "shield", "text": "レビュー平均 ★4.8" } },
+        "n4": { "type": "item", "settings": { "icon": "refresh", "text": "30日間 返品保証" } }
       },
       "block_order": ["n1", "n2", "n3", "n4"],
       "settings": {}
-    },
-    "about_story": {
-      "type": "nagi-philosophy-band",
-      "settings": {
-        "image": "shopify://shop_images/photo-1501004318641-b39e6451bec6.jpg",
-        "eyebrow": "Our Story",
-        "heading": "<p>敏感な肌にも、<br>心地よいものを。</p>",
-        "body": "「敏感な肌にも安心して使えるものが、どうしてこんなに少ないのだろう」— そんな疑問から nagi は始まりました。国内の生産者を訪ね、植物由来の成分を一つずつ確かめて、処方には必要なぶんだけ。クレンジングから UV ケアまで、毎日の素肌に寄り添うラインナップを少しずつ育てています。",
-        "cta_label": "読みものを見る",
-        "cta_url": "shopify://blogs/news"
-      }
     },
     "staff_intro": {
       "type": "staff-list",
@@ -185,10 +125,8 @@
     }
   },
   "order": [
-    "about_statement",
-    "about_promise",
-    "about_numbers",
     "about_story",
+    "about_numbers",
     "staff_intro",
     "about_products",
     "about_journal",

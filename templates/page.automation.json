@@ -107,6 +107,25 @@
         "cta_url": "/pages/contact"
       }
     },
+    "app_stack": {
+      "type": "nagi-app-stack",
+      "blocks": {
+        "a1": { "type": "app", "settings": { "icon": "star", "capability": "レビュー・写真投稿", "app_names": "Judge.me / Loox", "description": "星評価と写真つきレビューを集めて商品ページに表示。購入の後押しに。" } },
+        "a2": { "type": "app", "settings": { "icon": "mail", "capability": "メール・LINE 配信", "app_names": "Klaviyo / Omnisend", "description": "カゴ落ち・再入荷・購入後フォローを自動配信。セグメント配信で開封率を上げる。" } },
+        "a3": { "type": "app", "settings": { "icon": "subscription", "capability": "定期購入", "app_names": "Recharge / Seal Subscriptions", "description": "消耗品を定期便に。解約されにくい体験と安定した売上をつくる。" } },
+        "a4": { "type": "app", "settings": { "icon": "loyalty", "capability": "ポイント・紹介", "app_names": "Smile.io / LoyaltyLion", "description": "購入や紹介でポイント付与。リピートと口コミを仕組みで増やす。" } },
+        "a5": { "type": "app", "settings": { "icon": "upsell", "capability": "アップセル・バンドル", "app_names": "ReConvert / Bundler", "description": "カートや購入完了画面でおすすめを提案。客単価を引き上げる。" } },
+        "a6": { "type": "app", "settings": { "icon": "markets", "capability": "多言語・多通貨", "app_names": "Shopify Markets / Translate & Adapt", "description": "海外のお客様に現地語・現地通貨で。越境販売の入口を整える。" } },
+        "a7": { "type": "app", "settings": { "icon": "search", "capability": "検索・絞り込み", "app_names": "Search & Discovery", "description": "肌悩みや成分で絞り込める検索を追加。探しやすさが回遊を生む。" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4", "a5", "a6", "a7"],
+      "settings": {
+        "eyebrow": "Apps & Build",
+        "heading": "アプリでも、実装でも。",
+        "intro": "月額課金の定番アプリで素早く。またはテーマに直接実装して自由に。ご予算とこだわりに合わせて、最適な手段を選べます。",
+        "note": "※ このデモではお気に入り・レビュー・再入荷通知・配送日時指定などを自作で実装済みです。"
+      }
+    },
     "faq": {
       "type": "nagi-faq",
       "settings": {
@@ -115,5 +134,5 @@
       }
     }
   },
-  "order": ["flow", "faq"]
+  "order": ["flow", "app_stack", "faq"]
 }

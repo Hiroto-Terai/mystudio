@@ -1,0 +1,94 @@
+{%- comment -%}
+  ブログ一覧のマガジン風レイアウト。blog テンプレの `blog.articles` を paginate で取得し、
+  先頭記事を大きく、以降をカードグリッドで見せる。main-blog の置き換え。
+  記事 0 件でも壊れない空状態を持つ。JS ゼロ表示系（reveal 演出のみ nagi-motion.js）。
+{%- endcomment -%}
+{%- paginate blog.articles by 13 -%}
+  <section
+    class="nagi-blogx"
+    data-nagi-reveal
+    style="--nagi-blogx-pt: {{ section.settings.padding_top }}px; --nagi-blogx-pb: {{ section.settings.padding_bottom }}px;"
+  >
+    <div class="nagi-blogx__inner">
+      <div class="nagi-blogx__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="nagi-section-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h1 class="nagi-section-heading">{{ section.settings.heading | default: blog.title }}</h1>
+        {%- if section.settings.intro != blank -%}
+          <p class="nagi-blogx__intro">{{ section.settings.intro }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if blog.articles.size == 0 -%}
+        <p class="nagi-blogx__empty">記事がまだありません。</p>
+      {%- else -%}
+        {%- if section.settings.feature_first -%}
+          {%- assign lead = blog.articles.first -%}
+          <a class="nagi-blogx__lead" href="{{ lead.url }}">
+            <div class="nagi-blogx__lead-thumb">
+              {%- if lead.image != blank -%}
+                {{ lead.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 60vw, 100vw', widths: '600, 900, 1400', alt: lead.title }}
+              {%- endif -%}
+            </div>
+            <div class="nagi-blogx__lead-body">
+              <div class="nagi-blogx__meta">
+                {%- if lead.tags.size > 0 -%}<span class="nagi-blogx__cat">{{ lead.tags.first }}</span>{%- endif -%}
+                <time class="nagi-blogx__date">{{ lead.published_at | date: '%Y/%m/%d' }}</time>
+              </div>
+              <h2 class="nagi-blogx__lead-title">{{ lead.title }}</h2>
+              <p class="nagi-blogx__lead-excerpt">{{ lead.excerpt_or_content | strip_html | truncate: 120 }}</p>
+              <span class="nagi-blogx__more">続きを読む →</span>
+            </div>
+          </a>
+        {%- endif -%}
+
+        <div class="nagi-blogx__grid">
+          {%- for article in blog.articles -%}
+            {%- if forloop.first and section.settings.feature_first -%}{%- continue -%}{%- endif -%}
+            <a class="nagi-blogx__card" href="{{ article.url }}">
+              <div class="nagi-blogx__thumb">
+                {%- if article.image != blank -%}
+                  {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 30vw, 100vw', widths: '400, 600, 800', alt: article.title }}
+                {%- endif -%}
+              </div>
+              <div class="nagi-blogx__meta">
+                {%- if article.tags.size > 0 -%}<span class="nagi-blogx__cat">{{ article.tags.first }}</span>{%- endif -%}
+                <time class="nagi-blogx__date">{{ article.published_at | date: '%Y/%m/%d' }}</time>
+              </div>
+              <h3 class="nagi-blogx__title">{{ article.title }}</h3>
+              {%- if section.settings.show_excerpt -%}
+                <p class="nagi-blogx__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 80 }}</p>
+              {%- endif -%}
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="nagi-blogx__pagination" role="navigation" aria-label="ページ送り">
+          {{ paginate | default_pagination }}
+        </nav>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "ブログ一覧",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "眉書き (英語)", "default": "Journal" },
+    { "type": "text", "id": "heading", "label": "見出し（空欄でブログ名）" },
+    { "type": "textarea", "id": "intro", "label": "リード文", "default": "成分のこと、日々のお手入れのこと。素肌によりそう読みものをお届けします。" },
+    { "type": "checkbox", "id": "feature_first", "label": "先頭記事を大きく表示", "default": true },
+    { "type": "checkbox", "id": "show_excerpt", "label": "カードに抜粋を表示", "default": true },
+    { "type": "range", "id": "padding_top", "label": "上の余白", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "下の余白", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [
+    { "name": "ブログ一覧" }
+  ]
+}
+{% endschema %}

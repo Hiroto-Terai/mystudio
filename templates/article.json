@@ -33,6 +33,18 @@
         "content"
       ]
     },
+    "article_outro": {
+      "type": "nagi-article-outro",
+      "settings": {
+        "eyebrow": "From nagi",
+        "heading": "素肌によりそう、次の一歩へ。",
+        "body": "読んでくださってありがとうございます。気になるアイテムや、ほかの読みものものぞいてみてください。あなたの毎日のお手入れが、少しでも心地よくなりますように。",
+        "cta_1_label": "アイテムを見る",
+        "cta_1_url": "shopify://collections/all",
+        "cta_2_label": "ほかの読みもの",
+        "cta_2_url": "shopify://blogs/journal"
+      }
+    },
     "article_carousel": {
       "type": "nagi-product-carousel",
       "settings": {
@@ -45,6 +57,7 @@
   },
   "order": [
     "main",
+    "article_outro",
     "article_carousel"
   ]
 }
